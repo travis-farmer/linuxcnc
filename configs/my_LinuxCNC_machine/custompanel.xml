@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pyvcp>
+         <vbox>
+         <relief>RIDGE</relief>
+         <bd>6</bd>
+                <label>
+                        <text>"Spindle Speed:"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <bar>
+                      <halpin>"spindle_rpm"</halpin>
+                      <max_>21000</max_>
+                </bar>
+                <label>
+                        <text>"Spindle-At-Speed:"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <hbox>
+                    <label>
+                            <text>"             "</text>
+                            <font>("Helvetica",20)</font>
+                    </label>
+                    <led>
+                        <halpin>"spindle-at-speed-led"</halpin>
+                        <size>30</size>
+                        <on_color>"green"</on_color>
+                        <off_color>"red"</off_color>
+                    </led>
+                </hbox>
+                <label>
+                      <text>"Spindle Amps:"</text>
+                      <font>("Helvetica",20)</font>
+                </label>
+                <bar>
+                      <halpin>"spindle-amps"</halpin>
+                      <max_>18</max_>
+                </bar>
+                <label>
+                        <text>"Forward:"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <hbox>
+                    <label>
+                            <text>"             "</text>
+                            <font>("Helvetica",20)</font>
+                    </label>
+                    <led>
+                        <halpin>"spindle-forward-led"</halpin>
+                        <size>30</size>
+                        <on_color>"green"</on_color>
+                        <off_color>"red"</off_color>
+                    </led>
+                </hbox>
+                <label>
+                        <text>"Reverse:"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <hbox>
+                    <label>
+                            <text>"             "</text>
+                            <font>("Helvetica",20)</font>
+                    </label>
+                    <led>
+                        <halpin>"spindle-reverse-led"</halpin>
+                        <size>30</size>
+                        <on_color>"green"</on_color>
+                        <off_color>"red"</off_color>
+                    </led>
+                </hbox>
+                <label>
+                        <text>"Laser PWM:"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <bar>
+                      <halpin>"laser-pwm"</halpin>
+                      <max_>2000</max_>
+                </bar>
+        </vbox>
+</pyvcp>

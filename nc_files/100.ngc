@@ -1,0 +1,19 @@
+o100 sub
+( make sure we are in mm mode )
+G21
+( MDI_COMMAND=o100 call )
+(MSG, Please insert touch probe plate, and connect tool ground clip)
+( Set current Z position to 0 so that we will always be moving down )
+G10 L20 P0 Z0
+( Probe to Z-10 mm at F2 [Uses machine units, mm in my case, this is meant to be slow!] )
+G38.2 Z-10 f2
+( Set Z0 at point where probe triggers with offset of +10 [this is the thickness of my touch plate. You must adjust this for your plate / setup] )
+(G10 L20 = Set Coordinate System // P - coordinate system 0-9 0 = Not active)
+G10 L20 P0 Z10
+(Incremental mode)
+G91
+(Rapid Z up 10 mm)
+G0 Z10
+(set absolute distance mode)
+G90
+o100 endsub [1]

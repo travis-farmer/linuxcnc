@@ -1,0 +1,18 @@
+# Include your customized HAL commands here
+# This file will not be overwritten when you run stepconf again
+loadusr -Wn vfd hy_vfd -n vfd -d /dev/ttyUSB0 -p none -r 9600 -t 1 -S 21000
+net spindle-cmd-rpm-abs => vfd.speed-command
+net spindle-cw spindle.0.forward => vfd.spindle-forward
+net spindle-ccw spindle.0.reverse => vfd.spindle-reverse
+net on spindle.0.on => vfd.spindle-on
+
+# external button to trigger touch off
+# net run-touch-btn <= parport.1.pin-10-in => halui.mdi-command-04
+
+#limits debounce to stop false triggers
+# loadrt debounce cfg=1 #change to the number you want
+# setp debounce.0.delay 100 #this sets the delay 100 iterations of the servo-thread
+# addf debounce.0 servo-thread
+# net deb-probe-in debounce.0.0.in <= parport.1.pin-11-in
+# net probe-in debounce.0.0.out
+# net probe-in => motion.probe-input

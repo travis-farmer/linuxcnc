@@ -1,0 +1,156 @@
+# load the user space component
+loadusr -W xhc-whb04b-6 -H
+
+# Connect emergency stop signals
+#net  pdnt.machine.is-on             halui.machine.is-on           whb.halui.machine.is-on
+net  pdnt.machine.on                whb.halui.machine.on          halui.machine.on
+net  pdnt.machine.off               whb.halui.machine.off         halui.machine.off
+
+# Connect program related signals
+net  pdnt.program.is-idle           whb.halui.program.is-idle     halui.program.is-idle
+net  pdnt.program.is-paused         whb.halui.program.is-paused   halui.program.is-paused
+net  pdnt.program.is-running        whb.halui.program.is-running  halui.program.is-running
+net  pdnt.program.resume            whb.halui.program.resume      halui.program.resume
+net  pdnt.program.pause             whb.halui.program.pause       halui.program.pause
+net  pdnt.program.run               whb.halui.program.run         halui.program.run
+net  pdnt.program.stop              whb.halui.program.stop        halui.program.stop
+
+# Connect "selected axis" signals
+net  pdnt.joint.X.select            whb.halui.axis.x.select#      halui.axis.x.select
+net  pdnt.joint.Y.select            whb.halui.axis.y.select#      halui.axis.y.select
+net  pdnt.joint.Z.select            whb.halui.axis.z.select#      halui.axis.z.select
+#net pdnt.joint.A.select            whb.halui.axis.a.select      halui.axis.a.select
+#net pdnt.joint.B.select            whb.halui.axis.b.select      halui.axis.b.select
+#net pdnt.joint.C.select            whb.halui.axis.c.select      halui.axis.c.select
+
+#loadusr -W set_work_zero
+#net pdnt.joint.X.select set_work_zero.xselect
+#net pdnt.joint.Y.select set_work_zero.yselect
+#net pdnt.joint.Z.select set_work_zero.zselect
+#net button_press whb.button.macro-1 set_work_zero.button_press
+
+# Connect jog signals for step and continuous mode
+# net  pdnt.stepgen.00.maxvel         hpg.stepgen.00.maxvel         whb.stepgen.00.maxvel
+# net  pdnt.stepgen.01.maxvel         hpg.stepgen.01.maxvel         whb.stepgen.01.maxvel
+# net  pdnt.stepgen.02.maxvel         hpg.stepgen.02.maxvel         whb.stepgen.02.maxvel
+#net pdnt.stepgen.03.maxvel         hpg.stepgen.03.maxvel         whb.stepgen.03.maxvel
+#net pdnt.stepgen.04.maxvel         hpg.stepgen.04.maxvel         whb.stepgen.04.maxvel
+#net pdnt.stepgen.05.maxvel         hpg.stepgen.05.maxvel         whb.stepgen.05.maxvel
+# net  pdnt.stepgen.00.position-scale hpg.stepgen.00.position-scale whb.stepgen.00.position-scale
+# net  pdnt.stepgen.01.position-scale hpg.stepgen.01.position-scale whb.stepgen.01.position-scale
+# net  pdnt.stepgen.02.position-scale hpg.stepgen.02.position-scale whb.stepgen.02.position-scale
+#net pdnt.stepgen.03.position-scale hpg.stepgen.03.position-scale whb.stepgen.03.position-scale
+#net pdnt.stepgen.04.position-scale hpg.stepgen.04.position-scale whb.stepgen.04.position-scale
+#net pdnt.stepgen.05.position-scale hpg.stepgen.05.position-scale whb.stepgen.05.position-scale
+net  pdnt.joint.0.jog-counts axis.x.jog-counts         whb.axis.x.jog-counts axis.x.jog-counts         joint.0.jog-counts axis.x.jog-counts
+net  pdnt.joint.1.jog-counts axis.y.jog-counts         whb.axis.y.jog-counts axis.y.jog-counts         joint.1.jog-counts axis.y.jog-counts
+net  pdnt.joint.2.jog-counts axis.z.jog-counts         whb.axis.z.jog-counts axis.z.jog-counts         joint.2.jog-counts axis.z.jog-counts
+#net pdnt.joint.3.jog-counts axis.a.jog-counts         whb.joint.a.jog-counts axis.a.jog-counts         joint.3.jog-counts axis.a.jog-counts
+#net pdnt.joint.4.jog-counts axis.b.jog-counts         whb.joint.b.jog-counts axis.b.jog-counts         joint.4.jog-counts axis.b.jog-counts
+#net pdnt.joint.5.jog-counts axis.c.jog-counts         whb.joint.c.jog-counts axis.c.jog-counts         joint.5.jog-counts axis.c.jog-counts
+net  pdnt.axis.x.jog-enable         whb.axis.x.jog-enable         axis.x.jog-enable
+net  pdnt.axis.y.jog-enable         whb.axis.y.jog-enable         axis.y.jog-enable
+net  pdnt.axis.z.jog-enable         whb.axis.z.jog-enable         axis.z.jog-enable
+#net pdnt.axis.a.jog-enable         whb.axis.a.jog-enable         axis.a.jog-enable
+#net pdnt.axis.b.jog-enable         whb.axis.b.jog-enable         axis.b.jog-enable
+#net pdnt.axis.c.jog-enable         whb.axis.c.jog-enable         axis.c.jog-enable
+net  pdnt.joint.0.jog-scale axis.x.jog-scale          whb.axis.x.jog-scale axis.x.jog-scale          joint.0.jog-scale axis.x.jog-scale
+net  pdnt.joint.1.jog-scale axis.y.jog-scale          whb.axis.y.jog-scale axis.y.jog-scale          joint.1.jog-scale axis.y.jog-scale
+net  pdnt.joint.2.jog-scale axis.z.jog-scale          whb.axis.z.jog-scale axis.z.jog-scale          joint.2.jog-scale axis.z.jog-scale
+#net pdnt.joint.3.jog-scale axis.a.jog-scale          whb.joint.a.jog-scale axis.a.jog-scale          joint.3.jog-scale axis.a.jog-scale
+#net pdnt.joint.4.jog-scale axis.b.jog-scale          whb.joint.b.jog-scale axis.b.jog-scale          joint.4.jog-scale axis.b.jog-scale
+#net pdnt.joint.5.jog-scale axis.c.jog-scale          whb.joint.c.jog-scale axis.c.jog-scale          joint.5.jog-scale axis.c.jog-scale
+net  pdnt.joint.0.jog-vel-mode axis.x.jog-vel-mode       whb.axis.x.jog-vel-mode axis.x.jog-vel-mode       joint.0.jog-vel-mode axis.x.jog-vel-mode
+net  pdnt.joint.1.jog-vel-mode axis.y.jog-vel-mode       whb.axis.y.jog-vel-mode axis.y.jog-vel-mode       joint.1.jog-vel-mode axis.y.jog-vel-mode
+net  pdnt.joint.2.jog-vel-mode axis.z.jog-vel-mode       whb.axis.z.jog-vel-mode axis.z.jog-vel-mode       joint.2.jog-vel-mode axis.z.jog-vel-mode
+#net pdnt.joint.3.jog-vel-mode axis.a.jog-vel-mode       whb.joint.a.jog-vel-mode axis.a.jog-vel-mode       joint.3.jog-vel-mode axis.a.jog-vel-mode
+#net pdnt.joint.4.jog-vel-mode axis.b.jog-vel-mode       whb.joint.b.jog-vel-mode axis.b.jog-vel-mode       joint.4.jog-vel-mode axis.b.jog-vel-mode
+#net pdnt.joint.5.jog-vel-mode axis.c.jog-vel-mode       whb.joint.c.jog-vel-mode axis.c.jog-vel-mode       joint.5.jog-vel-mode axis.c.jog-vel-mode
+
+# Connect macro buttons to mdi commands
+#net pdnt.macro.11                  whb.button.macro-11           halui.mdi-command-11
+#net pdnt.macro.12                  whb.button.macro-12           halui.mdi-command-12
+#net pdnt.macro.13                  whb.button.macro-13           halui.mdi-command-13
+# net pdnt.macro.1                   whb.button.macro-1            halui.mdi-command-00
+# net pdnt.macro.2                   whb.button.macro-2            halui.mdi-command-01
+# net pdnt.macro.3                   whb.button.macro-3            halui.mdi-command-02
+#net pdnt.macro.4                   whb.button.macro-4
+#net pdnt.macro.5                   whb.button.macro-5            halui.mdi-command-05
+#net pdnt.macro.6                   whb.button.macro-6            halui.mdi-command-06
+#net pdnt.macro.7                   whb.button.macro-7            halui.mdi-command-07
+#net pdnt.macro.8                   whb.button.macro-8            halui.mdi-command-08
+#net pdnt.macro.9                   whb.button.macro-9            halui.mdi-command-09
+net  pdnt.home-all                  whb.button.macro-10           halui.home-all
+#net pdnt.macro.14                  whb.button.macro-14           halui.mdi-command-14
+#net pdnt.macro.15                  whb.button.macro-15           halui.mdi-command-15
+#net pdnt.macro.16                  whb.button.macro-16           halui.mdi-command-16
+
+# Connect reset, stop, start/pause/resume buttons to halui
+# toggles whb.halui.estop.{activate, reset} which are
+# already connected to halui.estop.{activate, reset} via whb.halui.estop.{activate, reset}
+# net  pdnt.button.reset              whb.button.reset              axisui.notifications-clear
+# clear notifications on reset button pressed/released
+# net  pdnt.button.reset              axisui.notifications-clear
+# already linked to halui.program.stop via whb.program.stop
+net  pdnt.button.stop               whb.button.stop		halui.estop.activate
+# toggles whb.halui.program{run, pause, resume} which are
+# already connected to halui.program.{run, pause, resume} via whb.halui.program.{run, pause, resume}
+# net  pdnt.button.start-pause        whb.button.start-pause        std_start_pause
+
+# Connect special positions signals
+net  pdnt.button.m-home             whb.button.m-home             halui.mdi-command-05
+# net  pdnt.button.safe-z             whb.button.safe-z             halui.mdi-command-00
+net  pdnt.button.w-home             whb.button.w-home             halui.mdi-command-06
+# net  pdnt.button.s-on-off           whb.button.s-on-off
+
+# unused, just exposes pendant interna
+net pdnt.button.fn                  whb.button.fn
+
+#halui.TODO, eventually mdi-command
+net  pdnt.button.probe-z            whb.button.probe-z           halui.mdi-command-03
+
+# unused, just exposes pendant interna
+net  pdnt.button.mode-continuous    whb.button.mode-continuous
+
+# unused, just exposes pendant interna
+net  pdnt.button.mode-step          whb.button.mode-step
+
+# Connect spindle related signals
+# net  spindle.is-on                     whb.halui.spindle.0.is-on
+# net  spindle.start                     whb.halui.spindle.0.start
+# net  spindle.stop                      whb.halui.spindle.0.stop
+# net  pdnt.button.spindle-plus          whb.button.spindle-plus
+# net  pdnt.button.spindle-minus         whb.button.spindle-minus
+# net  spindle.increase                  whb.halui.spindle.0.increase
+# net  spindle.decrease                  whb.halui.spindle.0.decrease
+# min/max override depends on [DISPLAY]MIN_SPINDLE_OVERRIDE and [DISPLAY]MAX_SPINDLE_OVERRIDE
+# net  spindle.spindle-override.value    whb.halui.spindle.0.override.value
+# net  spindle.spindle-override.increase whb.halui.spindle.0.override.increase
+# net  spindle.spindle-override.decrease whb.halui.spindle.0.override.decrease
+
+# Connect machine mode related signals
+net  pdnt.halui.mode.auto              whb.halui.mode.auto              halui.mode.auto
+net  pdnt.halui.mode.joint             whb.halui.mode.joint             halui.mode.joint
+net  pdnt.halui.mode.manual            whb.halui.mode.manual            halui.mode.manual
+net  pdnt.halui.mode.mdi               whb.halui.mode.mdi               halui.mode.mdi
+net  pdnt.halui.mode.is-auto           halui.mode.is-auto               whb.halui.mode.is-auto
+net  pdnt.halui.mode.is-joint          halui.mode.is-joint              whb.halui.mode.is-joint
+net  pdnt.halui.mode.is-manual         halui.mode.is-manual             whb.halui.mode.is-manual
+#net  pdnt.halui.mode.is-mdi            halui.mode.is-mdi                whb.halui.mode.is-mdi
+
+# Connect feed rate related signals
+net pdnt.halui.feed-override.value     halui.feed-override.value        whb.halui.feed-override.value
+# min/max override depends on [DISPLAY]MIN_FEED_OVERRIDE and [DISPLAY]MAX_FEED_OVERRIDE
+net  pdnt.halui.feed-override.increase whb.halui.feed-override.increase halui.feed-override.increase
+net  pdnt.halui.feed-override.decrease whb.halui.feed-override.decrease halui.feed-override.decrease
+net  pdnt.button.feed-plus             whb.button.feed-plus
+net  pdnt.button.feed-minus            whb.button.feed-minus
+
+# position feedback connections to display on pendant LCD
+net pdnt.halui.axis.0.position		axis.x.pos-cmd		    whb.halui.axis.x.pos-feedback
+net pdnt.halui.axis.1.position		axis.y.pos-cmd		    whb.halui.axis.y.pos-feedback
+net pdnt.halui.axis.2.position		axis.z.pos-cmd		    whb.halui.axis.z.pos-feedback
+
+# experimental display data, may not work yet
+# net pdnt.halui.spindle.abs_rpm    spindle-cmd-rpm-abs   whb.halui.axis.3.pos-feedback
+# net pdnt.halui.spindle.amps       vfd.OutA              whb.halui.axis.4.pos-feedback

@@ -1,0 +1,58 @@
+o<toolchange> sub
+(print, o<toolchange>)
+( Set mm )
+G21
+( grab machine location on top of work )
+G53 G0
+#1=#<_z>
+
+( Z up for clearance )
+G53 Z0
+
+( X and Y to predefined change position )
+( Machine origin, for now )
+G53 G0 X0 Y0
+
+(MSG, Please insert tool, and then press Resume button )
+M0
+
+( Z is already up, move X and Y to tool sensor position )
+G53 G0 X50 Y50
+
+( move Z down to probe start position )
+G53 G0 Z-15
+
+( probe the tool )
+G38.2 Z-50 F20
+
+G91
+G0 Z10
+G90
+
+( probe the tool, slowly )
+G38.2 Z-15 F10
+#2=#<_Z>
+
+( tool sensor height, currently hypothetical )
+#3=50
+
+( table height from machine zero. should remain the same if good HOME, hypothetical )
+#4=800
+
+( calculate offset )
+( [[[probed_Z - table_height] - tool_sensor_height] + [table_height - material_height]] )
+#5=[[[#2 - #4] - #3] + [#4 - #1]]
+(MSG, #5)
+
+( move away from the sensor )
+G53 G0 Z0
+G53 G0 X0 Y0
+
+( set tool length offset )
+G43 H#<_current_tool>
+( move to work zero height, with tool length )
+G53 G0 Z #5
+
+( move Z back up to HOME position for clearance )
+G53 Z0
+o<toolchange> endsub [1]
