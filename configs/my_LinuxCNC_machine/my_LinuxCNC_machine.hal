@@ -43,14 +43,17 @@ setp hm2_7i80.0.gpio.003.is_output true
 net machine-is-enabled  =>     hm2_7i80.0.gpio.003.out
 
 # --- X-ENABLE ---
+setp hm2_7i80.0.gpio.050.invert_output true
 setp hm2_7i80.0.gpio.050.is_output true
 net x-enable  =>     hm2_7i80.0.gpio.050.out
 
 # --- Y-ENABLE ---
+setp hm2_7i80.0.gpio.056.invert_output true
 setp hm2_7i80.0.gpio.056.is_output true
 net y-enable  =>     hm2_7i80.0.gpio.056.out
 
 # --- Z-ENABLE ---
+setp hm2_7i80.0.gpio.062.invert_output true
 setp hm2_7i80.0.gpio.062.is_output true
 net z-enable  =>     hm2_7i80.0.gpio.062.out
 
@@ -234,50 +237,50 @@ net z-pos-limit     =>  joint.2.pos-lim-sw-in
 #  SPINDLE
 #*******************
 
-setp   pid.s.Pgain     [SPINDLE_1]P
-setp   pid.s.Igain     [SPINDLE_1]I
-setp   pid.s.Dgain     [SPINDLE_1]D
-setp   pid.s.bias      [SPINDLE_1]BIAS
-setp   pid.s.FF0       [SPINDLE_1]FF0
-setp   pid.s.FF1       [SPINDLE_1]FF1
-setp   pid.s.FF2       [SPINDLE_1]FF2
-setp   pid.s.deadband  [SPINDLE_1]DEADBAND
-setp   pid.s.maxoutput [SPINDLE_1]MAX_OUTPUT
-setp   pid.s.error-previous-target true
+#setp   pid.s.Pgain     [SPINDLE_1]P
+#setp   pid.s.Igain     [SPINDLE_1]I
+#setp   pid.s.Dgain     [SPINDLE_1]D
+#setp   pid.s.bias      [SPINDLE_1]BIAS
+#setp   pid.s.FF0       [SPINDLE_1]FF0
+#setp   pid.s.FF1       [SPINDLE_1]FF1
+#setp   pid.s.FF2       [SPINDLE_1]FF2
+#setp   pid.s.deadband  [SPINDLE_1]DEADBAND
+#setp   pid.s.maxoutput [SPINDLE_1]MAX_OUTPUT
+#setp   pid.s.error-previous-target true
 
-net spindle1-index-enable  <=> pid.s.index-enable
-net spindle1-enable        =>  pid.s.enable
-net spindle1-vel-cmd-rpm-abs     => pid.s.command
-net spindle1-vel-fb-rpm-abs      => pid.s.feedback
-net spindle1-output        <=  pid.s.output
+#net spindle1-index-enable  <=> pid.s.index-enable
+#net spindle1-enable        =>  pid.s.enable
+#net spindle1-vel-cmd-rpm-abs     => pid.s.command
+#net spindle1-vel-fb-rpm-abs      => pid.s.feedback
+#net spindle1-output        <=  pid.s.output
 
 # ---PWM Generator signals/setup---
 
-setp   hm2_7i80.0.pwmgen.00.output-type 1
-setp   hm2_7i80.0.pwmgen.00.scale  [SPINDLE_1]OUTPUT_SCALE
+#setp   hm2_7i80.0.pwmgen.00.output-type 1
+#setp   hm2_7i80.0.pwmgen.00.scale  [SPINDLE_1]OUTPUT_SCALE
 
 
-net spindle1-vel-cmd-rpm     => hm2_7i80.0.pwmgen.00.value
-net spindle1-enable      => hm2_7i80.0.pwmgen.00.enable
+#net spindle1-vel-cmd-rpm     => hm2_7i80.0.pwmgen.00.value
+#net spindle1-enable      => hm2_7i80.0.pwmgen.00.enable
 
 # ---setup spindle control signals---
 
-net spindle1-vel-cmd-rps        <=  spindle.1.speed-out-rps
-net spindle1-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
-net spindle1-vel-cmd-rpm        <=  spindle.1.speed-out
-net spindle1-vel-cmd-rpm-abs    <=  spindle.1.speed-out-abs
-net spindle1-enable             <=  spindle.1.on
-net spindle1-cw                 <=  spindle.1.forward
-net spindle1-ccw                <=  spindle.1.reverse
-net spindle1-brake              <=  spindle.1.brake
-net spindle1-revs               =>  spindle.1.revs
-net spindle1-at-speed           =>  spindle.1.at-speed
-net spindle1-vel-fb-rps         =>  spindle.1.speed-in
-net spindle1-index-enable      <=>  spindle.1.index-enable
+#net spindle1-vel-cmd-rps        <=  spindle.1.speed-out-rps
+#net spindle1-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
+#net spindle1-vel-cmd-rpm        <=  spindle.1.speed-out
+#net spindle1-vel-cmd-rpm-abs    <=  spindle.1.speed-out-abs
+#net spindle1-enable             <=  spindle.1.on
+#net spindle1-cw                 <=  spindle.1.forward
+#net spindle1-ccw                <=  spindle.1.reverse
+#net spindle1-brake              <=  spindle.1.brake
+#net spindle1-revs               =>  spindle.1.revs
+#net spindle1-at-speed           =>  spindle.1.at-speed
+#net spindle1-vel-fb-rps         =>  spindle.1.speed-in
+#net spindle1-index-enable      <=>  spindle.1.index-enable
 
 # ---Setup spindle at speed signals---
 
-sets spindle-at-speed true
+#sets spindle-at-speed true
 
 
 #******************************
