@@ -101,6 +101,7 @@ net x-output        <=  pid.x.output
 
 # Step Gen signals/setup
 
+# setp   hm2_7i80.0.stepgen.00.direction.invert_output   true
 setp   hm2_7i80.0.stepgen.00.dirsetup        [JOINT_0]DIRSETUP
 setp   hm2_7i80.0.stepgen.00.dirhold         [JOINT_0]DIRHOLD
 setp   hm2_7i80.0.stepgen.00.steplen         [JOINT_0]STEPLEN
@@ -226,6 +227,7 @@ net z-pos-fb     <= hm2_7i80.0.stepgen.02.position-fb
 net z-pos-fb     => joint.2.motor-pos-fb
 net z-enable     <= joint.2.amp-enable-out
 net z-enable     => hm2_7i80.0.stepgen.02.enable
+
 
 # ---setup home / limit switch signals---
 
