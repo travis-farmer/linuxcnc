@@ -2,7 +2,7 @@
 loadusr -W xhc-whb04b-6 -H
 
 # Connect emergency stop signals
-#net  pdnt.machine.is-on             halui.machine.is-on           whb.halui.machine.is-on
+net  pdnt.machine.is-on           whb.halui.machine.is-on
 net  pdnt.machine.on                whb.halui.machine.on          halui.machine.on
 net  pdnt.machine.off               whb.halui.machine.off         halui.machine.off
 
@@ -30,36 +30,41 @@ net  pdnt.joint.Z.select            whb.halui.axis.z.select#      halui.axis.z.s
 #net button_press whb.button.macro-1 set_work_zero.button_press
 
 # Connect jog signals for step and continuous mode
-# net  pdnt.stepgen.00.maxvel         hpg.stepgen.00.maxvel         whb.stepgen.00.maxvel
-# net  pdnt.stepgen.01.maxvel         hpg.stepgen.01.maxvel         whb.stepgen.01.maxvel
-# net  pdnt.stepgen.02.maxvel         hpg.stepgen.02.maxvel         whb.stepgen.02.maxvel
+# +net  pdnt.stepgen.00.maxvel         hpg.stepgen.00.maxvel         whb.stepgen.00.maxvel
+# +net  pdnt.stepgen.01.maxvel         hpg.stepgen.01.maxvel         whb.stepgen.01.maxvel
+# +net  pdnt.stepgen.02.maxvel         hpg.stepgen.02.maxvel         whb.stepgen.02.maxvel
 #net pdnt.stepgen.03.maxvel         hpg.stepgen.03.maxvel         whb.stepgen.03.maxvel
 #net pdnt.stepgen.04.maxvel         hpg.stepgen.04.maxvel         whb.stepgen.04.maxvel
 #net pdnt.stepgen.05.maxvel         hpg.stepgen.05.maxvel         whb.stepgen.05.maxvel
-# net  pdnt.stepgen.00.position-scale hpg.stepgen.00.position-scale whb.stepgen.00.position-scale
-# net  pdnt.stepgen.01.position-scale hpg.stepgen.01.position-scale whb.stepgen.01.position-scale
-# net  pdnt.stepgen.02.position-scale hpg.stepgen.02.position-scale whb.stepgen.02.position-scale
+
+# +net  pdnt.stepgen.00.position-scale hpg.stepgen.00.position-scale whb.stepgen.00.position-scale
+# +net  pdnt.stepgen.01.position-scale hpg.stepgen.01.position-scale whb.stepgen.01.position-scale
+# +net  pdnt.stepgen.02.position-scale hpg.stepgen.02.position-scale whb.stepgen.02.position-scale
 #net pdnt.stepgen.03.position-scale hpg.stepgen.03.position-scale whb.stepgen.03.position-scale
 #net pdnt.stepgen.04.position-scale hpg.stepgen.04.position-scale whb.stepgen.04.position-scale
 #net pdnt.stepgen.05.position-scale hpg.stepgen.05.position-scale whb.stepgen.05.position-scale
+
 net  pdnt.joint.0.jog-counts axis.x.jog-counts         whb.axis.x.jog-counts axis.x.jog-counts         joint.0.jog-counts axis.x.jog-counts
 net  pdnt.joint.1.jog-counts axis.y.jog-counts         whb.axis.y.jog-counts axis.y.jog-counts         joint.1.jog-counts axis.y.jog-counts
 net  pdnt.joint.2.jog-counts axis.z.jog-counts         whb.axis.z.jog-counts axis.z.jog-counts         joint.2.jog-counts axis.z.jog-counts
 #net pdnt.joint.3.jog-counts axis.a.jog-counts         whb.joint.a.jog-counts axis.a.jog-counts         joint.3.jog-counts axis.a.jog-counts
 #net pdnt.joint.4.jog-counts axis.b.jog-counts         whb.joint.b.jog-counts axis.b.jog-counts         joint.4.jog-counts axis.b.jog-counts
 #net pdnt.joint.5.jog-counts axis.c.jog-counts         whb.joint.c.jog-counts axis.c.jog-counts         joint.5.jog-counts axis.c.jog-counts
+
 net  pdnt.axis.x.jog-enable         whb.axis.x.jog-enable         axis.x.jog-enable
 net  pdnt.axis.y.jog-enable         whb.axis.y.jog-enable         axis.y.jog-enable
 net  pdnt.axis.z.jog-enable         whb.axis.z.jog-enable         axis.z.jog-enable
 #net pdnt.axis.a.jog-enable         whb.axis.a.jog-enable         axis.a.jog-enable
 #net pdnt.axis.b.jog-enable         whb.axis.b.jog-enable         axis.b.jog-enable
 #net pdnt.axis.c.jog-enable         whb.axis.c.jog-enable         axis.c.jog-enable
+
 net  pdnt.joint.0.jog-scale axis.x.jog-scale          whb.axis.x.jog-scale axis.x.jog-scale          joint.0.jog-scale axis.x.jog-scale
 net  pdnt.joint.1.jog-scale axis.y.jog-scale          whb.axis.y.jog-scale axis.y.jog-scale          joint.1.jog-scale axis.y.jog-scale
 net  pdnt.joint.2.jog-scale axis.z.jog-scale          whb.axis.z.jog-scale axis.z.jog-scale          joint.2.jog-scale axis.z.jog-scale
 #net pdnt.joint.3.jog-scale axis.a.jog-scale          whb.joint.a.jog-scale axis.a.jog-scale          joint.3.jog-scale axis.a.jog-scale
 #net pdnt.joint.4.jog-scale axis.b.jog-scale          whb.joint.b.jog-scale axis.b.jog-scale          joint.4.jog-scale axis.b.jog-scale
 #net pdnt.joint.5.jog-scale axis.c.jog-scale          whb.joint.c.jog-scale axis.c.jog-scale          joint.5.jog-scale axis.c.jog-scale
+
 net  pdnt.joint.0.jog-vel-mode axis.x.jog-vel-mode       whb.axis.x.jog-vel-mode axis.x.jog-vel-mode       joint.0.jog-vel-mode axis.x.jog-vel-mode
 net  pdnt.joint.1.jog-vel-mode axis.y.jog-vel-mode       whb.axis.y.jog-vel-mode axis.y.jog-vel-mode       joint.1.jog-vel-mode axis.y.jog-vel-mode
 net  pdnt.joint.2.jog-vel-mode axis.z.jog-vel-mode       whb.axis.z.jog-vel-mode axis.z.jog-vel-mode       joint.2.jog-vel-mode axis.z.jog-vel-mode
@@ -68,9 +73,7 @@ net  pdnt.joint.2.jog-vel-mode axis.z.jog-vel-mode       whb.axis.z.jog-vel-mode
 #net pdnt.joint.5.jog-vel-mode axis.c.jog-vel-mode       whb.joint.c.jog-vel-mode axis.c.jog-vel-mode       joint.5.jog-vel-mode axis.c.jog-vel-mode
 
 # Connect macro buttons to mdi commands
-#net pdnt.macro.11                  whb.button.macro-11           halui.mdi-command-11
-#net pdnt.macro.12                  whb.button.macro-12           halui.mdi-command-12
-#net pdnt.macro.13                  whb.button.macro-13           halui.mdi-command-13
+
 # net pdnt.macro.1                   whb.button.macro-1            halui.mdi-command-00
 # net pdnt.macro.2                   whb.button.macro-2            halui.mdi-command-01
 # net pdnt.macro.3                   whb.button.macro-3            halui.mdi-command-02
@@ -81,6 +84,9 @@ net  pdnt.joint.2.jog-vel-mode axis.z.jog-vel-mode       whb.axis.z.jog-vel-mode
 #net pdnt.macro.8                   whb.button.macro-8            halui.mdi-command-08
 #net pdnt.macro.9                   whb.button.macro-9            halui.mdi-command-09
 net  pdnt.home-all                  whb.button.macro-10           halui.home-all
+#net pdnt.macro.11                  whb.button.macro-11           halui.mdi-command-11
+#net pdnt.macro.12                  whb.button.macro-12           halui.mdi-command-12
+#net pdnt.macro.13                  whb.button.macro-13           halui.mdi-command-13
 #net pdnt.macro.14                  whb.button.macro-14           halui.mdi-command-14
 #net pdnt.macro.15                  whb.button.macro-15           halui.mdi-command-15
 #net pdnt.macro.16                  whb.button.macro-16           halui.mdi-command-16
