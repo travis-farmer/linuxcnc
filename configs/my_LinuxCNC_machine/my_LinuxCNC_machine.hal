@@ -30,12 +30,12 @@ addf hm2_7i80.0.write         servo-thread
 # --- COOLANT-FLOOD ---
 setp hm2_7i80.0.gpio.001.invert_output true
 setp hm2_7i80.0.gpio.001.is_output true
-net coolant-flood  =>     hm2_7i80.0.gpio.001.out
+net spindle-cw  =>     hm2_7i80.0.gpio.001.out
 
 # --- COOLANT-MIST ---
 setp hm2_7i80.0.gpio.002.invert_output true
 setp hm2_7i80.0.gpio.002.is_output true
-net coolant-mist  =>     hm2_7i80.0.gpio.002.out
+net spindle-ccw  =>     hm2_7i80.0.gpio.002.out
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true

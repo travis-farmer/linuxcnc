@@ -19,8 +19,7 @@ net spindle-at-speed           =>  spindle.0.at-speed
 #net spindle1-vel-fb-rps         =>  spindle.1.speed-in
 #net spindle1-index-enable      <=>  spindle.1.index-enable
 
-net spindle-cw => coolant-flood
-net spindle-ccw => coolant-mist
+
 
 # external button to trigger touch off
 # net run-touch-btn <= parport.1.pin-10-in => halui.mdi-command-04
