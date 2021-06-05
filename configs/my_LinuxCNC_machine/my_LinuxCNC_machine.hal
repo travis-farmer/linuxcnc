@@ -26,16 +26,46 @@ addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
 
 # external output signals
+loadusr -Wn vfd hy_vfd -n vfd -d /dev/ttyUSB0 -p none -r 9600 -t 1 -S 21000
+net spindle-vel-cmd-rpm-abs => vfd.speed-command
+net spindle-cw spindle.0.forward => vfd.spindle-forward
+net spindle-ccw spindle.0.reverse => vfd.spindle-reverse
+net spindle-on spindle.0.on => vfd.spindle-on
+
+# --- for vacuum ---
+setp hm2_7i80.0.gpio.005.invert_output true
+setp hm2_7i80.0.gpio.005.is_output true
+loadrt or2 count=2
+addf or2.0 servo-thread
+
+# --- spindle ---
+#net spindle1-vel-cmd-rps        <=  spindle.1.speed-out-rps
+#net spindle1-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
+net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
+net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
+net spindle-on             <=  spindle.0.on
+
+# these two with the or2.0 pins for the vacuum config below
+net spindle-cw      or2.0.in0   <=  spindle.0.forward
+net spindle-ccw     or2.0.in1   <=  spindle.0.reverse
+
+net spindle-brake              <=  spindle.0.brake
+net spindle-revs               =>  spindle.0.revs
+net spindle-at-speed           =>  spindle.0.at-speed
+#net spindle1-vel-fb-rps         =>  spindle.1.speed-in
+#net spindle1-index-enable      <=>  spindle.1.index-enable
 
 # --- COOLANT-FLOOD ---
 setp hm2_7i80.0.gpio.001.invert_output true
 setp hm2_7i80.0.gpio.001.is_output true
-net spindle-cw  =>     hm2_7i80.0.gpio.001.out
+net coolant-flood  =>     hm2_7i80.0.gpio.001.out
 
 # --- COOLANT-MIST ---
 setp hm2_7i80.0.gpio.002.invert_output true
 setp hm2_7i80.0.gpio.002.is_output true
-net spindle-ccw  =>     hm2_7i80.0.gpio.002.out
+net coolant-mist  =>     hm2_7i80.0.gpio.002.out
+
+
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
@@ -315,10 +345,26 @@ net machine-is-on         halui.machine.is-on
 net jog-speed             halui.axis.jog-speed
 net MDI-mode              halui.mode.is-mdi
 
-#  ---coolant signals---
+loadrt not count=1
+loadrt and2 count=1
+addf or2.1 servo-thread
+addf not.0 servo-thread
 
-net coolant-mist      <=  iocontrol.0.coolant-mist
-net coolant-flood     <=  iocontrol.0.coolant-flood
+#  ---coolant signals---
+# with or2.1 pins for vacuum config below
+net coolant-mist	or2.1.in0      <=  iocontrol.0.coolant-mist
+net coolant-flood	or2.1.in1     <=  iocontrol.0.coolant-flood 
+
+# --- Vacuum ---
+# invert result of or2.1 so both mist and flood MUST be OFF to be TRUE
+net either-coolant-on not.0.in <= or2.1.out
+addf and2.0 servo-thread
+# input signals from IF spindle-cw OR spindle-ccw into pin and2.0
+net my_spindle_ison and2.0.in0 <= or2.0.out
+# input signals from IF INVERTED coolant-mist OR coolant-flood into pin and2.0 
+net my_coolant_isoff and2.0.in1 <= not.0.out
+# result of IF((spindle-cw OR spindle-ccw) AND NOT(coolant-mist OR coolant-flood))
+net vac_sig_only hm2_7i80.0.gpio.005.out <= and2.0.out
 
 #  ---probe signal---
 
