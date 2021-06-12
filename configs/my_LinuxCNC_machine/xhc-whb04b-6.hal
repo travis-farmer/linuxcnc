@@ -30,16 +30,16 @@ net  pdnt.joint.Z.select            whb.halui.axis.z.select#      halui.axis.z.s
 #net button_press whb.button.macro-1 set_work_zero.button_press
 
 # Connect jog signals for step and continuous mode
-# +net  pdnt.stepgen.00.maxvel         hpg.stepgen.00.maxvel         whb.stepgen.00.maxvel
-# +net  pdnt.stepgen.01.maxvel         hpg.stepgen.01.maxvel         whb.stepgen.01.maxvel
-# +net  pdnt.stepgen.02.maxvel         hpg.stepgen.02.maxvel         whb.stepgen.02.maxvel
+# net  pdnt.stepgen.00.maxvel         hpg.stepgen.00.maxvel         whb.stepgen.00.maxvel
+# net  pdnt.stepgen.01.maxvel         hpg.stepgen.01.maxvel         whb.stepgen.01.maxvel
+# net  pdnt.stepgen.02.maxvel         hpg.stepgen.02.maxvel         whb.stepgen.02.maxvel
 #net pdnt.stepgen.03.maxvel         hpg.stepgen.03.maxvel         whb.stepgen.03.maxvel
 #net pdnt.stepgen.04.maxvel         hpg.stepgen.04.maxvel         whb.stepgen.04.maxvel
 #net pdnt.stepgen.05.maxvel         hpg.stepgen.05.maxvel         whb.stepgen.05.maxvel
 
-# +net  pdnt.stepgen.00.position-scale hpg.stepgen.00.position-scale whb.stepgen.00.position-scale
-# +net  pdnt.stepgen.01.position-scale hpg.stepgen.01.position-scale whb.stepgen.01.position-scale
-# +net  pdnt.stepgen.02.position-scale hpg.stepgen.02.position-scale whb.stepgen.02.position-scale
+# net  pdnt.stepgen.00.position-scale hpg.stepgen.00.position-scale whb.stepgen.00.position-scale
+# net  pdnt.stepgen.01.position-scale hpg.stepgen.01.position-scale whb.stepgen.01.position-scale
+# net  pdnt.stepgen.02.position-scale hpg.stepgen.02.position-scale whb.stepgen.02.position-scale
 #net pdnt.stepgen.03.position-scale hpg.stepgen.03.position-scale whb.stepgen.03.position-scale
 #net pdnt.stepgen.04.position-scale hpg.stepgen.04.position-scale whb.stepgen.04.position-scale
 #net pdnt.stepgen.05.position-scale hpg.stepgen.05.position-scale whb.stepgen.05.position-scale
