@@ -67,13 +67,5 @@
                         <off_color>"red"</off_color>
                     </led>
                 </hbox>
-                <label>
-                        <text>"Laser PWM:"</text>
-                        <font>("Helvetica",20)</font>
-                </label>
-                <bar>
-                      <halpin>"laser-pwm"</halpin>
-                      <max_>2000</max_>
-                </bar>
         </vbox>
 </pyvcp>
