@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4" 
+loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
@@ -65,6 +65,11 @@ setp hm2_7i80.0.gpio.002.invert_output true
 setp hm2_7i80.0.gpio.002.is_output true
 net coolant-mist  =>     hm2_7i80.0.gpio.002.out
 
+# --- LASER-ENABLE ---
+setp hm2_7i80.0.gpio.002.invert_output true
+setp hm2_7i80.0.gpio.002.is_output true
+net coolant-mist  =>     hm2_7i80.0.gpio.002.out
+
 
 
 # --- MACHINE-IS-ENABLED ---
@@ -97,12 +102,20 @@ net probe-in     <=  hm2_7i80.0.gpio.004.in
 
 # --- HOME-X ---
 net home-x     <=  hm2_7i80.0.gpio.051.in
+#net x-neg-limit      <=  hm2_7i80.0.gpio.052.in
+#net x-pos-limit      <=  hm2_7i80.0.gpio.053.in
 
 # --- HOME-Y ---
 net home-y     <=  hm2_7i80.0.gpio.057.in
+#net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
+#net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
+
 
 # --- HOME-Z ---
 net home-z     <=  hm2_7i80.0.gpio.063.in
+#net z-neg-limit      <=  hm2_7i80.0.gpio.064.in
+#net z-pos-limit      <=  hm2_7i80.0.gpio.065.in
+
 
 #*******************
 #  AXIS X JOINT 0
@@ -291,9 +304,9 @@ net spindle1-output        <=  pid.s.output
 setp   hm2_7i80.0.pwmgen.00.output-type 1
 setp   hm2_7i80.0.pwmgen.00.scale  [SPINDLE_1]OUTPUT_SCALE
 
-# M68 E0 Q0 - 
+# M68 E0 Q0 -
 net laser-pwm motion.analog-out-00     => hm2_7i80.0.pwmgen.00.value
-# net laser-enable motion.digital-out-00    => hm2_7i80.0.pwmgen.00.enable
+net laser-enable motion.digital-out-00    => hm2_7i80.0.pwmgen.00.enable
 
 # ---setup spindle control signals---
 
@@ -353,7 +366,7 @@ addf not.0 servo-thread
 #  ---coolant signals---
 # with or2.1 pins for vacuum config below
 net coolant-mist	or2.1.in0      <=  iocontrol.0.coolant-mist
-net coolant-flood	or2.1.in1     <=  iocontrol.0.coolant-flood 
+net coolant-flood	or2.1.in1     <=  iocontrol.0.coolant-flood
 
 # --- Vacuum ---
 # invert result of or2.1 so both mist and flood MUST be OFF to be TRUE
@@ -361,7 +374,7 @@ net either-coolant-on not.0.in <= or2.1.out
 addf and2.0 servo-thread
 # input signals from IF spindle-cw OR spindle-ccw into pin and2.0
 net my_spindle_ison and2.0.in0 <= or2.0.out
-# input signals from IF INVERTED coolant-mist OR coolant-flood into pin and2.0 
+# input signals from IF INVERTED coolant-mist OR coolant-flood into pin and2.0
 net my_coolant_isoff and2.0.in1 <= not.0.out
 # result of IF((spindle-cw OR spindle-ccw) AND NOT(coolant-mist OR coolant-flood))
 net vac_sig_only hm2_7i80.0.gpio.005.out <= and2.0.out
