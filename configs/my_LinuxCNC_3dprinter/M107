@@ -1,0 +1,5 @@
+#!/bin/bash
+temp=$1
+halcmd setp extruder-fan  false
+exit 0
+

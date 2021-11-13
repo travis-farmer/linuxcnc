@@ -1,0 +1,12 @@
+o105 sub
+( MDI_COMMAND=o105 call )
+( probe the laser )
+G38.2 Z-1 F1.00
+
+G91
+G0 Z0.05
+G90
+
+( probe the laser, slowly )
+G38.2 Z-1 F0.15
+o105 endsub [1]

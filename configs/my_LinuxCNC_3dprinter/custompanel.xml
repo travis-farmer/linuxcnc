@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pyvcp>
+         <vbox>
+         <relief>RIDGE</relief>
+         <bd>6</bd>
+                <spinbox>
+                    <halpin>"head-settemp"</halpin>
+                    <min_>0</min_>
+                    <max_>210</max_>
+                    <initval>0</initval>
+                    <resolution>1.0</resolution>
+                    <format>"3.1f"</format>
+                    <font>("Arial",30)</font>
+                    <param_pin>1</param_pin>
+                </spinbox>
+                <meter>
+                    <halpin>"head-temp"</halpin>
+                    <text>"Head"</text>
+                    <subtext>"Temp c"</subtext>
+                    <size>250</size>
+                    <min_>0</min_>
+                    <max_>250</max_>
+                    <majorscale>10</majorscale>
+                    <minorscale>1</minorscale>
+                    <region1>(0,37.9,"green")</region1>
+                    <region2>(38,209.9,"yellow")</region2>
+                    <region3>(210,250,"red")</region3>
+                </meter>
+                <label>
+                        <text>"Head At Temp:"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <hbox>
+                    <label>
+                            <text>"             "</text>
+                            <font>("Helvetica",20)</font>
+                    </label>
+                    <led>
+                        <halpin>"head-attemp"</halpin>
+                        <size>30</size>
+                        <on_color>"green"</on_color>
+                        <off_color>"red"</off_color>
+                    </led>
+                </hbox>
+                <spinbox>
+                    <halpin>"bed-settemp"</halpin>
+                    <min_>0</min_>
+                    <max_>200</max_>
+                    <initval>0</initval>
+                    <resolution>1.0</resolution>
+                    <format>"3.1f"</format>
+                    <font>("Arial",30)</font>
+                    <param_pin>1</param_pin>
+                </spinbox>
+                <meter>
+                    <halpin>"bed-temp"</halpin>
+                    <text>"Bed"</text>
+                    <subtext>"Temp c"</subtext>
+                    <size>250</size>
+                    <min_>0</min_>
+                    <max_>250</max_>
+                    <majorscale>10</majorscale>
+                    <minorscale>1</minorscale>
+                    <region1>(0,37.9,"green")</region1>
+                    <region2>(38,209.9,"yellow")</region2>
+                    <region3>(210,250,"red")</region3>
+                </meter>
+                <label>
+                        <text>"Bed At Temp:"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <hbox>
+                    <label>
+                            <text>"             "</text>
+                            <font>("Helvetica",20)</font>
+                    </label>
+                    <led>
+                        <halpin>"bed-attemp"</halpin>
+                        <size>30</size>
+                        <on_color>"green"</on_color>
+                        <off_color>"red"</off_color>
+                    </led>
+                </hbox>
+        </vbox>
+</pyvcp>

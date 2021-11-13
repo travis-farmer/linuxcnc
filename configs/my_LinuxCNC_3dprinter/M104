@@ -1,0 +1,4 @@
+#!/bin/bash
+temp=$1
+halcmd setp head-settemp $temp
+exit 0

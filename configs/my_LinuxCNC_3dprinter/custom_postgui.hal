@@ -1,0 +1,21 @@
+# Include your customized HAL commands here
+# The commands in this file are run after the AXIS GUI (including PyVCP panel) starts
+
+# **** Setup of spindle speed display using pyvcp -START ****
+# **** Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
+
+net head-settemp     <=> pyvcp.head-settemp
+net head-settemp      =>  arduino.set-a
+net bed-settemp     <=> pyvcp.bed-settemp
+net bed-settemp       =>  arduino.set-b
+
+net head-attemp => pyvcp.head-attemp
+net head-attemp <=  arduino.attempa
+net bed-attemp => pyvcp.bed-attemp
+net bed-attemp  <=  arduino.attempb
+
+net head-temp => pyvcp.head-temp
+net head-temp <= arduino.tempa
+net bed-temp => pyvcp.bed-temp
+net bed-temp <= arduino.tempb
+
