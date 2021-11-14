@@ -76,11 +76,21 @@ void loop() {
   Serial.print("aa");Serial.print((int)inputA);
   myControllerA.compute();
   analogWrite(outputPinA, outputA);
+  if (inputA >= (set_a-2) || inputA <= (set_a+2)) {
+    aAtTemp = true;
+  } else {
+    aAtTemp = false;
+  }
 
   inputB=resistanceToC(inputToResistance(analogRead(THERMISTORPINb)));
   Serial.print("bb");Serial.print((int)inputB);
   myControllerB.compute();
   analogWrite(outputPinB, outputB);
+  if (inputB >= (set_b-2) || inputB <= (set_b+2)) {
+    bAtTemp = true;
+  } else {
+    bAtTemp = false;
+  }
 
   // listen for serial commands
   while(Serial.available() > 0) {
