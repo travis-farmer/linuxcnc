@@ -1,0 +1,5 @@
+#!/bin/bash
+temp=$1
+halcmd setp head-settemp $temp
+/home/travis/linuxcnc/configs/my_LinuxCNC_3dprinter/waitfor head-attemp TRUE
+exit 0

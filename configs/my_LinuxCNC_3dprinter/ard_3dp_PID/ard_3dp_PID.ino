@@ -14,6 +14,8 @@ char buffer[128];
 int sofar;
 double set_a = 0.0;
 double set_b = 0.0;
+byte pwmC = 0;
+byte pwmD = 0;
 bool aAtTemp = false;
 bool bAtTemp = false;
 bool aAtTempOld = false;
@@ -22,6 +24,9 @@ bool bAtTempOld = false;
 // Analog output pin
 #define outputPinA 9
 #define outputPinB 7
+#define outputPWMc 8
+#define outputPWMd 6
+
 // thermistor analog pin
 #define THERMISTORPINa A0
 #define THERMISTORPINb A1
@@ -31,6 +36,8 @@ void processCommand()
 {
     double aa=set_a;
     double bb=set_b;
+    byte cc=pwmC;
+    byte dd=pwmD;
   char *ptr=buffer;
   while(ptr && ptr<buffer+sofar)
   {
@@ -38,13 +45,16 @@ void processCommand()
     switch(*ptr) {
       case 'a': case 'A': aa=atof(ptr+1); break;
       case 'b': case 'B': bb=atof(ptr+1); break;
-
+      case 'c': case 'C': cc=atoi(ptr+1); break;
+      case 'd': case 'D': dd=atoi(ptr+1); break;
 
       default: ptr=0; break;
     }
   }
   set_a = aa;
   set_b = bb;
+  pwmC = cc;
+  pwmD = dd;
 }
 
 void setup() {
@@ -52,6 +62,8 @@ void setup() {
   analogReference(EXTERNAL);
   pinMode(outputPinA, OUTPUT);
   pinMode(outputPinB, OUTPUT);
+  pinMode(outputPWMc, OUTPUT);
+  pinMode(outputPWMd, OUTPUT);
 
   //initialize PID setpoint *C
   //turn the PID on
@@ -91,6 +103,9 @@ void loop() {
   } else {
     bAtTemp = false;
   }
+
+  analogWrite(outputPWMc, pwmC);
+  analogWrite(outputPWMd, pwmD);
 
   // listen for serial commands
   while(Serial.available() > 0) {

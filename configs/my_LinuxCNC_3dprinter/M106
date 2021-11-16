@@ -1,4 +1,4 @@
 #!/bin/bash
-temp=$1
-halcmd setp extruder-fan  true
+pwm=$1
+halcmd setp extruder-fan  $pwm
 exit 0

@@ -37,6 +37,8 @@ c.newpin("tempa",hal.HAL_FLOAT,hal.HAL_IN)
 c.newpin("tempb",hal.HAL_FLOAT,hal.HAL_IN)
 c.newpin("attempa",hal.HAL_BIT,hal.HAL_IN)
 c.newpin("attempb",hal.HAL_BIT,hal.HAL_IN)
+c.newpin("pwm-a",hal.HAL_FLOAT,hal.HAL_IN)
+c.newpin("pwm-b",hal.HAL_FLOAT,hal.HAL_IN)
 time.sleep(2)
 c.ready()
 
@@ -46,7 +48,8 @@ machineState = c['machine-state']
 eStopState = c['eStop']
 set_a = c['set-a']
 set_b = c['set-b']
-
+pwm_a = c['pwm-a']
+pwm_b = c['pwm-b']
 #Check if the machine is on and set the LED accordingly
 if(machineState != 1):
   ser.write("+P")
@@ -73,6 +76,24 @@ try:
       set_b = c['set-b'] * 1000000
       ser.write("set B");
       ser.write(repr(set_b))
+      ser.write(";");
+      ser.write("\n");
+
+    pwm_a = c['pwm-a'];
+    if pwm_a != set_bOld:
+      set_bOld = pwm_a;
+      set_a = c['set-a'] * 1000000
+      ser.write("set C");
+      ser.write(repr(pwm_a))
+      ser.write(";");
+      ser.write("\n");
+
+    pwm_b = c['pwm-b'];
+    if pwm_b != set_bOld:
+      set_bOld = pwm_b;
+      pwm_b = c['pwm-b'] * 1000000
+      ser.write("set D");
+      ser.write(repr(pwm_b))
       ser.write(";");
       ser.write("\n");
 

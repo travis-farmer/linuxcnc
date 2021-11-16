@@ -1,0 +1,5 @@
+
+#!/bin/bash
+temp=$1
+halcmd setp bed-settemp $temp
+exit 0
