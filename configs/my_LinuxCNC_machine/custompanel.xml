@@ -3,14 +3,19 @@
          <vbox>
          <relief>RIDGE</relief>
          <bd>6</bd>
-                <label>
-                        <text>"Spindle Speed:"</text>
-                        <font>("Helvetica",20)</font>
-                </label>
-                <bar>
-                      <halpin>"spindle_rpm"</halpin>
-                      <max_>21000</max_>
-                </bar>
+                <meter>
+                    <halpin>"spindle-rpm"</halpin>
+                    <text>"Spindle"</text>
+                    <subtext>"RPM"</subtext>
+                    <size>200</size>
+                    <min_>0</min_>
+                    <max_>22000</max_>
+                    <majorscale>2000</majorscale>
+                    <minorscale>1000</minorscale>
+                    <region1>(18000,22000,"red")</region1>
+                    <region2>(1000,18000,"green")</region2>
+                    <region3>(0,1000,"blue")</region3>
+                </meter>
                 <label>
                         <text>"Spindle-At-Speed:"</text>
                         <font>("Helvetica",20)</font>
@@ -27,14 +32,18 @@
                         <off_color>"red"</off_color>
                     </led>
                 </hbox>
-                <label>
-                      <text>"Spindle Amps:"</text>
-                      <font>("Helvetica",20)</font>
-                </label>
-                <bar>
-                      <halpin>"spindle-amps"</halpin>
-                      <max_>18</max_>
-                </bar>
+                <meter>
+                    <halpin>"spindle-amps"</halpin>
+                    <text>"Spindle"</text>
+                    <subtext>"Amps"</subtext>
+                    <size>100</size>
+                    <min_>0</min_>
+                    <max_>10</max_>
+                    <majorscale>1</majorscale>
+                    <minorscale>0.25</minorscale>
+                    <region1>(3,10,"red")</region1>
+                    <region2>(0,3,"green")</region2>
+                </meter>
                 <label>
                         <text>"Forward:"</text>
                         <font>("Helvetica",20)</font>
@@ -67,14 +76,19 @@
                         <off_color>"red"</off_color>
                     </led>
                 </hbox>
-                <label>
-                      <text>"Laser PWM:"</text>
-                      <font>("Helvetica",20)</font>
-                </label>
-                <bar>
-                      <halpin>"laser-pwm"</halpin>
-                      <max_>4095</max_>
-                </bar>
+                <meter>
+                    <halpin>"laser-pwm"</halpin>
+                    <text>"Laser"</text>
+                    <subtext>"PWM"</subtext>
+                    <size>100</size>
+                    <min_>0</min_>
+                    <max_>4095</max_>
+                    <majorscale>500</majorscale>
+                    <minorscale>100</minorscale>
+                    <region1>(3000,4095,"red")</region1>
+                    <region2>(1000,3000,"yellow")</region2>
+                    <region3>(0,1000,"green")</region3>
+                </meter>
                 <label>
                         <text>"Laser Enable:"</text>
                         <font>("Helvetica",20)</font>

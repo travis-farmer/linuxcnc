@@ -10,7 +10,7 @@ loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=1 nu
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
-loadrt pid names=pid.x,pid.y,pid.z,pid.s
+loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
 loadrt lowpass names=lowpass.spindle
 
@@ -20,7 +20,6 @@ addf motion-controller        servo-thread
 addf pid.x.do-pid-calcs       servo-thread
 addf pid.y.do-pid-calcs       servo-thread
 addf pid.z.do-pid-calcs       servo-thread
-addf pid.s.do-pid-calcs       servo-thread
 addf abs.spindle              servo-thread
 addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
@@ -278,50 +277,14 @@ net home-z     =>  joint.2.home-sw-in
 net z-neg-limit     =>  joint.2.neg-lim-sw-in
 net z-pos-limit     =>  joint.2.pos-lim-sw-in
 
-#*******************
-#  SPINDLE
-#*******************
-
-setp   pid.s.Pgain     [SPINDLE_1]P
-setp   pid.s.Igain     [SPINDLE_1]I
-setp   pid.s.Dgain     [SPINDLE_1]D
-setp   pid.s.bias      [SPINDLE_1]BIAS
-setp   pid.s.FF0       [SPINDLE_1]FF0
-setp   pid.s.FF1       [SPINDLE_1]FF1
-setp   pid.s.FF2       [SPINDLE_1]FF2
-setp   pid.s.deadband  [SPINDLE_1]DEADBAND
-setp   pid.s.maxoutput [SPINDLE_1]MAX_OUTPUT
-setp   pid.s.error-previous-target true
-
-net spindle1-index-enable  <=> pid.s.index-enable
-net spindle1-enable        =>  pid.s.enable
-net spindle1-vel-cmd-rpm-abs     => pid.s.command
-net spindle1-vel-fb-rpm-abs      => pid.s.feedback
-net spindle1-output        <=  pid.s.output
-
 # ---PWM Generator signals/setup---
 
 setp   hm2_7i80.0.pwmgen.00.output-type 1
-setp   hm2_7i80.0.pwmgen.00.scale  [SPINDLE_1]OUTPUT_SCALE
+setp   hm2_7i80.0.pwmgen.00.scale  1800
 
 # M68 E0 Q0 -
 net laser-pwm motion.analog-out-00     => hm2_7i80.0.pwmgen.00.value
 net laser-enable motion.digital-out-00    => hm2_7i80.0.pwmgen.00.enable
-
-# ---setup spindle control signals---
-
-#net spindle1-vel-cmd-rps        <=  spindle.1.speed-out-rps
-#net spindle1-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
-#net spindle1-vel-cmd-rpm        <=  spindle.1.speed-out
-#net spindle1-vel-cmd-rpm-abs    <=  spindle.1.speed-out-abs
-#net spindle1-enable             <=  spindle.1.on
-#net spindle1-cw                 <=  spindle.1.forward
-#net spindle1-ccw                <=  spindle.1.reverse
-#net spindle1-brake              <=  spindle.1.brake
-#net spindle1-revs               =>  spindle.1.revs
-#net spindle1-at-speed           =>  spindle.1.at-speed
-#net spindle1-vel-fb-rps         =>  spindle.1.speed-in
-#net spindle1-index-enable      <=>  spindle.1.index-enable
 
 # ---Setup spindle at speed signals---
 
