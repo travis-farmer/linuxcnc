@@ -7,7 +7,7 @@ loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
 loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
-loadusr -Wn arduino /usr/bin/ard_3dp_pid
+loadusr -Wn arduino ./ard_hal /dev/ttyUSB0 6
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
@@ -23,11 +23,6 @@ addf pid.s.do-pid-calcs       servo-thread
 addf abs.spindle              servo-thread
 addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
-
-# --- Extruder Fan ---
-setp hm2_7i80.0.gpio.014.invert_output true
-setp hm2_7i80.0.gpio.014.is_output true
-net extruder-fan  =>     hm2_7i80.0.gpio.014.out
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
@@ -48,6 +43,11 @@ net y-enable  =>     hm2_7i80.0.gpio.056.out
 setp hm2_7i80.0.gpio.062.invert_output true
 setp hm2_7i80.0.gpio.062.is_output true
 net z-enable  =>     hm2_7i80.0.gpio.062.out
+
+# --- A-ENABLE ---
+setp hm2_7i80.0.gpio.068.invert_output true
+setp hm2_7i80.0.gpio.068.is_output true
+net a-enable  =>     hm2_7i80.0.gpio.068.out
 
 # external input signals
 
@@ -322,6 +322,15 @@ net machine-is-on         halui.machine.is-on
 net jog-speed             halui.axis.jog-speed
 net MDI-mode              halui.mode.is-mdi
 
+# M68 E1 Q0 -
+setp   hm2_7i80.0.pwmgen.01.output-type 1
+setp   hm2_7i80.0.pwmgen.01.scale  4096
+net head-fan-pwm machine-is-enabled     => hm2_7i80.0.pwmgen.01.value
+
+# M68 E2 Q0 -
+setp   hm2_7i80.0.pwmgen.02.output-type 1
+setp   hm2_7i80.0.pwmgen.02.scale  4096
+net part-fan-pwm motion.analog-out-02     => hm2_7i80.0.pwmgen.02.value
 
 #  ---probe signal---
 
@@ -347,3 +356,78 @@ net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchan
 net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
 net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
 
+############
+# MAX31855 #
+############
+loadrt max31855 personality=2
+setp hm2_7i80.0.gpio.024.is_output true
+setp hm2_7i80.0.gpio.025.is_output true
+net spi.clk.in hm2_7i80.0.gpio.024.out max31855.0.clk.out
+net spi.cs.in hm2_7i80.0.gpio.025.out max31855.0.cs.out
+net spi.data0.in hm2_7i80.0.gpio.026.in_not max31855.0.data.0.in
+net spi.data1.in hm2_7i80.0.gpio.027.in_not max31855.0.data.1.inaddf
+max31855.0.bitbang-spi servo-thread
+
+# pins that supply the temp readings in C
+# max31855.0.temp-celsius.0
+# max31855.0.temp-celsius.1
+
+#############################################################################################
+#	Hotend Temperature Control																#
+#############################################################################################
+addf t0-pid.do-pid-calcs	servo-thread
+
+# parameters
+setp t0-pid.Pgain			[HEAD_TEMPERATURE_CONTROL]P
+setp t0-pid.Igain			[HEAD_TEMPERATURE_CONTROL]I
+setp t0-pid.Dgain			[HEAD_TEMPERATURE_CONTROL]D
+setp t0-pid.maxoutput		[HEAD_TEMPERATURE_CONTROL]MAX_OUTPUT
+setp t0-pid.FF0				[HEAD_TEMPERATURE_CONTROL]FF0
+setp t0-pid.FF1				[HEAD_TEMPERATURE_CONTROL]FF1
+setp t0-pid.FF2				[HEAD_TEMPERATURE_CONTROL]FF2
+
+setp hm2_7i80.0.pwmgen.03.scale			[HEAD_TEMPERATURE_CONTROL]SCALE
+setp hm2_7i80.0.pwmgen.03.pwm-freq		[HEAD_TEMPERATURE_CONTROL]PWM_FREQ
+#setp hm2_7i80.0.pwmgen.03.dither-pwm	[HEAD_TEMPERATURE_CONTROL]DITHER_PWM
+#setp hm2_7i80.0.pwmgen.03.max-dc		[HEAD_TEMPERATURE_CONTROL]MAX_DC
+#setp hm2_7i80.0.pwmgen.03.min-dc		[HEAD_TEMPERATURE_CONTROL]MIN_DC
+
+net machine-is-enabled										=> t0-pid.enable
+
+#
+net hotend-temp-act                       <= arduino.tempa
+#net hotend-temp-act                      <= max31855.0.temp-celsius.0
+net hotend-temp-tgt 											=> t0-pid.command
+net hotend-temp-act												=> t0-pid.feedback
+net hotend-t0-pid-out-value	t0-pid.output						=> hm2_7i80.0.pwmgen.03.value
+net hotend-is-on												<= hm2_7i80.0.pwmgen.03.pwm
+
+#############################################################################################
+#	Bed Temperature Control																#
+#############################################################################################
+addf t1-pid.do-pid-calcs	servo-thread
+
+# parameters
+setp t1-pid.Pgain			[BED_TEMPERATURE_CONTROL]P
+setp t1-pid.Igain			[BED_TEMPERATURE_CONTROL]I
+setp t1-pid.Dgain			[BED_TEMPERATURE_CONTROL]D
+setp t1-pid.maxoutput		[BED_TEMPERATURE_CONTROL]MAX_OUTPUT
+setp t1-pid.FF0				[BED_TEMPERATURE_CONTROL]FF0
+setp t1-pid.FF1				[BED_TEMPERATURE_CONTROL]FF1
+setp t1-pid.FF2				[BED_TEMPERATURE_CONTROL]FF2
+
+setp hm2_7i80.0.pwmgen.04.scale			[BED_TEMPERATURE_CONTROL]SCALE
+setp hm2_7i80.0.pwmgen.04.pwm-freq		[BED_TEMPERATURE_CONTROL]PWM_FREQ
+#setp hm2_7i80.0.pwmgen.04.dither-pwm	[BED_TEMPERATURE_CONTROL]DITHER_PWM
+#setp hm2_7i80.0.pwmgen.04.max-dc		[BED_TEMPERATURE_CONTROL]MAX_DC
+#setp hm2_7i80.0.pwmgen.04.min-dc		[BED_TEMPERATURE_CONTROL]MIN_DC
+
+net machine-is-enabled										=> t1-pid.enable
+
+#
+net bed-temp-act                       <= arduino.tempa
+#net bed-temp-act                      <= max31855.0.temp-celsius.1
+net bed-temp-tgt 											=> t1-pid.command
+net bed-temp-act												=> t1-pid.feedback
+net bed-t1-pid-out-value	t1-pid.output						=> hm2_7i80.0.pwmgen.04.value
+net bed-is-on												<= hm2_7i80.0.pwmgen.04.pwm

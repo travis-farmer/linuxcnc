@@ -1,4 +1,4 @@
 #!/bin/bash
 pwm=$1
-halcmd setp extruder-fan  $pwm
+halcmd setp part-fan-pwm  $pwm
 exit 0

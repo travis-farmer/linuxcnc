@@ -27,7 +27,7 @@
                     <region3>(210,250,"red")</region3>
                 </meter>
                 <label>
-                        <text>"Head At Temp:"</text>
+                        <text>"Head ON:"</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <hbox>
@@ -36,7 +36,7 @@
                             <font>("Helvetica",20)</font>
                     </label>
                     <led>
-                        <halpin>"head-attemp"</halpin>
+                        <halpin>"head-on"</halpin>
                         <size>30</size>
                         <on_color>"green"</on_color>
                         <off_color>"red"</off_color>
@@ -66,7 +66,7 @@
                     <region3>(210,250,"red")</region3>
                 </meter>
                 <label>
-                        <text>"Bed At Temp:"</text>
+                        <text>"Bed ON:"</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <hbox>
@@ -75,7 +75,7 @@
                             <font>("Helvetica",20)</font>
                     </label>
                     <led>
-                        <halpin>"bed-attemp"</halpin>
+                        <halpin>"bed-on"</halpin>
                         <size>30</size>
                         <on_color>"green"</on_color>
                         <off_color>"red"</off_color>

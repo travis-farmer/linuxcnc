@@ -1,4 +1,4 @@
 #!/bin/bash
 temp=$1
-halcmd setp head-settemp $temp
+halcmd setp hotend-temp-tgt $temp
 exit 0
