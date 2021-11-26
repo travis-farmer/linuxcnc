@@ -6,11 +6,17 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
+loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=5 num_stepgens=4 num_bspis=2"
 loadusr -Wn arduino ./ard_hal /dev/ttyUSB0 6
+#loadrt max31855_bspi bspi_chans=hm2_7i90.0.bspi.0, hm2_7i90.0.bspi.1
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
+setp    pwr-volts-five 0.00
+setp    pwr-volts-twelve 0.00
+setp    pwr-volts-twentyfour 0.00
+setp    pwr-volts-stepper 0.00
+
 loadrt pid names=pid.x,pid.y,pid.z,pid.a
 
 addf hm2_7i80.0.read          servo-thread
@@ -359,14 +365,14 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 ############
 # MAX31855 #
 ############
-loadrt max31855 personality=2
-setp hm2_7i80.0.gpio.024.is_output true
-setp hm2_7i80.0.gpio.025.is_output true
-net spi.clk.in hm2_7i80.0.gpio.024.out max31855.0.clk.out
-net spi.cs.in hm2_7i80.0.gpio.025.out max31855.0.cs.out
-net spi.data0.in hm2_7i80.0.gpio.026.in_not max31855.0.data.0.in
-net spi.data1.in hm2_7i80.0.gpio.027.in_not max31855.0.data.1.inaddf
-max31855.0.bitbang-spi servo-thread
+#loadrt max31855 personality=2
+#setp hm2_7i80.0.gpio.024.is_output true
+#setp hm2_7i80.0.gpio.025.is_output true
+#net spi.clk.in hm2_7i80.0.gpio.024.out max31855.0.clk.out
+#net spi.cs.in hm2_7i80.0.gpio.025.out max31855.0.cs.out
+#net spi.data0.in hm2_7i80.0.gpio.026.in_not max31855.0.data.0.in
+#net spi.data1.in hm2_7i80.0.gpio.027.in_not max31855.0.data.1.inaddf
+#max31855.0.bitbang-spi servo-thread
 
 # pins that supply the temp readings in C
 # max31855.0.temp-celsius.0
@@ -400,7 +406,7 @@ net hotend-temp-act                       <= arduino.tempa
 net hotend-temp-tgt 											=> t0-pid.command
 net hotend-temp-act												=> t0-pid.feedback
 net hotend-t0-pid-out-value	t0-pid.output						=> hm2_7i80.0.pwmgen.03.value
-net hotend-is-on												<= hm2_7i80.0.pwmgen.03.pwm
+#net hotend-temp-fault												<= max31855.0.fault.0
 
 #############################################################################################
 #	Bed Temperature Control																#
@@ -426,8 +432,8 @@ net machine-is-enabled										=> t1-pid.enable
 
 #
 net bed-temp-act                       <= arduino.tempa
-#net bed-temp-act                      <= max31855.0.temp-celsius.1
+#net bed-temp-act                      <= max31855.0.temp_celsius.1
 net bed-temp-tgt 											=> t1-pid.command
 net bed-temp-act												=> t1-pid.feedback
 net bed-t1-pid-out-value	t1-pid.output						=> hm2_7i80.0.pwmgen.04.value
-net bed-is-on												<= hm2_7i80.0.pwmgen.04.pwm
+#net bed-temp-fault												<= max31855.0.fault.1

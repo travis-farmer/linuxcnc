@@ -131,6 +131,14 @@ c.newpin("digital-in-13-not", hal.HAL_BIT, hal.HAL_OUT);
 c.newparam("digital-in-13-pullup", hal.HAL_BIT, hal.HAL_RW);
 time.sleep(2)
 c.ready()
+addr_a = 0;
+addr_b = 0;
+data_a = 0;
+data_b = 0;
+data_c = 0;
+data_d = 0;
+address = 0
+data = 0
 
 firstbyte = 0
 state = 0
@@ -138,6 +146,20 @@ try:
     while 1:
         while ser.inWaiting():
             byte = ord(ser.read())
+            if byte & 0xf0 == 0:
+                address = (byte & 0x0f) << 4
+            elif byte & 0xf0 == 0x80:
+                address = address | (byte & 0x0f)
+            elif byte & 0xf0 == 0x40:
+                data = (byte & 0x0f) << 12
+            elif byte & 0xf0 == 0xc0:
+                data_b = data | (byte & 0x0f) << 8
+            elif byte & 0xf0 == 0x20:
+                data_c = data | (byte & 0x0f) << 4
+            elif byte & 0xf0 == 0xa0:
+                data_d = data | (byte & 0x0f)
+
+
             if firstbyte & 0x80 == 0x80 and byte & 0x80 == 0:
                 v = (firstbyte << 7) | byte
                 port = (v >> 11) & 7
@@ -167,7 +189,7 @@ try:
                     c['analog-in-%02d' % port] = value
 
             firstbyte = byte
-        
+
         scale = c['analog-out-%02d-scale' % dacpinmap[state]] or 1.
         offset = c['analog-out-%02d-offset' % dacpinmap[state]]
         data = (c['analog-out-%02d' % dacpinmap[state]] - offset) / scale / 255

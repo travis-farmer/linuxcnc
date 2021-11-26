@@ -280,7 +280,7 @@ net z-pos-limit     =>  joint.2.pos-lim-sw-in
 # ---PWM Generator signals/setup---
 
 setp   hm2_7i80.0.pwmgen.00.output-type 1
-setp   hm2_7i80.0.pwmgen.00.scale  1800
+setp   hm2_7i80.0.pwmgen.00.scale  4096
 
 # M68 E0 Q0 -
 net laser-pwm motion.analog-out-00     => hm2_7i80.0.pwmgen.00.value

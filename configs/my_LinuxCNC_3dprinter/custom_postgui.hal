@@ -7,9 +7,13 @@
 net hotend-temp-tgt     <=> pyvcp.head-settemp
 net bed-temp-tgt     <=> pyvcp.bed-settemp
 
-net hotend-is-on => pyvcp.head-on
-net bed-is-on => pyvcp.bed-on
+net hotend-temp-fault => pyvcp.head-temp-fault
+net bed-temp-fault => pyvcp.bed-temp-fault
 
 net hotend-temp-act => pyvcp.head-temp
 net bed-temp-act => pyvcp.bed-temp
 
+net pwr-volts-five  =>  pyvcp.volts-five
+net pwr-volts-twelve  =>  pyvcp.volts-twelve
+net pwr-volts-twentyfour  =>  pyvcp.volts-twentyfour
+net pwr-volts-stepper =>  pyvcp.volts-stepper
