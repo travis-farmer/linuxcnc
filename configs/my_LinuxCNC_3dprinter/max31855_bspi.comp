@@ -152,7 +152,7 @@ static int read(void *subdata) {
 
 	rtapi_u32 *data = *MAX31855_read;
 
-	for (i = 0; i < 1; i++) {
+	for (i = 0; i < 4; i++) {
           raw_in(i) = data[i];
 	  float f = read_celsius_adjusted(raw_in(i));
 		fault(i) = (raw_in(i) & 0x7) ? TRUE : FALSE;
@@ -179,7 +179,7 @@ EXTRA_SETUP(){
 
   // Set up channel descriptors
   //hm2_bspi_setup_chan(name, chan, cs, bits, mhz, delay(ns), cpol, cpha, /clear, /echo, samplelate)
-  for (i = 0; i < 1; i++) {
+  for (i = 0; i < 4; i++) {
     r += hm2_bspi_setup_chan(name, i, i, 32, 200/1000.0f, 0, 0, 0, 0, 0, 0);
   }
 

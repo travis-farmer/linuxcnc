@@ -10,6 +10,12 @@ component serialcon                 "This component services the arduino pendant
 pin in float xposition              "Receives current position from Xpos";
 pin in float yposition              "Receives current position from Ypos";
 pin in float zposition              "Receives current position from Zpos";
+pin out float volts-five.# [1] """5v Bus""";
+pin out float volts-twelve.# [1] """12v Bus""";
+pin out float volts-twentyfour.# [1] """24v Bus""";
+pin out float volts-stepper.# [1] """Stepper Bus""";
+pin out bit fault.# [8]  "Fault condition detected.";
+pin out unsigned fault_flags.# [8]  "Fault flags: 0x1  = power failure, 0x2 unknown, 0x3 unknown.";
 
 option singleton yes;               // makes no sense to have more than one of these components running
 option userspace yes;
@@ -141,24 +147,23 @@ void sendCommand(char ch)
         switch(Addr) {
           case 0x01:
             if (Data == 1.00) {
-              system("halcmd setp halui.estop.activate 1");
+              fault(0) = 1;
             } else {
-              system("halcmd setp halui.estop.activate 0");
+              fault(0) = 0;
             }
             break;
           case 0x02:
-            sprintf(cmdbuff, "halcmd setp pwr-volts-five %f", Data)
+            volts-five(0) = Data;
             break;
           case 0x03:
-            sprintf(cmdbuff, "halcmd setp pwr-volts-twelve %f", Data)
+            volts-twelve(0) = Data;
             break;
-          case 0x03:
-            sprintf(cmdbuff, "halcmd setp pwr-volts-twentyfour %f", Data)
+          case 0x04:
+            volts-twentyfour(0) = Data;
             break;
-          case 0x03:
-            sprintf(cmdbuff, "halcmd setp pwr-volts-stepper %f", Data)
+          case 0x05:
+            volts-stepper(0) = Data
             break;
-          case 0x03:
 
         }
     }
