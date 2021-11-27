@@ -1,19 +1,14 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-#define REFERENCE_PIN 15
 #define R_ONE 10000
 #define R_TWO 1000
-#define FIVE_PIN 0
-#define TWELVE_PIN 1
-#define TWENTYFOUR_PIN 2
-#define STEPPER_PIN 3
+
 
 LiquidCrystal_I2C lcd(0x27,20,4);
 
 char XReading[10];  // 0000.000? pos
 char YReading[10];
 char ZReading[10];
-
 bool pwrState = false;
 
 unsigned long lastDelay = 0UL;
@@ -24,51 +19,40 @@ void zeroX() { for(int x = 0; x < 9; x++) XReading[x] = 0;}
 void zeroY() { for(int x = 0; x < 9; x++) YReading[x] = 0;}
 void zeroZ() { for(int x = 0; x < 9; x++) ZReading[x] = 0;}
 
-float readVolts(int pin) {
-float operatingVoltage = analogRead(REFERENCE_PIN);
-
-  float rawVoltage = analogRead(pin);
-
-  operatingVoltage = 3.30 / operatingVoltage; //The reference voltage is 3.3V
-
-  rawVoltage = operatingVoltage * rawVoltage; //Convert the 0 to 1023 int to actual voltage on BATT pin
-
-  return((rawVoltage * R_TWO) / (R_ONE + R_TWO));
-}
-
-
 void displayLCD() {
-  lcd.setCursor(0, 0);
-  lcd.print("X");
-  lcd.setCursor(1, 0);
-  lcd.print(XReading);
-  zeroX();
-  lcd.setCursor(0, 1);
-  lcd.print("Y");
-  lcd.setCursor(1, 1);
-  lcd.print(YReading);
-  zeroY();
-  lcd.setCursor(0, 2);
-  lcd.print("Z");
-  lcd.setCursor(1, 2);
-  lcd.print(ZReading);
-  zeroZ();
-  lcd.setCursor(0,3);
   char outStrA[15];
   char outStrB[15];
   char outStrC[15];
   char outStrD[15];
-  float five = readVolts(FIVE_PIN);
-  float twelve = readVolts(TWELVE_PIN);
-  float twentyfour = readVolts(TWENTYFOUR_PIN);
-  float stepper = readVolts(STEPPER_PIN);
-  dtostrf(five,4, 1, outStrA);
-  dtostrf(twelve,4, 1, outStrB);
-  dtostrf(twentyfour,4, 1, outStrC);
-  dtostrf(stepper,4, 1, outStrD);
-  char output[20];
-  sprintf(output, "%s %s %s %s", outStrA, outStrB, outStrC, outStrD);
-  lcd.print(output);
+  float five = (((analogRead(0)*(5.00/1024.00))/R_TWO)*(R_ONE+R_TWO));
+  delay(10);
+  float twelve = (((analogRead(1)*(5.00/1024.00))/R_TWO)*(R_ONE+R_TWO));
+  delay(10);
+  float twentyfour = (((analogRead(2)*(5.00/1024.00))/R_TWO)*(R_ONE+R_TWO));
+  delay(10);
+  float stepper = (((analogRead(3)*(5.00/1024.00))/R_TWO)*(R_ONE+R_TWO));
+  delay(10);
+  dtostrf(five,7, 3, outStrA);
+  dtostrf(twelve,7, 3, outStrB);
+  dtostrf(twentyfour,7, 3, outStrC);
+  dtostrf(stepper,7, 3, outStrD);
+  char outputa[20];
+  sprintf(outputa, "5v Bus: %s", outStrA);
+  lcd.setCursor(0,0);
+  lcd.print(outputa);
+  char outputb[20];
+  sprintf(outputb, "12v Bus: %s", outStrB);
+  lcd.setCursor(0,1);
+  lcd.print(outputb);
+  char outputc[20];
+  sprintf(outputc, "24v Bus: %s", outStrC);
+  lcd.setCursor(0,2);
+  lcd.print(outputc);
+  char outputd[20];
+  sprintf(outputd, "Stepper Bus: %s", outStrD);
+  lcd.setCursor(0,3);
+  lcd.print(outputd);
+  
   if (pwrState) {
     lcd.setCursor(19,0);
     lcd.print("*");
@@ -90,16 +74,8 @@ void setup()
     lcd.backlight();
 
         // set the initial field identifiers
-    lcd.setCursor(0, 0);
-    lcd.print("X");
-    lcd.setCursor(0, 1);
-    lcd.print("Y");
-    lcd.setCursor(0, 2);
-    lcd.print("Z");
+    analogReference(DEFAULT);
     pinMode(13,OUTPUT); digitalWrite(13,LOW);
-    zeroX();
-    zeroY();
-    zeroZ();
 }
 
 void loop()
@@ -109,45 +85,10 @@ char ch, ky;
 bool rcvData = false;
     unsigned long curTim = millis();
     if(Serial.available() > 0)
-        {
-            rcvData = true;
+    {
+        rcvData = true;
         ch = Serial.read();
-        switch(ch)
-            {
-            case 'X':
-                    while(Serial.available() < 8)
-                        delay(10);
-                    for(x = 0; x < 10; x++) {
-                        char c = Serial.read();
-                        if (c == '\n') break;
-                        XReading[x] = Serial.read();
-                    }
-                    break;
-
-            case 'Y':
-                    while(Serial.available() < 8)
-                        delay(10);
-                    for(x = 0; x < 10; x++) {
-                        char c = Serial.read();
-                        if (c == '\n') break;
-                        YReading[x] = Serial.read();
-                    }
-                    break;
-
-            case 'Z':
-                    while(Serial.available() < 8)
-                        delay(10);
-                    for(x = 0; x < 10; x++) {
-                        char c = Serial.read();
-                        if (c == '\n') break;
-                        ZReading[x] = Serial.read();
-                    }
-                    break;
-            default:
-                    break;
-
-            }
-        }
+    }
 
     if (curTim - lastDelay >= 500) {
       lastDelay = curTim;
