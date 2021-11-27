@@ -10,12 +10,12 @@ component serialcon                 "This component services the arduino pendant
 pin in float xposition              "Receives current position from Xpos";
 pin in float yposition              "Receives current position from Ypos";
 pin in float zposition              "Receives current position from Zpos";
-pin out float volts-five.# [1] """5v Bus""";
-pin out float volts-twelve.# [1] """12v Bus""";
-pin out float volts-twentyfour.# [1] """24v Bus""";
-pin out float volts-stepper.# [1] """Stepper Bus""";
-pin out bit fault.# [8]  "Fault condition detected.";
-pin out unsigned fault_flags.# [8]  "Fault flags: 0x1  = power failure, 0x2 unknown, 0x3 unknown.";
+pin out float volts_five.# [1] """5v Bus""";
+pin out float volts_twelve.# [1] """12v Bus""";
+pin out float volts_twentyfour.# [1] """24v Bus""";
+pin out float volts_stepper.# [1] """Stepper Bus""";
+pin out bit fault.# [1]  "Fault condition detected.";
+pin out unsigned fault_flags.# [1]  "Fault flags: 0x1  = power failure, 0x2 unknown, 0x3 unknown.";
 
 option singleton yes;               // makes no sense to have more than one of these components running
 option userspace yes;
@@ -132,7 +132,7 @@ int fd;
     // want these 2 to persist between calls
 char selected_axis = '0';
 int bJogging = false;
-byte Addr = 0x00;
+char Addr = 0x00;
 double Data = 0.00;
 char inData[7];
 int CmdPos = 0;
@@ -153,16 +153,16 @@ void sendCommand(char ch)
             }
             break;
           case 0x02:
-            volts-five(0) = Data;
+            volts_five(0) = Data;
             break;
           case 0x03:
-            volts-twelve(0) = Data;
+            volts_twelve(0) = Data;
             break;
           case 0x04:
-            volts-twentyfour(0) = Data;
+            volts_twentyfour(0) = Data;
             break;
           case 0x05:
-            volts-stepper(0) = Data
+            volts_stepper(0) = Data;
             break;
 
         }
