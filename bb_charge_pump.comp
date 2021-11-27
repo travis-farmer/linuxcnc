@@ -1,14 +1,13 @@
-
 /********************************************************************************
-serialcon.comp
+bb_charge_pump.comp
 
 Serial communications with a userspace component
 
 *********************************************************************************/
 
-component serialcon                 "This component services the arduino pendant";
+component bb_charge_pump                 "This component services the BitBang Charge Pump";
 
-pin in bit enable              "if high, start pump";
+pin in bit enable              "if low, start pump";
 pin out bit pump.# [2]  "Pump Outputs.";
 
 
@@ -32,14 +31,14 @@ license "GPL";
 
 unsigned long time_with_ms (void)
 {
-    long            ms; // Milliseconds
+    unsigned long            ms; // Milliseconds
     time_t          s;  // Seconds
     struct timespec spec;
 
     clock_gettime(CLOCK_REALTIME, &spec);
 
     s  = spec.tv_sec;
-    ms = round(spec.tv_nsec / 1.0e6); // Convert nanoseconds to milliseconds
+    ms = (spec.tv_nsec / 1.0e6); // Convert nanoseconds to milliseconds
     if (ms > 999) {
         s++;
         ms = 0;
@@ -52,7 +51,7 @@ void user_mainloop(void)
 {
     bool PumpState = false;
     unsigned long lastTimer = 0UL;
-    while(fd != -1)
+    while(true)
         {
 
 
@@ -61,28 +60,26 @@ void user_mainloop(void)
             // In this case, if you don't, no data gets written
             // ************************************************************************************
         FOR_ALL_INSTS()
-            {
-            if (enable == 1) {
-              unsigned long curTime = time_with_ms();
-              if (curTime - lastTimer >= 250) {
-                lastTimer = curTime;
-                if (PumpState == true) {
-                  PumpState = false;
-                  pump(0) = 1;
-                  pump(1) = 0;
-                } else {
-                  PumpState = true;
-                  pump(0) = 0;
-                  pump(1) = 1;
-                }
-              }
+        {
+            if (enable == 0) {
+                unsigned long curTime = time_with_ms();
+                      if (curTime - lastTimer >= 250) {
+                    lastTimer = curTime;
+                    if (PumpState == true) {
+                        PumpState = false;
+                        pump(0) = 1;
+                        pump(1) = 0;
+                    } else {
+                        PumpState = true;
+                        pump(0) = 0;
+                        pump(1) = 1;
+                    }
+                      }
             } else {
-              pump(0) = 0;
-              pump(1) = 0;
+                pump(0) = 0;
+                pump(1) = 0;
             }
         }
-
+    }
     exit(0);
 }
-
-//######################################################################
