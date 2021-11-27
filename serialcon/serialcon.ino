@@ -13,13 +13,13 @@ LiquidCrystal_I2C lcd(0x27,20,4);
 void SendData(char addr, float data) {
   Serial.write(addr);
   char outStr[15];
-  dtostrf(data,5, 3, outStr);
+  dtostrf(data,6, 3, outStr);
   Serial.println(outStr);
 }
 
-char XReading[9];  // 0000.000? pos
-char YReading[9];
-char ZReading[9];
+char XReading[10];  // 0000.000? pos
+char YReading[10];
+char ZReading[10];
 
 bool pwrState = false;
 
@@ -76,16 +76,16 @@ void displayLCD() {
   char output[20];
   sprintf(output, "%s %s %s %s", outStrA, outStrB, outStrC, outStrD);
   lcd.print(output);
-  SendData(0x02,five);
-  SendData(0x03,twelve);
-  SendData(0x04,twentyfour);
-  SendData(0x05,stepper);
+  SendData('a',five);
+  SendData('b',twelve);
+  SendData('c',twentyfour);
+  SendData('d',stepper);
   if (pwrState) {
-    SendData(0x01,1.00);
+    SendData('x',1.00);
     lcd.setCursor(19,0);
     lcd.print("*");
   } else {
-    SendData(0x01,0.00);
+    SendData('x',0.00);
     lcd.setCursor(19,0);
     lcd.print(" ");
   }
@@ -130,25 +130,31 @@ bool rcvData = false;
             case 'X':
                     while(Serial.available() < 8)
                         delay(10);
-                    for(x = 0; x < 8; x++)
+                    for(x = 0; x < 10; x++) {
+                        char c = Serial.read();
+                        if (c == '\n') break;
                         XReading[x] = Serial.read();
-
+                    }
                     break;
 
             case 'Y':
                     while(Serial.available() < 8)
                         delay(10);
-                    for(x = 0; x < 8; x++)
+                    for(x = 0; x < 10; x++) {
+                        char c = Serial.read();
+                        if (c == '\n') break;
                         YReading[x] = Serial.read();
-
+                    }
                     break;
 
             case 'Z':
                     while(Serial.available() < 8)
                         delay(10);
-                    for(x = 0; x < 8; x++)
+                    for(x = 0; x < 10; x++) {
+                        char c = Serial.read();
+                        if (c == '\n') break;
                         ZReading[x] = Serial.read();
-
+                    }
                     break;
             default:
                     break;

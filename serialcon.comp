@@ -50,6 +50,8 @@ char buffer[50];
 char oldbuffer[50];
 char ch;
 
+
+
 int fd = serialport_init();
 //    bzero(oldbuffer, 50);
     while(fd != -1)
@@ -65,7 +67,8 @@ int fd = serialport_init();
             {
             // %08.03f = 8 digit including decimal point and sign, leading zeros & 3 digit precision with trailing zeros
             bzero(buffer, 50);
-            sprintf(buffer, "X%08.03fY%08.03fZ%08.03f", xposition, yposition, zposition );
+            sprintf(buffer, "X%08.03f\nY%08.03f\nZ%08.03f\n", xposition, yposition, zposition );
+}
 //            if(strcmp(oldbuffer, buffer) != 0)
             write(fd, buffer, sizeof(buffer));
 //            strcpy(oldbuffer, buffer);
@@ -134,34 +137,34 @@ char selected_axis = '0';
 int bJogging = false;
 char Addr = 0x00;
 double Data = 0.00;
-char inData[7];
+char inData[15];
 int CmdPos = 0;
 void sendCommand(char ch)
 {
 
     char cmdbuff[50];
 
-    if (ch == '\n' || ch == '\r') {
+    if (ch != '\n' || ch != '\r') {
         CmdPos = 0;
         Data = atof(inData);
         switch(Addr) {
-          case 0x01:
+          case 'x':
             if (Data == 1.00) {
               fault(0) = 1;
             } else {
               fault(0) = 0;
             }
             break;
-          case 0x02:
+          case 'a':
             volts_five(0) = Data;
             break;
-          case 0x03:
+          case 'b':
             volts_twelve(0) = Data;
             break;
-          case 0x04:
+          case 'c':
             volts_twentyfour(0) = Data;
             break;
-          case 0x05:
+          case 'd':
             volts_stepper(0) = Data;
             break;
 
