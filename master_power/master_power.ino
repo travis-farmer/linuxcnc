@@ -86,10 +86,12 @@ void loop()
     if ((!curPumpA && !curPumpB) || (curPumpA && curPumpB) && curTim - lastTest >= 1500) { // wrong input, starve the fake watchdog
       pwrState = false;
       digitalWrite(13,LOW);
+      lcd.noBacklight();
     } else if ((!curPumpA && curPumpB) || (curPumpA && !curPumpB) && curPumpA != lastInpState) { // differential input
       lastInpState = curPumpA; // make sure the pump is pumping
       lastTest = curTim; // feed the fake watchdog
       pwrState = true;
       digitalWrite(13,HIGH);
+      lcd.backlight();
     }
 }
