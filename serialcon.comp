@@ -34,7 +34,7 @@ license "GPL";
 #include <termios.h>  /* POSIX terminal control definitions */
 #include <sys/ioctl.h>
 
-#define BAUDRATE B9600
+#define BAUDRATE B115200
 #define DEVICE "/dev/ttyUSB0"
 #define _POSIX_SOURCE 1 /* POSIX compliant source */
 
@@ -58,7 +58,7 @@ int fd = serialport_init();
         {
             //  approx 1/4 sec appears to be optimum period for a steady display with min lag
             //  may differ on another system with different thread speeds
-        usleep(250000);
+        usleep(3000000);
             // ************************************************************************************
             // IT DOESN'T MATTER IF THERE ARE NO OTHER INSTANCES ie SINGLETON, MUST USE THIS MACRO
             // In this case, if you don't, no data gets written
@@ -68,11 +68,11 @@ int fd = serialport_init();
             // %08.03f = 8 digit including decimal point and sign, leading zeros & 3 digit precision with trailing zeros
             bzero(buffer, 50);
             sprintf(buffer, "X%08.03f\nY%08.03f\nZ%08.03f\n", xposition, yposition, zposition );
-}
+
 //            if(strcmp(oldbuffer, buffer) != 0)
             write(fd, buffer, sizeof(buffer));
 //            strcpy(oldbuffer, buffer);
-            if(read(fd,&ch,1) == 1)  // if command byte read from arduino
+            if(read(fd,&ch,1) > 0)  // if command byte read from arduino
                 sendCommand(ch);
             }
         }
@@ -117,8 +117,8 @@ int fd;
     toptions.c_oflag &= ~OPOST; // make raw
 
     // see: http://unixwiz.net/techtips/termios-vmin-vtime.html
-    toptions.c_cc[VMIN]  = 0;
-    toptions.c_cc[VTIME] = 20;
+    toptions.c_cc[VMIN]  = 1;
+    toptions.c_cc[VTIME] = 0;
 
     if( tcsetattr(fd, TCSANOW, &toptions) < 0)
         {
@@ -144,10 +144,10 @@ void sendCommand(char ch)
 
     char cmdbuff[50];
 
-    if (ch != '\n' || ch != '\r') {
+    if (ch == '\n') {
         CmdPos = 0;
         Data = atof(inData);
-        switch(Addr) {
+        /*switch(Addr) {
           case 'x':
             if (Data == 1.00) {
               fault(0) = 1;
@@ -168,10 +168,10 @@ void sendCommand(char ch)
             volts_stepper(0) = Data;
             break;
 
-        }
+        }*/
     }
     else if (CmdPos = 0) {Addr = ch; CmdPos++;}
-    else if (CmdPos > 0) {inData[CmdPos-1] = ch;}
+    else if (CmdPos > 0) {inData[CmdPos-1] = ch;CmdPos++;}
 
 
 }

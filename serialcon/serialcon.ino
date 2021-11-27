@@ -10,13 +10,6 @@
 
 LiquidCrystal_I2C lcd(0x27,20,4);
 
-void SendData(char addr, float data) {
-  Serial.write(addr);
-  char outStr[15];
-  dtostrf(data,6, 3, outStr);
-  Serial.println(outStr);
-}
-
 char XReading[10];  // 0000.000? pos
 char YReading[10];
 char ZReading[10];
@@ -76,16 +69,10 @@ void displayLCD() {
   char output[20];
   sprintf(output, "%s %s %s %s", outStrA, outStrB, outStrC, outStrD);
   lcd.print(output);
-  SendData('a',five);
-  SendData('b',twelve);
-  SendData('c',twentyfour);
-  SendData('d',stepper);
   if (pwrState) {
-    SendData('x',1.00);
     lcd.setCursor(19,0);
     lcd.print("*");
   } else {
-    SendData('x',0.00);
     lcd.setCursor(19,0);
     lcd.print(" ");
   }
@@ -94,7 +81,7 @@ void displayLCD() {
 void setup()
 {
         // start serial port at 9600 bps:
-    Serial.begin(9600);
+    Serial.begin(115200);
         // initialize the digital pin as an output.
         // Pin 13 has an LED connected on most Arduino boards:
 //    pinMode(13, OUTPUT);
@@ -121,7 +108,7 @@ int x;
 char ch, ky;
 bool rcvData = false;
     unsigned long curTim = millis();
-    if(Serial.available() >= 9)
+    if(Serial.available() > 0)
         {
             rcvData = true;
         ch = Serial.read();
