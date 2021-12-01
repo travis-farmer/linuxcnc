@@ -366,3 +366,16 @@ loadusr -W hal_manualtoolchange
 #net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
 #net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
 
+
+
+#########################
+#	BitBanged Charge Pump	#
+#########################
+loadusr -W bb_charge_pump
+net estop-net halui.estop.is-activated => bb-charge-pump.enable
+setp hm2_7i80.0.gpio.036.invert_output false
+setp hm2_7i80.0.gpio.036.is_output true
+setp hm2_7i80.0.gpio.037.invert_output false
+setp hm2_7i80.0.gpio.037.is_output true
+net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
+net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
