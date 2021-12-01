@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000

@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=5 num_stepgens=4 num_bspis=2"
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=5 num_stepgens=4 num_bspis=2"
 loadusr -Wn arduino ./ard_hal /dev/ttyUSB0 6
 #loadrt max31855_bspi bspi_chans=hm2_7i90.0.bspi.0, hm2_7i90.0.bspi.1
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
