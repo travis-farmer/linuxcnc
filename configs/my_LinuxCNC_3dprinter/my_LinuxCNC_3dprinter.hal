@@ -6,8 +6,13 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
+<<<<<<< Updated upstream
 loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=5 num_stepgens=4 num_bspis=2"
 loadusr -Wn arduino ./ard_hal /dev/ttyUSB0 6
+=======
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=5 num_stepgens=4 num_bspis=2"
+loadusr -Wn arduino ./ard_hal /dev/ttyUSB0 6
+>>>>>>> Stashed changes
 #loadrt max31855_bspi bspi_chans=hm2_7i90.0.bspi.0, hm2_7i90.0.bspi.1
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
@@ -360,6 +365,7 @@ loadusr -W hal_manualtoolchange
 net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
 net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
 net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
+<<<<<<< Updated upstream
 net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
 
 ############
@@ -437,3 +443,97 @@ net bed-temp-tgt 											=> t1-pid.command
 net bed-temp-act												=> t1-pid.feedback
 net bed-t1-pid-out-value	t1-pid.output						=> hm2_7i80.0.pwmgen.04.value
 #net bed-temp-fault												<= max31855.0.fault.1
+=======
+net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
+
+############
+# MAX31855 #
+############
+#loadrt max31855 personality=2
+#setp hm2_7i80.0.gpio.024.is_output true
+#setp hm2_7i80.0.gpio.025.is_output true
+#net spi.clk.in hm2_7i80.0.gpio.024.out max31855.0.clk.out
+#net spi.cs.in hm2_7i80.0.gpio.025.out max31855.0.cs.out
+#net spi.data0.in hm2_7i80.0.gpio.026.in_not max31855.0.data.0.in
+#net spi.data1.in hm2_7i80.0.gpio.027.in_not max31855.0.data.1.inaddf
+#max31855.0.bitbang-spi servo-thread
+
+# pins that supply the temp readings in C
+# max31855.0.temp-celsius.0
+# max31855.0.temp-celsius.1
+
+#############################################################################################
+#	Hotend Temperature Control																#
+#############################################################################################
+addf t0-pid.do-pid-calcs	servo-thread
+
+# parameters
+setp t0-pid.Pgain			[HEAD_TEMPERATURE_CONTROL]P
+setp t0-pid.Igain			[HEAD_TEMPERATURE_CONTROL]I
+setp t0-pid.Dgain			[HEAD_TEMPERATURE_CONTROL]D
+setp t0-pid.maxoutput		[HEAD_TEMPERATURE_CONTROL]MAX_OUTPUT
+setp t0-pid.FF0				[HEAD_TEMPERATURE_CONTROL]FF0
+setp t0-pid.FF1				[HEAD_TEMPERATURE_CONTROL]FF1
+setp t0-pid.FF2				[HEAD_TEMPERATURE_CONTROL]FF2
+
+setp hm2_7i80.0.pwmgen.03.scale			[HEAD_TEMPERATURE_CONTROL]SCALE
+setp hm2_7i80.0.pwmgen.03.pwm-freq		[HEAD_TEMPERATURE_CONTROL]PWM_FREQ
+#setp hm2_7i80.0.pwmgen.03.dither-pwm	[HEAD_TEMPERATURE_CONTROL]DITHER_PWM
+#setp hm2_7i80.0.pwmgen.03.max-dc		[HEAD_TEMPERATURE_CONTROL]MAX_DC
+#setp hm2_7i80.0.pwmgen.03.min-dc		[HEAD_TEMPERATURE_CONTROL]MIN_DC
+
+net machine-is-enabled										=> t0-pid.enable
+
+#
+net hotend-temp-act                       <= arduino.tempa
+#net hotend-temp-act                      <= max31855.0.temp-celsius.0
+net hotend-temp-tgt 											=> t0-pid.command
+net hotend-temp-act												=> t0-pid.feedback
+net hotend-t0-pid-out-value	t0-pid.output						=> hm2_7i80.0.pwmgen.03.value
+#net hotend-temp-fault												<= max31855.0.fault.0
+
+#############################################################################################
+#	Bed Temperature Control																#
+#############################################################################################
+addf t1-pid.do-pid-calcs	servo-thread
+
+# parameters
+setp t1-pid.Pgain			[BED_TEMPERATURE_CONTROL]P
+setp t1-pid.Igain			[BED_TEMPERATURE_CONTROL]I
+setp t1-pid.Dgain			[BED_TEMPERATURE_CONTROL]D
+setp t1-pid.maxoutput		[BED_TEMPERATURE_CONTROL]MAX_OUTPUT
+setp t1-pid.FF0				[BED_TEMPERATURE_CONTROL]FF0
+setp t1-pid.FF1				[BED_TEMPERATURE_CONTROL]FF1
+setp t1-pid.FF2				[BED_TEMPERATURE_CONTROL]FF2
+
+setp hm2_7i80.0.pwmgen.04.scale			[BED_TEMPERATURE_CONTROL]SCALE
+setp hm2_7i80.0.pwmgen.04.pwm-freq		[BED_TEMPERATURE_CONTROL]PWM_FREQ
+#setp hm2_7i80.0.pwmgen.04.dither-pwm	[BED_TEMPERATURE_CONTROL]DITHER_PWM
+#setp hm2_7i80.0.pwmgen.04.max-dc		[BED_TEMPERATURE_CONTROL]MAX_DC
+#setp hm2_7i80.0.pwmgen.04.min-dc		[BED_TEMPERATURE_CONTROL]MIN_DC
+
+net machine-is-enabled										=> t1-pid.enable
+
+#
+net bed-temp-act                       <= arduino.tempa
+#net bed-temp-act                      <= max31855.0.temp_celsius.1
+net bed-temp-tgt 											=> t1-pid.command
+net bed-temp-act												=> t1-pid.feedback
+net bed-t1-pid-out-value	t1-pid.output						=> hm2_7i80.0.pwmgen.04.value
+#net bed-temp-fault												<= max31855.0.fault.1
+
+
+#########################
+#	BitBanged Charge Pump	#
+#########################
+loadusr -W bb_charge_pump
+net estop-net halui.estop.is-activated => bb-charge-pump.enable
+setp hm2_7i80.0.gpio.036.invert_output false
+setp hm2_7i80.0.gpio.036.is_output true
+setp hm2_7i80.0.gpio.037.invert_output false
+setp hm2_7i80.0.gpio.037.is_output true
+net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
+net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
+net pwr-fault-one   hm2_7i80.0.gpio.038.in
+net pwr-fault-two   hm2_7i80.0.gpio.039.in
+>>>>>>> Stashed changes
