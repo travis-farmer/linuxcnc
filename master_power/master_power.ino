@@ -12,9 +12,8 @@ NexText t7 = NexText(0, 8, "t7");
 NexText t8 = NexText(0, 9, "t8");
 NexPage page0    = NexPage(0, 0, "page0");
 NexPage page1    = NexPage(1, 0, "page1");
-NexPage page2    = NexPage(2, 0, "page2");
-NexPage page3    = NexPage(3, 0, "page3");
-page1.show();
+
+
 
 
 bool pwrState = false;
@@ -92,12 +91,14 @@ void loop()
     if ((!curPumpA && !curPumpB) || (curPumpA && curPumpB) && curTim - lastTest >= 1500) { // wrong input, starve the fake watchdog
       pwrState = false;
       digitalWrite(OUTPUT_PIN,LOW);
+      page1.show();
       tftDim(5);
     } else if ((!curPumpA && curPumpB) || (curPumpA && !curPumpB) && curPumpA != lastInpState) { // differential input
       lastInpState = curPumpA; // make sure the pump is pumping
       lastTest = curTim; // feed the fake watchdog
       pwrState = true;
       digitalWrite(OUTPUT_PIN,HIGH);
+      page0.show();
       tftDim(100);
     }
 }
