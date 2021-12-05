@@ -47,7 +47,7 @@ desktop_notify = True
 notify_max_msgs = 10
 shutdown_check = True
 sound_player_on = False
-mainwindow_geometry = 
+mainwindow_geometry =
 
 [MCH_MSG_OPTIONS]
 mchnMsg_play_sound = True
@@ -65,8 +65,8 @@ shutdown_play_sound = True
 shutdown_alert_sound_type = READY
 shutdown_exit_sound_type = LOGOUT
 shutdown_msg_title = Do you want to Shutdown now?
-shutdown_msg_focus_text = 
-shutdown_msg_detail = 
+shutdown_msg_focus_text =
+shutdown_msg_detail =
 
 [NOTIFY_OPTIONS]
 notify_start_greeting = False
@@ -105,7 +105,7 @@ Reload tool = False
 Use keyboard = False
 Run from line = False
 Use virtual keyboard = False
-Use tool sensor = False
+Use tool sensor = True
 Use camera = False
 Use alpha display mode = False
 Inhibit display mouse selection = True
