@@ -1,16 +1,16 @@
-2021-12-02 17:58:36,178 - QtDesigner - INFO - Logging to "/home/travis/linuxcnc/configs/sim.qtvcp_screens.qtdragon/qtdragon.log"
-2021-12-02 17:58:36,178 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - Machine is METRIC based. unit Conversion constant=0.03937007874015748
-2021-12-02 17:58:36,178 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - TRAJ COORDINATES: XYZ
-2021-12-02 17:58:36,179 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - DEFAULT_LINEAR_VELOCITY = 3000.0
-2021-12-02 17:58:36,179 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - MIN_LINEAR_VELOCITY = 0.0
-2021-12-02 17:58:36,179 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - MAX_LINEAR_VELOCITY = 3600.0
-2021-12-02 17:58:36,222 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: M70
-2021-12-02 17:58:36,242 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G21 G49
-2021-12-02 17:58:36,262 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G10 L20 P0 Z0
-2021-12-02 17:58:36,283 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G91
-2021-12-02 17:58:36,303 - QtDesigner.QTVCP.QT_ACTION - DEBUG - MDI_WAIT_Command= G38.2 Z-10.0 F10.0, maxt = 10
-2021-12-02 17:58:36,303 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI_WAIT Command: G38.2 Z-10.0 F10.0
-2021-12-02 17:58:46,324 - QtDesigner.QTVCP.QT_ACTION - ERROR - CALL_MDI_WAIT timeout surpassed 10 seconds
-2021-12-02 17:58:46,374 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: M72
-2021-12-02 17:58:46,395 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G90
-2021-12-02 17:59:52,024 - QTvcp.QTVCP.WIDGETS.GCODE_EDITOR - ERROR - File path is not valid: mdi_history.dat
+2021-12-06 15:39:13,931 - QTvcp - INFO - Logging to "/home/travis/linuxcnc/configs/sim.qtvcp_screens.qtdragon/qtdragon.log"
+2021-12-06 15:39:15,363 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT handler file path: /usr/share/qtvcp/screens/qtdragon/qtdragon_handler.py
+2021-12-06 15:39:15,364 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT ui file from /usr/share/qtvcp/screens/qtdragon/qtdragon.ui
+2021-12-06 15:39:15,364 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qss file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qss
+2021-12-06 15:39:15,364 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qrc file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qrc
+2021-12-06 15:39:15,364 - QTvcp.QTVCP.QT_PSTAT - INFO - Using LOCAL resources.py file from /home/travis/linuxcnc/configs/sim.qtvcp_screens.qtdragon/qtvcp/screens/qtdragon/resources.py
+2021-12-06 15:39:15,391 - QTvcp.QTVCP.QT_PSTAT - INFO - Using no translations. Default system locale is: en
+2021-12-06 15:39:15,391 - QTvcp - INFO - Building A Linuxcnc Main Screen with Python 3
+2021-12-06 15:39:15,391 - QTvcp - INFO - No handler file specified on command line
+2021-12-06 15:39:15,392 - QTvcp - INFO - No HAL component base name specified on command line using: qtdragon
+2021-12-06 15:39:15,421 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Qsettings file path: /home/travis/.config/QtVcp/qtdragon.conf
+2021-12-06 15:39:16,240 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Imported resources.py filed: /home/travis/linuxcnc/configs/sim.qtvcp_screens.qtdragon/qtvcp/screens/qtdragon/resources.py
+2021-12-06 15:39:23,475 - QTvcp.QTDRAGON_HANDLER - INFO - Using Basic Probe
+2021-12-06 15:39:25,114 - QTvcp - INFO - postgui filename: ['qtdragon_postgui.hal']
+2021-12-06 15:39:25,184 - QTvcp - INFO - postgui commands: None
+2021-12-06 15:39:25,185 - QTvcp - INFO - Preference path: /home/travis/linuxcnc/configs/sim.qtvcp_screens.qtdragon/qtdragon.pref
