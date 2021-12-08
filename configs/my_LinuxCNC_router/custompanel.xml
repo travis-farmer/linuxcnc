@@ -77,34 +77,5 @@
                         <off_color>"red"</off_color>
                     </led>
                 </hbox>
-                <meter>
-                    <halpin>"laser-pwm"</halpin>
-                    <text>"Laser"</text>
-                    <subtext>"PWM"</subtext>
-                    <size>100</size>
-                    <min_>0</min_>
-                    <max_>4095</max_>
-                    <majorscale>500</majorscale>
-                    <minorscale>100</minorscale>
-                    <region1>(3000,4095,"red")</region1>
-                    <region2>(1000,3000,"yellow")</region2>
-                    <region3>(0,1000,"green")</region3>
-                </meter>
-                <label>
-                        <text>"Laser Enable:"</text>
-                        <font>("Helvetica",20)</font>
-                </label>
-                <hbox>
-                    <label>
-                            <text>"             "</text>
-                            <font>("Helvetica",20)</font>
-                    </label>
-                    <led>
-                        <halpin>"laser-enable"</halpin>
-                        <size>30</size>
-                        <on_color>"green"</on_color>
-                        <off_color>"red"</off_color>
-                    </led>
-                </hbox>
         </vbox>
 </pyvcp>

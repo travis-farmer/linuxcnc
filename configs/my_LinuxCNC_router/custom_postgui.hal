@@ -19,5 +19,5 @@ net spindle-ccw => pyvcp.spindle-reverse-led
 
 setp vfd.enable 1
 
-net laser-pwm =>  pyvcp.laser-pwm
-net laser-enable  =>  pyvcp.laser-enable
+#net laser-pwm =>  pyvcp.laser-pwm
+#net laser-enable  =>  pyvcp.laser-enable
