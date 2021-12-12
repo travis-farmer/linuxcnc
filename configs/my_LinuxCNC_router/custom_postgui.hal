@@ -6,7 +6,7 @@
 loadrt mult2 count=1
 addf mult2.0 servo-thread
 net spindle-speed-fb mult2.0.in0
-setp mult2.0.in1 0.0167
+setp mult2.0.in1 0.016666667
 net spindle-speed-rps mult2.0.out => spindle.0.speed-in
 #net spindle-speed-fb     => spindle.0.speed-in
 net spindle-speed-fb     => vfd.spindle-speed-fb
