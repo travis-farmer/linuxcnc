@@ -1,0 +1,20 @@
+2021-12-12 15:13:45,478 - QTvcp - INFO - Logging to "/home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.log"
+2021-12-12 15:13:46,055 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT handler file path: /usr/share/qtvcp/screens/qtdragon/qtdragon_handler.py
+2021-12-12 15:13:46,055 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT ui file from /usr/share/qtvcp/screens/qtdragon/qtdragon.ui
+2021-12-12 15:13:46,055 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qss file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qss
+2021-12-12 15:13:46,055 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qrc file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qrc
+2021-12-12 15:13:46,056 - QTvcp.QTVCP.QT_PSTAT - INFO - Using LOCAL resources.py file from /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon/resources.py
+2021-12-12 15:13:46,056 - QTvcp.QTVCP.QT_PSTAT - INFO - Using no translations. Default system locale is: en
+2021-12-12 15:13:46,057 - QTvcp - INFO - Building A Linuxcnc Main Screen with Python 3
+2021-12-12 15:13:46,057 - QTvcp - INFO - No handler file specified on command line
+2021-12-12 15:13:46,057 - QTvcp - INFO - No HAL component base name specified on command line using: qtdragon
+2021-12-12 15:13:46,058 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Qsettings file path: /home/travis/.config/QtVcp/qtdragon.conf
+2021-12-12 15:13:46,268 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Imported resources.py filed: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon/resources.py
+2021-12-12 15:13:49,605 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
+   Qtvcp recommends to allow use of it's own component by not loading the original. 
+   Qtvcp Integrated toolchange dialog will not show until then
+2021-12-12 15:13:50,122 - QTvcp.QTDRAGON_HANDLER - INFO - Using Basic Probe
+2021-12-12 15:13:52,249 - QTvcp - INFO - postgui filename: ['postgui_call_list.hal']
+2021-12-12 15:13:52,300 - QTvcp - INFO - postgui commands: None
+2021-12-12 15:13:52,301 - QTvcp - INFO - Preference path: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.pref
+2021-12-12 15:14:00,048 - QTvcp.QTVCP.QT_ACTION - INFO - Homing Joint: -1

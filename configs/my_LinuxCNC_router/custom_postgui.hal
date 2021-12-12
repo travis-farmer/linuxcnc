@@ -3,23 +3,27 @@
 
 # **** Setup of spindle speed display using pyvcp -START ****
 # **** Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
-
-#net spindle-speed-fb     => pyvcp.spindle-rpm
-#net spindle-speed-fb     => vfd.spindle-speed-fb
+loadrt mult2 count=1
+addf mult2.0 servo-thread
+net spindle-speed-fb mult2.0.in0
+setp mult2.0.in1 0.0167
+net spindle-speed-rps mult2.0.out => spindle.0.speed-in
+#net spindle-speed-fb     => spindle.0.speed-in
+net spindle-speed-fb     => vfd.spindle-speed-fb
 
 # net spindle-cmd-rpm-abs    => pyvcp.spindle_rpm
 
-#net spindle-at-speed => pyvcp.spindle-at-speed-led
-#net spindle-at-speed => vfd.spindle-at-speed
+net spindle-at-speed => spindle.0.at-speed
+net spindle-at-speed => vfd.spindle-at-speed
 
 #net spindle-amps => pyvcp.spindle-amps
 net spindle-amps => vfd.OutA
-net spindle-volts => vfd.ACV
+net spindle-volts => vfd.rated-motor-voltage
 #net spindle-cw => pyvcp.spindle-forward-led
 #net spindle-ccw => pyvcp.spindle-reverse-led
 
-net spindle-ec => vfd.error-count
-net spindle-commok  =>  vfd.hycomm-ok
+#net spindle-ec => vfd.error-count
+#net spindle-commok  =>  vfd.hycomm-ok
 
 setp vfd.enable 1
 
