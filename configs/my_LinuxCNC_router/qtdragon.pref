@@ -17,7 +17,7 @@ RunFromLineDialog_sound_type = READY
 ToolChangeDialog-geometry = 750 435 99 29
 
 [BOOK_KEEPING]
-last_loaded_directory = /home/travis/linuxcnc/nc_files/examples
+last_loaded_directory = 
 last_loaded_file = None
 style_QSS_Path = DEFAULT
 
@@ -47,7 +47,7 @@ desktop_notify = True
 notify_max_msgs = 10
 shutdown_check = True
 sound_player_on = False
-mainwindow_geometry =
+mainwindow_geometry = 0 35 1440 860
 
 [MCH_MSG_OPTIONS]
 mchnMsg_play_sound = True
@@ -65,8 +65,8 @@ shutdown_play_sound = True
 shutdown_alert_sound_type = READY
 shutdown_exit_sound_type = LOGOUT
 shutdown_msg_title = Do you want to Shutdown now?
-shutdown_msg_focus_text =
-shutdown_msg_detail =
+shutdown_msg_focus_text = 
+shutdown_msg_detail = 
 
 [NOTIFY_OPTIONS]
 notify_start_greeting = False
@@ -81,23 +81,23 @@ gcodegraphics-user-view = p
 gcodegraphics-user-zoom = 10.0
 gcodegraphics-user-panx = 0.0
 gcodegraphics-user-pany = 0.0
-gcodegraphics-user-lat = 0
-gcodegraphics-user-lon = 0
+gcodegraphics-user-lat = 0.0
+gcodegraphics-user-lon = 0.0
 
 [CUSTOM_FORM_ENTRIES]
 Tool to load = 0
-Laser X = 100
-Laser Y = -20
-Sensor X = 10
-Sensor Y = 10
-Camera X = 10
-Camera Y = 10
-Work Height = 20
-Touch Height = 40
-Sensor Height = 40
-Search Velocity = 40
-Probe Velocity = 10
-Max Probe = 10
+Laser X = 100.0
+Laser Y = -20.0
+Sensor X = 10.0
+Sensor Y = 10.0
+Camera X = 10.0
+Camera Y = 10.0
+Work Height = 20.0
+Touch Height = 40.0
+Sensor Height = 40.0
+Search Velocity = 40.0
+Probe Velocity = 10.0
+Max Probe = 10.0
 Eoffset count = 0
 External offsets = False
 Reload program = False
@@ -109,4 +109,22 @@ Use tool sensor = True
 Use camera = False
 Use alpha display mode = False
 Inhibit display mouse selection = True
+
+[PROBE OPTIONS]
+Probe tool = 0
+Probe diameter = 4
+Probe rapid = 10
+Probe feed = 10
+Probe search = 10
+Probe max travel = 10
+Probe max z = 2
+Probe extra depth = 0
+Probe step off = 10
+Probe xy clearance = 10
+Probe z clearance = 10
+Probe edge width = 10
+Calibration offset = 0
+Cal x width = 0
+Cal y width = 0
+Cal diameter = 0
 
