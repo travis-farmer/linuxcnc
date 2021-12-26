@@ -101,18 +101,18 @@ net probe-in     <=  hm2_7i80.0.gpio.004.in
 
 # --- HOME-X ---
 net home-x     <=  hm2_7i80.0.gpio.051.in
-#net x-neg-limit      <=  hm2_7i80.0.gpio.052.in
+##net x-neg-limit      <=  hm2_7i80.0.gpio.052.in
 #net x-pos-limit      <=  hm2_7i80.0.gpio.053.in
 
 # --- HOME-Y ---
 net home-y     <=  hm2_7i80.0.gpio.057.in
-#net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
+##net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
 #net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
 
 
 # --- HOME-Z ---
 net home-z     <=  hm2_7i80.0.gpio.063.in
-#net z-neg-limit      <=  hm2_7i80.0.gpio.064.in
+##net z-neg-limit      <=  hm2_7i80.0.gpio.064.in
 #net z-pos-limit      <=  hm2_7i80.0.gpio.065.in
 
 
@@ -166,8 +166,8 @@ net x-enable     => hm2_7i80.0.stepgen.00.enable
 
 # ---setup home / limit switch signals---
 
-net home-x     =>  joint.0.home-sw-in
-net x-neg-limit     =>  joint.0.neg-lim-sw-in
+net home-x     =>  joint.0.home-sw-in joint.0.neg-lim-sw-in
+#net x-neg-limit     =>  joint.0.neg-lim-sw-in
 net x-pos-limit     =>  joint.0.pos-lim-sw-in
 
 #*******************
@@ -219,8 +219,8 @@ net y-enable     => hm2_7i80.0.stepgen.01.enable
 
 # ---setup home / limit switch signals---
 
-net home-y     =>  joint.1.home-sw-in
-net y-neg-limit     =>  joint.1.neg-lim-sw-in
+net home-y     =>  joint.1.home-sw-in joint.1.neg-lim-sw-in
+#net y-neg-limit     =>  joint.1.neg-lim-sw-in
 net y-pos-limit     =>  joint.1.pos-lim-sw-in
 
 #*******************
@@ -273,8 +273,8 @@ net z-enable     => hm2_7i80.0.stepgen.02.enable
 
 # ---setup home / limit switch signals---
 
-net home-z     =>  joint.2.home-sw-in
-net z-neg-limit     =>  joint.2.neg-lim-sw-in
+net home-z     =>  joint.2.home-sw-in joint.2.neg-lim-sw-in
+#net z-neg-limit     =>  joint.2.neg-lim-sw-in
 net z-pos-limit     =>  joint.2.pos-lim-sw-in
 
 # ---PWM Generator signals/setup---
