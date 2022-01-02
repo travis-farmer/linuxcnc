@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
+loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
@@ -65,9 +65,9 @@ setp hm2_7i80.0.gpio.002.is_output true
 net coolant-mist  =>     hm2_7i80.0.gpio.002.out
 
 # --- LASER-ENABLE ---
-#setp hm2_7i80.0.gpio.002.invert_output true
-#setp hm2_7i80.0.gpio.002.is_output true
-#net coolant-mist  =>     hm2_7i80.0.gpio.002.out
+setp hm2_7i80.0.gpio.002.invert_output true
+setp hm2_7i80.0.gpio.002.is_output true
+net coolant-mist  =>     hm2_7i80.0.gpio.002.out
 
 
 
@@ -101,17 +101,17 @@ net probe-in     <=  hm2_7i80.0.gpio.004.in
 
 # --- HOME-X ---
 net home-x     <=  hm2_7i80.0.gpio.051.in
-##net x-neg-limit      <=  hm2_7i80.0.gpio.052.in
+#net x-neg-limit      <=  hm2_7i80.0.gpio.052.in
 #net x-pos-limit      <=  hm2_7i80.0.gpio.053.in
 
 # --- HOME-Y ---
 net home-y     <=  hm2_7i80.0.gpio.057.in
-##net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
+#net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
 #net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
 
 
 # --- HOME-Z ---
-net home-z     <=  hm2_7i80.0.gpio.064.in_not
+net home-z     <=  hm2_7i80.0.gpio.063.in
 #net z-neg-limit      <=  hm2_7i80.0.gpio.064.in
 #net z-pos-limit      <=  hm2_7i80.0.gpio.065.in
 
@@ -166,9 +166,9 @@ net x-enable     => hm2_7i80.0.stepgen.00.enable
 
 # ---setup home / limit switch signals---
 
-net home-x     =>  joint.0.home-sw-in #joint.0.neg-lim-sw-in
-#net x-neg-limit     =>  joint.0.neg-lim-sw-in
-#net x-pos-limit     =>  joint.0.pos-lim-sw-in
+net home-x     =>  joint.0.home-sw-in
+net x-neg-limit     =>  joint.0.neg-lim-sw-in
+net x-pos-limit     =>  joint.0.pos-lim-sw-in
 
 #*******************
 #  AXIS Y JOINT 1
@@ -219,9 +219,9 @@ net y-enable     => hm2_7i80.0.stepgen.01.enable
 
 # ---setup home / limit switch signals---
 
-net home-y     =>  joint.1.home-sw-in #joint.1.neg-lim-sw-in
-#net y-neg-limit     =>  joint.1.neg-lim-sw-in
-#net y-pos-limit     =>  joint.1.pos-lim-sw-in
+net home-y     =>  joint.1.home-sw-in
+net y-neg-limit     =>  joint.1.neg-lim-sw-in
+net y-pos-limit     =>  joint.1.pos-lim-sw-in
 
 #*******************
 #  AXIS Z JOINT 2
@@ -273,14 +273,14 @@ net z-enable     => hm2_7i80.0.stepgen.02.enable
 
 # ---setup home / limit switch signals---
 
-net home-z     =>  joint.2.home-sw-in #joint.2.neg-lim-sw-in
-#net z-neg-limit     =>  joint.2.neg-lim-sw-in
-#net z-pos-limit     =>  joint.2.pos-lim-sw-in
+net home-z     =>  joint.2.home-sw-in
+net z-neg-limit     =>  joint.2.neg-lim-sw-in
+net z-pos-limit     =>  joint.2.pos-lim-sw-in
 
 # ---PWM Generator signals/setup---
 
 setp   hm2_7i80.0.pwmgen.00.output-type 1
-setp   hm2_7i80.0.pwmgen.00.scale  4096
+setp   hm2_7i80.0.pwmgen.00.scale  1800
 
 # M68 E0 Q0 -
 net laser-pwm motion.analog-out-00     => hm2_7i80.0.pwmgen.00.value
@@ -361,21 +361,8 @@ net estop-ext     =>  iocontrol.0.emc-enable-in
 #  ---manual tool change signals---
 
 loadusr -W hal_manualtoolchange
-net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
-net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
-net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
-net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
+#net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
+#net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
+#net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
+#net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
 
-
-
-#########################
-#	BitBanged Charge Pump	#
-#########################
-loadusr -W bb_charge_pump
-net estop-net halui.estop.is-activated => bb-charge-pump.enable
-setp hm2_7i80.0.gpio.036.invert_output false
-setp hm2_7i80.0.gpio.036.is_output true
-setp hm2_7i80.0.gpio.037.invert_output false
-setp hm2_7i80.0.gpio.037.is_output true
-net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
-net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
