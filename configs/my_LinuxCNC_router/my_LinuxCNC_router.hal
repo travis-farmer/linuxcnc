@@ -111,8 +111,8 @@ net home-y     <=  hm2_7i80.0.gpio.057.in
 
 
 # --- HOME-Z ---
-net home-z     <=  hm2_7i80.0.gpio.063.in
-##net z-neg-limit      <=  hm2_7i80.0.gpio.064.in
+net home-z     <=  hm2_7i80.0.gpio.064.in_not
+#net z-neg-limit      <=  hm2_7i80.0.gpio.064.in
 #net z-pos-limit      <=  hm2_7i80.0.gpio.065.in
 
 

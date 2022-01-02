@@ -1,6 +1,11 @@
---- Qtvcp Screen Started on: Sun, Dec 12 2021 03:13:50 PM ---
-Sun12 15:13 Machine OFF
-Sun12 15:13 Hard limits tripped
-Sun12 15:13 Tool 0: No Tool
-Sun12 15:13 Machine ON
-Sun12 15:15 Loaded file /home/travis/linuxcnc/nc_files/examples/tort.ngc
+--- Qtvcp Screen Started on: Sun, Jan 02 2022 10:12:51 AM ---
+Sun02 10:12 Machine OFF
+Sun02 10:12 Hard limits tripped
+Sun02 10:12 Tool 0: No Tool
+Sun02 10:13 Machine ON
+Sun02 10:13 Machine OFF
+Sun02 10:13 Machine ON
+Sun02 10:15 Machine OFF
+Sun02 10:15 Machine ON
+Sun02 10:18 Machine OFF
+Sun02 10:18 Machine ON
