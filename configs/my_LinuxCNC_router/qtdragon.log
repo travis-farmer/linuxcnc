@@ -1,23 +1,21 @@
-2022-01-02 10:12:46,473 - QTvcp - INFO - Logging to "/home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.log"
-2022-01-02 10:12:47,120 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT handler file path: /usr/share/qtvcp/screens/qtdragon/qtdragon_handler.py
-2022-01-02 10:12:47,120 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT ui file from /usr/share/qtvcp/screens/qtdragon/qtdragon.ui
-2022-01-02 10:12:47,120 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qss file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qss
-2022-01-02 10:12:47,121 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qrc file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qrc
-2022-01-02 10:12:47,121 - QTvcp.QTVCP.QT_PSTAT - INFO - Using LOCAL resources.py file from /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon/resources.py
-2022-01-02 10:12:47,122 - QTvcp.QTVCP.QT_PSTAT - INFO - Using no translations. Default system locale is: en
-2022-01-02 10:12:47,122 - QTvcp - INFO - Building A Linuxcnc Main Screen with Python 3
-2022-01-02 10:12:47,122 - QTvcp - INFO - No handler file specified on command line
-2022-01-02 10:12:47,122 - QTvcp - INFO - No HAL component base name specified on command line using: qtdragon
-2022-01-02 10:12:47,123 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Qsettings file path: /home/travis/.config/QtVcp/qtdragon.conf
-2022-01-02 10:12:47,424 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Imported resources.py filed: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon/resources.py
-2022-01-02 10:12:50,721 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
+2022-01-08 14:11:45,587 - QTvcp - INFO - Logging to "/home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.log"
+2022-01-08 14:11:46,180 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT handler file path: /usr/share/qtvcp/screens/qtdragon/qtdragon_handler.py
+2022-01-08 14:11:46,181 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT ui file from /usr/share/qtvcp/screens/qtdragon/qtdragon.ui
+2022-01-08 14:11:46,181 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qss file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qss
+2022-01-08 14:11:46,181 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qrc file from /usr/share/qtvcp/screens/qtdragon/qtdragon.qrc
+2022-01-08 14:11:46,181 - QTvcp.QTVCP.QT_PSTAT - INFO - Using LOCAL resources.py file from /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon/resources.py
+2022-01-08 14:11:46,182 - QTvcp.QTVCP.QT_PSTAT - INFO - Using no translations. Default system locale is: en
+2022-01-08 14:11:46,182 - QTvcp - INFO - Building A Linuxcnc Main Screen with Python 3
+2022-01-08 14:11:46,182 - QTvcp - INFO - No handler file specified on command line
+2022-01-08 14:11:46,182 - QTvcp - INFO - No HAL component base name specified on command line using: qtdragon
+2022-01-08 14:11:46,183 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Qsettings file path: /home/travis/.config/QtVcp/qtdragon.conf
+2022-01-08 14:11:46,452 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Imported resources.py filed: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon/resources.py
+2022-01-08 14:11:49,759 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
    Qtvcp recommends to allow use of it's own component by not loading the original. 
    Qtvcp Integrated toolchange dialog will not show until then
-2022-01-02 10:12:51,243 - QTvcp.QTDRAGON_HANDLER - INFO - Using Basic Probe
-2022-01-02 10:12:52,104 - QTvcp.QTVCP.QT_MAKEGUI - INFO - no Handler Override file at: /home/travis/linuxcnc/configs/my_LinuxCNC_router/.qtdragonrc
-2022-01-02 10:12:53,297 - QTvcp - INFO - postgui filename: ['postgui_call_list.hal']
-2022-01-02 10:12:53,345 - QTvcp - INFO - postgui commands: None
-2022-01-02 10:12:53,346 - QTvcp - INFO - Preference path: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.pref
-2022-01-02 10:13:30,332 - QTvcp.QTVCP.QT_ACTION - INFO - Homing Joint: -1
-2022-01-02 10:14:54,268 - QTvcp.QTVCP.QT_ACTION - INFO - Homing Joint: -1
-2022-01-02 10:18:00,903 - QTvcp.QTVCP.QT_ACTION - INFO - Homing Joint: -1
+2022-01-08 14:11:50,279 - QTvcp.QTDRAGON_HANDLER - INFO - Using Basic Probe
+2022-01-08 14:11:51,133 - QTvcp.QTVCP.QT_MAKEGUI - INFO - no Handler Override file at: /home/travis/linuxcnc/configs/my_LinuxCNC_router/.qtdragonrc
+2022-01-08 14:11:52,343 - QTvcp - INFO - postgui filename: ['postgui_call_list.hal']
+2022-01-08 14:11:52,402 - QTvcp - INFO - postgui commands: None
+2022-01-08 14:11:52,403 - QTvcp - INFO - Preference path: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.pref
+2022-01-08 14:11:55,884 - QTvcp.QTVCP.QT_ACTION - INFO - Homing Joint: -1
