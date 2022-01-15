@@ -110,6 +110,7 @@ Use tool sensor = True
 Use camera = False
 Use alpha display mode = False
 Inhibit display mouse selection = True
+Use tool touchplate = False
 
 [PROBE OPTIONS]
 Probe tool = 0
