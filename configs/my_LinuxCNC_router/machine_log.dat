@@ -1,6 +1,24 @@
---- Qtvcp Screen Started on: Sat, Jan 15 2022 02:30:59 PM ---
-Sat15 14:31 Machine OFF
-Sat15 14:31 Hard limits tripped
-Sat15 14:31 Tool 0: No Tool
-Sat15 14:31 Machine ON
-Sat15 14:31 Loaded file /home/travis/linuxcnc/nc_files/examples/tort.ngc
+--- Qtvcp Screen Started on: Fri, Mar 25 2022 02:03:02 PM ---
+Fri25 14:03 Machine OFF
+Fri25 14:03 Hard limits tripped
+Fri25 14:03 Tool 0: No Tool
+Fri25 14:03 Machine ON
+Fri25 14:03 Loaded file /home/travis/linuxcnc/nc_files/examples/tort.ngc
+Fri25 14:03 Started program from line 1
+Fri25 14:03 note axis positions... will return here at end of pgm. press 's'
+Fri25 14:11 Run timer stopped at 00:07:40
+Fri25 14:12 Loaded program file /home/travis/linuxcnc/nc_files/examples/tort.ngc
+Fri25 14:12 Loaded file /home/travis/linuxcnc/nc_files/examples/tort.ngc
+Fri25 14:12 Started program from line 1
+Fri25 14:12 note axis positions... will return here at end of pgm. press 's'
+Fri25 14:20 Run timer stopped at 00:07:39
+Fri25 14:24 Loaded program file : /home/travis/linuxcnc/nc_files/examples/3dtest.ngc
+Fri25 14:24 Loaded file /home/travis/linuxcnc/nc_files/examples/3dtest.ngc
+Fri25 14:24 Loaded program file : /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
+Fri25 14:24 Loaded HTML file : /home/travis/linuxcnc/nc_files/examples/3D_Chips.html
+Fri25 14:24 Loaded PDF file : /home/travis/linuxcnc/nc_files/examples/3D_Chips.pdf
+Fri25 14:24 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
+Fri25 14:24 Started program from line 1
+Fri25 14:25 Tool 1: 
+Fri25 14:27 Run timer stopped at 00:01:57
+Fri25 14:27 Machine OFF
