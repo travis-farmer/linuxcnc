@@ -1,24 +1,8 @@
---- Qtvcp Screen Started on: Fri, Mar 25 2022 02:03:02 PM ---
-Fri25 14:03 Machine OFF
-Fri25 14:03 Hard limits tripped
-Fri25 14:03 Tool 0: No Tool
-Fri25 14:03 Machine ON
-Fri25 14:03 Loaded file /home/travis/linuxcnc/nc_files/examples/tort.ngc
-Fri25 14:03 Started program from line 1
-Fri25 14:03 note axis positions... will return here at end of pgm. press 's'
-Fri25 14:11 Run timer stopped at 00:07:40
-Fri25 14:12 Loaded program file /home/travis/linuxcnc/nc_files/examples/tort.ngc
-Fri25 14:12 Loaded file /home/travis/linuxcnc/nc_files/examples/tort.ngc
-Fri25 14:12 Started program from line 1
-Fri25 14:12 note axis positions... will return here at end of pgm. press 's'
-Fri25 14:20 Run timer stopped at 00:07:39
-Fri25 14:24 Loaded program file : /home/travis/linuxcnc/nc_files/examples/3dtest.ngc
-Fri25 14:24 Loaded file /home/travis/linuxcnc/nc_files/examples/3dtest.ngc
-Fri25 14:24 Loaded program file : /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
-Fri25 14:24 Loaded HTML file : /home/travis/linuxcnc/nc_files/examples/3D_Chips.html
-Fri25 14:24 Loaded PDF file : /home/travis/linuxcnc/nc_files/examples/3D_Chips.pdf
-Fri25 14:24 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
-Fri25 14:24 Started program from line 1
-Fri25 14:25 Tool 1: 
-Fri25 14:27 Run timer stopped at 00:01:57
-Fri25 14:27 Machine OFF
+--- Qtvcp Screen Started on: Thu, Mar 31 2022 01:15:12 PM ---
+Thu31 13:15 File Manager error - No such path: /media/travis
+Thu31 13:15 Machine OFF
+Thu31 13:15 Hard limits tripped
+Thu31 13:15 Tool 0: No Tool
+Thu31 13:15 Machine ON
+Thu31 13:15 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
+Thu31 13:26 Machine OFF
