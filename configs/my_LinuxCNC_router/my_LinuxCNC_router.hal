@@ -282,7 +282,10 @@ net home-z     =>  joint.2.home-sw-in #joint.2.neg-lim-sw-in
 setp   hm2_7i80.0.pwmgen.00.output-type 1
 setp   hm2_7i80.0.pwmgen.00.scale  4096
 
-# M68 E0 Q0 -
+# M64 P0 - enable laser
+# M65 P0 - disable laser
+# M68 E0 Q0 - lowest PWM
+# M68 E0 Q4096 - Max PWM
 net laser-pwm motion.analog-out-00     => hm2_7i80.0.pwmgen.00.value
 net laser-enable motion.digital-out-00    => hm2_7i80.0.pwmgen.00.enable
 
