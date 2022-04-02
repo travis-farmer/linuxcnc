@@ -32,11 +32,11 @@ setp   hm2_7i80.0.pwmgen.00.scale  4096
 #setp hm2_7i80.0.gpio.002.is_output true
 net spindle-speed-cmd spindle.0.speed-out => hm2_7i80.0.pwmgen.00.value
 net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable
-sets spindle-at-speed true
+#sets spindle-at-speed true
 
 # --- spindle ---
-net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
-net spindle-on             <=  spindle.0.on
+#net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
+#net spindle-on             <=  spindle.0.on
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true

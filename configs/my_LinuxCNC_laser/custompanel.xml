@@ -4,20 +4,20 @@
          <relief>RIDGE</relief>
          <bd>6</bd>
                 <meter>
-                    <halpin>"spindle-rpm"</halpin>
-                    <text>"Spindle"</text>
-                    <subtext>"RPM"</subtext>
+                    <halpin>"laser-pwm"</halpin>
+                    <text>"Laser"</text>
+                    <subtext>"PWM"</subtext>
                     <size>200</size>
                     <min_>0</min_>
-                    <max_>22000</max_>
-                    <majorscale>2000</majorscale>
-                    <minorscale>1000</minorscale>
-                    <region1>(21000,22000,"red")</region1>
-                    <region2>(17550,21000,"green")</region2>
-                    <region3>(0,17550,"blue")</region3>
+                    <max_>4096</max_>
+                    <majorscale>1000</majorscale>
+                    <minorscale>100</minorscale>
+                    <region1>(4000,4096,"red")</region1>
+                    <region2>(100,4000,"green")</region2>
+                    <region3>(0,100,"blue")</region3>
                 </meter>
                 <label>
-                        <text>"Spindle-At-Speed:"</text>
+                        <text>"Laser Enable:"</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <hbox>
@@ -26,56 +26,12 @@
                             <font>("Helvetica",20)</font>
                     </label>
                     <led>
-                        <halpin>"spindle-at-speed-led"</halpin>
+                        <halpin>"laser-enable"</halpin>
                         <size>30</size>
                         <on_color>"green"</on_color>
                         <off_color>"red"</off_color>
                     </led>
                 </hbox>
-                <meter>
-                    <halpin>"spindle-amps"</halpin>
-                    <text>"Spindle"</text>
-                    <subtext>"Amps"</subtext>
-                    <size>100</size>
-                    <min_>0</min_>
-                    <max_>15</max_>
-                    <majorscale>10</majorscale>
-                    <minorscale>1</minorscale>
-                    <region1>(13,15,"red")</region1>
-                    <region2>(10,13,"yellow")</region2>
-                    <region3>(0,10,"green")</region3>
-                </meter>
-                <label>
-                        <text>"Forward:"</text>
-                        <font>("Helvetica",20)</font>
-                </label>
-                <hbox>
-                    <label>
-                            <text>"             "</text>
-                            <font>("Helvetica",20)</font>
-                    </label>
-                    <led>
-                        <halpin>"spindle-forward-led"</halpin>
-                        <size>30</size>
-                        <on_color>"green"</on_color>
-                        <off_color>"red"</off_color>
-                    </led>
-                </hbox>
-                <label>
-                        <text>"Reverse:"</text>
-                        <font>("Helvetica",20)</font>
-                </label>
-                <hbox>
-                    <label>
-                            <text>"             "</text>
-                            <font>("Helvetica",20)</font>
-                    </label>
-                    <led>
-                        <halpin>"spindle-reverse-led"</halpin>
-                        <size>30</size>
-                        <on_color>"green"</on_color>
-                        <off_color>"red"</off_color>
-                    </led>
-                </hbox>
+                
         </vbox>
 </pyvcp>
