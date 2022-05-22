@@ -1,8 +1,15 @@
---- Qtvcp Screen Started on: Sat, Apr 02 2022 12:43:03 PM ---
-Sat02 12:43 File Manager error - No such path: /media/travis
-Sat02 12:43 Machine OFF
-Sat02 12:43 Hard limits tripped
-Sat02 12:43 Tool 0: No Tool
-Sat02 12:46 Machine ON
-Sat02 12:46 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
-Sat02 13:13 Machine OFF
+--- Qtvcp Screen Started on: Sun, May 22 2022 11:09:00 AM ---
+Sun22 11:09 File Manager error - No such path: /media/travis
+Sun22 11:09 Machine OFF
+Sun22 11:09 Hard limits tripped
+Sun22 11:09 Tool 0: No Tool
+Sun22 11:09 Machine ON
+Sun22 11:09 Machine OFF
+Sun22 11:09 Machine ON
+Sun22 11:10 Machine OFF
+Sun22 11:10 Machine ON
+Sun22 11:11 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
+Sun22 11:12 Tool 1: 
+Sun22 11:12 Probe move on line 35 would exceed Z's positive limit
+Sun22 11:12 Probe move on line 35 would exceed joint 2's positive limit
+Sun22 11:13 Machine OFF

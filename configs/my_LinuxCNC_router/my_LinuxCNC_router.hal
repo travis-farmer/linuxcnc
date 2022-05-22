@@ -94,7 +94,7 @@ net z-enable  =>     hm2_7i80.0.gpio.062.out
 # external input signals
 
 # --- ESTOP-EXT ---
-net estop-ext     <=  hm2_7i80.0.gpio.000.in
+net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
 
 # --- PROBE-IN ---
 net probe-in     <=  hm2_7i80.0.gpio.004.in
