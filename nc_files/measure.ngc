@@ -7,7 +7,7 @@ o<measure> sub
 #1702=0               (Safe Z position for tool change)
 #1900=#<_coord_system>  (Save current coordinate system.)
 #<coordinate_system> = #5220 (Current coordinate system number: 1=G54, 9=G59.3)
-#<wcs_z_varnumber> = [5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
+#<wcs_z_varnumber> = [#5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
 #<wcs_z> = #[#<wcs_z_varnumber>]
 M5                                                                 (Turn spindle off)
 
