@@ -87,7 +87,7 @@ gcodegraphics-user-lat = 0.0
 gcodegraphics-user-lon = 0.0
 
 [CUSTOM_FORM_ENTRIES]
-Tool to load = 0
+Tool to load = 2
 Laser X = 100.0
 Laser Y = -20.0
 Sensor X = 0.0
@@ -103,14 +103,14 @@ Max Probe = 10.0
 Eoffset count = 0
 External offsets = False
 Reload program = True
-Reload tool = False
+Reload tool = True
 Use keyboard = False
-Run from line = False
+Run from line = True
 Use virtual keyboard = False
 Use tool sensor = True
 Use camera = False
 Use alpha display mode = False
-Inhibit display mouse selection = True
+Inhibit display mouse selection = False
 Use tool touchplate = False
 
 [PROBE OPTIONS]
