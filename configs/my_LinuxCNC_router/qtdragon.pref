@@ -87,7 +87,7 @@ gcodegraphics-user-lat = 0.0
 gcodegraphics-user-lon = 0.0
 
 [CUSTOM_FORM_ENTRIES]
-Tool to load = 2
+Tool to load = 1
 Laser X = 100.0
 Laser Y = -20.0
 Sensor X = 0.0
@@ -120,11 +120,11 @@ Probe rapid = 10
 Probe feed = 10
 Probe search = 10
 Probe max travel = 10
-Probe max z = 2
+Probe max z = -3
 Probe extra depth = 0
-Probe step off = 10
-Probe xy clearance = 10
-Probe z clearance = 10
+Probe step off = .5
+Probe xy clearance = .5
+Probe z clearance = .5
 Probe edge width = 10
 Calibration offset = 0
 Cal x width = 0

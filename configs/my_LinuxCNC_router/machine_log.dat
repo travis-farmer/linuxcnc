@@ -1,12 +1,39 @@
---- Qtvcp Screen Started on: Mon, Jun 27 2022 10:28:44 AM ---
-Mon27 10:28 File Manager error - No such path: /media/travis
-Mon27 10:28 Machine OFF
-Mon27 10:28 Hard limits tripped
-Mon27 10:28 Tool 0: No Tool
-Mon27 10:28 Unexpected realtime delay on task 0 with period 200000
-This Message will only display once per session.
-Run the Latency Test and resolve before continuing.
+--- Qtvcp Screen Started on: Wed, Jun 29 2022 09:45:31 AM ---
+Wed29 09:45 File Manager error - No such path: /media/travis
+Wed29 09:45 Machine OFF
+Wed29 09:45 Hard limits tripped
+Wed29 09:45 Tool 0: No Tool
+Wed29 09:45 Machine ON
+Wed29 09:47 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
+Wed29 09:47 Tool 0: 
+Wed29 09:52 Probe move on line 0 would exceed Z's negative limit
+Wed29 09:52 Probe move on line 0 would exceed joint 2's negative limit
+Wed29 09:52 Probe move on line 0 would exceed Z's negative limit
+Wed29 09:52 Probe move on line 0 would exceed joint 2's negative limit
+Wed29 09:53 Negative f word used
+Wed29 09:54 Probe move on line 0 would exceed Z's negative limit
+Wed29 09:54 Probe move on line 0 would exceed joint 2's negative limit
+Wed29 09:56 Probe tripped during non-probe move.
+Wed29 09:57 Probe time out error - MDI command took longer than 30 seconds
+Wed29 09:58 Probe time out error - MDI command took longer than 30 seconds
+Wed29 09:58 Probe tripped during non-probe move.
+Wed29 09:58 Machine OFF
+Wed29 09:59 Machine ON
+Wed29 10:01 Probe tripped during non-probe move.
+Wed29 10:01 Linear move on line 0 would exceed Z's negative limit
+Wed29 10:01 Linear move on line 0 would exceed joint 2's negative limit
+Wed29 10:01 invalid params in linear command
+Wed29 10:02 Probe move on line 0 would exceed Z's negative limit
+Wed29 10:02 Probe move on line 0 would exceed joint 2's negative limit
+Wed29 10:03 Linear move on line 0 would exceed Z's negative limit
+Wed29 10:03 Linear move on line 0 would exceed joint 2's negative limit
+Wed29 10:03 invalid params in linear command
+Wed29 10:06 Probe move on line 0 would exceed X's negative limit
+Wed29 10:06 Probe move on line 0 would exceed joint 0's negative limit
+Wed29 10:07 Probe tripped during non-probe move.
+Wed29 10:07  Outside YP  Yp[9.5616] Ly[0.0000]
 
-Mon27 10:28 Machine ON
-Mon27 10:31 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
-Mon27 10:31 Tool 2: 
+Wed29 10:09 Tool 1: 
+Wed29 10:09 Machine OFF
+Wed29 10:09 Machine ON
+Wed29 10:10 Machine OFF

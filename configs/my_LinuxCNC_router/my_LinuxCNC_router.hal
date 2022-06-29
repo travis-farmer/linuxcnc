@@ -37,6 +37,7 @@ setp hm2_7i80.0.gpio.005.is_output true
 loadrt or2 count=3
 addf or2.0 servo-thread
 
+
 # --- spindle ---
 #net spindle1-vel-cmd-rps        <=  spindle.1.speed-out-rps
 #net spindle1-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
@@ -97,9 +98,10 @@ net z-enable  =>     hm2_7i80.0.gpio.062.out
 net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
 
 # --- PROBE-IN ---
-#net probe-tool	or2.2.in0      <=  hm2_7i80.0.gpio.004.in_not
-#net probe-sensor	or2.2.in1     <=  hm2_7i80.0.gpio.006.in_not
-net probe-in     <=  hm2_7i80.0.gpio.004.in
+addf or2.2 servo-thread
+net probe-tool	or2.2.in0      <=  hm2_7i80.0.gpio.004.in
+net probe-sensor	or2.2.in1     <=  hm2_7i80.0.gpio.035.in
+net probe-in     <=  or2.2.out
 
 # --- HOME-X ---
 net home-x     <=  hm2_7i80.0.gpio.051.in
