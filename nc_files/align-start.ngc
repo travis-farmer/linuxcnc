@@ -1,0 +1,8 @@
+o<align-start> sub
+; this subroutine records the current location of x and y into
+; the global variables _start-x and _start-y
+  #<_start-x> = #5420
+  #<_start-y> = #5421
+  (debug, start XY = #<_start-x> #<_start-y>)
+o<align-start> endsub
+M2

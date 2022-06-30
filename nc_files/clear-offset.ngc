@@ -1,0 +1,6 @@
+o<clear-offset> sub
+; this subroutine is used to clear the offsets after using align
+  G10 L2 P0 R0
+  G92.1
+o<clear-offset> endsub
+M2
