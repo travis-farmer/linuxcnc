@@ -1,0 +1,21 @@
+o<align-xa> sub
+  o101 if #<_metric> GT 0
+    #40=1
+  o101 else
+    #40=0
+  o101 endif
+  G20
+  G38.2 X1 F#<_ini[TOOLSENSOR]SEARCH_VEL>
+  G0 X-0.125
+  G38.2 X1 F#<_ini[TOOLSENSOR]PROBE_VEL>
+; this subroutine records the current location of x and y into
+; the global variables _start-x and _start-y
+  #<_start-x> = #5420
+  #<_start-y> = #5421
+  (debug, start XY = #<_start-x> #<_start-y>)
+  G0 X-0.125
+  o102 if #40 GT 0
+    G21
+  o102 endif
+o<align-xa> endsub
+M2
