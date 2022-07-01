@@ -25,7 +25,6 @@ o500 else
 	M6 T#<_selected_tool>										   (Do built-in M6 routine - pops up prompt)
 	G43                                                             (Enable tool length compensation)
 
-	;G49 (Cancel tool length compensation)
 
 	(Measure tool to get offset)
 	G53 X#<_ini[TOOLSENSOR]X_LOC> Y#<_ini[TOOLSENSOR]Y_LOC>      (Move to tool setter postion)
@@ -34,16 +33,8 @@ o500 else
 	G91                                                          (Incremental Mode)
 	G38.2 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]SEARCH_VEL>            (Measure Gross)
 	G38.5 Z#2001 F#<_ini[TOOLSENSOR]SEARCH_VEL>
-	;G43.1 Z0                                                     (Dynamic Tool Length Offset set to zero.)
 	G1 Z#2001 F#2004                                            	(Z up)
 	G38.2 Z[-2*#2001] F#<_ini[TOOLSENSOR]PROBE_VEL>				(Measure fine)
-	;#2000=[#5063+#5223]	 		(Touch point + work coordinate offset)
-	;#2000=[#5063]	 			(Touch point)
-	;#2001=[#2000-#2002+#2003] 	(New TP - old TP + old offset)
-	;#2002=[#2000]      	 		(Remember old touch point)
-	;#2003=[#2001]	   	 		(Remember old offset)
-	;G10 L2 P#<coordinate_system> Z[#[4000+#<coordinate_system>]+#5063]
-	;G43.1 Z#2001       	 (TLO set)
 	#<new_tlo> = #5063
 	G43.1 Z#<new_tlo>
 	G38.5 Z#2001 F#<_ini[TOOLSENSOR]SEARCH_VEL>
