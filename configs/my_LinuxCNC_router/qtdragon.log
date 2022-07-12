@@ -1,41 +1,24 @@
-2022-06-29 10:07:22,361 - QtDesigner - INFO - Logging to: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.log
-2022-06-29 10:07:22,365 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - Machine is IMPERIAL based. unit Conversion constant=25.4
-2022-06-29 10:07:22,365 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - TRAJ COORDINATES: XYZ
-2022-06-29 10:07:22,366 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - DEFAULT_LINEAR_VELOCITY = 15.0
-2022-06-29 10:07:22,367 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - MIN_LINEAR_VELOCITY = 1.0002
-2022-06-29 10:07:22,367 - QtDesigner.QTVCP.QT_ISTAT - DEBUG - MAX_LINEAR_VELOCITY = 210.0
-2022-06-29 10:07:22,466 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G91
-        G1 F10.0 Y-0.500000
-        G90, maxt = 30
-2022-06-29 10:07:22,467 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G91
-2022-06-29 10:07:22,706 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G1 F10.0 Y-0.500000
-2022-06-29 10:07:25,863 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G90
-2022-06-29 10:07:25,995 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G91
-        G1 F10.0 Z-0.5
-        G90, maxt = 30
-2022-06-29 10:07:25,996 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G91
-2022-06-29 10:07:26,127 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G1 F10.0 Z-0.5
-2022-06-29 10:07:29,260 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G90
-2022-06-29 10:07:29,391 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G91
-        G38.2 Y10.0 F10.0, maxt = 30
-2022-06-29 10:07:29,391 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G91
-2022-06-29 10:07:29,522 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G38.2 Y10.0 F10.0
-2022-06-29 10:07:42,462 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G1 Y-0.5 F10.0, maxt = 30
-2022-06-29 10:07:42,462 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G1 Y-0.5 F10.0
-2022-06-29 10:07:45,610 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G4 P0.5
-        G38.2 Y0.6 F10.0, maxt = 30
-2022-06-29 10:07:45,611 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G4 P0.5
-2022-06-29 10:07:46,226 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G38.2 Y0.6 F10.0
-2022-06-29 10:07:49,412 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G1 Y-0.5 F10.0, maxt = 30
-2022-06-29 10:07:49,413 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G1 Y-0.5 F10.0
-2022-06-29 10:07:52,559 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G91
-        G1 F10.0 Z0.5
-        G90, maxt = 30
-2022-06-29 10:07:52,560 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G91
-2022-06-29 10:07:52,691 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G1 F10.0 Z0.5
-2022-06-29 10:07:55,836 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command:         G90
-2022-06-29 10:07:55,966 - QtDesigner.QTVCP.WIDGETS.PROBE_ROUTINES - DEBUG - MDI_WAIT_COMMAND= G1 F10.0 Y9.561550, maxt = 30
-2022-06-29 10:07:55,967 - QtDesigner.QTVCP.QT_ACTION - DEBUG - CALL_MDI Command: G1 F10.0 Y9.561550
-2022-06-29 10:07:59,550 - QTvcp.QTVCP.WIDGETS.BASIC_PROBE - INFO - Probing routine completed without errors
-2022-06-29 10:07:59,641 - QTvcp.QTVCP.WIDGETS.BASIC_PROBE - INFO - Probe history updated to machine log
-2022-06-29 10:07:59,704 - QTvcp.QTVCP.WIDGETS.BASIC_PROBE - INFO - Probe Process finished - exitCode 0 exitStatus 0
+2022-07-12 10:04:16,205 - QTvcp - INFO - Logging to: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.log
+2022-07-12 10:04:23,486 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT handler file path: /usr/share/qtvcp/screens/qtdragon_hd/qtdragon_hd_handler.py
+2022-07-12 10:04:23,486 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT ui file from: /usr/share/qtvcp/screens/qtdragon_hd/qtdragon_hd.ui
+2022-07-12 10:04:23,487 - QTvcp.QTVCP.QT_PSTAT - INFO - No qss file found.
+2022-07-12 10:04:23,487 - QTvcp.QTVCP.QT_PSTAT - INFO - Using DEFAULT qrc file from: /usr/share/qtvcp/screens/qtdragon_hd/qtdragon_hd.qrc
+2022-07-12 10:04:23,487 - QTvcp.QTVCP.QT_PSTAT - INFO - Using LOCAL resources.py file from: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon_hd/resources.py
+2022-07-12 10:04:23,499 - QTvcp.QTVCP.QT_PSTAT - INFO - Using no translations, default system locale is: en
+2022-07-12 10:04:23,499 - QTvcp - INFO - Building A LinuxCNC Main Screen with: Python 3
+2022-07-12 10:04:23,499 - QTvcp - INFO - No handler file specified on command line.
+2022-07-12 10:04:23,499 - QTvcp - INFO - No HAL component base name specified on command line using: qtdragon_hd
+2022-07-12 10:04:23,501 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Qsettings file path: /home/travis/.config/QtVcp/qtdragon_hd.conf
+2022-07-12 10:04:24,130 - QTvcp.QTVCP.QT_MAKEGUI - INFO - Imported resources.py filed: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtvcp/screens/qtdragon_hd/resources.py
+2022-07-12 10:04:27,935 - QTvcp.QTVCP.QT_MAKEPINS - INFO - Changed HAL Component basename to qtdragon, as specified in screenOptions: 
+2022-07-12 10:04:28,012 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
+   Qtvcp recommends to allow use of it's own component by not loading the original. 
+   Qtvcp Integrated toolchange dialog will not show until then
+2022-07-12 10:04:29,453 - QTvcp.QTDRAGON_HD_HANDLER - INFO - Using Basic Probe
+2022-07-12 10:04:30,079 - QTvcp.QTDRAGON_HD_HANDLER - INFO - Using NGCGUI utility
+2022-07-12 10:04:30,082 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
+2022-07-12 10:04:30,129 - QTvcp.QTVCP.QT_MAKEGUI - INFO - No Handler Override file at: /home/travis/linuxcnc/configs/my_LinuxCNC_router/.qtdragon_hdrc
+2022-07-12 10:04:30,765 - QTvcp - INFO - Postgui filename: ['postgui_call_list.hal']
+2022-07-12 10:04:30,854 - QTvcp - INFO - Postgui commands: None
+2022-07-12 10:04:30,856 - QTvcp - INFO - Preference path: /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtdragon.pref
+2022-07-12 10:04:44,237 - QTvcp.QTVCP.QT_ACTION - INFO - Homing Joint: -1
