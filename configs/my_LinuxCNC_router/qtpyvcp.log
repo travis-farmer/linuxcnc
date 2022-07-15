@@ -1,0 +1,69 @@
+2022-07-15 14:02:41,091 - qtpyvcp - INFO - Logging to /home/travis/linuxcnc/configs/my_LinuxCNC_router/qtpyvcp.log
+2022-07-15 14:02:41,093 - qtpyvcp - INFO - QtPyVCP Version: python3_master+273.g268f4593
+2022-07-15 14:02:41,971 - qtpyvcp.utilities.info - INFO - The machine has 3 axes and 3 joints
+2022-07-15 14:02:41,971 - qtpyvcp.utilities.info - INFO - The Axis/Joint mapping is:
+2022-07-15 14:02:41,972 - qtpyvcp.utilities.info - INFO - Axis X --> Joint 0
+2022-07-15 14:02:41,972 - qtpyvcp.utilities.info - INFO - Axis Y --> Joint 1
+2022-07-15 14:02:41,972 - qtpyvcp.utilities.info - INFO - Axis Z --> Joint 2
+2022-07-15 14:02:42,005 - qtpyvcp - INFO - QtPyVCP Version: python3_master+273.g268f4593
+2022-07-15 14:02:42,921 - qtpyvcp.utilities.info - WARNING - No [TRAJ] SPINDLES entry in INI, using 1
+2022-07-15 14:02:42,921 - qtpyvcp.utilities.info - WARNING - No [DISPLAY] DEFAULT_SPINDLE_SPEED entry found in INI, using 300rpm
+2022-07-15 14:02:43,437 - qtpyvcp - INFO - Loading global stylesheet: /home/travis/.local/lib/python3.9/site-packages/probe_basic/probe_basic.qss
+2022-07-15 14:02:48,968 - qtpyvcp.widgets.form_widgets.main_window - ERROR - Error binding menu action settings.backplot.show-program-labels
+Traceback (most recent call last):
+  File "/home/travis/.local/lib/python3.9/site-packages/qtpyvcp/actions/__init__.py", line 61, in bindWidget
+    method = getattr(method, item)
+AttributeError: module 'qtpyvcp.actions' has no attribute 'settings'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/travis/.local/lib/python3.9/site-packages/qtpyvcp/widgets/form_widgets/main_window.py", line 185, in getMenuAction
+    actions.bindWidget(menu_action, action_name)
+  File "/home/travis/.local/lib/python3.9/site-packages/qtpyvcp/actions/__init__.py", line 66, in bindWidget
+    raise InvalidAction("Could not get action method: %s" % item)
+qtpyvcp.actions.InvalidAction: Could not get action method: settings
+2022-07-15 14:02:48,970 - qtpyvcp.widgets.form_widgets.main_window - ERROR - Error binding menu action settings.backplot.show-program-ticks
+Traceback (most recent call last):
+  File "/home/travis/.local/lib/python3.9/site-packages/qtpyvcp/actions/__init__.py", line 61, in bindWidget
+    method = getattr(method, item)
+AttributeError: module 'qtpyvcp.actions' has no attribute 'settings'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/travis/.local/lib/python3.9/site-packages/qtpyvcp/widgets/form_widgets/main_window.py", line 185, in getMenuAction
+    actions.bindWidget(menu_action, action_name)
+  File "/home/travis/.local/lib/python3.9/site-packages/qtpyvcp/actions/__init__.py", line 66, in bindWidget
+    raise InvalidAction("Could not get action method: %s" % item)
+qtpyvcp.actions.InvalidAction: Could not get action method: settings
+2022-07-15 14:02:49,782 - qtpyvcp.app.launcher - INFO - Loading POSTGUI_HALFILE: /home/travis/linuxcnc/configs/my_LinuxCNC_router/postgui_call_list.hal
+2022-07-15 14:05:15,886 - qtpyvcp.actions.machine_actions - INFO - Homing Axis: X
+2022-07-15 14:05:21,180 - qtpyvcp.actions.machine_actions - INFO - Homing Axis: Y
+2022-07-15 14:05:27,848 - qtpyvcp.actions.machine_actions - INFO - Homing Axis: Z
+2022-07-15 14:07:19,556 - qtpyvcp.widgets.input_widgets.file_system - INFO - File encoding: ascii
+2022-07-15 14:07:22,977 - qtpyvcp.widgets.input_widgets.gcode_text_edit - INFO - File encoding: ascii
+2022-07-15 14:07:23,595 - qtpyvcp.widgets.input_widgets.gcode_text_edit - INFO - File encoding: ascii
+2022-07-15 14:08:57,125 - qtpyvcp.plugins.notifications - ERROR - Linear move on line 2 
+ would exceed Z's positive limit 
+
+2022-07-15 14:08:57,256 - qtpyvcp.plugins.notifications - ERROR - Linear move on line 2 
+ would exceed joint 2's positive 
+ limit
+2022-07-15 14:08:57,474 - qtpyvcp.plugins.notifications - ERROR - invalid params in linear command 
+
+2022-07-15 14:11:19,595 - qtpyvcp.actions.machine_actions - INFO - Issuing MDI command: G10 L20 P1 Y0.0
+2022-07-15 14:11:35,151 - qtpyvcp.actions.machine_actions - INFO - Issuing MDI command: G10 L20 P1 X0.0
+2022-07-15 14:12:23,591 - qtpyvcp.actions.machine_actions - INFO - Issuing MDI command: G10 L20 P1 Z0.0
+2022-07-15 14:12:37,892 - qtpyvcp.plugins.notifications - INFO - note axis positions... will return 
+ here at end of pgm. 
+ press 's'
+2022-07-15 14:22:15,164 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_home.ngc
+2022-07-15 14:22:17,232 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_home.ngc
+2022-07-15 14:22:19,657 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_zero.ngc
+2022-07-15 14:22:21,604 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_zero.ngc
+2022-07-15 14:22:21,824 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_zero.ngc
+2022-07-15 14:22:29,108 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_zero.ngc
+2022-07-15 14:22:30,701 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_home.ngc
+2022-07-15 14:22:36,151 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_home.ngc
+2022-07-15 14:22:39,949 - qtpyvcp.widgets.button_widgets.subcall_button - ERROR - Subroutine file could not be found: go_to_zero.ngc
