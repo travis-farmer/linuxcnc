@@ -1,0 +1,19 @@
+component load_conv "calculates percentage of load based on motor Amps";
+
+pin in float amps;
+pin out float percent;
+
+function _;
+license "GPL"; // indicates GPL v2 or later
+;;
+
+#include <rtapi_math.h>
+percent = round(amps/0.133); // factor value is max-amps/100
+
+/*
+loadusr load_conv
+
+addf base-period load_conv.0
+net spindle_curret load_con0.in <= vfdmod.current.out
+net spindle_load qtpyvcp.spindle-load-indicator.in-f <= load_conv0.out
+*/
