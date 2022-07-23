@@ -42,10 +42,8 @@ net vac_sig_only  =>   hm2_7i80.0.gpio.005.out
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 net spindle-on             <=  spindle.0.on
-
-# these two with the or2.0 pins for the vacuum config below
-net spindle-cw      or2.0.in0   <=  spindle.0.forward
-net spindle-ccw     or2.0.in1   <=  spindle.0.reverse
+net spindle-cw   <=  spindle.0.forward
+net spindle-ccw   <=  spindle.0.reverse
 
 net spindle-brake              <=  spindle.0.brake
 net spindle-revs               =>  spindle.0.revs
