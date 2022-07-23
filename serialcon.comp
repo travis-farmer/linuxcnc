@@ -34,7 +34,7 @@ license "GPL";
 #include <termios.h>  /* POSIX terminal control definitions */
 #include <sys/ioctl.h>
 
-#define BAUDRATE B115200
+#define BAUDRATE B9600
 #define DEVICE "/dev/ttyUSB0"
 #define _POSIX_SOURCE 1 /* POSIX compliant source */
 

@@ -1,0 +1,106 @@
+
+/********************************************************************************
+vacuum_control.comp
+
+userspace component
+
+*********************************************************************************/
+
+component vacuum_control                 "This component services the dust vacuum";
+
+pin in bit cool_mist_in              "if high, start mist";
+pin in bit cool_flood_in             "if high, start flood";
+pin in bit vac_arm_in                "if high, arm vacuum";
+pin out bit cool_mist_out             "turn on mist coolant";
+pin out bit cool_mist_inv_out         "turn on mist coolant invert";
+pin out bit cool_flood_out            "turn on flood coolant";
+pin out bit cool_flood_inv_out        "turn on flood coolant invert";
+pin out bit vac_out                   "turn on vacuum";
+pin out bit vac_inv_out               "turn on vacuum invert";
+
+
+option singleton yes;               // makes no sense to have more than one of these components running
+option userspace yes;
+
+author "Travis Farmer";
+license "GPL";
+;;
+
+#include <stdio.h>    /* Standard input/output definitions */
+#include <stdlib.h>
+#include <stdint.h>   /* Standard types */
+#include <string.h>   /* String function definitions */
+#include <unistd.h>   /* UNIX standard function definitions */
+#include <errno.h>    /* Error number definitions */
+#include <sys/ioctl.h>
+#include <inttypes.h>
+
+void vac_on(bool enable) {
+  if (enable == true) {
+    vac_out = 1;
+    vac_inv_out = 0;
+  } else {
+    vac_out = 0;
+    vac_inv_out = 1;
+  }
+}
+
+void cool_flood_on(bool enable) {
+  if (enable == true) {
+    cool_flood_out = 1;
+    cool_floodinv_out = 0;
+  } else {
+    cool_flood_out = 0;
+    cool_flood_inv_Out = 1;
+  }
+}
+
+void cool_mist_on(bool enable) {
+  if (enable == true) {
+    cool_mist_out = 1;
+    cool_mist_inv_out = 0;
+  } else {
+    cool_mist_out = 0;
+    cool_mist_inv_out = 1;
+  }
+}
+
+void user_mainloop(void)
+{
+
+    while(true)
+        {
+
+
+            // ************************************************************************************
+            // IT DOESN'T MATTER IF THERE ARE NO OTHER INSTANCES ie SINGLETON, MUST USE THIS MACRO
+            // In this case, if you don't, no data gets written
+            // ************************************************************************************
+        FOR_ALL_INSTS()
+        {
+            if (vac_arm_in == 1) {
+                cool_mist_on(false);
+                cool_flood_on(false);
+                if (cool_mist_in == 1 || cool_flood_in == 1) {
+                  vac_on(true);
+                } else {
+                  vac_on(false);
+                }
+                      }
+            } else {
+                vac_on(false);
+                if (cool_mist_in == 1) {
+                  cool_mist_on(true);
+                } else {
+                  cool_mist_on(false);
+                }
+                if (cool_flood_in == 1) {
+                  cool_flood_on(true);
+                } else {
+                  cool_flood_on(false);
+                }
+            }
+        }
+    }
+    exit(0);
+}

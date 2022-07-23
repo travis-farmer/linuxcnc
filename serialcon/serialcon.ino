@@ -52,7 +52,7 @@ void displayLCD() {
   sprintf(outputd, "Stepper Bus: %s", outStrD);
   lcd.setCursor(0,3);
   lcd.print(outputd);
-  
+
   if (pwrState) {
     lcd.setCursor(19,0);
     lcd.print("*");
@@ -65,7 +65,7 @@ void displayLCD() {
 void setup()
 {
         // start serial port at 9600 bps:
-    Serial.begin(115200);
+    Serial.begin(9600);
         // initialize the digital pin as an output.
         // Pin 13 has an LED connected on most Arduino boards:
 //    pinMode(13, OUTPUT);
