@@ -48,10 +48,10 @@ void vac_on(bool enable) {
 void cool_flood_on(bool enable) {
   if (enable == true) {
     cool_flood_out = 1;
-    cool_floodinv_out = 0;
+    cool_flood_inv_out = 0;
   } else {
     cool_flood_out = 0;
-    cool_flood_inv_Out = 1;
+    cool_flood_inv_out = 1;
   }
 }
 
@@ -78,7 +78,7 @@ void user_mainloop(void)
             // ************************************************************************************
         FOR_ALL_INSTS()
         {
-            if (vac_arm_in == 1) {
+            if (vac_arm_in == 1 || true) {
                 cool_mist_on(false);
                 cool_flood_on(false);
                 if (cool_mist_in == 1 || cool_flood_in == 1) {
@@ -86,7 +86,6 @@ void user_mainloop(void)
                 } else {
                   vac_on(false);
                 }
-                      }
             } else {
                 vac_on(false);
                 if (cool_mist_in == 1) {
