@@ -47,15 +47,6 @@ net spindle-at-speed           =>  spindle.0.at-speed
 #net spindle1-vel-fb-rps         =>  spindle.1.speed-in
 #net spindle1-index-enable      <=>  spindle.1.index-enable
 
-
-
-# --- LASER-ENABLE ---
-#setp hm2_7i80.0.gpio.002.invert_output true
-#setp hm2_7i80.0.gpio.002.is_output true
-#net coolant-mist  =>     hm2_7i80.0.gpio.002.out
-
-
-
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
 setp hm2_7i80.0.gpio.003.is_output true
@@ -317,7 +308,7 @@ net MDI-mode              halui.mode.is-mdi
 # --- COOLANT-FLOOD ---
 setp hm2_7i80.0.gpio.001.invert_output true
 setp hm2_7i80.0.gpio.001.is_output true
-   
+
 
 # --- COOLANT-MIST ---
 setp hm2_7i80.0.gpio.002.invert_output true
