@@ -31,13 +31,6 @@ net spindle-cw spindle.0.forward => vfd.spindle-forward
 net spindle-ccw spindle.0.reverse => vfd.spindle-reverse
 net spindle-on spindle.0.on => vfd.spindle-on
 
-# --- for vacuum ---
-setp hm2_7i80.0.gpio.005.invert_output true
-setp hm2_7i80.0.gpio.005.is_output true
-loadrt or2 count=3
-addf or2.0 servo-thread
-
-
 # --- spindle ---
 #net spindle1-vel-cmd-rps        <=  spindle.1.speed-out-rps
 #net spindle1-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
@@ -98,10 +91,11 @@ net z-enable  =>     hm2_7i80.0.gpio.062.out
 net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
 
 # --- PROBE-IN ---
-addf or2.2 servo-thread
-net probe-tool	or2.2.in0      <=  hm2_7i80.0.gpio.004.in
-net probe-sensor	or2.2.in1     <=  hm2_7i80.0.gpio.035.in
-net probe-in     <=  or2.2.out
+loadrt or2 count=1
+addf or2.0 servo-thread
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.004.in
+net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
+net probe-in     <=  or2.0.out
 
 # --- HOME-X ---
 net home-x     <=  hm2_7i80.0.gpio.051.in
@@ -328,26 +322,25 @@ net machine-is-on         halui.machine.is-on
 net jog-speed             halui.axis.jog-speed
 net MDI-mode              halui.mode.is-mdi
 
-loadrt not count=1
-loadrt and2 count=1
-addf or2.1 servo-thread
-addf not.0 servo-thread
-
 #  ---coolant signals---
-# with or2.1 pins for vacuum config below
-net coolant-mist	or2.1.in0      <=  iocontrol.0.coolant-mist
-net coolant-flood	or2.1.in1     <=  iocontrol.0.coolant-flood
+# --- COOLANT-FLOOD ---
+setp hm2_7i80.0.gpio.001.invert_output true
+setp hm2_7i80.0.gpio.001.is_output true
 
-# --- Vacuum ---
-# invert result of or2.1 so both mist and flood MUST be OFF to be TRUE
-net either-coolant-on not.0.in <= or2.1.out
-addf and2.0 servo-thread
-# input signals from IF spindle-cw OR spindle-ccw into pin and2.0
-net my_spindle_ison and2.0.in0 <= or2.0.out
-# input signals from IF INVERTED coolant-mist OR coolant-flood into pin and2.0
-net my_coolant_isoff and2.0.in1 <= not.0.out
-# result of IF((spindle-cw OR spindle-ccw) AND NOT(coolant-mist OR coolant-flood))
-net vac_sig_only hm2_7i80.0.gpio.005.out <= and2.0.out
+
+# --- COOLANT-MIST ---
+setp hm2_7i80.0.gpio.002.invert_output true
+setp hm2_7i80.0.gpio.002.is_output true
+
+setp hm2_7i80.0.gpio.005.invert_output true
+setp hm2_7i80.0.gpio.005.is_output true
+loadusr -W vacuum_control
+net vc-vai  vacuum-control.vac-arm-in  <=   hm2_7i80.0.gpio.034.in
+net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
+net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
+net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.005.out
+net vc-cmo  vacuum-control.cool-mist-out    =>  hm2_7i80.0.gpio.002.out
+net vc-cfo  vacuum-control.cool-flood-out   =>  hm2_7i80.0.gpio.001.out
 
 #  ---probe signal---
 
