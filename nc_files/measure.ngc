@@ -10,7 +10,7 @@ o<measure> sub
 #<wcs_z_varnumber> = [#5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
 #<wcs_z> = #[#<wcs_z_varnumber>]
 M5                                                                 (Turn spindle off)
-o600 if[#<_task> eq 1]
+o600 if[#<_task> EQ 1]
   o500 if[#<_current_tool> EQ #<_selected_tool>]                     (Same tool as before so no need to do anything.)
 
   o500 else
