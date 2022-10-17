@@ -44,11 +44,24 @@ int serialport_init();
 
 struct termios toptions;;       // port setup
 
+
+ unsigned char Checksum(unsigned char *data, int length)
+ {
+    unsigned int Sum = 0;
+    do {
+      Sum += *data++;
+    } while (--length);
+    Sum = - Sum;
+    return Sum & 0xFF;
+ }
+
 void user_mainloop(void)
 {
 char buffer[50];
 char oldbuffer[50];
 char ch;
+char inData[24];
+int CmdPos = 0;
 
 
 
@@ -74,7 +87,19 @@ int fd = serialport_init();
             write(fd, buffer, sizeof(buffer));
 //            strcpy(oldbuffer, buffer);
             if(read(fd,&ch,1) > 0)  // if command byte read from arduino
-                sendCommand(ch);
+                char cmdbuff[50];
+
+                if (ch == ')') {
+                    CmdPos = 0;
+                    inData[CmdPos] = 0x00;
+                    // TODO: proc data
+                    bzero(inData, 24);
+                }
+                else if (ch == '(') {}
+                else {
+                    if (CmdPos <= 20) inData[CmdPos] = ch;
+                    CmdPos++;
+                }
             }
         }
 
@@ -127,34 +152,4 @@ int fd;
         return -1;
         }
     return fd;
-}
-
-
-
-
-//###################################################################################
-    // want these 2 to persist between calls
-char selected_axis = '0';
-int bJogging = false;
-char Addr = 0x00;
-double Data = 0.00;
-char inData[24];
-int CmdPos = 0;
-void sendCommand(char ch)
-{
-
-    char cmdbuff[50];
-
-    if (ch == ')') {
-        CmdPos = 0;
-        inData[CmdPos] = 0x00;
-        // proc data
-    }
-    else if (ch == '(') {}
-    else {
-        if (CmdPos <= 20) inData[CmdPos] = ch;
-        CmdPos++;
-    }
-
-
 }

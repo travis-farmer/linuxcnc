@@ -9,6 +9,16 @@ LiquidCrystal_I2C lcd(0x27,20,4);
 char inChar[24]; // incoming char buffer
 int inCharCntr = 0;
 
+ unsigned char Checksum(unsigned char *data, int length)
+ {
+    unsigned int Sum = 0;
+    do {
+      Sum += *data++;
+    } while (--length);
+    Sum = - Sum;
+    return Sum & 0xFF;
+ }
+
 void inProc(char *inBuffer[24]) {
   // blah
 
