@@ -11,6 +11,8 @@ component vacuum_control                 "This component services the dust vacuu
 pin in bit cool_mist_in              "if high, start mist";
 pin in bit cool_flood_in             "if high, start flood";
 pin in bit vac_arm_in                "if high, arm vacuum";
+pin in bit vac_trig_in                "if high, spindle rpm trigger. if low, coolant trigger.";
+pin in int spind_rpm_in               "reads the spindle RPM.";
 pin out bit cool_mist_out             "turn on mist coolant";
 pin out bit cool_mist_inv_out         "turn on mist coolant invert";
 pin out bit cool_flood_out            "turn on flood coolant";
@@ -81,10 +83,18 @@ void user_mainloop(void)
             if (vac_arm_in == 1 || true) {
                 cool_mist_on(false);
                 cool_flood_on(false);
-                if (cool_mist_in == 1 || cool_flood_in == 1) {
-                  vac_on(true);
+                if (vac_trig_in == 1) {
+                  if (cool_mist_in == 1 || cool_flood_in == 1) {
+                    vac_on(true);
+                  } else {
+                    vac_on(false);
+                  }
                 } else {
-                  vac_on(false);
+                  if (spind_rpm_in >= 1000) {
+                    vac_on(true);
+                  } else {
+                    vac_on(false);
+                  }
                 }
             } else {
                 vac_on(false);
