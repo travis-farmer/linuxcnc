@@ -44,7 +44,7 @@ net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
 net spindle-revs               =>  spindle.0.revs
 net spindle-at-speed     vfd.spindle-at-speed      =>  spindle.0.at-speed
-net spindle-vel-fb-rpm  <=  vfd.spindle-speed-fb
+net spindle-vel-fb-rpm spindle.0.speed-in  <=  vfd.spindle-speed-fb
 #net spindle1-index-enable      <=>  spindle.1.index-enable
 
 # --- MACHINE-IS-ENABLED ---
@@ -320,7 +320,7 @@ setp hm2_7i80.0.gpio.005.is_output true
 loadusr -W vacuum_control
 net vc-vai  vacuum-control.vac-arm-in  <=   hm2_7i80.0.gpio.034.in
 net vc-trig vacuum-control.vac-trig-in  <=  hm2_7i80.0.gpio.033.in
-net spindle-vel-fb-rpm  =>  vacuum-control.spind-rpm-in spindle.0.speed-in
+net spindle-vel-fb-rpm  =>  vacuum-control.spind-rpm-in
 net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
 net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
 net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.005.out
