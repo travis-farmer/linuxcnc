@@ -12,7 +12,7 @@ pin in bit cool_mist_in              "if high, start mist";
 pin in bit cool_flood_in             "if high, start flood";
 pin in bit vac_arm_in                "if high, arm vacuum";
 pin in bit vac_trig_in                "if high, spindle rpm trigger. if low, coolant trigger.";
-pin in int spind_rpm_in               "reads the spindle RPM.";
+pin in unsigned spind_rpm_in               "reads the spindle RPM.";
 pin out bit cool_mist_out             "turn on mist coolant";
 pin out bit cool_mist_inv_out         "turn on mist coolant invert";
 pin out bit cool_flood_out            "turn on flood coolant";
