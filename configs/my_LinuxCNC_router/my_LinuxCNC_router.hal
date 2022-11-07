@@ -25,27 +25,35 @@ addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
 
 # external output signals
+
+
+# --- spindle ---
 loadusr -Wn vfd hy_vfd -n vfd -d /dev/ttyUSB0 -p none -r 9600 -t 1 -S 21000
 net spindle-vel-cmd-rpm-abs => vfd.speed-command
 net spindle-cw spindle.0.forward => vfd.spindle-forward
 net spindle-ccw spindle.0.reverse => vfd.spindle-reverse
 net spindle-on spindle.0.on => vfd.spindle-on
 
-
-# --- spindle ---
-#net spindle1-vel-cmd-rps        <=  spindle.1.speed-out-rps
-#net spindle1-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
+loadrt mult2 count=1
+addf mult2.0 servo-thread
+net spindle-speed-fb mult2.0.in0
+setp mult2.0.in1 0.016666667
+net spindle-speed-rps mult2.0.out => spindle.0.speed-in
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
-
 net spindle-brake              <=  spindle.0.brake
 net spindle-revs               =>  spindle.0.revs
 net spindle-at-speed     vfd.spindle-at-speed      =>  spindle.0.at-speed
-net spindle-vel-fb-rpm spindle.0.speed-in  <=  vfd.spindle-speed-fb
-#net spindle1-index-enable      <=>  spindle.1.index-enable
+net spindle-amps => vfd.OutA
+net spindle-volts => vfd.rated-motor-voltage
+net spindle-ec    =>    qtdragon.spindle-modbus-errors
+net spindle-amps    =>    qtdragon.spindle-amps
+net spindle-commok    =>    qtdragon.spindle-fault
+net spindle-volts   =>    qtdragon.spindle-volts
+
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
@@ -77,7 +85,8 @@ loadrt or2 count=1
 addf or2.0 servo-thread
 net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.004.in
 net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
-net probe-in     <=  or2.0.out
+net probe-in  qtdragon.led-probe   <=  or2.0.out
+
 
 # --- HOME-X ---
 net home-x     <=  hm2_7i80.0.gpio.051.in
@@ -268,11 +277,6 @@ setp   hm2_7i80.0.pwmgen.00.scale  4096
 # M68 E0 Q4096 - Max PWM
 net laser-pwm motion.analog-out-00     => hm2_7i80.0.pwmgen.00.value
 net laser-enable motion.digital-out-00    => hm2_7i80.0.pwmgen.00.enable
-
-# ---Setup spindle at speed signals---
-
-#sets spindle-at-speed true
-
 
 #******************************
 # connect miscellaneous signals

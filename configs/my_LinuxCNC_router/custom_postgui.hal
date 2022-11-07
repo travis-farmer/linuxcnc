@@ -3,43 +3,7 @@
 
 # **** Setup of spindle speed display using pyvcp -START ****
 # **** Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
-loadrt mult2 count=1
-addf mult2.0 servo-thread
-net spindle-speed-fb mult2.0.in0
-setp mult2.0.in1 0.016666667
-net spindle-speed-rps mult2.0.out => spindle.0.speed-in
-#net spindle-speed-fb     => spindle.0.speed-in
-net spindle-speed-fb     => vfd.spindle-speed-fb
 
-# net spindle-cmd-rpm-abs    => pyvcp.spindle_rpm
 
-net spindle-at-speed => spindle.0.at-speed
-net spindle-at-speed => vfd.spindle-at-speed
 
-#net spindle-amps => pyvcp.spindle-amps
-net spindle-amps => vfd.OutA
-net spindle-volts => vfd.rated-motor-voltage
-#net spindle-cw => pyvcp.spindle-forward-led
-#net spindle-ccw => pyvcp.spindle-reverse-led
 
-#net spindle-ec => vfd.error-count
-#net spindle-commok  =>  vfd.hycomm-ok
-
-setp vfd.enable 1
-
-#net laser-pwm =>  pyvcp.laser-pwm
-#net laser-enable  =>  pyvcp.laser-enable
-
-# external offset stuff
-#net eoffset_clear    qtdragon.eoffset-clear => axis.z.eoffset-clear
-#net eoffset_count    qtdragon.eoffset-count => axis.z.eoffset-counts
-#net eoffset          qtdragon.eoffset-value <= axis.z.eoffset
-#net limited          qtdragon.led-limits-tripped <= motion.eoffset-limited
-#setp axis.z.eoffset-enable 1
-#setp axis.z.eoffset-scale 1.0
-
-net probe-in    =>    qtdragon.led-probe
-net spindle-ec    =>    qtdragon.spindle-modbus-errors
-net spindle-amps    =>    qtdragon.spindle-amps
-net spindle-commok    =>    qtdragon.spindle-fault
-net spindle-volts   =>    qtdragon.spindle-volts
