@@ -7,3 +7,10 @@
 
 
 
+net spindle-amps => vfd.OutA
+net spindle-volts => vfd.rated-motor-voltage
+net spindle-ec    =>    qtdragon.spindle-modbus-errors
+net spindle-amps    =>    qtdragon.spindle-amps
+net spindle-commok    =>    qtdragon.spindle-fault
+net spindle-volts   =>    qtdragon.spindle-volts
+net probe-in	=>	qtdragon.led-probe
