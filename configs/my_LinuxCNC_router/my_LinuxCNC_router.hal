@@ -49,10 +49,6 @@ net spindle-revs               =>  spindle.0.revs
 net spindle-at-speed     vfd.spindle-at-speed      =>  spindle.0.at-speed
 net spindle-amps => vfd.OutA
 net spindle-volts => vfd.rated-motor-voltage
-net spindle-ec    =>    qtdragon.spindle-modbus-errors
-net spindle-amps    =>    qtdragon.spindle-amps
-net spindle-commok    =>    qtdragon.spindle-fault
-net spindle-volts   =>    qtdragon.spindle-volts
 
 
 # --- MACHINE-IS-ENABLED ---
@@ -85,7 +81,7 @@ loadrt or2 count=1
 addf or2.0 servo-thread
 net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.004.in
 net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
-net probe-in  qtdragon.led-probe   <=  or2.0.out
+net probe-in     <=  or2.0.out
 
 
 # --- HOME-X ---
