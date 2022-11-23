@@ -36,7 +36,7 @@ net spindle-on spindle.0.on => vfd.spindle-on
 
 loadrt mult2 count=1
 addf mult2.0 servo-thread
-net spindle-speed-fb mult2.0.in0
+net spindle-speed-fb mult2.0.in0  <=  vfd.spindle-speed-fb
 setp mult2.0.in1 0.016666667
 net spindle-speed-rps mult2.0.out => spindle.0.speed-in
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
