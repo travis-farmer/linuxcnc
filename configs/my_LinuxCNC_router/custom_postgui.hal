@@ -1,13 +1,6 @@
 # Include your customized HAL commands here
 # The commands in this file are run after the AXIS GUI (including PyVCP panel) starts
 
-# **** Setup of spindle speed display using pyvcp -START ****
-# **** Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
-
-
-
-
-
 net spindle-ec    =>    qtdragon.spindle-modbus-errors
 net spindle-amps    =>    qtdragon.spindle-amps
 net spindle-commok    =>    qtdragon.spindle-fault
