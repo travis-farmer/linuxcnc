@@ -1,5 +1,5 @@
 #!/bin/bash
-socat /dev/ttyNET,b115200,raw,echo=0 TCP:192.168.123.30:7000
+socat /dev/ttyNET,b9600,raw,echo=0 TCP:10.156.86.144:7000
 
 [Unit]
 
