@@ -6,3 +6,5 @@ net spindle-amps    =>    qtdragon.spindle-amps
 net spindle-commok    =>    qtdragon.spindle-fault
 net spindle-volts   =>    qtdragon.spindle-volts
 net probe-in	=>	qtdragon.led-probe
+
+setp vfd.enable 1
