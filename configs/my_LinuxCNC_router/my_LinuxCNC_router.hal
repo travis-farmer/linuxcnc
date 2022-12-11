@@ -49,7 +49,7 @@ net spindle-revs               =>  spindle.0.revs
 net spindle-at-speed     vfd.spindle-at-speed      =>  spindle.0.at-speed
 net spindle-amps => vfd.OutA
 net spindle-volts => vfd.rated-motor-voltage
-
+setp vfd.enable 1
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
