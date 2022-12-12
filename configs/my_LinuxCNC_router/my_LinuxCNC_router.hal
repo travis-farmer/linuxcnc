@@ -36,20 +36,21 @@ net spindle-on spindle.0.on => vfd.spindle-on
 
 loadrt mult2 count=1
 addf mult2.0 servo-thread
-net spindle-speed-fb mult2.0.in0  <=  vfd.spindle-speed-fb
+net spindle-speed-fb vfd.spindle-speed-fb mult2.0.in0
 setp mult2.0.in1 0.016666667
 net spindle-speed-rps mult2.0.out => spindle.0.speed-in
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
-net spindle-on             <=  spindle.0.on
+#net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
 net spindle-revs               =>  spindle.0.revs
 net spindle-at-speed     vfd.spindle-at-speed      =>  spindle.0.at-speed
-net spindle-amps => vfd.OutA
-net spindle-volts => vfd.rated-motor-voltage
+net spindle-amps <= vfd.OutA
+net spindle-volts <= vfd.rated-motor-voltage
 
+setp vfd.enable 1
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
@@ -74,12 +75,12 @@ net z-enable  =>     hm2_7i80.0.gpio.062.out
 # external input signals
 
 # --- ESTOP-EXT ---
-net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
+net estop-ext     <=  hm2_7i80.0.gpio.000.in
 
 # --- PROBE-IN ---
 loadrt or2 count=1
 addf or2.0 servo-thread
-net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.004.in
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.004.in_not
 net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
 net probe-in     <=  or2.0.out
 
@@ -319,7 +320,7 @@ setp hm2_7i80.0.gpio.005.is_output true
 
 loadusr -W vacuum_control
 net vc-vai  vacuum-control.vac-arm-in  <=   hm2_7i80.0.gpio.034.in
-net vc-trig vacuum-control.vac-trig-in  <=  hm2_7i80.0.gpio.033.in
+net vc-trig vacuum-control.vac-trig-in  <=  hm2_7i80.0.gpio.033.in_not
 net spindle-vel-fb-rpm  =>  vacuum-control.spind-rpm-in
 net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
 net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
