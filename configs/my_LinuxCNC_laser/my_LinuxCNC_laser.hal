@@ -70,7 +70,7 @@ net home-x     <=  hm2_7i80.0.gpio.051.in
 #net x-pos-limit      <=  hm2_7i80.0.gpio.053.in
 
 # --- HOME-Y ---
-net home-y     <=  hm2_7i80.0.gpio.058.in_not
+net home-y     <=  hm2_7i80.0.gpio.057.in_not
 ##net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
 #net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
 
