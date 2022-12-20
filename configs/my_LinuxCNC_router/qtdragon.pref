@@ -87,7 +87,7 @@ gcodegraphics-user-lat = 0.0
 gcodegraphics-user-lon = 0.0
 
 [CUSTOM_FORM_ENTRIES]
-Tool to load = 1
+Tool to load = 0
 Laser X = 100.0
 Laser Y = -20.0
 Sensor X = 0.0
@@ -112,6 +112,8 @@ Use camera = False
 Use alpha display mode = False
 Inhibit display mouse selection = False
 Use tool touchplate = False
+Retract Distance = 10.0
+Z Safe Travel = 10.0
 
 [PROBE OPTIONS]
 Probe tool = 0

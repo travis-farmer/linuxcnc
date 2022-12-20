@@ -50,12 +50,12 @@ net spindle-at-speed     vfd.spindle-at-speed      =>  spindle.0.at-speed
 net spindle-amps <= vfd.OutA
 net spindle-volts <= vfd.rated-motor-voltage
 
-setp vfd.enable 1
+#setp vfd.enable 1
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
 setp hm2_7i80.0.gpio.003.is_output true
-net machine-is-enabled  =>     hm2_7i80.0.gpio.003.out
+net machine-is-enabled vfd.enable =>     hm2_7i80.0.gpio.003.out
 
 # --- X-ENABLE ---
 setp hm2_7i80.0.gpio.050.invert_output true
@@ -91,7 +91,7 @@ net home-x     <=  hm2_7i80.0.gpio.051.in
 #net x-pos-limit      <=  hm2_7i80.0.gpio.053.in
 
 # --- HOME-Y ---
-net home-y     <=  hm2_7i80.0.gpio.057.in
+net home-y     <=  hm2_7i80.0.gpio.058.in_not
 ##net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
 #net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
 
@@ -307,20 +307,20 @@ net MDI-mode              halui.mode.is-mdi
 
 
 # --- COOLANT-FLOOD ---
-setp hm2_7i80.0.gpio.001.invert_output true
+setp hm2_7i80.0.gpio.001.invert_output false
 setp hm2_7i80.0.gpio.001.is_output true
 
 # --- COOLANT-MIST ---
-setp hm2_7i80.0.gpio.002.invert_output true
+setp hm2_7i80.0.gpio.002.invert_output false
 setp hm2_7i80.0.gpio.002.is_output true
 
 # --- Vacuum ---
-setp hm2_7i80.0.gpio.005.invert_output true
+setp hm2_7i80.0.gpio.005.invert_output false
 setp hm2_7i80.0.gpio.005.is_output true
 
 loadusr -W vacuum_control
 net vc-vai  vacuum-control.vac-arm-in  <=   hm2_7i80.0.gpio.034.in
-net vc-trig vacuum-control.vac-trig-in  <=  hm2_7i80.0.gpio.033.in_not
+net vc-trig vacuum-control.vac-trig-in  <=  hm2_7i80.0.gpio.033.in
 net spindle-vel-fb-rpm  =>  vacuum-control.spind-rpm-in
 net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
 net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood

@@ -27,8 +27,8 @@
 
 #setp vfd.enable 1
 
-net spindle-speed-cmd =>  pyvcp.laser-pwm
-net spindle-on  =>  pyvcp.laser-enable
+#net spindle-speed-cmd =>  pyvcp.laser-pwm
+#net spindle-on  =>  pyvcp.laser-enable
 
 # external offset stuff
 #net eoffset_clear    qtdragon.eoffset-clear => axis.z.eoffset-clear
@@ -38,7 +38,7 @@ net spindle-on  =>  pyvcp.laser-enable
 #setp axis.z.eoffset-enable 1
 #setp axis.z.eoffset-scale 1.0
 
-#net probe-in    =>    qtdragon.led-probe
+net probe-in    =>    qtdragon.led-probe
 #net spindle-ec    =>    qtdragon.spindle-modbus-errors
 #net spindle-amps    =>    qtdragon.spindle-amps
 #net spindle-commok    =>    qtdragon.spindle-fault

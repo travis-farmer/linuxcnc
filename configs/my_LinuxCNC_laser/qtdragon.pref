@@ -15,6 +15,7 @@ RunFromLineDialog_sound_type = READY
 
 [DIALOG_GEOMETRY]
 ToolChangeDialog-geometry = 750 435 99 29
+LncMessage-geometry = 910 525 303 113
 
 [BOOK_KEEPING]
 last_loaded_directory = /home/travis/linuxcnc/nc_files/examples
@@ -111,6 +112,8 @@ Use camera = False
 Use alpha display mode = False
 Inhibit display mouse selection = True
 Use tool touchplate = False
+Retract Distance = 10.0
+Z Safe Travel = 10.0
 
 [PROBE OPTIONS]
 Probe tool = 0

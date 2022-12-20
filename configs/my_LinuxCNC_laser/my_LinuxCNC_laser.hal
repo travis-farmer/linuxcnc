@@ -63,8 +63,6 @@ net z-enable  =>     hm2_7i80.0.gpio.062.out
 # --- ESTOP-EXT ---
 net estop-ext     <=  hm2_7i80.0.gpio.000.in
 
-# --- PROBE-IN ---
-net probe-in     <=  hm2_7i80.0.gpio.004.in
 
 # --- HOME-X ---
 net home-x     <=  hm2_7i80.0.gpio.051.in
@@ -72,7 +70,7 @@ net home-x     <=  hm2_7i80.0.gpio.051.in
 #net x-pos-limit      <=  hm2_7i80.0.gpio.053.in
 
 # --- HOME-Y ---
-net home-y     <=  hm2_7i80.0.gpio.057.in
+net home-y     <=  hm2_7i80.0.gpio.058.in_not
 ##net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
 #net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
 
@@ -276,9 +274,12 @@ net machine-is-on         halui.machine.is-on
 net jog-speed             halui.axis.jog-speed
 net MDI-mode              halui.mode.is-mdi
 
-#  ---probe signal---
-
-net probe-in     =>  motion.probe-input
+# --- PROBE-IN ---
+loadrt or2 count=1
+addf or2.0 servo-thread
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.004.in_not
+net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
+net probe-in     <=  or2.0.out
 
 #  ---motion control signals---
 

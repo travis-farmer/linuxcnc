@@ -1,12 +1,9 @@
---- Qtvcp Screen Started on: Tue, Jul 12 2022 10:04:28 AM ---
-Tue12 10:04 File Manager error - No such path: /media/travis
-Tue12 10:04 Machine OFF
-Tue12 10:04 Hard limits tripped
-Tue12 10:04 Tool 0: No Tool
-Tue12 10:04 Unexpected realtime delay on task 0 with period 250000
-This Message will only display once per session.
-Run the Latency Test and resolve before continuing.
-
-Tue12 10:04 Machine ON
-Tue12 10:04 Loaded file /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
-Tue12 10:04 Tool 1: 
+--- QtVCP Screen Started on: Tue, Dec 20 2022 09:24:46 AM ---
+Tue20 09:24: File Manager error - No such path: /media/travis
+Tue20 09:24: Machine OFF
+Tue20 09:24: Hard limits tripped
+Tue20 09:24: Tool 0: No Tool
+Tue20 09:25: Machine ON
+Tue20 09:26: Machine OFF
+Tue20 09:26: Machine ON
+Tue20 09:26: Machine OFF
