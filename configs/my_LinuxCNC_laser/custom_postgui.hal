@@ -1,35 +1,3 @@
-# Include your customized HAL commands here
-# The commands in this file are run after the AXIS GUI (including PyVCP panel) starts
-
-# **** Setup of spindle speed display using pyvcp -START ****
-# **** Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
-#loadrt mult2 count=1
-#addf mult2.0 servo-thread
-#net spindle-speed-fb mult2.0.in0
-#setp mult2.0.in1 0.016666667
-#net spindle-speed-rps mult2.0.out => spindle.0.speed-in
-#net spindle-speed-fb     => spindle.0.speed-in
-#net spindle-speed-fb     => vfd.spindle-speed-fb
-
-# net spindle-cmd-rpm-abs    => pyvcp.spindle_rpm
-
-#net spindle-at-speed => spindle.0.at-speed
-#net spindle-at-speed => vfd.spindle-at-speed
-
-#net spindle-amps => pyvcp.spindle-amps
-#net spindle-amps => vfd.OutA
-#net spindle-volts => vfd.rated-motor-voltage
-#net spindle-cw => pyvcp.spindle-forward-led
-#net spindle-ccw => pyvcp.spindle-reverse-led
-
-#net spindle-ec => vfd.error-count
-#net spindle-commok  =>  vfd.hycomm-ok
-
-#setp vfd.enable 1
-
-#net spindle-speed-cmd =>  pyvcp.laser-pwm
-#net spindle-on  =>  pyvcp.laser-enable
-
 # external offset stuff
 #net eoffset_clear    qtdragon.eoffset-clear => axis.z.eoffset-clear
 #net eoffset_count    qtdragon.eoffset-count => axis.z.eoffset-counts

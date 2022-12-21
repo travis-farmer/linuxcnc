@@ -1,0 +1,14 @@
+o103 sub
+G20                 (inch mode)
+G91 G0              (incremental mode)
+M5                  (make sure laser is off)
+G38.2 Z2 F7.87      (gross probe)
+G0 Z0.5             (Z up 0.5inch)
+G38.2 Z0.75 F1.97   (fine probe)
+G0 Z2               (Z up to laser focus height)
+G90 G0              (back to absolute mode)
+M3 S20              (laser on min power)
+M0                  (pause to align laser to start point)
+M5                  (turn laser back off)
+o103 endsub
+M2
