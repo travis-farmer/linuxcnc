@@ -6,8 +6,8 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
-setp    hm2_7i80.0.pwmgen.pwm_frequency 20000
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=2 num_stepgens=4"
+setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 loadrt pid names=pid.x,pid.y,pid.z
@@ -28,29 +28,21 @@ addf hm2_7i80.0.write         servo-thread
 
 
 # --- spindle ---
-loadusr -Wn vfd hy_vfd -n vfd -d /dev/ttyUSB0 -p none -r 9600 -t 1 -S 21000
-net spindle-vel-cmd-rpm-abs => vfd.speed-command
-net spindle-cw spindle.0.forward => vfd.spindle-forward
-net spindle-ccw spindle.0.reverse => vfd.spindle-reverse
-net spindle-on spindle.0.on => vfd.spindle-on
+setp   hm2_7i80.0.pwmgen.01.output-type 1
+setp   hm2_7i80.0.pwmgen.01.scale  24000
 
-loadrt mult2 count=1
-addf mult2.0 servo-thread
-net spindle-speed-fb vfd.spindle-speed-fb mult2.0.in0
-setp mult2.0.in1 0.016666667
-net spindle-speed-rps mult2.0.out => spindle.0.speed-in
-net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
-net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
-#net spindle-on             <=  spindle.0.on
-net spindle-cw   <=  spindle.0.forward
-net spindle-ccw   <=  spindle.0.reverse
-net spindle-brake              <=  spindle.0.brake
-net spindle-revs               =>  spindle.0.revs
-net spindle-at-speed     vfd.spindle-at-speed      =>  spindle.0.at-speed
-net spindle-amps <= vfd.OutA
-net spindle-volts <= vfd.rated-motor-voltage
+setp hm2_7i80.0.gpio.040.invert_output true
+setp hm2_7i80.0.gpio.040.is_output true
+setp hm2_7i80.0.gpio.041.invert_output true
+setp hm2_7i80.0.gpio.041.is_output true
 
-#setp vfd.enable 1
+
+net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.01.value
+net spindle-cw spindle.0.forward => hm2_7i80.0.gpio.040.out
+net spindle-ccw spindle.0.reverse => hm2_7i80.0.gpio.041.out
+net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.01.enable
+net spindle-at-speed     hm2_7i80.0.gpio.042.in      =>  spindle.0.at-speed
+
 
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.003.invert_output true
