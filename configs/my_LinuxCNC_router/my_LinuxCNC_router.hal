@@ -36,6 +36,13 @@ setp hm2_7i80.0.gpio.040.is_output true
 setp hm2_7i80.0.gpio.041.invert_output true
 setp hm2_7i80.0.gpio.041.is_output true
 
+net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
+net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
+loadrt mult2 count=1
+addf mult2.0 servo-thread
+net spindle-speed-fb spindle-vel-cmd-rpm-abs mult2.0.in0
+setp mult2.0.in1 0.016666667
+net spindle-speed-rps mult2.0.out => spindle.0.speed-in
 
 net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.01.value
 net spindle-cw spindle.0.forward => hm2_7i80.0.gpio.040.out
