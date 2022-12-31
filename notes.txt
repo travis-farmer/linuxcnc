@@ -1,3 +1,18 @@
 xset -dpms s off s noblank s 0 0 s noexpose
 
 10.150.86.129
+
+get a list of pins and parameters like this
+8:25AM
+in one terminal do
+8:25AM
+halrun
+8:25AM
+loadrt hostmot2
+8:25AM
+loadrt hm2_eth board_ip=10.10.10.10
+8:26AM
+in a second terminal do
+8:26AM
+halcmd show all hm2 > 7i80-pins.txt
+look for something like encoder.N.counter-mode bit rw

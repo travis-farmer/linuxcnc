@@ -6,10 +6,13 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=2 num_stepgens=4"
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=6 num_pwmgens=2 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
+setp    hm2_7i80.0.encoder.05.counter-mode True
+loadrt thc
+
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
 loadrt lowpass names=lowpass.spindle
@@ -26,6 +29,10 @@ addf hm2_7i80.0.write         servo-thread
 
 # external output signals
 
+# --- read from VFD ---
+# inputs on pin 025
+net counter-vel hm2_7i80.0.encoder.05.velocity  =>  thc.encoder-vel
+# volts output @ thc.volts "pin out float"
 
 # --- spindle ---
 setp   hm2_7i80.0.pwmgen.01.output-type 1
@@ -36,11 +43,17 @@ setp hm2_7i80.0.gpio.040.is_output true
 setp hm2_7i80.0.gpio.041.invert_output true
 setp hm2_7i80.0.gpio.041.is_output true
 
+loadusr -W volts2rpm
+setp volts2rpm.min-rpm 0
+setp volts2rpm.max-rpm 24000
+net spindle-out-volts-rpm volts2rpm.volts-in <= thc.volts
+
+
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 loadrt mult2 count=1
 addf mult2.0 servo-thread
-net spindle-speed-fb spindle-vel-cmd-rpm-abs mult2.0.in0
+net spindle-speed-fb volts2rpm.rpm-out => mult2.0.in0
 setp mult2.0.in1 0.016666667
 net spindle-speed-rps mult2.0.out => spindle.0.speed-in
 
@@ -49,6 +62,11 @@ net spindle-cw spindle.0.forward => hm2_7i80.0.gpio.040.out
 net spindle-ccw spindle.0.reverse => hm2_7i80.0.gpio.041.out
 net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.01.enable
 net spindle-at-speed     hm2_7i80.0.gpio.042.in      =>  spindle.0.at-speed
+net spindle-on             <=  spindle.0.on
+net spindle-cw   <=  spindle.0.forward
+net spindle-ccw   <=  spindle.0.reverse
+net spindle-brake              <=  spindle.0.brake
+
 
 
 # --- MACHINE-IS-ENABLED ---
