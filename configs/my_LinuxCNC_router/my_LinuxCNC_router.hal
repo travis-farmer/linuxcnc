@@ -78,11 +78,11 @@ net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
-#M66 P0 L3 Q15
+#M66 P0 L3 Q15 - wait for spindle stopped
 net spindle-is-stopped and2.0.in0 and2.1.in0 motion.digital-in-00 <= hm2_7i80.0.gpio.043.in
-#M66 P1 L3 Q5
+#M66 P1 L3 Q5 - wait for hung
 net spindle-is-hung and2.1.in1 motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
-#M66 P2 L3 Q5
+#M66 P2 L3 Q5 - wait for unhung
 net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in
 net spindle-manual-button and2.0.in1 <= hm2_7i80.0.gpio.039.in
 
