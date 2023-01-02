@@ -29,6 +29,10 @@ addf hm2_7i80.0.write         servo-thread
 
 # external output signals
 
+###################
+# --- spindle --- #
+###################
+
 # --- read from VFD ---
 # inputs on pin 025
 net counter-vel hm2_7i80.0.encoder.05.velocity  =>  thc.encoder-vel
@@ -37,7 +41,7 @@ net counter-vel hm2_7i80.0.encoder.05.velocity  =>  thc.encoder-vel
 #net counter-vel hm2_7i80.0.encoder.04.velocity  =>
 # volts output @ thc.volts "pin out float"
 
-# --- spindle ---
+
 setp   hm2_7i80.0.pwmgen.01.output-type 1
 setp   hm2_7i80.0.pwmgen.01.scale  24000
 
@@ -46,11 +50,12 @@ setp hm2_7i80.0.gpio.040.is_output true
 setp hm2_7i80.0.gpio.041.invert_output true
 setp hm2_7i80.0.gpio.041.is_output true
 
+# --- setup ard_map ---
 loadusr -W ard_map
 setp ard-map.min-in-val 0
 setp ard-map.max-in-val 10
 setp ard-map.min-out-val 0
-setp ard-map.max-out-val 12
+setp ard-map.max-out-val 11
 net spindle-in-amps ard-map.in-val <= thc.volts
 net spindle-out-amps ard-map.out-val
 
@@ -71,7 +76,8 @@ net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
-
+#M66 P0 L3 Q15
+net spindle-is-stopped motion.digital-in-00 <= hm2_7i80.0.gpio.043.in
 
 
 # --- MACHINE-IS-ENABLED ---
