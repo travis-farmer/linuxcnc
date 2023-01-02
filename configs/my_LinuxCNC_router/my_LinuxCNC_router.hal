@@ -28,7 +28,7 @@ addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
 
 # external output signals
-loadrt and2 count=1
+loadrt and2 count=2
 
 
 ###################
@@ -79,21 +79,23 @@ net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
 #M66 P0 L3 Q15
-net spindle-is-stopped and2.0.in0 motion.digital-in-00 <= hm2_7i80.0.gpio.043.in
+net spindle-is-stopped and2.0.in0 and2.1.in0 motion.digital-in-00 <= hm2_7i80.0.gpio.043.in
 #M66 P1 L3 Q5
-net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
+net spindle-is-hung and2.1.in1 motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
 #M66 P2 L3 Q5
 net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in
 net spindle-manual-button and2.0.in1 <= hm2_7i80.0.gpio.039.in
 
 setp hm2_7i80.0.gpio.044.invert_output true
 setp hm2_7i80.0.gpio.044.is_output true
+#M64 P0 - turn on digital output immediately.
+#M65 P0 - turn off digital output immediately.
 net spindle-unlock motion.digital-out-00 => hm2_7i80.0.gpio.044.out
 setp hm2_7i80.0.gpio.038.invert_output true
 setp hm2_7i80.0.gpio.038.is_output true
-net spindle-is-stopped => hm2_7i80.0.gpio.038.out # use button light as indicator
+net spindle-ready-atc and2.1.out => hm2_7i80.0.gpio.038.out # use button light as indicator for ATC ready
 
-net manual-spindle-release and2.N.out => spindle-unlock
+net manual-spindle-release and2.0.out => spindle-unlock
 
 
 # --- MACHINE-IS-ENABLED ---
