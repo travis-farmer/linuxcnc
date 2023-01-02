@@ -8,7 +8,7 @@
 
 
 #net spindle-ec    =>    qtdragon.spindle-modbus-errors
-setp qtdragon.spindle-amps 0.00
+net spindle-out-amps qtdragon.spindle-amps
 #net spindle-commok    =>    qtdragon.spindle-fault
 setp qtdragon.spindle-volts 220.00
 net probe-in	=>	qtdragon.led-probe

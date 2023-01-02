@@ -1,0 +1,56 @@
+/********************************************************************************
+ard_map.comp
+
+userspace component
+
+*********************************************************************************/
+
+component ard_map                 "This component maps input values to output values, based on the map function for Arduino";
+
+pin in unsigned in_val              "input";
+pin out unsigned out_val             "output";
+pin in unsigned min_in_val                "minimum input value";
+pin in unsigned max_in_val               "maximum input value";
+pin in unsigned min_out_val                "minimum output value";
+pin in unsigned max_out_val               "maximum output value";
+
+
+
+option singleton yes;               // makes no sense to have more than one of these components running
+option userspace yes;
+
+author "Travis Farmer";
+license "GPL";
+;;
+
+#include <stdio.h>    /* Standard input/output definitions */
+#include <stdlib.h>
+#include <stdint.h>   /* Standard types */
+#include <string.h>   /* String function definitions */
+#include <unistd.h>   /* UNIX standard function definitions */
+#include <errno.h>    /* Error number definitions */
+#include <sys/ioctl.h>
+#include <inttypes.h>
+
+unsigned int map(unsigned int x, unsigned int in_min, unsigned int in_max, unsigned int out_min, unsigned int out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+void user_mainloop(void)
+{
+
+    while(true)
+        {
+
+
+            // ************************************************************************************
+            // IT DOESN'T MATTER IF THERE ARE NO OTHER INSTANCES ie SINGLETON, MUST USE THIS MACRO
+            // In this case, if you don't, no data gets written
+            // ************************************************************************************
+        FOR_ALL_INSTS()
+        {
+            out_val = map(in_val, min_in_val, max_in_val, min_out_val, max_out_val);
+        }
+    }
+    exit(0);
+}

@@ -33,6 +33,9 @@ addf hm2_7i80.0.write         servo-thread
 # inputs on pin 025
 net counter-vel hm2_7i80.0.encoder.05.velocity  =>  thc.encoder-vel
 # volts output @ thc.volts "pin out float"
+# inputs on pin 027
+#net counter-vel hm2_7i80.0.encoder.04.velocity  =>
+# volts output @ thc.volts "pin out float"
 
 # --- spindle ---
 setp   hm2_7i80.0.pwmgen.01.output-type 1
@@ -43,19 +46,21 @@ setp hm2_7i80.0.gpio.040.is_output true
 setp hm2_7i80.0.gpio.041.invert_output true
 setp hm2_7i80.0.gpio.041.is_output true
 
-loadusr -W volts2rpm
-setp volts2rpm.min-rpm 0
-setp volts2rpm.max-rpm 24000
-net spindle-out-volts-rpm volts2rpm.volts-in <= thc.volts
-
+loadusr -W ard_map
+setp ard-map.min-in-val 0
+setp ard-map.max-in-val 10
+setp ard-map.min-out-val 0
+setp ard-map.max-out-val 12
+net spindle-in-amps ard-map.in-val <= thc.volts
+net spindle-out-amps ard-map.out-val
 
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
-loadrt mult2 count=1
-addf mult2.0 servo-thread
-net spindle-speed-fb volts2rpm.rpm-out => mult2.0.in0
-setp mult2.0.in1 0.016666667
-net spindle-speed-rps mult2.0.out => spindle.0.speed-in
+#loadrt mult2 count=1
+#addf mult2.0 servo-thread
+#net spindle-speed-fb hm2_7i80.0.encoder.04.velocity => mult2.0.in0
+#setp mult2.0.in1 0.016666667
+net spindle-speed-rps hm2_7i80.0.encoder.04.velocity => spindle.0.speed-in
 
 net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.01.value
 net spindle-cw spindle.0.forward => hm2_7i80.0.gpio.040.out
