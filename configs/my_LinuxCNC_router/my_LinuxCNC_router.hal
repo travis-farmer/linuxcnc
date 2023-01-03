@@ -30,7 +30,7 @@ addf hm2_7i80.0.write         servo-thread
 
 loadrt and2 count=2
 addf and2.0 servo-thread
-loadrt or2 count=2
+loadrt or2 count=3
 addf or2.0 servo-thread
 
 ###################
@@ -41,10 +41,6 @@ addf or2.0 servo-thread
 # inputs on pin 025
 net counter-vel hm2_7i80.0.encoder.05.velocity  =>  thc.encoder-vel
 # volts output @ thc.volts "pin out float"
-# inputs on pin 027
-#net counter-vel hm2_7i80.0.encoder.04.velocity  =>
-# volts output @ thc.volts "pin out float"
-
 
 setp   hm2_7i80.0.pwmgen.01.output-type 1
 setp   hm2_7i80.0.pwmgen.01.scale  24000
@@ -66,10 +62,7 @@ net spindle-out-amps ard-map.out-val
 # --- Spindle speed control/readout ---
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
-#loadrt mult2 count=1
-#addf mult2.0 servo-thread
-#net spindle-speed-fb hm2_7i80.0.encoder.04.velocity => mult2.0.in0
-#setp mult2.0.in1 0.016666667
+# inputs on pin 027
 net spindle-speed-rps hm2_7i80.0.encoder.04.velocity => spindle.0.speed-in
 
 # --- Spindle signals ---
@@ -82,22 +75,25 @@ net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
+setp hm2_7i80.0.gpio.043.invert_output true # spindle fan relay is active LOW
+setp hm2_7i80.0.gpio.043.is_output true
+net spindle-cw => or2.2.in0
+net spindle-ccw => or2.2.in1
+net spindle-is-run or2.2.out => hm2_7i80.0.gpio.043.out # start spindle fan relay
 
 # --- Spindle ATC input signals ---
+loadrt near count=1
+addf near.0 servo-thread
+net spindle-speed-rps => near.0.in1
+setp near.N.in2 0.00
+setp near.N.difference 0.05
 #M66 P0 L3 Q15 - wait for spindle stopped
-net spindle-is-stopped and2.0.in0 and2.1.in0 motion.digital-in-00 <= hm2_7i80.0.gpio.043.in
-#M66 P1 L3 Q5 - wait for hung
+net spindle-is-stopped and2.0.in0 and2.1.in0 motion.digital-in-00 <= near.0.out # near comp was used to help define when RPS is at or close to 0
+#M66 P1 L3 Q5 - wait for hung/locked
 net spindle-is-hung and2.1.in1 motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
-#M66 P2 L3 Q5 - wait for unhung
+#M66 P2 L3 Q5 - wait for unhung/unlocked
 net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in
 net spindle-manual-button and2.0.in1 <= hm2_7i80.0.gpio.039.in
-
-# --- Spindle ATC output signals ---
-setp hm2_7i80.0.gpio.044.invert_output false
-setp hm2_7i80.0.gpio.044.is_output true
-#M64 P0 - turn on digital output immediately.
-#M65 P0 - turn off digital output immediately.
-net spindle-unlock motion.digital-out-00 => or2.1.in0
 
 # --- Spindle ATC Manual Button ---
 loadrt toggle count=1
@@ -105,8 +101,15 @@ addf toggle.0 servo-thread
 setp toggle.0.debounce 5
 net manual-spindle-release and2.0.out => toggle.0.in
 net manual-spindle-release-toggle toggle.0.out => or2.1.in1
+
+# --- Spindle ATC output signals ---
+#M64 P0 - turn on digital output immediately.
+#M65 P0 - turn off digital output immediately.
+net spindle-unlock motion.digital-out-00 => or2.1.in0
+setp hm2_7i80.0.gpio.044.invert_output true # air ATC lock relay is active LOW
+setp hm2_7i80.0.gpio.044.is_output true
 net atc-control or2.1.out => hm2_7i80.0.gpio.044.out # output the ATC tool lock/unlock (signal 0 = locked)
-setp hm2_7i80.0.gpio.038.invert_output true
+setp hm2_7i80.0.gpio.038.invert_output true # button light relay is active LOW
 setp hm2_7i80.0.gpio.038.is_output true
 net atc-control => hm2_7i80.0.gpio.038.out # use button light as indicator for ATC locked
 
