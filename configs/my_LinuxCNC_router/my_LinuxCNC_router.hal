@@ -6,11 +6,13 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=6 num_pwmgens=2 num_stepgens=4"
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=2 num_pwmgens=2 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
-setp    hm2_7i80.0.encoder.05.counter-mode True
+setp    hm2_7i80.0.encoder.00.counter-mode True
+setp    hm2_7i80.0.encoder.01.counter-mode True
+
 loadrt thc
 
 loadrt pid names=pid.x,pid.y,pid.z
@@ -39,7 +41,7 @@ addf or2.0 servo-thread
 
 # --- read from VFD ---
 # inputs on pin 025
-net counter-vel hm2_7i80.0.encoder.05.velocity  =>  thc.encoder-vel
+net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
 # volts output @ thc.volts "pin out float"
 
 setp   hm2_7i80.0.pwmgen.01.output-type 1
@@ -63,7 +65,7 @@ net spindle-out-amps ard-map.out-val
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 # inputs on pin 027
-net spindle-speed-rps hm2_7i80.0.encoder.04.velocity => spindle.0.speed-in
+net spindle-speed-rps hm2_7i80.0.encoder.01.velocity => spindle.0.speed-in
 
 # --- Spindle signals ---
 net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.01.value
@@ -118,9 +120,9 @@ net atc-control => hm2_7i80.0.gpio.038.out # use button light as indicator for A
 ############################
 
 # --- MACHINE-IS-ENABLED ---
-setp hm2_7i80.0.gpio.003.invert_output true
-setp hm2_7i80.0.gpio.003.is_output true
-net machine-is-enabled vfd.enable =>     hm2_7i80.0.gpio.003.out
+setp hm2_7i80.0.gpio.027.invert_output true
+setp hm2_7i80.0.gpio.027.is_output true
+net machine-is-enabled =>     hm2_7i80.0.gpio.027.out
 
 # --- X-ENABLE ---
 setp hm2_7i80.0.gpio.050.invert_output true
@@ -140,11 +142,11 @@ net z-enable  =>     hm2_7i80.0.gpio.062.out
 
 
 # --- ESTOP-EXT ---
-net estop-ext     <=  hm2_7i80.0.gpio.000.in
+net estop-ext     <=  hm2_7i80.0.gpio.024.in
 
 # --- PROBE-IN ---
 
-net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.004.in_not
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.028.in_not
 net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
 net probe-in     <=  or2.0.out
 
@@ -377,16 +379,16 @@ net MDI-mode              halui.mode.is-mdi
 ##########################
 
 # --- COOLANT-FLOOD ---
-setp hm2_7i80.0.gpio.001.invert_output false
-setp hm2_7i80.0.gpio.001.is_output true
+setp hm2_7i80.0.gpio.025.invert_output false
+setp hm2_7i80.0.gpio.025.is_output true
 
 # --- COOLANT-MIST ---
-setp hm2_7i80.0.gpio.002.invert_output false
-setp hm2_7i80.0.gpio.002.is_output true
+setp hm2_7i80.0.gpio.026.invert_output false
+setp hm2_7i80.0.gpio.026.is_output true
 
 # --- Vacuum ---
-setp hm2_7i80.0.gpio.005.invert_output false
-setp hm2_7i80.0.gpio.005.is_output true
+setp hm2_7i80.0.gpio.029.invert_output false
+setp hm2_7i80.0.gpio.029.is_output true
 
 loadusr -W vacuum_control
 net vc-vai  vacuum-control.vac-arm-in  <=   hm2_7i80.0.gpio.034.in
@@ -394,9 +396,9 @@ net vc-trig vacuum-control.vac-trig-in  <=  hm2_7i80.0.gpio.033.in
 net spindle-vel-fb-rpm  =>  vacuum-control.spind-rpm-in
 net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
 net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
-net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.005.out
-net vc-cmo  vacuum-control.cool-mist-out    =>  hm2_7i80.0.gpio.002.out
-net vc-cfo  vacuum-control.cool-flood-out   =>  hm2_7i80.0.gpio.001.out
+net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.029.out
+net vc-cmo  vacuum-control.cool-mist-out    =>  hm2_7i80.0.gpio.026.out
+net vc-cfo  vacuum-control.cool-flood-out   =>  hm2_7i80.0.gpio.025.out
 
 #########################
 # --- Other Signals --- #
