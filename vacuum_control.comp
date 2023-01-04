@@ -90,7 +90,7 @@ void user_mainloop(void)
                     vac_on(false);
                   }
                 } else {
-                  if (spind_rpm_in >= 1000) {
+                  if (spind_rpm_in >= 750) {
                     vac_on(true);
                   } else {
                     vac_on(false);

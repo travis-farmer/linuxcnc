@@ -391,8 +391,8 @@ setp hm2_7i80.0.gpio.029.invert_output false
 setp hm2_7i80.0.gpio.029.is_output true
 
 loadusr -W vacuum_control
-net vc-vai  vacuum-control.vac-arm-in  <=   hm2_7i80.0.gpio.034.in
-net vc-trig vacuum-control.vac-trig-in  <=  hm2_7i80.0.gpio.033.in
+setp  vacuum-control.vac-arm-in 1
+setp vacuum-control.vac-trig-in 0
 net spindle-vel-fb-rpm  =>  vacuum-control.spind-rpm-in
 net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
 net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
