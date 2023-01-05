@@ -47,9 +47,9 @@ net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
 setp   hm2_7i80.0.pwmgen.01.output-type 1
 setp   hm2_7i80.0.pwmgen.01.scale  24000
 
-setp hm2_7i80.0.gpio.040.invert_output true
+setp hm2_7i80.0.gpio.040.invert_output true # VFD forward relay is active LOW
 setp hm2_7i80.0.gpio.040.is_output true
-setp hm2_7i80.0.gpio.041.invert_output true
+setp hm2_7i80.0.gpio.041.invert_output true # VFD reverse relay is active LOW
 setp hm2_7i80.0.gpio.041.is_output true
 
 # --- setup ard_map (vfd current) ---

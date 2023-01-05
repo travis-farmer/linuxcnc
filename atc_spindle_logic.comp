@@ -1,0 +1,54 @@
+/********************************************************************************
+atc_spindle_logic.comp
+
+userspace component
+
+*********************************************************************************/
+
+component atc_spindle_logic                 "This component services Travis' ATC Spindle";
+
+pin in bit vfd_forward_in              "if high, vfd is in forward";
+pin in bit vfd_reverse_in             "if high, vfd is in reverse";
+pin in unsigned spind_tach_in                "tach signal from spindle";
+pin in bit spind_stopped_in                "if high, spindle is stopped";
+pin in bit spind_hung_in               "if high, tool holder is hung";
+pin in bit spind_unhung_in               "if high, tool holder is unhung";
+pin in bit spind_button_in               "reads the spindle button";
+
+pin out bit spind_button_light_out        "turn on spindle button light relay";
+pin out bit spind_unlock_out                   "turn on spindle unlock relay";
+pin out bit spind_fan_out               "turn on spindle fan relay";
+
+
+option singleton yes;               // makes no sense to have more than one of these components running
+option userspace yes;
+
+author "Travis Farmer";
+license "GPL";
+;;
+
+#include <stdio.h>    /* Standard input/output definitions */
+#include <stdlib.h>
+#include <stdint.h>   /* Standard types */
+#include <string.h>   /* String function definitions */
+#include <unistd.h>   /* UNIX standard function definitions */
+#include <errno.h>    /* Error number definitions */
+#include <sys/ioctl.h>
+#include <inttypes.h>
+
+void user_mainloop(void)
+{
+
+    while(true)
+        {
+            // ************************************************************************************
+            // IT DOESN'T MATTER IF THERE ARE NO OTHER INSTANCES ie SINGLETON, MUST USE THIS MACRO
+            // In this case, if you don't, no data gets written
+            // ************************************************************************************
+        FOR_ALL_INSTS()
+        {
+
+        }
+    }
+    exit(0);
+}
