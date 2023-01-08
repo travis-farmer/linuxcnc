@@ -13,7 +13,8 @@ pin in unsigned spind_tach_in                "tach signal from spindle";
 pin in bit spind_stopped_in                "if high, spindle is stopped";
 pin in bit spind_hung_in               "if high, tool holder is hung";
 pin in bit spind_unhung_in               "if high, tool holder is unhung";
-pin in bit spind_button_in               "reads the spindle button";
+pin in bit spind_button_in               "reads the spindle button, provide debounce in HAL";
+pin in bit spind_gcode_unlock_in            "reads from the gcode opperated pin to open or close the tool lock"
 
 pin out bit spind_button_light_out        "turn on spindle button light relay";
 pin out bit spind_unlock_out                   "turn on spindle unlock relay";
@@ -38,7 +39,9 @@ license "GPL";
 
 void user_mainloop(void)
 {
-
+    bool spind_button_toggle_state = false;
+    bool spind_button_pressed_state = false;
+    bool spind_gcode_unlock_state = false;
     while(true)
         {
             // ************************************************************************************
@@ -47,7 +50,40 @@ void user_mainloop(void)
             // ************************************************************************************
         FOR_ALL_INSTS()
         {
-
+            if (vfd_forward_in == 1 || vfd_reverse_in == 1) {
+                spind_fan_out = 1;
+            } else {
+                spind_fan_out = 0;
+            }
+            if (vfd_forward_in == 0 && vfd_reverse_in == 0 && spind_stopped_in == 1) {
+                if (spind_button_in == 1 && spind_button_pressed_state == false) {
+                    spind_button_pressed_state = true;
+                } else if (spind_button_in == 0 && spind_button_pressed_state == true) {
+                    spind_button_pressed_state = false;
+                    // only toggle when button released
+                    if (spind_button_toggle_state == false) {
+                        spind_button_toggle_state = true;
+                    } else {
+                        spind_button_toggle_state = false;
+                    }
+                }
+            } else if ((vfd_forward_in == 1 || vfd_reverse_in == 1) && spind_button_toggle_state == true) {
+                spind_button_toggle_state = false; // kick off the toggle if spindle starts
+            }
+            if (vfd_forward_in == 0 && vfd_reverse_in == 0 && spind_stopped_in == 1) {
+                if (spind_gcode_unlock_in == 1 && spind_gcode_unlock_state == false) {
+                    spind_gcode_unlock_state = true;
+                } else if (spind_gcode_unlock_in == 0 && spind_gcode_unlock_state == true) {
+                    spind_gcode_unlock_state = false;
+                }
+            } else if ((vfd_forward_in == 1 || vfd_reverse_in == 1) && spind_gcode_unlock_state == true) {
+                spind_gcode_unlock_state = false; // kick off the unlock state if spindle starts
+            }
+            if (spind_button_toggle_state == true || spind_gcode_unlock_state == true) {
+                spind_unlock_out = 1;
+            } else {
+                spind_unlock_out = 0;
+            }
         }
     }
     exit(0);

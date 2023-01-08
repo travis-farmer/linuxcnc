@@ -4,7 +4,7 @@
 # overwritten when you run PNCconf again
 
 loadrt [KINS]KINEMATICS
-loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=10
 loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=2 num_pwmgens=2 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
@@ -41,6 +41,7 @@ addf or2.0 servo-thread
 
 # --- read from VFD ---
 # inputs on pin 025
+setp thc.vel-scale 0 # TODO: get this setting
 net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
 # volts output @ thc.volts "pin out float"
 
@@ -84,6 +85,8 @@ net spindle-ccw => or2.2.in1
 net spindle-is-run or2.2.out => hm2_7i80.0.gpio.043.out # start spindle fan relay
 
 # --- Spindle ATC input signals ---
+#M66 P3 L0 - return (#5399) air pressure status (>75psi)
+net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in
 loadrt near count=1
 addf near.0 servo-thread
 net spindle-speed-rps => near.0.in1
