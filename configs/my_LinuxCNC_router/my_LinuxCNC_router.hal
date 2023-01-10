@@ -8,7 +8,6 @@ loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JO
 loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=2 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
-setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 setp    hm2_7i80.0.encoder.00.counter-mode True
 setp    hm2_7i80.0.encoder.01.counter-mode True
@@ -39,6 +38,8 @@ addf or2.0 servo-thread
 # --- spindle --- #
 ###################
 loadusr -W mb2hal config=mb2hal.ini
+loadrt near count=2
+addf near.0 servo-thread
 
 # --- read from VFD ---
 # inputs on pin 025
@@ -46,13 +47,8 @@ loadusr -W mb2hal config=mb2hal.ini
 #net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
 # volts output @ thc.volts "pin out float"
 
-setp   hm2_7i80.0.pwmgen.01.output-type 1
-setp   hm2_7i80.0.pwmgen.01.scale  24000
-
-setp hm2_7i80.0.gpio.040.invert_output true # VFD forward relay is active LOW
-setp hm2_7i80.0.gpio.040.is_output true
-setp hm2_7i80.0.gpio.041.invert_output true # VFD reverse relay is active LOW
-setp hm2_7i80.0.gpio.041.is_output true
+setp   hm2_7i80.0.pwmgen.00.output-type 1
+setp   hm2_7i80.0.pwmgen.00.scale  24000
 
 # --- setup ard_map (vfd current) ---
 #loadusr -W ard_map
@@ -70,29 +66,24 @@ net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 #net spindle-speed-rps hm2_7i80.0.encoder.01.velocity => spindle.0.speed-in
 
 # --- Spindle signals ---
-net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.01.value
-net spindle-cw spindle.0.forward => hm2_7i80.0.gpio.040.out
-net spindle-ccw spindle.0.reverse => hm2_7i80.0.gpio.041.out
-net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.01.enable
-net spindle-at-speed     hm2_7i80.0.gpio.042.in      =>  spindle.0.at-speed
+net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
+net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
+net spindle-speed-rps => near.1.in1
+net spindle-vel-cmd-rpm-abs => near.1.in2
+setp near.1.difference 500
+net spindle-at-speed     near.0.out      =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
-setp hm2_7i80.0.gpio.043.invert_output true # spindle fan relay is active LOW
-setp hm2_7i80.0.gpio.043.is_output true
-net spindle-cw => or2.2.in0
-net spindle-ccw => or2.2.in1
-net spindle-is-run or2.2.out => hm2_7i80.0.gpio.043.out # start spindle fan relay
 
 # --- Spindle ATC input signals ---
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
 net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in
-loadrt near count=1
-addf near.0 servo-thread
+
 net spindle-speed-rps => near.0.in1
-setp near.N.in2 0.00
-setp near.N.difference 0.05
+setp near.0.in2 0.00
+setp near.0.difference 0.05
 #M66 P0 L3 Q15 - wait for spindle stopped
 net spindle-is-stopped and2.0.in0 and2.1.in0 motion.digital-in-00 <= near.0.out # near comp was used to help define when RPS is at or close to 0
 #M66 P1 L3 Q5 - wait for hung/locked
@@ -334,20 +325,6 @@ net home-z     =>  joint.2.home-sw-in #joint.2.neg-lim-sw-in
 #net z-neg-limit     =>  joint.2.neg-lim-sw-in
 #net z-pos-limit     =>  joint.2.pos-lim-sw-in
 
-######################################
-# ---PWM Generator signals/setup --- #
-######################################
-
-setp   hm2_7i80.0.pwmgen.00.output-type 1
-setp   hm2_7i80.0.pwmgen.00.scale  4096
-
-# M64 P0 - enable laser
-# M65 P0 - disable laser
-# M68 E0 Q0 - lowest PWM
-# M68 E0 Q4096 - Max PWM
-net laser-pwm motion.analog-out-00     => hm2_7i80.0.pwmgen.00.value
-net laser-enable motion.digital-out-00    => hm2_7i80.0.pwmgen.00.enable
-
 #******************************
 # connect miscellaneous signals
 #******************************
@@ -397,7 +374,7 @@ setp hm2_7i80.0.gpio.029.is_output true
 loadusr -W vacuum_control
 setp  vacuum-control.vac-arm-in 1
 setp vacuum-control.vac-trig-in 0
-net spindle-vel-fb-rpm  =>  vacuum-control.spind-rpm-in
+net spindle-vel-cmd-rpm-abs  =>  vacuum-control.spind-rpm-in
 net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
 net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
 net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.029.out
