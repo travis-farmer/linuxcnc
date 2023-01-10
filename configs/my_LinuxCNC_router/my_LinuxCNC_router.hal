@@ -9,8 +9,8 @@ loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=2 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
-setp    hm2_7i80.0.encoder.00.counter-mode True
-setp    hm2_7i80.0.encoder.01.counter-mode True
+#setp    hm2_7i80.0.encoder.00.counter-mode True
+#setp    hm2_7i80.0.encoder.01.counter-mode True
 
 #loadrt thc
 
