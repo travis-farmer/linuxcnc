@@ -6,14 +6,14 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=10
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=2 num_pwmgens=2 num_stepgens=4"
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=2 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 setp    hm2_7i80.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 setp    hm2_7i80.0.encoder.00.counter-mode True
 setp    hm2_7i80.0.encoder.01.counter-mode True
 
-loadrt thc
+#loadrt thc
 
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
@@ -38,11 +38,12 @@ addf or2.0 servo-thread
 ###################
 # --- spindle --- #
 ###################
+loadusr -W mb2hal config=mb2hal.ini
 
 # --- read from VFD ---
 # inputs on pin 025
-setp thc.vel-scale 0 # TODO: get this setting
-net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
+#setp thc.vel-scale 0 # TODO: get this setting
+#net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
 # volts output @ thc.volts "pin out float"
 
 setp   hm2_7i80.0.pwmgen.01.output-type 1
@@ -54,19 +55,19 @@ setp hm2_7i80.0.gpio.041.invert_output true # VFD reverse relay is active LOW
 setp hm2_7i80.0.gpio.041.is_output true
 
 # --- setup ard_map (vfd current) ---
-loadusr -W ard_map
-setp ard-map.min-in-val 0
-setp ard-map.max-in-val 10
-setp ard-map.min-out-val 0
-setp ard-map.max-out-val 11
-net spindle-in-amps ard-map.in-val <= thc.volts
-net spindle-out-amps ard-map.out-val
+#loadusr -W ard_map
+#setp ard-map.min-in-val 0
+#setp ard-map.max-in-val 10
+#setp ard-map.min-out-val 0
+#setp ard-map.max-out-val 11
+#net spindle-in-amps ard-map.in-val <= thc.volts
+#net spindle-out-amps ard-map.out-val
 
 # --- Spindle speed control/readout ---
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 # inputs on pin 027
-net spindle-speed-rps hm2_7i80.0.encoder.01.velocity => spindle.0.speed-in
+#net spindle-speed-rps hm2_7i80.0.encoder.01.velocity => spindle.0.speed-in
 
 # --- Spindle signals ---
 net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.01.value
