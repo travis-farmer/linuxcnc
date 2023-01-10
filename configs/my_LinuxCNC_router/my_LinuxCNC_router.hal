@@ -71,7 +71,7 @@ net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FW
 net spindle-speed-rps => near.1.in1
 net spindle-vel-cmd-rpm-abs => near.1.in2
 setp near.1.difference 500
-net spindle-at-speed     near.0.out      =>  spindle.0.at-speed
+net spindle-at-speed     near.1.out      =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
