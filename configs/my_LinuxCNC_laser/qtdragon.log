@@ -1,6 +1,9 @@
-2022-12-20 10:31:06,768 - QTvcp.QTVCP.LIB.QT_PDF.PDFVIEWER - WARNING - PDFViwer - Is python3-poppler-qt5 installed?
-2022-12-20 10:31:09,694 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
-   Qtvcp recommends to allow use of it's own component by not loading the original. 
-   Qtvcp Integrated toolchange dialog will not show until then
-2022-12-20 10:31:10,793 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
-2022-12-20 10:31:10,811 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
+2023-01-10 10:43:17,274 - QTvcp.QTVCP.LIB.SYS_NOTIFY - WARNING - Could not import DBusQtMainLoop, is package 'python-dbus.mainloop.pyqt5' installed?
+2023-01-10 10:43:24,984 - QTvcp.QTVCP.LIB.AUDIO_PLAYER - WARNING - audio alerts - Is python3-espeak installed? (sudo apt install python3-espeak)
+2023-01-10 10:43:24,988 - QTvcp.QTVCP.LIB.AUDIO_PLAYER - WARNING - audio alerts - Is espeak installed? (sudo apt install espeak)
+2023-01-10 10:43:24,988 - QTvcp.QTVCP.LIB.AUDIO_PLAYER - WARNING - Text to speech output not available. 
+2023-01-10 10:43:25,164 - QTvcp.QTVCP.WIDGETS.GCODE_EDITOR - CRITICAL - Can't import QsciScintilla - is package python3-pyqt5.qsci installed?
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/qtvcp/widgets/gcode_editor.py", line 58, in <module>
+    from PyQt5.Qsci import QsciScintilla, QsciLexerCustom, QsciLexerPython
+ModuleNotFoundError: No module named 'PyQt5.Qsci'
