@@ -6,9 +6,9 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=10
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=2 num_stepgens=4"
-setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
-setp    hm2_7i80.0.watchdog.timeout_ns 5000000
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=0 num_stepgens=4"
+#setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
+#setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 #setp    hm2_7i80.0.encoder.00.counter-mode True
 #setp    hm2_7i80.0.encoder.01.counter-mode True
 
@@ -47,15 +47,15 @@ addf near.0 servo-thread
 #net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
 # volts output @ thc.volts "pin out float"
 
-setp   hm2_7i80.0.pwmgen.00.output-type 1
-setp   hm2_7i80.0.pwmgen.00.scale  24000
+#setp   hm2_7i80.0.pwmgen.00.output-type 1
+#setp   hm2_7i80.0.pwmgen.00.scale  24000
 
 # --- setup ard_map (vfd current) ---
-#loadusr -W ard_map
-#setp ard-map.min-in-val 0
-#setp ard-map.max-in-val 10
-#setp ard-map.min-out-val 0
-#setp ard-map.max-out-val 11
+loadusr -W ard_map
+setp ard-map.min-in-val 0
+setp ard-map.max-in-val 24000
+setp ard-map.min-out-val 0
+setp ard-map.max-out-val 100
 #net spindle-in-amps ard-map.in-val <= thc.volts
 #net spindle-out-amps ard-map.out-val
 
@@ -63,11 +63,19 @@ setp   hm2_7i80.0.pwmgen.00.scale  24000
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 # inputs on pin 027
-#net spindle-speed-rps hm2_7i80.0.encoder.01.velocity => spindle.0.speed-in
+loadrt conv_bit_float
+addf conv-bit-float.0 servo-thread
+
+net spindle-speed-rps mb2hal.GetStatus.02.float => spindle.0.speed-in
+
 
 # --- Spindle signals ---
-net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
-net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
+setp hm2_7i80.0.gpio.023.invert_output true # button light relay is active LOW
+setp hm2_7i80.0.gpio.023.is_output true
+net spindle-vel-cmd-rpm-abs => ard-map.in-val
+net spindle-conv-val ard-map.out-val => mb2hal.SetPercent.00.float
+net spindle-on spindle.0.on => hm2_7i80.0.gpio.023.out conv-bit-float.0.in # to 2 relays. VFD FWD relay, and Spindle Fan relay.
+net spindle-conv-type mb2hal.DriveBits.cycle_start.float <= conv-bit-float.0.out
 net spindle-speed-rps => near.1.in1
 net spindle-vel-cmd-rpm-abs => near.1.in2
 setp near.1.difference 500

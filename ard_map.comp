@@ -7,12 +7,12 @@ userspace component
 
 component ard_map                 "This component maps input values to output values, based on the map function for Arduino";
 
-pin in unsigned in_val              "input";
-pin out unsigned out_val             "output";
-pin in unsigned min_in_val                "minimum input value";
-pin in unsigned max_in_val               "maximum input value";
-pin in unsigned min_out_val                "minimum output value";
-pin in unsigned max_out_val               "maximum output value";
+pin in float in_val              "input";
+pin out float out_val             "output";
+pin in float min_in_val                "minimum input value";
+pin in float max_in_val               "maximum input value";
+pin in float min_out_val                "minimum output value";
+pin in float max_out_val               "maximum output value";
 
 
 
@@ -32,7 +32,7 @@ license "GPL";
 #include <sys/ioctl.h>
 #include <inttypes.h>
 
-unsigned int map(unsigned int x, unsigned int in_min, unsigned int in_max, unsigned int out_min, unsigned int out_max) {
+float map(float x, float in_min, float in_max, float out_min, float out_max) {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
