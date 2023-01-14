@@ -6,10 +6,10 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=10
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=1 num_stepgens=4"
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=1 num_pwmgens=1 num_stepgens=4"
 setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 #setp    hm2_7i80.0.watchdog.timeout_ns 5000000
-#setp    hm2_7i80.0.encoder.00.counter-mode True
+setp    hm2_7i80.0.encoder.00.counter-mode True
 #setp    hm2_7i80.0.encoder.01.counter-mode True
 
 #loadrt thc
@@ -66,7 +66,7 @@ net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 loadrt conv_bit_float
 addf conv-bit-float.0 servo-thread
 
-net spindle-speed-rps mb2hal.GetStatus.02.float => spindle.0.speed-in
+net spindle-speed-rps hm2_7i80.0.encoder.00.velocity => spindle.0.speed-in
 
 
 # --- Spindle signals ---
