@@ -66,6 +66,7 @@ net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 loadrt conv_bit_float
 addf conv-bit-float.0 servo-thread
 
+# encoder 00 is on pin 007
 net spindle-speed-rps hm2_7i80.0.encoder.00.velocity => spindle.0.speed-in
 
 
