@@ -8,17 +8,12 @@ userspace component
 component atc_spindle_logic                 "This component services Travis' ATC Spindle";
 
 pin in bit vfd_forward_in              "if high, vfd is in forward";
-pin in bit vfd_reverse_in             "if high, vfd is in reverse";
-pin in unsigned spind_tach_in                "tach signal from spindle";
+pin in unsigned spind_rpm_in                "tach signal from spindle";
 pin in bit spind_stopped_in                "if high, spindle is stopped";
-pin in bit spind_hung_in               "if high, tool holder is hung";
-pin in bit spind_unhung_in               "if high, tool holder is unhung";
 pin in bit spind_button_in               "reads the spindle button, provide debounce in HAL";
 pin in bit spind_gcode_unlock_in            "reads from the gcode opperated pin to open or close the tool lock"
 
-pin out bit spind_button_light_out        "turn on spindle button light relay";
 pin out bit spind_unlock_out                   "turn on spindle unlock relay";
-pin out bit spind_fan_out               "turn on spindle fan relay";
 
 
 option singleton yes;               // makes no sense to have more than one of these components running
@@ -50,12 +45,7 @@ void user_mainloop(void)
             // ************************************************************************************
         FOR_ALL_INSTS()
         {
-            if (vfd_forward_in == 1 || vfd_reverse_in == 1) {
-                spind_fan_out = 1;
-            } else {
-                spind_fan_out = 0;
-            }
-            if (vfd_forward_in == 0 && vfd_reverse_in == 0 && spind_stopped_in == 1) {
+            if (vfd_forward_in == 0 && spind_stopped_in == 1) {
                 if (spind_button_in == 1 && spind_button_pressed_state == false) {
                     spind_button_pressed_state = true;
                 } else if (spind_button_in == 0 && spind_button_pressed_state == true) {
@@ -67,18 +57,20 @@ void user_mainloop(void)
                         spind_button_toggle_state = false;
                     }
                 }
-            } else if ((vfd_forward_in == 1 || vfd_reverse_in == 1) && spind_button_toggle_state == true) {
+            } else if (vfd_forward_in == 1 && spind_button_toggle_state == true) {
                 spind_button_toggle_state = false; // kick off the toggle if spindle starts
             }
-            if (vfd_forward_in == 0 && vfd_reverse_in == 0 && spind_stopped_in == 1) {
+
+            if (vfd_forward_in == 0 && spind_stopped_in == 1) {
                 if (spind_gcode_unlock_in == 1 && spind_gcode_unlock_state == false) {
                     spind_gcode_unlock_state = true;
                 } else if (spind_gcode_unlock_in == 0 && spind_gcode_unlock_state == true) {
                     spind_gcode_unlock_state = false;
                 }
-            } else if ((vfd_forward_in == 1 || vfd_reverse_in == 1) && spind_gcode_unlock_state == true) {
+            } else if (vfd_forward_in == 1 && spind_gcode_unlock_state == true) {
                 spind_gcode_unlock_state = false; // kick off the unlock state if spindle starts
             }
+
             if (spind_button_toggle_state == true || spind_gcode_unlock_state == true) {
                 spind_unlock_out = 1;
             } else {

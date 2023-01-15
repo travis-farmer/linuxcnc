@@ -16,7 +16,7 @@ pin in float max_out_val               "maximum output value";
 
 
 
-option singleton yes;               // makes no sense to have more than one of these components running
+option singleton no;               // may have more than one of these components running
 option userspace yes;
 
 author "Travis Farmer";

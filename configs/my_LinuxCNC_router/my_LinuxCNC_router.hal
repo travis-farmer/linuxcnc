@@ -63,20 +63,15 @@ setp   hm2_7i80.0.pwmgen.00.scale  24000
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 # inputs on pin 027
-loadrt conv_bit_float
-addf conv-bit-float.0 servo-thread
 
 # encoder 00 is on pin 007
 net spindle-speed-rps hm2_7i80.0.encoder.00.velocity => spindle.0.speed-in
 
 
 # --- Spindle signals ---
-#setp hm2_7i80.0.gpio.023.invert_output true # button light relay is active LOW
-#setp hm2_7i80.0.gpio.023.is_output true
+
 net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
-#net spindle-conv-val ard-map.out-val => mb2hal.SetPercent.00.float
-net spindle-on spindle.0.on => hm2_7i80.0.gpio.023.out  hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
-#net spindle-conv-type mb2hal.DriveBits.cycle_start.float <= conv-bit-float.0.out
+net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
 net spindle-speed-rps => near.1.in1
 net spindle-vel-cmd-rpm-abs => near.1.in2
 setp near.1.difference 500
@@ -326,9 +321,8 @@ net z-pos-fb     => joint.2.motor-pos-fb
 net z-enable     <= joint.2.amp-enable-out
 net z-enable     => hm2_7i80.0.stepgen.02.enable
 
-############################################
-# ---setup home / limit switch signals --- #
-############################################
+
+# ---setup home / limit switch signals ---
 
 net home-z     =>  joint.2.home-sw-in #joint.2.neg-lim-sw-in
 #net z-neg-limit     =>  joint.2.neg-lim-sw-in
@@ -371,24 +365,35 @@ net MDI-mode              halui.mode.is-mdi
 # --- COOLANT-FLOOD ---
 setp hm2_7i80.0.gpio.025.invert_output false
 setp hm2_7i80.0.gpio.025.is_output true
+net coolant-flood-ctrl iocontrol.0.coolant-flood => hm2_7i80.0.gpio.025.out
 
 # --- COOLANT-MIST ---
 setp hm2_7i80.0.gpio.026.invert_output false
 setp hm2_7i80.0.gpio.026.is_output true
+net coolant-mist-ctrl iocontrol.0.coolant-mist => hm2_7i80.0.gpio.026.out
 
 # --- Vacuum ---
 setp hm2_7i80.0.gpio.029.invert_output false
 setp hm2_7i80.0.gpio.029.is_output true
+loadrt wcomp count=1
+addf wcomp.0 servo-thread
+net spindle-vel-cmd-rpm-abs => wcomp.0.in
+setp wcomp.0.min 500
+setp wcomp.0.max 24000
+net spind-rpm-vac-control wcomp.0.out => hm2_7i80.0.gpio.029.out
 
-loadusr -W vacuum_control
-setp  vacuum-control.vac-arm-in 1
-setp vacuum-control.vac-trig-in 0
+#loadusr -W vacuum_control
+#setp  vacuum-control.vac-arm-in 1
+#setp vacuum-control.vac-trig-in 0
 #net spindle-vel-cmd-rpm-abs  =>  vacuum-control.spind-rpm-in
-net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
-net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
-net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.029.out
-net vc-cmo  vacuum-control.cool-mist-out    =>  hm2_7i80.0.gpio.026.out
-net vc-cfo  vacuum-control.cool-flood-out   =>  hm2_7i80.0.gpio.025.out
+#net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
+#net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
+#net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.029.out
+#net vc-cmo  vacuum-control.cool-mist-out    =>  hm2_7i80.0.gpio.026.out
+#net vc-cfo  vacuum-control.cool-flood-out   =>  hm2_7i80.0.gpio.025.out
+
+
+
 
 #########################
 # --- Other Signals --- #
@@ -423,11 +428,11 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #################################
 # --- BitBanged Charge Pump --- #
 #################################
-loadusr -W bb_charge_pump
-net estop-net halui.estop.is-activated => bb-charge-pump.enable
-setp hm2_7i80.0.gpio.036.invert_output false
-setp hm2_7i80.0.gpio.036.is_output true
-setp hm2_7i80.0.gpio.037.invert_output false
-setp hm2_7i80.0.gpio.037.is_output true
-net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
-net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
+#loadusr -W bb_charge_pump
+#net estop-net halui.estop.is-activated => bb-charge-pump.enable
+#setp hm2_7i80.0.gpio.036.invert_output false
+#setp hm2_7i80.0.gpio.036.is_output true
+#setp hm2_7i80.0.gpio.037.invert_output false
+#setp hm2_7i80.0.gpio.037.is_output true
+#net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
+#net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
