@@ -122,8 +122,8 @@ Config Register (Read/Write)
 
 .B Bits [11:9] PGA[2:0]: Programmable gain amplifier configuration
              These bits configure the programmable gain amplifier. They serve no function on the ADS1113.
-             000 : FS = ±6.144V(1)                                100 : FS = ±0.512V
-             001 : FS = ±4.096V(1) (default)                      101 : FS = ±0.256V
+             000 : FS = ±6.144V(1) (default)                      100 : FS = ±0.512V
+             001 : FS = ±4.096V(1)                                101 : FS = ±0.256V
              010 : FS = ±2.048V                                   110 : FS = ±0.256V
              011 : FS = ±1.024V                                   111 : FS = ±0.256V
 
@@ -191,17 +191,17 @@ pin out float outA3 if (personality & 0x10)"Analog value between A3 single-ended
 pin out float outA2-A3 if (personality & 0x20)"Analog value between A2 and A3 pins";
 
 
-param rw unsigned A0msb=0xc3 if (personality & 0x01) "MSB byte for A0";
+param rw unsigned A0msb=0xc1 if (personality & 0x01) "MSB byte for A0";
 param rw unsigned A0lsb=0x83 if (personality & 0x01) "LSB byte for A0";
-param rw unsigned A1msb=0xd3 if (personality & 0x02) "MSB byte for A1";
+param rw unsigned A1msb=0xd1 if (personality & 0x02) "MSB byte for A1";
 param rw unsigned A1lsb=0x83 if (personality & 0x02) "LSB byte for A1";
-param rw unsigned A0-A1msb=0x83 if (personality & 0x04)"MSB byte for A0-A1";
+param rw unsigned A0-A1msb=0x81 if (personality & 0x04)"MSB byte for A0-A1";
 param rw unsigned A0-A1lsb=0x83 if (personality & 0x04)"LSB byte for A0-A1";
-param rw unsigned A2msb=0xe3 if (personality & 0x08) "MSB byte for A2";
+param rw unsigned A2msb=0xe1 if (personality & 0x08) "MSB byte for A2";
 param rw unsigned A2lsb=0x83 if (personality & 0x08) "LSB byte for A2";
-param rw unsigned A3msb=0xf3 if (personality & 0x10) "MSB byte for A3";
+param rw unsigned A3msb=0xf1 if (personality & 0x10) "MSB byte for A3";
 param rw unsigned A3lsb=0x83 if (personality & 0x10) "LSB byte for A3";
-param rw unsigned A2-A3msb=0xb3 if (personality & 0x20)"MSB byte for A2-A3";
+param rw unsigned A2-A3msb=0xb1 if (personality & 0x20)"MSB byte for A2-A3";
 param rw unsigned A2-A3lsb=0x83 if (personality & 0x20)"LSB byte for A2-A3";
 param rw unsigned address = 0x48 "address selector-ADDR PIN  0x48=GROUND,0x49=VDD";
 
