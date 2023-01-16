@@ -1,2 +1,6 @@
 *.layout
 *.cbp
+configs/my_LinuxCNC_router/linuxcnc.log
+configs/my_LinuxCNC_router/machine_log.dat
+configs/my_LinuxCNC_router/mdi_history.dat
+configs/my_LinuxCNC_router/qtvcp/screens/qtdragon_hd/__pycache__/resources.cpython-37.pyc
