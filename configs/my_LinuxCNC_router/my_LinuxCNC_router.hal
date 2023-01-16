@@ -74,7 +74,7 @@ net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
 net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
 net spindle-speed-rps => near.1.in1
 net spindle-vel-cmd-rpm-abs => near.1.in2
-setp near.1.difference 500
+setp near.1.difference 100
 net spindle-at-speed     near.1.out      =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
@@ -442,18 +442,23 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 # --- ADS1115 --- #
 ###################
 
-loadrt ads1115 cfg=ssss
-addf ads1115.0.make-puls base-thread
-addf ads1115.0.read servo-thread
+#loadrt ads1115 cfg=ssss
+#addf ads1115.0.make-puls base-thread
+#addf ads1115.0.read servo-thread
+#setp ads1115.0.a0msb 0xc3
+#setp ads1115.0.a1msb 0xd3
+#setp ads1115.0.a2msb 0xe3
+#setp ads1115.0.a3msb 0xf3
 
-net SDAOut <= ads1115.0.SDAOut
-net SCLOut <= ads1115.0.SCLOut
-net SDAIn => ads1115.0.SDAIn
 
-setp hm2_7i80.0.gpio.030.invert_output true
-setp hm2_7i80.0.gpio.030.is_output true
-setp hm2_7i80.0.gpio.031.invert_output false
-setp hm2_7i80.0.gpio.031.is_output true
-net SDAOut => hm2_7i80.0.gpio.030.out
-net SCLOut => hm2_7i80.0.gpio.031.out
-net SDAIn <= hm2_7i80.0.gpio.031.in
+#net SDAOut <= ads1115.0.SDAOut
+#net SCLOut <= ads1115.0.SCLOut
+#net SDAIn => ads1115.0.SDAIn
+
+#setp hm2_7i80.0.gpio.030.invert_output true
+#setp hm2_7i80.0.gpio.030.is_output true
+#setp hm2_7i80.0.gpio.031.invert_output false
+#setp hm2_7i80.0.gpio.031.is_output true
+#net SDAOut => hm2_7i80.0.gpio.030.out
+#net SCLOut => hm2_7i80.0.gpio.031.out
+#net SDAIn <= hm2_7i80.0.gpio.031.in

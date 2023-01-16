@@ -1,18 +1,17 @@
 /********************************************************************************
-ard_map.comp
+volt_div.comp
 
 userspace component
 
 *********************************************************************************/
 
-component ard_map                 "This component maps input values to output values, based on the map function for Arduino";
+component volt_div                 "This component calculates an analog value from an ADC1115 input that passed through a voltage divider.";
 
-pin in float in_val              "input";
-pin out float out_val             "output";
-pin in float min_in_val                "minimum input value";
-pin in float max_in_val               "maximum input value";
-pin in float min_out_val                "minimum output value";
-pin in float max_out_val               "maximum output value";
+pin in float in_val              "input adc value";
+pin out float out_val             "output volts value";
+pin in float fullscale_volts                "minimum input value";
+pin in float r1_high               "maximum input value";
+pin in float r2_low                "minimum output value";
 
 
 
@@ -32,10 +31,6 @@ license "GPL";
 #include <sys/ioctl.h>
 #include <inttypes.h>
 
-float map(float x, float in_min, float in_max, float out_min, float out_max) {
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
 void user_mainloop(void)
 {
 
@@ -49,7 +44,7 @@ void user_mainloop(void)
             // ************************************************************************************
         FOR_ALL_INSTS()
         {
-            out_val = map(in_val, min_in_val, max_in_val, min_out_val, max_out_val);
+            out_val = ((((fullscale_volts / 65535.00) * in_val) / r2_low) * (r1_high + r2_low));
         }
     }
     exit(0);
