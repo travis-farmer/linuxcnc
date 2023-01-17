@@ -7,3 +7,9 @@ configs/my_LinuxCNC_router/qtvcp/screens/qtdragon_hd/__pycache__/resources.cpyth
 *.log
 *.dat
 configs/my_LinuxCNC_router/qtvcp/screens/qtdragon_hd/__pycache__/resources.cpython-37.pyc
+*.bak
+*.var
+*.pref
+*.dat
+*.log
+*.pyc
