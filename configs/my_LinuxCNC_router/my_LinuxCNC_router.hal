@@ -437,31 +437,3 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
 #net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
 
-
-<<<<<<< Updated upstream
-###################
-# --- ADS1115 --- #
-###################
-
-#loadrt ads1115 cfg=ssss
-#addf ads1115.0.make-puls base-thread
-#addf ads1115.0.read servo-thread
-#setp ads1115.0.a0msb 0xc1
-#setp ads1115.0.a1msb 0xd1
-#setp ads1115.0.a2msb 0xe1
-#setp ads1115.0.a3msb 0xf1
-
-
-#net SDAOut <= ads1115.0.SDAOut
-#net SCLOut <= ads1115.0.SCLOut
-#net SDAIn => ads1115.0.SDAIn
-
-#setp hm2_7i80.0.gpio.030.invert_output true
-#setp hm2_7i80.0.gpio.030.is_output true
-#setp hm2_7i80.0.gpio.031.invert_output false
-#setp hm2_7i80.0.gpio.031.is_output true
-#net SDAOut => hm2_7i80.0.gpio.030.out
-#net SCLOut => hm2_7i80.0.gpio.031.out
-#net SDAIn <= hm2_7i80.0.gpio.031.in
-=======
->>>>>>> Stashed changes
