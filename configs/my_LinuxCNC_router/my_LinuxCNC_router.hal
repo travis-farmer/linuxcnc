@@ -438,6 +438,7 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
 
 
+<<<<<<< Updated upstream
 ###################
 # --- ADS1115 --- #
 ###################
@@ -462,3 +463,5 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #net SDAOut => hm2_7i80.0.gpio.030.out
 #net SCLOut => hm2_7i80.0.gpio.031.out
 #net SDAIn <= hm2_7i80.0.gpio.031.in
+=======
+>>>>>>> Stashed changes

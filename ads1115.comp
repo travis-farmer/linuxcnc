@@ -214,22 +214,22 @@ option personality;
 
 license "GPL";
 author "Martin Kaplan";
-variable u32 ACKcount=0;
+variable int ACKcount=0;
 variable int ByteStatus = 0;
 variable int BitStatus = 0;
 variable int ByteNum = 8;
-variable u16 TXByte;
-variable u16 TXBit;
-variable u16 RXByte;
-variable u16 RXBit;
-variable u16 RxWord [10];
+variable int TXByte;
+variable int TXBit;
+variable int RXByte;
+variable int RXBit;
+variable int RxWord [10];
 variable int wordnum =0;
 variable int lastwordnum;
 variable int sentense=0;
 variable int lastsentense;
 variable int CmdByte = 0;
 variable int RxByteNum = 0;
-variable u32 wait;
+variable int wait;
 variable double timer;
 ;;
 
@@ -269,7 +269,7 @@ variable double timer;
 
 #define MAX_CHAN 4
 #define MAX_TXWORDS 10
-const u16 TXWord[MAX_TXWORDS] = {0x2100, 0x01, 0x4000, 0x8400, 0x1002, 0x2100, 0x400, 0x2101, 0xa00, 0xe00};
+const int TXWord[MAX_TXWORDS] = {0x2100, 0x01, 0x4000, 0x8400, 0x1002, 0x2100, 0x400, 0x2101, 0xa00, 0xe00};
 
 static char *cfg[MAX_CHAN];
 RTAPI_MP_ARRAY_STRING(cfg, MAX_CHAN, "Description of each channel");
