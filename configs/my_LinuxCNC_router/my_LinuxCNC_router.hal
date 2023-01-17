@@ -62,8 +62,6 @@ setp   hm2_7i80.0.pwmgen.00.scale  24000
 # --- Spindle speed control/readout ---
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
-# inputs on pin 027
-
 # encoder 00 is on pin 007
 net spindle-speed-rps hm2_7i80.0.encoder.00.velocity => spindle.0.speed-in
 
