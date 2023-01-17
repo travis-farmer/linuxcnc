@@ -445,10 +445,10 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #loadrt ads1115 cfg=ssss
 #addf ads1115.0.make-puls base-thread
 #addf ads1115.0.read servo-thread
-#setp ads1115.0.a0msb 0xc3
-#setp ads1115.0.a1msb 0xd3
-#setp ads1115.0.a2msb 0xe3
-#setp ads1115.0.a3msb 0xf3
+#setp ads1115.0.a0msb 0xc1
+#setp ads1115.0.a1msb 0xd1
+#setp ads1115.0.a2msb 0xe1
+#setp ads1115.0.a3msb 0xf1
 
 
 #net SDAOut <= ads1115.0.SDAOut
