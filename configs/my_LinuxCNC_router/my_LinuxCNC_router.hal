@@ -33,6 +33,8 @@ loadrt and2 count=2
 addf and2.0 servo-thread
 loadrt or2 count=3
 addf or2.0 servo-thread
+addf or2.1 servo-thread
+addf or2.2 servo-thread
 
 ###################
 # --- spindle --- #
@@ -92,14 +94,14 @@ net spindle-is-stopped and2.0.in0 and2.1.in0 motion.digital-in-00 <= near.0.out 
 net spindle-is-hung and2.1.in1 motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
 #M66 P2 L3 Q5 - wait for unhung/unlocked
 net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in
-net spindle-manual-button and2.0.in1 <= hm2_7i80.0.gpio.039.in
+net spindle-manual-button or2.1.in1 <= hm2_7i80.0.gpio.039.in_not
 
 # --- Spindle ATC Manual Button ---
-loadrt toggle count=1
-addf toggle.0 servo-thread
-setp toggle.0.debounce 5
-net manual-spindle-release and2.0.out => toggle.0.in
-net manual-spindle-release-toggle toggle.0.out => or2.1.in1
+#loadrt toggle count=1
+#addf toggle.0 servo-thread
+#setp toggle.0.debounce 5
+#net manual-spindle-release and2.0.out => toggle.0.in
+#net manual-spindle-release-toggle toggle.0.out => or2.1.in1
 
 # --- Spindle ATC output signals ---
 #M64 P0 - turn on digital output immediately.
@@ -108,9 +110,9 @@ net spindle-unlock motion.digital-out-00 => or2.1.in0
 setp hm2_7i80.0.gpio.044.invert_output true # air ATC lock relay is active LOW
 setp hm2_7i80.0.gpio.044.is_output true
 net atc-control or2.1.out => hm2_7i80.0.gpio.044.out # output the ATC tool lock/unlock (signal 0 = locked)
-setp hm2_7i80.0.gpio.038.invert_output true # button light relay is active LOW
-setp hm2_7i80.0.gpio.038.is_output true
-net atc-control => hm2_7i80.0.gpio.038.out # use button light as indicator for ATC locked
+#setp hm2_7i80.0.gpio.038.invert_output true # button light relay is active LOW
+#setp hm2_7i80.0.gpio.038.is_output true
+#net atc-control => hm2_7i80.0.gpio.038.out # use button light as indicator for ATC locked
 
 ############################
 # --- external signals --- #
@@ -366,9 +368,9 @@ setp hm2_7i80.0.gpio.025.is_output true
 net coolant-flood-ctrl iocontrol.0.coolant-flood => hm2_7i80.0.gpio.025.out
 
 # --- COOLANT-MIST ---
-setp hm2_7i80.0.gpio.026.invert_output false
-setp hm2_7i80.0.gpio.026.is_output true
-net coolant-mist-ctrl iocontrol.0.coolant-mist => hm2_7i80.0.gpio.026.out
+#setp hm2_7i80.0.gpio.026.invert_output false
+#setp hm2_7i80.0.gpio.026.is_output true
+#net coolant-mist-ctrl iocontrol.0.coolant-mist => hm2_7i80.0.gpio.026.out
 
 # --- Vacuum ---
 setp hm2_7i80.0.gpio.029.invert_output false
