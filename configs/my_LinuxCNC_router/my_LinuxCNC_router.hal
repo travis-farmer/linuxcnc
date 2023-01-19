@@ -39,7 +39,7 @@ addf or2.2 servo-thread
 ###################
 # --- spindle --- #
 ###################
-loadusr -W mb2hal config=mb2hal.ini
+
 loadrt near count=2
 addf near.0 servo-thread
 
@@ -89,19 +89,15 @@ net spindle-speed-rps => near.0.in1
 setp near.0.in2 0.00
 setp near.0.difference 0.05
 #M66 P0 L3 Q15 - wait for spindle stopped
-net spindle-is-stopped and2.0.in0 and2.1.in0 motion.digital-in-00 <= near.0.out # near comp was used to help define when RPS is at or close to 0
+net spindle-is-stopped motion.digital-in-00 <= near.0.out # near comp was used to help define when RPS is at or close to 0
 #M66 P1 L3 Q5 - wait for hung/locked
 net spindle-is-hung and2.1.in1 motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
 #M66 P2 L3 Q5 - wait for unhung/unlocked
 net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in
-net spindle-manual-button or2.1.in1 <= hm2_7i80.0.gpio.039.in_not
+
 
 # --- Spindle ATC Manual Button ---
-#loadrt toggle count=1
-#addf toggle.0 servo-thread
-#setp toggle.0.debounce 5
-#net manual-spindle-release and2.0.out => toggle.0.in
-#net manual-spindle-release-toggle toggle.0.out => or2.1.in1
+net spindle-manual-button or2.1.in1 <= hm2_7i80.0.gpio.039.in_not
 
 # --- Spindle ATC output signals ---
 #M64 P0 - turn on digital output immediately.
@@ -110,9 +106,6 @@ net spindle-unlock motion.digital-out-00 => or2.1.in0
 setp hm2_7i80.0.gpio.044.invert_output true # air ATC lock relay is active LOW
 setp hm2_7i80.0.gpio.044.is_output true
 net atc-control or2.1.out => hm2_7i80.0.gpio.044.out # output the ATC tool lock/unlock (signal 0 = locked)
-#setp hm2_7i80.0.gpio.038.invert_output true # button light relay is active LOW
-#setp hm2_7i80.0.gpio.038.is_output true
-#net atc-control => hm2_7i80.0.gpio.038.out # use button light as indicator for ATC locked
 
 ############################
 # --- external signals --- #
@@ -437,3 +430,4 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
 #net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
 
+loadusr -W mb2hal config=mb2hal.ini
