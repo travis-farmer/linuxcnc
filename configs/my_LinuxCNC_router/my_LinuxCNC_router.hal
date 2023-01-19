@@ -435,5 +435,10 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
 #net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
 
-loadusr -W mb2hal config=mb2hal.ini
-net machine-is-enabled => mb2hal.ledbits.ardled
+#loadusr -W mb2hal config=mb2hal.ini
+#net machine-is-enabled => mb2hal.ledbits.ardled
+
+#net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
+#net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
+#net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
+#net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
