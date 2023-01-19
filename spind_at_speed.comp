@@ -1,0 +1,54 @@
+/********************************************************************************
+spind_at_speed.comp
+
+userspace component
+
+*********************************************************************************/
+
+component spind_at_speed                 "This component triggers the at-speed better";
+
+pin in float in_val              "input";
+pin out float out_val             "output";
+pin in bit at_speed                "at-speed trigger";
+
+
+
+option singleton yes;               // may not have more than one of these components running
+option userspace yes;
+
+author "Travis Farmer";
+license "GPL";
+;;
+
+#include <stdio.h>    /* Standard input/output definitions */
+#include <stdlib.h>
+#include <stdint.h>   /* Standard types */
+#include <string.h>   /* String function definitions */
+#include <unistd.h>   /* UNIX standard function definitions */
+#include <errno.h>    /* Error number definitions */
+#include <sys/ioctl.h>
+#include <inttypes.h>
+
+
+void user_mainloop(void)
+{
+
+    while(true)
+        {
+
+
+            // ************************************************************************************
+            // IT DOESN'T MATTER IF THERE ARE NO OTHER INSTANCES ie SINGLETON, MUST USE THIS MACRO
+            // In this case, if you don't, no data gets written
+            // ************************************************************************************
+        FOR_ALL_INSTS()
+        {
+            if (at_speed == true) {
+            	out_val = in_val;
+            } else {
+            	out_val = 0.00;
+            }
+        }
+    }
+    exit(0);
+}

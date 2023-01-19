@@ -62,20 +62,25 @@ setp   hm2_7i80.0.pwmgen.00.scale  24000
 #net spindle-out-amps ard-map.out-val
 
 # --- Spindle speed control/readout ---
+loadrt mult2 count=1
+addf mult2.0 servo-thread
+setp mult2.0.in0 0.016666667
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
-net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
+net spindle-vel-cmd-rpm-abs mult2.0.in1    <=  spindle.0.speed-out-abs
 # encoder 00 is on pin 007
-net spindle-speed-rps hm2_7i80.0.encoder.00.velocity => spindle.0.speed-in
+
+net calc-rps mult2.0.out => spindle.0.speed-in
+
 
 
 # --- Spindle signals ---
 
 net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
 net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
-net spindle-speed-rps => near.1.in1
-net spindle-vel-cmd-rpm-abs => near.1.in2
-setp near.1.difference 100
-net spindle-at-speed     near.1.out      =>  spindle.0.at-speed
+#net spindle-speed-rps => near.1.in1
+#net spindle-vel-cmd-rpm-abs => near.1.in2
+#setp near.1.difference 100
+net spindle-at-speed     hm2_7i80.0.gpio.037.in_not      =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
@@ -85,11 +90,11 @@ net spindle-brake              <=  spindle.0.brake
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
 net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in
 
-net spindle-speed-rps => near.0.in1
-setp near.0.in2 0.00
-setp near.0.difference 0.05
+#net spindle-speed-rps => near.0.in1
+#setp near.0.in2 0.00
+#setp near.0.difference 0.05
 #M66 P0 L3 Q15 - wait for spindle stopped
-net spindle-is-stopped motion.digital-in-00 <= near.0.out # near comp was used to help define when RPS is at or close to 0
+net spindle-is-stopped motion.digital-in-00 <= hm2_7i80.0.gpio.036.in_not
 #M66 P1 L3 Q5 - wait for hung/locked
 net spindle-is-hung and2.1.in1 motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
 #M66 P2 L3 Q5 - wait for unhung/unlocked
