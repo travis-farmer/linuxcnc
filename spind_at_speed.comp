@@ -9,7 +9,6 @@ component spind_at_speed                 "This component triggers the at-speed b
 
 pin in float in_val              "input";
 pin out float out_val             "output";
-pin in bit at_speed                "at-speed trigger";
 
 
 
@@ -32,7 +31,6 @@ license "GPL";
 
 void user_mainloop(void)
 {
-
     while(true)
         {
 
@@ -43,11 +41,8 @@ void user_mainloop(void)
             // ************************************************************************************
         FOR_ALL_INSTS()
         {
-            if (at_speed == true) {
-            	out_val = in_val;
-            } else {
-            	out_val = 0.00;
-            }
+            out_val = ((in_val - 3660.00) / 73.775);
+
         }
     }
     exit(0);

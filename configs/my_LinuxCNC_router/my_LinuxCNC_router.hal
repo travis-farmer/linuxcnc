@@ -12,7 +12,7 @@ setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 setp    hm2_7i80.0.encoder.00.counter-mode True
 #setp    hm2_7i80.0.encoder.01.counter-mode True
 
-#loadrt thc
+
 
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
@@ -66,10 +66,12 @@ loadrt mult2 count=1
 addf mult2.0 servo-thread
 setp mult2.0.in0 0.016666667
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
-net spindle-vel-cmd-rpm-abs mult2.0.in1    <=  spindle.0.speed-out-abs
+loadusr -W spind_at_speed
+net spind-calc-vel spind-at-speed.in-val <= hm2_7i80.0.encoder.00.velocity
+net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 # encoder 00 is on pin 007
 
-net calc-rps mult2.0.out => spindle.0.speed-in
+net calc-rps spind-at-speed.out-val => spindle.0.speed-in
 
 
 
