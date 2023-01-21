@@ -10,5 +10,7 @@ author "Travis Farmer";
 ;;
 FUNCTION(_) {
     double shiftOffset = in - 3660.00;
-    out = shiftOffset / 73.775;
+    double tmpout = shiftOffset / 73.775;
+    if(tmpout < 0){tmpout = 0;} // make sure RPS is not negative
+    out = tmpout;
 }
