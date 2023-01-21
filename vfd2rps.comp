@@ -2,15 +2,16 @@ component vfd2rps "Compute the rps from an encoder velocity value";
 
 pin in float in "velocity input value" ;
 pin out float out "rps output value";
-
+param rw float offsetValue "The offset of the velocity input to zero out minimum";
+param rw float scaleValue "The scale value to get to RPS";
 
 function _;
 license "GPL";
 author "Travis Farmer";
 ;;
 FUNCTION(_) {
-    double shiftOffset = in - 3660.00;
-    double tmpout = shiftOffset / 73.775;
+    double shiftOffset = in - offsetValue;
+    double tmpout = shiftOffset / scaleValue;
     if(tmpout < 0){tmpout = 0;} // make sure RPS is not negative
     out = tmpout;
 }

@@ -70,6 +70,8 @@ net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
 loadrt vfd2rps
 addf vfd2rps.0 servo-thread
+setp vfd2rps.0.offsetValue 3660.00
+setp vfd3rps.0.scaleValue 73.775
 # encoder 00 is on pin 007
 net spind-calc-vel vfd2rps.0.in <= hm2_7i80.0.encoder.00.velocity
 net calc-rps vfd2rps.0.out => spindle.0.speed-in
