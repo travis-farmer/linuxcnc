@@ -66,12 +66,13 @@ loadrt mult2 count=1
 addf mult2.0 servo-thread
 setp mult2.0.in0 0.016666667
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
-loadusr -W spind_at_speed
-net spind-calc-vel spind-at-speed.in-val <= hm2_7i80.0.encoder.00.velocity
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
-# encoder 00 is on pin 007
 
-net calc-rps spind-at-speed.out-val => spindle.0.speed-in
+loadrt vfd2rps
+addf vfd2rps.0 servo-thread
+# encoder 00 is on pin 007
+net spind-calc-vel vfd2rps.0.in <= hm2_7i80.0.encoder.00.velocity
+net calc-rps vfd2rps.0.out => spindle.0.speed-in
 
 
 
