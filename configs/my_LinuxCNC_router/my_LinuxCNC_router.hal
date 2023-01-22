@@ -160,7 +160,7 @@ net home-x     <=  hm2_7i80.0.gpio.051.in
 
 # --- HOME-Y ---
 net home-y     <=  hm2_7i80.0.gpio.058.in_not
-##net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
+#net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
 #net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
 
 
@@ -274,6 +274,7 @@ net y-enable     => hm2_7i80.0.stepgen.01.enable
 # ---setup home / limit switch signals---
 
 net home-y     =>  joint.1.home-sw-in #joint.1.neg-lim-sw-in
+
 #net y-neg-limit     =>  joint.1.neg-lim-sw-in
 #net y-pos-limit     =>  joint.1.pos-lim-sw-in
 
