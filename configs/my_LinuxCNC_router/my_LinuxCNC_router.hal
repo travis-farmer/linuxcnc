@@ -6,11 +6,10 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=10
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=1 num_pwmgens=1 num_stepgens=4"
-setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=0 num_stepgens=4"
+#setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 #setp    hm2_7i80.0.watchdog.timeout_ns 5000000
-setp    hm2_7i80.0.encoder.00.counter-mode True
-#setp    hm2_7i80.0.encoder.01.counter-mode True
+#setp    hm2_7i80.0.encoder.00.counter-mode True
 
 
 
@@ -36,55 +35,46 @@ addf or2.0 servo-thread
 addf or2.1 servo-thread
 addf or2.2 servo-thread
 
+############################
+# --- MB2HAL/HAL2MBVFD --- #
+############################
+loadusr -W mb2hal config=mb2hal.ini
+loadrt hal2mbvfd
+addf hal2mbvfd.0 servo-thread
+net spindle-vel-cmd-rpm-abs => hal2mbvfd.RpmIn
+#net vfd-rpm-percent hal2mbvfd.PercentOut => mb2hal...
+#net vfd-ctrl-out hal2mbvfd.VfdCtrlOut => mb2hal...
+net spindle-cw => hal2mbvfd.VfdFwd
+net spindle-ccw => hal2mbvfd.VfdRev
+#net vfd-read-rpm mb2hal... => hal2mbvfd.VfdRunRpmIn
+net vfd-conv-rps hal2mbvfd.VfdRunRpsOut => spindle.0.speed-in
+#net spindle-out-amps <= mb2hal...
+#net spindle-out-volts <= mb2hal...
+#net spindle-commok <= mb2hal...
+#net spindle-ec <= mb2hal...
+
 ###################
 # --- spindle --- #
 ###################
-
-loadrt near count=2
-addf near.0 servo-thread
-
-# --- read from VFD ---
-# inputs on pin 025
-#setp thc.vel-scale 0 # TODO: get this setting
-#net counter-vel hm2_7i80.0.encoder.00.velocity  =>  thc.encoder-vel
-# volts output @ thc.volts "pin out float"
-
-setp   hm2_7i80.0.pwmgen.00.output-type 1
-setp   hm2_7i80.0.pwmgen.00.scale  24000
-
-# --- setup ard_map (vfd current) ---
-#loadusr -W ard_map
-#setp ard-map.min-in-val 0.0
-#setp ard-map.max-in-val 24000.0
-#setp ard-map.min-out-val 0.0
-#setp ard-map.max-out-val 100.0
-#net spindle-in-amps ard-map.in-val <= thc.volts
-#net spindle-out-amps ard-map.out-val
+#setp   hm2_7i80.0.pwmgen.00.output-type 1
+#setp   hm2_7i80.0.pwmgen.00.scale  24000
 
 # --- Spindle speed control/readout ---
-loadrt mult2 count=1
-addf mult2.0 servo-thread
-setp mult2.0.in0 0.016666667
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
-loadrt vfd2rps
-addf vfd2rps.0 servo-thread
-setp vfd2rps.0.offsetValue 3660.00
-setp vfd3rps.0.scaleValue 73.775
+#loadrt vfd2rps
+#addf vfd2rps.0 servo-thread
+#setp vfd2rps.0.offsetValue 3660.00
+#setp vfd3rps.0.scaleValue 73.775
 # encoder 00 is on pin 007
-net spind-calc-vel vfd2rps.0.in <= hm2_7i80.0.encoder.00.velocity
-net calc-rps vfd2rps.0.out => spindle.0.speed-in
-
-
+#net spind-calc-vel vfd2rps.0.in <= hm2_7i80.0.encoder.00.velocity
+#net calc-rps vfd2rps.0.out => spindle.0.speed-in
 
 # --- Spindle signals ---
 
-net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
-net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
-#net spindle-speed-rps => near.1.in1
-#net spindle-vel-cmd-rpm-abs => near.1.in2
-#setp near.1.difference 100
+#net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
+#net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
 net spindle-at-speed     hm2_7i80.0.gpio.037.in_not      =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
@@ -94,14 +84,8 @@ net spindle-brake              <=  spindle.0.brake
 # --- Spindle ATC input signals ---
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
 net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in
-
-#net spindle-speed-rps => near.0.in1
-#setp near.0.in2 0.00
-#setp near.0.difference 0.05
-#M66 P0 L3 Q15 - wait for spindle stopped
-net spindle-is-stopped motion.digital-in-00 <= hm2_7i80.0.gpio.036.in_not
 #M66 P1 L3 Q5 - wait for hung/locked
-net spindle-is-hung and2.1.in1 motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
+net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
 #M66 P2 L3 Q5 - wait for unhung/unlocked
 net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in
 
@@ -441,10 +425,4 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
 #net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
 
-#loadusr -W mb2hal config=mb2hal.ini
-#net machine-is-enabled => mb2hal.ledbits.coils.00
 
-#net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
-#net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
-#net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
-#net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
