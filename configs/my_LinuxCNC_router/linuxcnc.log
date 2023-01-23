@@ -1,6 +1,6 @@
-2023-01-23 11:01:46,859 - QTvcp.QTVCP.WIDGETS.CAMVIEW_WIDGET - ERROR - Qtvcp Error with camview - is python3-opencv installed?
-2023-01-23 11:01:47,221 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
+2023-01-23 14:47:29,612 - QTvcp.QTVCP.WIDGETS.CAMVIEW_WIDGET - ERROR - Qtvcp Error with camview - is python3-opencv installed?
+2023-01-23 14:47:29,981 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
    Qtvcp recommends to allow use of it's own component by not loading the original. 
    Qtvcp Integrated toolchange dialog will not show until then
-2023-01-23 11:01:47,992 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
-2023-01-23 11:01:48,004 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
+2023-01-23 14:47:30,767 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
+2023-01-23 14:47:30,779 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
