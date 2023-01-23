@@ -53,6 +53,20 @@ net spindle-out-volts <= mb2hal.vfdparam.03.float
 #net spindle-commok <= mb2hal...
 #net spindle-ec <= mb2hal...
 
+#########################
+# --- MB2HAL/CHANGER ---#
+#########################
+net tool-change-request     iocontrol.0.tool-change       =>  mb2hal.ardwritecoil.00.bit
+net tool-change-confirmed   iocontrol.0.tool-changed      <=  mb2hal.ardreadcoil.00.bit
+net tool-number             iocontrol.0.tool-prep-number  =>  mb2hal.ardholdReg.01.int
+net tool-prepare            iocontrol.0.tool-prepare      =>  mb2hal.ardwritecoil.01.bit
+net tool-current            iocontrol.0.tool-number       =>  mb2hal.ardholdReg.00.int
+net tool-prep-confirmed     iocontrol.0.tool-prepared     <=  mb2hal.ardreadcoil.01.bit
+#M64 P1 - turn on digital output immediately.
+#M65 P1 - turn off digital output immediately.
+setp hm2_7i80.0.gpio.033.invert_output true # change-is-done is active LOW
+setp hm2_7i80.0.gpio.033.is_output true
+net change-is-done          motion.digital-out-01         =>  hm2_7i80.0.gpio.033.out
 ###################
 # --- spindle --- #
 ###################
@@ -396,10 +410,9 @@ net probe-in     =>  motion.probe-input
 net in-position               <=  motion.in-position
 
 
-loadrt conv_bit_s32
-addf conv-bit-s32.0 servo-thread
-net machine-is-enabled conv-bit-s32.0.in       <=  motion.motion-enabled
-net sig-mac-status mb2hal.ardholdReg.00.int <= conv-bit-s32.0.out
+
+net machine-is-enabled       <=  motion.motion-enabled
+
 #  ---digital in / out signals---
 
 #  ---estop signals---
@@ -409,11 +422,7 @@ net estop-ext     =>  iocontrol.0.emc-enable-in
 
 #  ---manual tool change signals---
 
-loadusr -W hal_manualtoolchange
-net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
-net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
-net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
-net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
+
 
 
 
