@@ -41,15 +41,15 @@ addf or2.2 servo-thread
 loadusr -W mb2hal config=mb2hal.ini
 loadrt hal2mbvfd
 addf hal2mbvfd.0 servo-thread
-net spindle-vel-cmd-rpm-abs => hal2mbvfd.RpmIn
-#net vfd-rpm-percent hal2mbvfd.PercentOut => mb2hal...
-#net vfd-ctrl-out hal2mbvfd.VfdCtrlOut => mb2hal...
-net spindle-cw => hal2mbvfd.VfdFwd
-net spindle-ccw => hal2mbvfd.VfdRev
-#net vfd-read-rpm mb2hal... => hal2mbvfd.VfdRunRpmIn
-net vfd-conv-rps hal2mbvfd.VfdRunRpsOut => spindle.0.speed-in
-#net spindle-out-amps <= mb2hal...
-#net spindle-out-volts <= mb2hal...
+net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn
+net vfd-rpm-percent hal2mbvfd.0.PercentOut => mb2hal.vfdset.00
+net vfd-ctrl-out hal2mbvfd.0.VfdCtrlOut => mb2hal.vfdcntrl.00
+net spindle-cw => hal2mbvfd.0.VfdFwd
+net spindle-ccw => hal2mbvfd.0.VfdRev
+net vfd-read-rpm mb2hal.vfdparam.04.float => hal2mbvfd.0.VfdRunRpmIn
+net vfd-conv-rps hal2mbvfd.0.VfdRunRpsOut => spindle.0.speed-in
+net spindle-out-amps <= mb2hal.vfdparam.02.float
+net spindle-out-volts <= mb2hal.vfdparam.03.float
 #net spindle-commok <= mb2hal...
 #net spindle-ec <= mb2hal...
 

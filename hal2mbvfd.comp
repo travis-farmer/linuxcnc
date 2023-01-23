@@ -1,10 +1,10 @@
 component hal2mbvfd "exchange HAL pins for mb2hal values, Fuling DZB300 series VFD";
 
 pin in float RpmIn "RPM set value, in";
-pin out float PercentOut "RPM percent value, out";
+pin out s32 PercentOut "RPM percent value, out";
 pin in bit VfdFwd "Run VFD in Forward Direction";
 pin in bit VfdRev "Run VFD in Reverse Direction";
-pin out u32 VfdCtrlOut "send the VFD control signal to MB2HAL pin";
+pin out s32 VfdCtrlOut "send the VFD control signal to MB2HAL pin";
 pin in float VfdRunRpmIn "running RPM of VFD/Motor";
 pin out float VfdRunRpsOut "RPS conversion of VFD/Motor RPM";
 
@@ -19,9 +19,9 @@ double map(double x, double in_min, double in_max, double out_min, double out_ma
 }
 
 FUNCTION(_) {
-    out = map(RpmIn,0,24000,0,100);
-    if (VfdFwd == true) {VfdCtrlOut = 1;}
-    else if (VfdRev == true) {VfdCtrlOut = 2;}
-    else {VfdCtrlOut = 5;}
+    PercentOut = (int)map(RpmIn,0,24000,0,100);
+    if (VfdFwd == true) {VfdCtrlOut = 0x0001;}
+    else if (VfdRev == true) {VfdCtrlOut = 0x0002;}
+    else {VfdCtrlOut = 0x0005;}
     VfdRunRpsOut = VfdRunRpmIn / 60;
 }
