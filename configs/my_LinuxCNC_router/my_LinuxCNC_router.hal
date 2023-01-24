@@ -52,6 +52,9 @@ net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
 #net spindle-commok <= mb2hal...
 #net spindle-ec <= mb2hal...
+setp hm2_7i80.0.gpio.011.invert_output true
+setp hm2_7i80.0.gpio.011.is_output true
+net activate-spind-fan hm2_7i80.0.gpio.011.out      <=  hal2mbvfd.0.SpindFan
 
 #########################
 # --- MB2HAL/CHANGER ---#
@@ -67,7 +70,7 @@ net spindle-out-volts <= mb2hal.vfdparam.03.float
 #setp hm2_7i80.0.gpio.033.invert_output true # change-is-done is active LOW
 #setp hm2_7i80.0.gpio.033.is_output true
 #net change-is-done          motion.digital-out-01         =>  hm2_7i80.0.gpio.033.out
-net mag-charge-pump => mb2hal.magWriteCoil.02.bit
+#net mag-charge-pump => mb2hal.magWriteCoil.02.bit
 
 ###################
 # --- spindle --- #
@@ -412,8 +415,9 @@ net probe-in     =>  motion.probe-input
 net in-position               <=  motion.in-position
 
 
-
-net machine-is-enabled       <=  motion.motion-enabled
+setp hm2_7i80.0.gpio.012.invert_output true
+setp hm2_7i80.0.gpio.012.is_output true
+net machine-is-enabled hm2_7i80.0.gpio.012.out      <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 
@@ -435,9 +439,9 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #################################
 # --- BitBanged Charge Pump --- #
 #################################
-loadusr -W bb_charge_pump
-net estop-net halui.estop.is-activated => bb-charge-pump.enable
-net pump-zero bb-charge-pump.pump.0 => mag-charge-pump
+#loadusr -W bb_charge_pump
+#net estop-net halui.estop.is-activated => bb-charge-pump.enable
+#net pump-zero bb-charge-pump.pump.0 => mag-charge-pump
 
 
 

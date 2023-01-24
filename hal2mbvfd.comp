@@ -7,6 +7,7 @@ pin in bit VfdRev "Run VFD in Reverse Direction";
 pin out s32 VfdCtrlOut "send the VFD control signal to MB2HAL pin";
 pin in float VfdRunRpmIn "running RPM of VFD/Motor";
 pin out float VfdRunRpsOut "RPS conversion of VFD/Motor RPM";
+pin out bit SpindFan "turn on the spindle cooling fan";
 
 
 function _;
@@ -19,9 +20,9 @@ double map(double x, double in_min, double in_max, double out_min, double out_ma
 }
 
 FUNCTION(_) {
-    PercentOut = (int)map(RpmIn,0,24000,0,10000);
-    if (VfdFwd == true) {VfdCtrlOut = 0x0001;}
-    else if (VfdRev == true) {VfdCtrlOut = 0x0002;}
-    else {VfdCtrlOut = 0x0005;}
+    PercentOut = (int)map(RpmIn,0,24000,0,5000);
+    if (VfdFwd == true) {VfdCtrlOut = 0x0001; SpindFan = true;}
+    else if (VfdRev == true) {VfdCtrlOut = 0x0002; SpindFan = true;}
+    else {VfdCtrlOut = 0x0005; SpindFan = false;}
     VfdRunRpsOut = VfdRunRpmIn / 60;
 }
