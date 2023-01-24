@@ -56,17 +56,19 @@ net spindle-out-volts <= mb2hal.vfdparam.03.float
 #########################
 # --- MB2HAL/CHANGER ---#
 #########################
-#net tool-change-request     iocontrol.0.tool-change       =>  mb2hal.ardwritecoil.00.bit
-#net tool-change-confirmed   iocontrol.0.tool-changed      <=  mb2hal.ardreadcoil.00.bit
-#net tool-number             iocontrol.0.tool-prep-number  =>  mb2hal.ardholdReg.01.int
-#net tool-prepare            iocontrol.0.tool-prepare      =>  mb2hal.ardwritecoil.01.bit
-#net tool-current            iocontrol.0.tool-number       =>  mb2hal.ardholdReg.00.int
-#net tool-prep-confirmed     iocontrol.0.tool-prepared     <=  mb2hal.ardreadcoil.01.bit
+#net tool-change-request     iocontrol.0.tool-change       =>  mb2hal.magWriteCoil.00.bit
+#net tool-change-confirmed   iocontrol.0.tool-changed      <=  mb2hal.magReadCoil.00.bit
+#net tool-number             iocontrol.0.tool-prep-number  =>  mb2hal.magHoldReg.01.int
+#net tool-prepare            iocontrol.0.tool-prepare      =>  mb2hal.magWriteCoil.01.bit
+#net tool-current            iocontrol.0.tool-number       =>  mb2hal.magHoldReg.00.int
+#net tool-prep-confirmed     iocontrol.0.tool-prepared     <=  mb2hal.magReadCoil.01.bit
 #M64 P1 - turn on digital output immediately.
 #M65 P1 - turn off digital output immediately.
 #setp hm2_7i80.0.gpio.033.invert_output true # change-is-done is active LOW
 #setp hm2_7i80.0.gpio.033.is_output true
 #net change-is-done          motion.digital-out-01         =>  hm2_7i80.0.gpio.033.out
+net mag-charge-pump => mb2hal.magWriteCoil.02.bit
+
 ###################
 # --- spindle --- #
 ###################
@@ -433,13 +435,9 @@ net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-p
 #################################
 # --- BitBanged Charge Pump --- #
 #################################
-#loadusr -W bb_charge_pump
-#net estop-net halui.estop.is-activated => bb-charge-pump.enable
-#setp hm2_7i80.0.gpio.036.invert_output false
-#setp hm2_7i80.0.gpio.036.is_output true
-#setp hm2_7i80.0.gpio.037.invert_output false
-#setp hm2_7i80.0.gpio.037.is_output true
-#net pump-zero bb-charge-pump.pump.0 => hm2_7i80.0.gpio.036.out
-#net pump-one bb-charge-pump.pump.1 => hm2_7i80.0.gpio.037.out
+loadusr -W bb_charge_pump
+net estop-net halui.estop.is-activated => bb-charge-pump.enable
+net pump-zero bb-charge-pump.pump.0 => mag-charge-pump
+
 
 
