@@ -60,20 +60,12 @@ setp hm2_7i80.0.gpio.011.is_output true
 net activate-spind-fan hm2_7i80.0.gpio.011.out      <=  hal2mbvfd.0.SpindFan
 
 #########################
-# --- MB2HAL/CHANGER ---#
+# --- MB2HAL/MONITOR ---#
 #########################
-#net tool-change-request     iocontrol.0.tool-change       =>  mb2hal.magWriteCoil.00.bit
-#net tool-change-confirmed   iocontrol.0.tool-changed      <=  mb2hal.magReadCoil.00.bit
-#net tool-number             iocontrol.0.tool-prep-number  =>  mb2hal.magHoldReg.01.int
-#net tool-prepare            iocontrol.0.tool-prepare      =>  mb2hal.magWriteCoil.01.bit
-#net tool-current            iocontrol.0.tool-number       =>  mb2hal.magHoldReg.00.int
-#net tool-prep-confirmed     iocontrol.0.tool-prepared     <=  mb2hal.magReadCoil.01.bit
-#M64 P1 - turn on digital output immediately.
-#M65 P1 - turn off digital output immediately.
-#setp hm2_7i80.0.gpio.033.invert_output true # change-is-done is active LOW
-#setp hm2_7i80.0.gpio.033.is_output true
-#net change-is-done          motion.digital-out-01         =>  hm2_7i80.0.gpio.033.out
-#net mag-charge-pump => mb2hal.magWriteCoil.02.bit
+loadusr -W bb_charge_pump
+net estop-net halui.estop.is-activated => bb-charge-pump.enable
+net pump-zero bb-charge-pump.pump.0 => mb2hal.monWriteCoil.02.bit
+
 
 ###################
 # --- spindle --- #
@@ -97,7 +89,7 @@ net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
 #net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
 #net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
- 	
+
 
 
 
@@ -439,16 +431,4 @@ net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchan
 net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
 net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
 net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
-
-
-
-
-#################################
-# --- BitBanged Charge Pump --- #
-#################################
-#loadusr -W bb_charge_pump
-#net estop-net halui.estop.is-activated => bb-charge-pump.enable
-#net pump-zero bb-charge-pump.pump.0 => mag-charge-pump
-
-
 
