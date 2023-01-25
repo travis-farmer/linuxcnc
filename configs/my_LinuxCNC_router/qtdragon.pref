@@ -18,8 +18,8 @@ ToolChangeDialog-geometry = 750 435 99 29
 LncMessage-geometry = 910 525 280 118
 
 [BOOK_KEEPING]
-last_loaded_directory = /home/travis/linuxcnc/nc_files/examples
-last_loaded_file = /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
+last_loaded_directory = /home/travis/linuxcnc
+last_loaded_file = /home/travis/linuxcnc/1001.ngc
 style_QSS_Path = DEFAULT
 RecentPath_0 = /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
 
@@ -87,7 +87,7 @@ gcodegraphics-user-lat = 0.0
 gcodegraphics-user-lon = 0.0
 
 [CUSTOM_FORM_ENTRIES]
-Tool to load = 0
+Tool to load = 1
 Laser X = 100.0
 Laser Y = -20.0
 Sensor X = 0.0

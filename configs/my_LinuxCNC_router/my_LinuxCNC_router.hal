@@ -38,15 +38,18 @@ addf or2.2 servo-thread
 ############################
 # --- MB2HAL/HAL2MBVFD --- #
 ############################
+loadrt near
+addf near.0 servo-thread
+setp near.0.difference 5.00
 loadusr -W mb2hal config=mb2hal.ini
 loadrt hal2mbvfd
 addf hal2mbvfd.0 servo-thread
-net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn
+net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn near.0.in2
 net vfd-rpm-percent hal2mbvfd.0.PercentOut => mb2hal.vfdset.00.int
 net vfd-ctrl-out hal2mbvfd.0.VfdCtrlOut => mb2hal.vfdcntrl.00.int
 net spindle-cw => hal2mbvfd.0.VfdFwd
 net spindle-ccw => hal2mbvfd.0.VfdRev
-net vfd-read-rpm mb2hal.vfdparam.04.float => hal2mbvfd.0.VfdRunRpmIn
+net vfd-read-rpm mb2hal.vfdparam.04.float => hal2mbvfd.0.VfdRunRpmIn near.0.in1
 net vfd-conv-rps hal2mbvfd.0.VfdRunRpsOut => spindle.0.speed-in
 net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
@@ -94,7 +97,11 @@ net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
 #net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
 #net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
-net spindle-at-speed     hm2_7i80.0.gpio.037.in_not      =>  spindle.0.at-speed
+ 	
+
+
+
+net spindle-at-speed     near.0.out      =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
