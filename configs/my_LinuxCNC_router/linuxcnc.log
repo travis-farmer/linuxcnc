@@ -1,5 +1,14 @@
-2023-01-27 09:19:51,247 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
-   Qtvcp recommends to allow use of it's own component by not loading the original. 
-   Qtvcp Integrated toolchange dialog will not show until then
-2023-01-27 09:19:52,043 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
-2023-01-27 09:19:52,056 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
+2023-01-27 14:34:11,528 - QTvcp - CRITICAL - Aborted from Error Dialog
+ Qtvcp encountered an error.  The following information may be useful in troubleshooting:
+LinuxCNC Version  : 2.9.0~pre1
+
+Traceback (most recent call last):
+  File "/usr/bin/qtvcp", line 511, in <module>
+    APP = QTVCP()
+  File "/usr/bin/qtvcp", line 304, in __init__
+    self.panel = qt_makepins.QTPanel(self.hal, PATH, window, opts.debug)
+  File "/usr/lib/python3/dist-packages/qtvcp/qt_makepins.py", line 97, in __init__
+    window[pName].handler_instance.initialized__()
+AttributeError: 'MainPage' object has no attribute 'handler_instance'
+
+
