@@ -13,4 +13,4 @@
 #net spindle-out-volts => qtdragon.spindle-volts
 net probe-in	=>	qtdragon.led-probe
 
-
+net limited          qtdragon.led-limits-tripped <= motion.eoffset-limited
