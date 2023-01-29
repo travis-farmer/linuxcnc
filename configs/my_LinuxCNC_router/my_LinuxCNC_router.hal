@@ -55,9 +55,9 @@ net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
 #net spindle-commok <= mb2hal...
 #net spindle-ec <= mb2hal...
-setp hm2_7i80.0.gpio.011.invert_output true
-setp hm2_7i80.0.gpio.011.is_output true
-net activate-spind-fan hm2_7i80.0.gpio.011.out      <=  hal2mbvfd.0.SpindFan
+setp hm2_7i80.0.gpio.030.invert_output true
+setp hm2_7i80.0.gpio.030.is_output true
+net activate-spind-fan hm2_7i80.0.gpio.030.out      <=  hal2mbvfd.0.SpindFan
 
 #########################
 # --- MB2HAL/MONITOR ---#
@@ -414,9 +414,9 @@ net probe-in     =>  motion.probe-input
 net in-position               <=  motion.in-position
 
 
-setp hm2_7i80.0.gpio.012.invert_output true
-setp hm2_7i80.0.gpio.012.is_output true
-net machine-is-enabled hm2_7i80.0.gpio.012.out      <=  motion.motion-enabled
+setp hm2_7i80.0.gpio.031.invert_output true
+setp hm2_7i80.0.gpio.031.is_output true
+net machine-is-enabled hm2_7i80.0.gpio.031.out      <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 
