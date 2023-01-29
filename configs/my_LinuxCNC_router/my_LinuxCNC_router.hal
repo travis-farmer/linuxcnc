@@ -62,10 +62,16 @@ net activate-spind-fan hm2_7i80.0.gpio.030.out      <=  hal2mbvfd.0.SpindFan
 #########################
 # --- MB2HAL/MONITOR ---#
 #########################
+loadrt message names=airpressure,powerfail messages="Air Pressure is LOW,Power FAILURE"
+addf airpressure servo-thread
+addf powerfail servo-thread
+
 loadusr -W bb_charge_pump
 net estop-net halui.estop.is-activated => bb-charge-pump.enable
 net pump-zero bb-charge-pump.pump.0 => mb2hal.monWriteCoil.02.bit
 
+net no-air mb2hal.monReadCoil.01.bit airpressure.trigger
+net no-power mb2hal.monReadCoil.02.bit powerfail.trigger
 
 ###################
 # --- spindle --- #
