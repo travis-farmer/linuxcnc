@@ -1,7 +1,5 @@
-2023-01-29 09:09:22,824 - QTvcp.QTVCP.QT_ISTAT - WARNING - Invalid message configuration (missing icon) in INI File [DISPLAY] sectioN
-2023-01-29 09:09:29,352 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
+2023-01-30 11:01:14,369 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
    Qtvcp recommends to allow use of it's own component by not loading the original. 
    Qtvcp Integrated toolchange dialog will not show until then
-2023-01-29 09:09:29,683 - QTvcp.QTVCP.WIDGETS.WIDGET_BASECLASS - WARNING - No objectName for HAL pin: <qtvcp.widgets.dialog_widget.LcncDialog object at 0x7f78c382d940>
-2023-01-29 09:09:31,465 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
-2023-01-29 09:09:31,477 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
+2023-01-30 11:01:15,150 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
+2023-01-30 11:01:15,162 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
