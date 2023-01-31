@@ -5,16 +5,15 @@ placeFrames 0.29941860465116277
 set ::ratio 0.29941860465116277
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+hm2_7i80.0.encoder.00.velocity
-    pin+hm2_7i80.0.encoder.00.velocity-rpm
-    pin+hm2_7i80.0.encoder.00.input-b
-    pin+hm2_7i80.0.encoder.00.input-a
     pin+hm2_7i80.0.led.CR01
     pin+hm2_7i80.0.led.CR02
     pin+hm2_7i80.0.led.CR03
     pin+hm2_7i80.0.led.CR04
+    sig+spindle-is-hung
+    sig+spindle-is-unhung
+    sig+spindle-unlock
 }
-set ::workmode showhal
+set ::workmode watchhal
 set ::watchInterval 100
 set ::col1_width 100
 set ::ffmts 

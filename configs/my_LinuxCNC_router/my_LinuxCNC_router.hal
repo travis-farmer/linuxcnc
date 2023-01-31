@@ -109,9 +109,9 @@ net spindle-brake              <=  spindle.0.brake
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
 net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in
 #M66 P1 L3 Q5 - wait for hung/locked
-net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.045.in
+net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.045.in_not
 #M66 P2 L3 Q5 - wait for unhung/unlocked
-net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in
+net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in_not
 
 
 # --- Spindle ATC Manual Button ---
