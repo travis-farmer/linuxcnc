@@ -152,11 +152,11 @@ net z-enable  =>     hm2_7i80.0.gpio.062.out
 
 
 # --- ESTOP-EXT ---
-net estop-ext     <=  hm2_7i80.0.gpio.024.in
+net estop-ext     <=  hm2_7i80.0.gpio.024.in_not
 
 # --- PROBE-IN ---
 
-net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.028.in_not
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.028.in
 net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
 net probe-in     <=  or2.0.out
 
