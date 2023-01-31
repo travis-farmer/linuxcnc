@@ -1,9 +1,14 @@
---- QtVCP Screen Started on: Tue, Jan 31 2023 09:43:57 AM ---
-Tue31 09:43: File Manager error - No such path: /media/travis
-Tue31 09:43: Machine OFF
-Tue31 09:43: Hard limits tripped
-Tue31 09:43: Tool 0: No Tool
-Tue31 09:44: Machine ON
-Tue31 09:45: Loaded file /home/travis/linuxcnc/1001.ngc
-Tue31 09:45: Tool 0: 
-Tue31 09:49: Machine OFF
+--- QtVCP Screen Started on: Tue, Jan 31 2023 02:23:41 PM ---
+Tue31 14:23: File Manager error - No such path: /media/travis
+Tue31 14:23: Machine OFF
+Tue31 14:23: Hard limits tripped
+Tue31 14:23: Tool 0: No Tool
+Tue31 14:23: Machine ON
+Tue31 14:23: Loaded file /home/travis/linuxcnc/1001.ngc
+Tue31 14:23: Tool 0:  
+Tue31 14:24: Tool 1:  
+Tue31 14:25: Tool 0:  
+Tue31 14:41: Linear move on line 1 would exceed Y's positive limit
+Tue31 14:41: Linear move on line 1 would exceed joint 1's positive limit
+Tue31 14:41: invalid params in linear command
+Tue31 14:43: Machine OFF

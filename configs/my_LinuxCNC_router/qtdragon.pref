@@ -16,6 +16,7 @@ RunFromLineDialog_sound_type = READY
 [DIALOG_GEOMETRY]
 ToolChangeDialog-geometry = 750 435 99 29
 LncMessage-geometry = 910 525 280 118
+CalculatorDialog-geometry = 910 525 472 376
 
 [BOOK_KEEPING]
 last_loaded_directory = /home/travis/linuxcnc
