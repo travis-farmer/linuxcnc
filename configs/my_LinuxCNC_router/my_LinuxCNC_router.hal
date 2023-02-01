@@ -59,23 +59,23 @@ setp hm2_7i80.0.gpio.030.invert_output true
 setp hm2_7i80.0.gpio.030.is_output true
 net activate-spind-fan hm2_7i80.0.gpio.030.out      <=  hal2mbvfd.0.SpindFan
 
-#########################
-# --- MB2HAL/MONITOR ---#
-#########################
+#############################
+# --- RACK TOOL CHANGER --- #
+#############################
 loadusr -W bb_charge_pump
 net estop-net halui.estop.is-activated => bb-charge-pump.enable
-net pump-zero bb-charge-pump.pump.0 => mb2hal.monWriteCoil.02.bit
+net pump-zero bb-charge-pump.pump.0 => mb2hal.tcWriteCoil.02.bit
 
-net tool-pocket-a mb2hal.monReadPockets.00.bit => motion.digital-in-10
-net tool-pocket-b mb2hal.monReadPockets.01.bit => motion.digital-in-11
-net tool-pocket-b mb2hal.monReadPockets.02.bit => motion.digital-in-12
-net tool-pocket-b mb2hal.monReadPockets.03.bit => motion.digital-in-13
-net tool-pocket-b mb2hal.monReadPockets.04.bit => motion.digital-in-14
-net tool-pocket-b mb2hal.monReadPockets.05.bit => motion.digital-in-15
-net tool-pocket-b mb2hal.monReadPockets.06.bit => motion.digital-in-16
-net tool-pocket-b mb2hal.monReadPockets.07.bit => motion.digital-in-17
-net tool-pocket-b mb2hal.monReadPockets.08.bit => motion.digital-in-18
-net tool-pocket-b mb2hal.monReadPockets.09.bit => motion.digital-in-19
+net tool-pocket-a mb2hal.tcReadPockets.00.bit => motion.digital-in-10
+net tool-pocket-b mb2hal.tcReadPockets.01.bit => motion.digital-in-11
+net tool-pocket-b mb2hal.tcReadPockets.02.bit => motion.digital-in-12
+net tool-pocket-b mb2hal.tcReadPockets.03.bit => motion.digital-in-13
+net tool-pocket-b mb2hal.tcReadPockets.04.bit => motion.digital-in-14
+net tool-pocket-b mb2hal.tcReadPockets.05.bit => motion.digital-in-15
+net tool-pocket-b mb2hal.tcReadPockets.06.bit => motion.digital-in-16
+net tool-pocket-b mb2hal.tcReadPockets.07.bit => motion.digital-in-17
+net tool-pocket-b mb2hal.tcReadPockets.08.bit => motion.digital-in-18
+net tool-pocket-b mb2hal.tcReadPockets.09.bit => motion.digital-in-19
 
 ###################
 # --- spindle --- #
@@ -87,22 +87,7 @@ net tool-pocket-b mb2hal.monReadPockets.09.bit => motion.digital-in-19
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
-#loadrt vfd2rps
-#addf vfd2rps.0 servo-thread
-#setp vfd2rps.0.offsetValue 3660.00
-#setp vfd3rps.0.scaleValue 73.775
-# encoder 00 is on pin 007
-#net spind-calc-vel vfd2rps.0.in <= hm2_7i80.0.encoder.00.velocity
-#net calc-rps vfd2rps.0.out => spindle.0.speed-in
-
 # --- Spindle signals ---
-
-#net spindle-vel-cmd-rpm-abs => hm2_7i80.0.pwmgen.00.value
-#net spindle-on spindle.0.on => hm2_7i80.0.pwmgen.00.enable # to 2 relays. VFD FWD relay, and Spindle Fan relay.
-
-
-
-
 net spindle-at-speed     near.0.out      =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
@@ -112,10 +97,10 @@ net spindle-brake              <=  spindle.0.brake
 # --- Spindle ATC input signals ---
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
 net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in_not
-#M66 P1 L3 Q5 - wait for hung/locked
+#M66 P1 L3 Q5 - wait for tool/no tool
 net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.045.in_not
-#M66 P2 L3 Q5 - wait for unhung/unlocked
-net spindle-is-unhung motion.digital-in-02 <= hm2_7i80.0.gpio.046.in_not
+#M66 P2 L3 Q5 - wait for lock/unlocked
+net spindle-is-locked motion.digital-in-02 <= hm2_7i80.0.gpio.046.in_not
 
 
 # --- Spindle ATC Manual Button ---
