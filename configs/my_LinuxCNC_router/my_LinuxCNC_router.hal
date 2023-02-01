@@ -4,9 +4,9 @@
 # overwritten when you run PNCconf again
 
 loadrt [KINS]KINEMATICS
-loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=10
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=24
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=0 num_stepgens=4"
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=0 num_stepgens=4 sserial_port_0=00000000"
 #setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
 #setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 #setp    hm2_7i80.0.encoder.00.counter-mode True
@@ -62,16 +62,20 @@ net activate-spind-fan hm2_7i80.0.gpio.030.out      <=  hal2mbvfd.0.SpindFan
 #########################
 # --- MB2HAL/MONITOR ---#
 #########################
-loadrt message names=airpressure,powerfail messages="Air Pressure is LOW,Power FAILURE"
-addf airpressure servo-thread
-addf powerfail servo-thread
-
 loadusr -W bb_charge_pump
 net estop-net halui.estop.is-activated => bb-charge-pump.enable
 net pump-zero bb-charge-pump.pump.0 => mb2hal.monWriteCoil.02.bit
 
-net no-air mb2hal.monReadCoil.01.bit airpressure.trigger
-net no-power mb2hal.monReadCoil.02.bit powerfail.trigger
+net tool-pocket-a mb2hal.monReadPockets.00.bit => motion.digital-in-10
+net tool-pocket-b mb2hal.monReadPockets.01.bit => motion.digital-in-11
+net tool-pocket-b mb2hal.monReadPockets.02.bit => motion.digital-in-12
+net tool-pocket-b mb2hal.monReadPockets.03.bit => motion.digital-in-13
+net tool-pocket-b mb2hal.monReadPockets.04.bit => motion.digital-in-14
+net tool-pocket-b mb2hal.monReadPockets.05.bit => motion.digital-in-15
+net tool-pocket-b mb2hal.monReadPockets.06.bit => motion.digital-in-16
+net tool-pocket-b mb2hal.monReadPockets.07.bit => motion.digital-in-17
+net tool-pocket-b mb2hal.monReadPockets.08.bit => motion.digital-in-18
+net tool-pocket-b mb2hal.monReadPockets.09.bit => motion.digital-in-19
 
 ###################
 # --- spindle --- #
@@ -107,7 +111,7 @@ net spindle-brake              <=  spindle.0.brake
 
 # --- Spindle ATC input signals ---
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
-net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in
+net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in_not
 #M66 P1 L3 Q5 - wait for hung/locked
 net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.045.in_not
 #M66 P2 L3 Q5 - wait for unhung/unlocked
