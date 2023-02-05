@@ -68,14 +68,14 @@ net activate-spind-fan hm2_7i80.0.gpio.030.out      <=  hal2mbvfd.0.SpindFan
 
 #net tool-pocket-a mb2hal.tcReadPockets.00.bit => motion.digital-in-10
 #net tool-pocket-b mb2hal.tcReadPockets.01.bit => motion.digital-in-11
-#net tool-pocket-b mb2hal.tcReadPockets.02.bit => motion.digital-in-12
-#net tool-pocket-b mb2hal.tcReadPockets.03.bit => motion.digital-in-13
-#net tool-pocket-b mb2hal.tcReadPockets.04.bit => motion.digital-in-14
-#net tool-pocket-b mb2hal.tcReadPockets.05.bit => motion.digital-in-15
-#net tool-pocket-b mb2hal.tcReadPockets.06.bit => motion.digital-in-16
-#net tool-pocket-b mb2hal.tcReadPockets.07.bit => motion.digital-in-17
-#net tool-pocket-b mb2hal.tcReadPockets.08.bit => motion.digital-in-18
-#net tool-pocket-b mb2hal.tcReadPockets.09.bit => motion.digital-in-19
+#net tool-pocket-c mb2hal.tcReadPockets.02.bit => motion.digital-in-12
+#net tool-pocket-d mb2hal.tcReadPockets.03.bit => motion.digital-in-13
+#net tool-pocket-e mb2hal.tcReadPockets.04.bit => motion.digital-in-14
+#net tool-pocket-f mb2hal.tcReadPockets.05.bit => motion.digital-in-15
+#net tool-pocket-g mb2hal.tcReadPockets.06.bit => motion.digital-in-16
+#net tool-pocket-h mb2hal.tcReadPockets.07.bit => motion.digital-in-17
+#net tool-pocket-i mb2hal.tcReadPockets.08.bit => motion.digital-in-18
+#net tool-pocket-j mb2hal.tcReadPockets.09.bit => motion.digital-in-19
 
 ###################
 # --- spindle --- #
