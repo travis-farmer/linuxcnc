@@ -21,10 +21,10 @@ o500 else
 		#<pocket_approach_y> = [#<_ini[TOOL_CHANGE]POCKET_Y> + #<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>]
 		#<pocket_safe_z> = [#<_ini[TOOL_CHANGE]POCKET_Z> + #<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z>]
 
-		M66 P3 L0																(Check air pressure sensor, TJF)
-		o216 if [#5399 EQ 0]
-			(abort,No air pressure)
-		o216 endif
+		;M66 P3 L0																(Check air pressure sensor, TJF)
+		;o216 if [#5399 EQ 0]
+			;(abort,No air pressure)
+		;o216 endif
 
 		o211 if [#<_current_tool> NE 0]
 			;M66 P[#<_current_pocket> + 9] L0												(Check tool pocket sensor, TODO)
