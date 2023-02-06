@@ -6,12 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=24
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=0 num_pwmgens=0 num_stepgens=4 sserial_port_0=21000000"
-#setp    hm2_7i80.0.pwmgen.pwm_frequency 2000
-#setp    hm2_7i80.0.watchdog.timeout_ns 5000000
-#setp    hm2_7i80.0.encoder.00.counter-mode True
-
-
+loadrt hm2_eth board_ip="10.10.10.10" config=" num_stepgens=3 sserial_port_0=21000000"
 
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
@@ -55,9 +50,9 @@ net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
 #net spindle-commok <= mb2hal...
 #net spindle-ec <= mb2hal...
-setp hm2_7i80.0.gpio.030.invert_output true
-setp hm2_7i80.0.gpio.030.is_output true
-net activate-spind-fan hm2_7i80.0.gpio.030.out      <=  hal2mbvfd.0.SpindFan
+setp hm2_7i80.0.gpio.005.invert_output true
+setp hm2_7i80.0.gpio.005.is_output true
+net activate-spind-fan hm2_7i80.0.gpio.005.out      <=  hal2mbvfd.0.SpindFan
 
 #############################
 # --- RACK TOOL CHANGER --- #
@@ -80,9 +75,6 @@ net activate-spind-fan hm2_7i80.0.gpio.030.out      <=  hal2mbvfd.0.SpindFan
 ###################
 # --- spindle --- #
 ###################
-#setp   hm2_7i80.0.pwmgen.00.output-type 1
-#setp   hm2_7i80.0.pwmgen.00.scale  24000
-
 # --- Spindle speed control/readout ---
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
@@ -96,76 +88,68 @@ net spindle-brake              <=  spindle.0.brake
 
 # --- Spindle ATC input signals ---
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
-net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.034.in_not
+net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.007.in_not
 #M66 P1 L3 Q5 - wait for tool/no tool
-net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.045.in_not
+net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.011.in_not
 #M66 P2 L3 Q5 - wait for lock/unlocked
-net spindle-is-locked motion.digital-in-02 <= hm2_7i80.0.gpio.046.in_not
+net spindle-is-locked motion.digital-in-02 <= hm2_7i80.0.gpio.010.in_not
 
 
 # --- Spindle ATC Manual Button ---
-net spindle-manual-button or2.1.in1 <= hm2_7i80.0.gpio.039.in_not
+net spindle-manual-button or2.1.in1 <= hm2_7i80.0.gpio.008.in_not
 
 # --- Spindle ATC output signals ---
 #M64 P0 - turn on digital output immediately.
 #M65 P0 - turn off digital output immediately.
 net spindle-unlock motion.digital-out-00 => or2.1.in0
-setp hm2_7i80.0.gpio.044.invert_output true # air ATC lock relay is active LOW
-setp hm2_7i80.0.gpio.044.is_output true
-net atc-control or2.1.out => hm2_7i80.0.gpio.044.out # output the ATC tool lock/unlock (signal 0 = locked)
+setp hm2_7i80.0.gpio.009.invert_output true # air ATC lock relay is active LOW
+setp hm2_7i80.0.gpio.009.is_output true
+net atc-control or2.1.out => hm2_7i80.0.gpio.009.out # output the ATC tool lock/unlock (signal 0 = locked)
 
 ############################
 # --- external signals --- #
 ############################
 
 # --- MACHINE-IS-ENABLED ---
-setp hm2_7i80.0.gpio.027.invert_output true
-setp hm2_7i80.0.gpio.027.is_output true
-net machine-is-enabled =>     hm2_7i80.0.gpio.027.out
+setp hm2_7i80.0.gpio.001.invert_output true
+setp hm2_7i80.0.gpio.001.is_output true
+net machine-is-enabled =>     hm2_7i80.0.gpio.001.out
 
 # --- X-ENABLE ---
-setp hm2_7i80.0.gpio.050.invert_output true
-setp hm2_7i80.0.gpio.050.is_output true
-net x-enable  =>     hm2_7i80.0.gpio.050.out
+setp hm2_7i80.0.gpio.024.invert_output true
+setp hm2_7i80.0.gpio.024.is_output true
+net x-enable  =>     hm2_7i80.0.gpio.024.out
 
 # --- Y-ENABLE ---
-setp hm2_7i80.0.gpio.056.invert_output true
-setp hm2_7i80.0.gpio.056.is_output true
-net y-enable  =>     hm2_7i80.0.gpio.056.out
+setp hm2_7i80.0.gpio.025.invert_output true
+setp hm2_7i80.0.gpio.025.is_output true
+net y-enable  =>     hm2_7i80.0.gpio.025.out
 
 # --- Z-ENABLE ---
-setp hm2_7i80.0.gpio.062.invert_output true
-setp hm2_7i80.0.gpio.062.is_output true
-net z-enable  =>     hm2_7i80.0.gpio.062.out
+setp hm2_7i80.0.gpio.026.invert_output true
+setp hm2_7i80.0.gpio.026.is_output true
+net z-enable  =>     hm2_7i80.0.gpio.026.out
 
 
 
 # --- ESTOP-EXT ---
-net estop-ext     <=  hm2_7i80.0.gpio.024.in_not
+net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
 
 # --- PROBE-IN ---
 
-net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.028.in
-net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.035.in
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.002.in
+net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.003.in
 net probe-in     <=  or2.0.out
 
 
 # --- HOME-X ---
-net home-x     <=  hm2_7i80.0.gpio.051.in
-##net x-neg-limit      <=  hm2_7i80.0.gpio.052.in
-#net x-pos-limit      <=  hm2_7i80.0.gpio.053.in
+net home-x     <=  hm2_7i80.0.gpio.028.in
 
 # --- HOME-Y ---
-net home-y     <=  hm2_7i80.0.gpio.058.in_not
-#net y-neg-limit      <=  hm2_7i80.o.gpio.058.in
-#net y-pos-limit      <=  hm2_7i80.o.gpio.059.in
-
+net home-y     <=  hm2_7i80.0.gpio.029.in_not
 
 # --- HOME-Z ---
-net home-z     <=  hm2_7i80.0.gpio.064.in_not
-#net z-neg-limit      <=  hm2_7i80.0.gpio.064.in
-#net z-pos-limit      <=  hm2_7i80.0.gpio.065.in
-
+net home-z     <=  hm2_7i80.0.gpio.030.in_not
 
 ##########################
 # --- AXIS X JOINT 0 --- #
@@ -213,13 +197,11 @@ net x-output     <= hm2_7i80.0.stepgen.00.velocity-cmd
 net x-pos-fb     <= hm2_7i80.0.stepgen.00.position-fb
 net x-pos-fb     => joint.0.motor-pos-fb
 net x-enable     <= joint.0.amp-enable-out
-net x-enable     => hm2_7i80.0.stepgen.00.enable
+#net x-enable     => hm2_7i80.0.stepgen.00.enable
 
 # ---setup home / limit switch signals---
 
 net home-x     =>  joint.0.home-sw-in #joint.0.neg-lim-sw-in
-#net x-neg-limit     =>  joint.0.neg-lim-sw-in
-#net x-pos-limit     =>  joint.0.pos-lim-sw-in
 
 ##########################
 # --- AXIS Y JOINT 1 --- #
@@ -266,14 +248,11 @@ net y-output     <= hm2_7i80.0.stepgen.01.velocity-cmd
 net y-pos-fb     <= hm2_7i80.0.stepgen.01.position-fb
 net y-pos-fb     => joint.1.motor-pos-fb
 net y-enable     <= joint.1.amp-enable-out
-net y-enable     => hm2_7i80.0.stepgen.01.enable
+#net y-enable     => hm2_7i80.0.stepgen.01.enable
 
 # ---setup home / limit switch signals---
 
 net home-y     =>  joint.1.home-sw-in #joint.1.neg-lim-sw-in
-
-#net y-neg-limit     =>  joint.1.neg-lim-sw-in
-#net y-pos-limit     =>  joint.1.pos-lim-sw-in
 
 ##########################
 # --- AXIS Z JOINT 2 --- #
@@ -320,14 +299,12 @@ net z-output     <= hm2_7i80.0.stepgen.02.velocity-cmd
 net z-pos-fb     <= hm2_7i80.0.stepgen.02.position-fb
 net z-pos-fb     => joint.2.motor-pos-fb
 net z-enable     <= joint.2.amp-enable-out
-net z-enable     => hm2_7i80.0.stepgen.02.enable
+#net z-enable     => hm2_7i80.0.stepgen.02.enable
 
 
 # ---setup home / limit switch signals ---
 
 net home-z     =>  joint.2.home-sw-in #joint.2.neg-lim-sw-in
-#net z-neg-limit     =>  joint.2.neg-lim-sw-in
-#net z-pos-limit     =>  joint.2.pos-lim-sw-in
 
 #******************************
 # connect miscellaneous signals
@@ -363,38 +340,15 @@ net MDI-mode              halui.mode.is-mdi
 # --- Coolant/Vacuum --- #
 ##########################
 
-# --- COOLANT-FLOOD ---
-setp hm2_7i80.0.gpio.025.invert_output false
-setp hm2_7i80.0.gpio.025.is_output true
-net coolant-flood-ctrl iocontrol.0.coolant-flood => hm2_7i80.0.gpio.025.out
-
-# --- COOLANT-MIST ---
-#setp hm2_7i80.0.gpio.026.invert_output false
-#setp hm2_7i80.0.gpio.026.is_output true
-#net coolant-mist-ctrl iocontrol.0.coolant-mist => hm2_7i80.0.gpio.026.out
-
 # --- Vacuum ---
-setp hm2_7i80.0.gpio.029.invert_output false
-setp hm2_7i80.0.gpio.029.is_output true
+setp hm2_7i80.0.gpio.004.invert_output false
+setp hm2_7i80.0.gpio.004.is_output true
 loadrt wcomp count=1
 addf wcomp.0 servo-thread
 net spindle-vel-cmd-rpm-abs => wcomp.0.in
 setp wcomp.0.min 500
 setp wcomp.0.max 24000
-net spind-rpm-vac-control wcomp.0.out => hm2_7i80.0.gpio.029.out
-
-#loadusr -W vacuum_control
-#setp  vacuum-control.vac-arm-in 1
-#setp vacuum-control.vac-trig-in 0
-#net spindle-vel-cmd-rpm-abs  =>  vacuum-control.spind-rpm-in
-#net vc-cmi  vacuum-control.cool-mist-in    <=  iocontrol.0.coolant-mist
-#net vc-cfi  vacuum-control.cool-flood-in     <=  iocontrol.0.coolant-flood
-#net vc-vo   vacuum-control.vac-out          =>  hm2_7i80.0.gpio.029.out
-#net vc-cmo  vacuum-control.cool-mist-out    =>  hm2_7i80.0.gpio.026.out
-#net vc-cfo  vacuum-control.cool-flood-out   =>  hm2_7i80.0.gpio.025.out
-
-
-
+net spind-rpm-vac-control wcomp.0.out => hm2_7i80.0.gpio.004.out
 
 #########################
 # --- Other Signals --- #
@@ -409,9 +363,9 @@ net probe-in     =>  motion.probe-input
 net in-position               <=  motion.in-position
 
 
-setp hm2_7i80.0.gpio.031.invert_output true
-setp hm2_7i80.0.gpio.031.is_output true
-net machine-is-enabled hm2_7i80.0.gpio.031.out      <=  motion.motion-enabled
+setp hm2_7i80.0.gpio.001.invert_output true
+setp hm2_7i80.0.gpio.001.is_output true
+net machine-is-enabled hm2_7i80.0.gpio.001.out      <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 
