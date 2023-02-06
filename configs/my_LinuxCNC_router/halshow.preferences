@@ -10,7 +10,6 @@ set ::watchlist {
     pin+hm2_7i80.0.led.CR03
     pin+hm2_7i80.0.led.CR04
     sig+spindle-is-hung
-    sig+spindle-is-unhung
     sig+spindle-unlock
 }
 set ::workmode watchhal
