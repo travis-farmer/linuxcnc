@@ -116,19 +116,19 @@ setp hm2_7i80.0.gpio.001.is_output true
 net machine-is-enabled =>     hm2_7i80.0.gpio.001.out
 
 # --- X-ENABLE ---
-setp hm2_7i80.0.gpio.024.invert_output true
-setp hm2_7i80.0.gpio.024.is_output true
-net x-enable  =>     hm2_7i80.0.gpio.024.out
+setp hm2_7i80.0.gpio.012.invert_output true
+setp hm2_7i80.0.gpio.012.is_output true
+net x-enable  =>     hm2_7i80.0.gpio.012.out
 
 # --- Y-ENABLE ---
-setp hm2_7i80.0.gpio.025.invert_output true
-setp hm2_7i80.0.gpio.025.is_output true
-net y-enable  =>     hm2_7i80.0.gpio.025.out
+setp hm2_7i80.0.gpio.013.invert_output true
+setp hm2_7i80.0.gpio.013.is_output true
+net y-enable  =>     hm2_7i80.0.gpio.013.out
 
 # --- Z-ENABLE ---
-setp hm2_7i80.0.gpio.026.invert_output true
-setp hm2_7i80.0.gpio.026.is_output true
-net z-enable  =>     hm2_7i80.0.gpio.026.out
+setp hm2_7i80.0.gpio.014.invert_output true
+setp hm2_7i80.0.gpio.014.is_output true
+net z-enable  =>     hm2_7i80.0.gpio.014.out
 
 
 
@@ -143,13 +143,13 @@ net probe-in     <=  or2.0.out
 
 
 # --- HOME-X ---
-net home-x     <=  hm2_7i80.0.gpio.028.in
+net home-x     <=  hm2_7i80.0.gpio.015.in
 
 # --- HOME-Y ---
-net home-y     <=  hm2_7i80.0.gpio.029.in_not
+net home-y     <=  hm2_7i80.0.gpio.016.in_not
 
 # --- HOME-Z ---
-net home-z     <=  hm2_7i80.0.gpio.030.in_not
+net home-z     <=  hm2_7i80.0.gpio.017.in_not
 
 ##########################
 # --- AXIS X JOINT 0 --- #
