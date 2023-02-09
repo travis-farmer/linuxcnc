@@ -113,24 +113,7 @@ net atc-control or2.1.out => hm2_7i80.0.gpio.009.out # output the ATC tool lock/
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.001.invert_output true
 setp hm2_7i80.0.gpio.001.is_output true
-net machine-is-enabled =>     hm2_7i80.0.gpio.001.out
-
-# --- X-ENABLE ---
-setp hm2_7i80.0.gpio.012.invert_output true
-setp hm2_7i80.0.gpio.012.is_output true
-net x-enable  =>     hm2_7i80.0.gpio.012.out
-
-# --- Y-ENABLE ---
-setp hm2_7i80.0.gpio.013.invert_output true
-setp hm2_7i80.0.gpio.013.is_output true
-net y-enable  =>     hm2_7i80.0.gpio.013.out
-
-# --- Z-ENABLE ---
-setp hm2_7i80.0.gpio.014.invert_output true
-setp hm2_7i80.0.gpio.014.is_output true
-net z-enable  =>     hm2_7i80.0.gpio.014.out
-
-
+net machine-is-enabled =>     hm2_7i80.0.gpio.001.out # join stepper enables to this pin
 
 # --- ESTOP-EXT ---
 net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
@@ -143,13 +126,13 @@ net probe-in     <=  or2.0.out
 
 
 # --- HOME-X ---
-net home-x     <=  hm2_7i80.0.gpio.015.in
+net home-x     <=  hm2_7i80.0.gpio.012.in
 
 # --- HOME-Y ---
-net home-y     <=  hm2_7i80.0.gpio.016.in_not
+net home-y     <=  hm2_7i80.0.gpio.013.in_not
 
 # --- HOME-Z ---
-net home-z     <=  hm2_7i80.0.gpio.017.in_not
+net home-z     <=  hm2_7i80.0.gpio.014.in_not
 
 ##########################
 # --- AXIS X JOINT 0 --- #
@@ -196,7 +179,7 @@ net x-vel-cmd    <= joint.0.vel-cmd
 net x-output     <= hm2_7i80.0.stepgen.00.velocity-cmd
 net x-pos-fb     <= hm2_7i80.0.stepgen.00.position-fb
 net x-pos-fb     => joint.0.motor-pos-fb
-net x-enable     <= joint.0.amp-enable-out
+#net x-enable     <= joint.0.amp-enable-out
 #net x-enable     => hm2_7i80.0.stepgen.00.enable
 
 # ---setup home / limit switch signals---
@@ -247,7 +230,7 @@ net y-vel-cmd    <= joint.1.vel-cmd
 net y-output     <= hm2_7i80.0.stepgen.01.velocity-cmd
 net y-pos-fb     <= hm2_7i80.0.stepgen.01.position-fb
 net y-pos-fb     => joint.1.motor-pos-fb
-net y-enable     <= joint.1.amp-enable-out
+#net y-enable     <= joint.1.amp-enable-out
 #net y-enable     => hm2_7i80.0.stepgen.01.enable
 
 # ---setup home / limit switch signals---
@@ -298,7 +281,7 @@ net z-vel-cmd    <= joint.2.vel-cmd
 net z-output     <= hm2_7i80.0.stepgen.02.velocity-cmd
 net z-pos-fb     <= hm2_7i80.0.stepgen.02.position-fb
 net z-pos-fb     => joint.2.motor-pos-fb
-net z-enable     <= joint.2.amp-enable-out
+#net z-enable     <= joint.2.amp-enable-out
 #net z-enable     => hm2_7i80.0.stepgen.02.enable
 
 
@@ -362,10 +345,6 @@ net probe-in     =>  motion.probe-input
 
 net in-position               <=  motion.in-position
 
-
-setp hm2_7i80.0.gpio.001.invert_output true
-setp hm2_7i80.0.gpio.001.is_output true
-net machine-is-enabled hm2_7i80.0.gpio.001.out      <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 
