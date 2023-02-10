@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=24
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_pwmgens=0 num_encoders=0 num_stepgens=3 sserial_port_0=21000000"
+loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=0 num_stepgens=3 sserial_port_0=12000000"
 
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
@@ -50,9 +50,9 @@ net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
 #net spindle-commok <= mb2hal...
 #net spindle-ec <= mb2hal...
-setp hm2_7i80.0.gpio.005.invert_output true
-setp hm2_7i80.0.gpio.005.is_output true
-net activate-spind-fan hm2_7i80.0.gpio.005.out      <=  hal2mbvfd.0.SpindFan
+setp hm2_7i80.0.gpio.006.invert_output true
+setp hm2_7i80.0.gpio.006.is_output true
+net activate-spind-fan hm2_7i80.0.gpio.006.out      <=  hal2mbvfd.0.SpindFan
 
 #############################
 # --- RACK TOOL CHANGER --- #
@@ -111,9 +111,9 @@ net atc-control or2.1.out => hm2_7i80.0.gpio.009.out # output the ATC tool lock/
 ############################
 
 # --- MACHINE-IS-ENABLED ---
-setp hm2_7i80.0.gpio.001.invert_output true
-setp hm2_7i80.0.gpio.001.is_output true
-net machine-is-enabled =>     hm2_7i80.0.gpio.001.out # join stepper enables to this pin
+setp hm2_7i80.0.gpio.005.invert_output true
+setp hm2_7i80.0.gpio.005.is_output true
+net machine-is-enabled =>     hm2_7i80.0.gpio.005.out # join stepper enables to this pin
 
 # --- ESTOP-EXT ---
 net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
@@ -180,7 +180,7 @@ net x-output     <= hm2_7i80.0.stepgen.00.velocity-cmd
 net x-pos-fb     <= hm2_7i80.0.stepgen.00.position-fb
 net x-pos-fb     => joint.0.motor-pos-fb
 net x-enable     <= joint.0.amp-enable-out
-#net x-enable     => hm2_7i80.0.stepgen.00.enable
+net x-enable     => hm2_7i80.0.stepgen.00.enable
 
 # ---setup home / limit switch signals---
 
@@ -231,7 +231,7 @@ net y-output     <= hm2_7i80.0.stepgen.01.velocity-cmd
 net y-pos-fb     <= hm2_7i80.0.stepgen.01.position-fb
 net y-pos-fb     => joint.1.motor-pos-fb
 net y-enable     <= joint.1.amp-enable-out
-#net y-enable     => hm2_7i80.0.stepgen.01.enable
+net y-enable     => hm2_7i80.0.stepgen.01.enable
 
 # ---setup home / limit switch signals---
 
@@ -282,7 +282,7 @@ net z-output     <= hm2_7i80.0.stepgen.02.velocity-cmd
 net z-pos-fb     <= hm2_7i80.0.stepgen.02.position-fb
 net z-pos-fb     => joint.2.motor-pos-fb
 net z-enable     <= joint.2.amp-enable-out
-#net z-enable     => hm2_7i80.0.stepgen.02.enable
+net z-enable     => hm2_7i80.0.stepgen.02.enable
 
 
 # ---setup home / limit switch signals ---
@@ -345,6 +345,9 @@ net probe-in     =>  motion.probe-input
 
 net in-position               <=  motion.in-position
 
+setp hm2_7i80.0.gpio.001.invert_output true
+setp hm2_7i80.0.gpio.001.is_output true
+net machine-is-enabled hm2_7i80.0.gpio.001.out      <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 

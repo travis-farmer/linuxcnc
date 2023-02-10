@@ -5,27 +5,9 @@ placeFrames 0.29941860465116277
 set ::ratio 0.29941860465116277
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+hm2_7i80.0.gpio.000.in_not
-    pin+hm2_7i80.0.7i70.0.1.input-00-not
-    pin+hm2_7i80.0.7i70.0.1.input-00
-    pin+hm2_7i80.0.7i70.0.1.analog0
-    pin+hm2_7i80.0.7i70.0.1.analog1
-    pin+hm2_7i80.0.7i70.0.1.analog2
-    pin+hm2_7i80.0.7i70.0.1.analog3
-    pin+hm2_7i80.0.7i70.0.1.analog4
-    pin+hm2_7i80.0.7i70.0.1.analog5
-    pin+hm2_7i80.0.7i73.0.0.display32
-    pin+hm2_7i80.0.7i73.0.0.analogin0
-    pin+hm2_7i80.0.7i73.0.0.analogin1
-    pin+hm2_7i80.0.7i73.0.0.analogin2
-    pin+hm2_7i80.0.7i73.0.0.analogin3
-    pin+hm2_7i80.0.7i73.0.0.keycode
-    pin+hm2_7i80.0.7i73.0.0.output-00
-    pin+hm2_7i80.0.7i73.0.0.output-01
-    pin+hm2_7i80.0.7i73.0.0.output-02
-    pin+hm2_7i80.0.7i73.0.0.output-03
-    pin+hm2_7i80.0.7i73.0.0.output-04
-    pin+hm2_7i80.0.7i73.0.0.output-05
+    sig+home-x
+    sig+home-y
+    sig+home-z
 }
 set ::workmode watchhal
 set ::watchInterval 100
