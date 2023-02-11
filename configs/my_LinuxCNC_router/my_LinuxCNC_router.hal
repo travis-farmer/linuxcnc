@@ -88,15 +88,15 @@ net spindle-brake              <=  spindle.0.brake
 
 # --- Spindle ATC input signals ---
 #M66 P3 L0 - return (#5399) air pressure status (>75psi)
-net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.007.in_not
+net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.gpio.007.in_not # TODO: fix to 7i70 TB2-7
 #M66 P1 L3 Q5 - wait for tool/no tool
-net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.011.in_not
+net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.gpio.011.in_not # TODO: fix to 7i70 TB2-5
 #M66 P2 L3 Q5 - wait for lock/unlocked
-net spindle-is-locked motion.digital-in-02 <= hm2_7i80.0.gpio.010.in_not
+net spindle-is-locked motion.digital-in-02 <= hm2_7i80.0.gpio.010.in_not # TODO: fix to 7i70 TB2-6
 
 
 # --- Spindle ATC Manual Button ---
-net spindle-manual-button or2.1.in1 <= hm2_7i80.0.gpio.008.in_not
+net spindle-manual-button or2.1.in1 <= hm2_7i80.0.gpio.008.in_not # TODO: fix to 7i70 TB2-4
 
 # --- Spindle ATC output signals ---
 #M64 P0 - turn on digital output immediately.
@@ -111,17 +111,20 @@ net atc-control or2.1.out => hm2_7i80.0.gpio.009.out # output the ATC tool lock/
 ############################
 
 # --- MACHINE-IS-ENABLED ---
-setp hm2_7i80.0.gpio.005.invert_output true
+setp hm2_7i80.0.gpio.001.invert_output true # stepper enable
+setp hm2_7i80.0.gpio.001.is_output true
+net machine-is-enabled =>     hm2_7i80.0.gpio.001.out
+setp hm2_7i80.0.gpio.005.invert_output true # VFD enable
 setp hm2_7i80.0.gpio.005.is_output true
-net machine-is-enabled =>     hm2_7i80.0.gpio.005.out # join stepper enables to this pin
+net machine-is-enabled =>     hm2_7i80.0.gpio.005.out
 
 # --- ESTOP-EXT ---
-net estop-ext     <=  hm2_7i80.0.gpio.000.in_not
+#net estop-ext     <=  hm2_7i80.0.gpio.000.in_not # TODO: fix to 7i70 TB2-1
 
 # --- PROBE-IN ---
 
-net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.002.in
-net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.003.in
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.gpio.002.in # TODO: fix to 7i70 TB2-2
+net probe-sensor	or2.0.in1     <=  hm2_7i80.0.gpio.003.in # TODO: fix to 7i70 TB2-3
 net probe-in     <=  or2.0.out
 
 
@@ -345,9 +348,9 @@ net probe-in     =>  motion.probe-input
 
 net in-position               <=  motion.in-position
 
-setp hm2_7i80.0.gpio.001.invert_output true
-setp hm2_7i80.0.gpio.001.is_output true
-net machine-is-enabled hm2_7i80.0.gpio.001.out      <=  motion.motion-enabled
+setp hm2_7i80.0.gpio.000.invert_output true
+setp hm2_7i80.0.gpio.000.is_output true
+net machine-is-enabled hm2_7i80.0.gpio.0.out      <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 
