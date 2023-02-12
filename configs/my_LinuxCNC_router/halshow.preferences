@@ -5,43 +5,10 @@ placeFrames 0.29941860465116277
 set ::ratio 0.29941860465116277
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+hm2_7i80.0.7i70.0.1.input-47
-    pin+hm2_7i80.0.7i70.0.1.input-46
-    pin+hm2_7i80.0.7i70.0.1.input-45
-    pin+hm2_7i80.0.7i70.0.1.input-44
-    pin+hm2_7i80.0.7i70.0.1.input-43
-    pin+hm2_7i80.0.7i70.0.1.input-42
-    pin+hm2_7i80.0.7i70.0.1.input-41
-    pin+hm2_7i80.0.7i70.0.1.input-40
-    pin+hm2_7i80.0.7i70.0.1.input-39
-    pin+hm2_7i80.0.7i70.0.1.input-38
-    pin+hm2_7i80.0.7i70.0.1.input-37
-    pin+hm2_7i80.0.7i70.0.1.input-36
-    pin+hm2_7i80.0.7i70.0.1.input-35
-    pin+hm2_7i80.0.7i70.0.1.input-34
-    pin+hm2_7i80.0.7i70.0.1.input-33
-    pin+hm2_7i80.0.7i70.0.1.input-32
-    pin+hm2_7i80.0.7i70.0.1.input-31
-    pin+hm2_7i80.0.7i70.0.1.input-30
+    pin+hm2_7i80.0.7i70.0.1.fieldvoltage
     pin+hm2_7i80.0.7i70.0.1.input-29
-    pin+hm2_7i80.0.7i70.0.1.input-28
-    pin+hm2_7i80.0.7i70.0.1.input-27
-    pin+hm2_7i80.0.7i70.0.1.input-26
-    pin+hm2_7i80.0.7i70.0.1.input-25
-    pin+hm2_7i80.0.7i70.0.1.input-24
-    pin+hm2_7i80.0.7i70.0.1.input-23
-    pin+hm2_7i80.0.7i70.0.1.input-22
-    pin+hm2_7i80.0.7i70.0.1.input-21
-    pin+hm2_7i80.0.7i70.0.1.input-20
-    pin+hm2_7i80.0.7i70.0.1.input-19
-    pin+hm2_7i80.0.7i70.0.1.input-18
-    pin+hm2_7i80.0.7i70.0.1.input-17
-    pin+hm2_7i80.0.7i70.0.1.input-16
-    pin+hm2_7i80.0.7i70.0.1.input-15
-    pin+hm2_7i80.0.7i70.0.1.input-14
-    pin+hm2_7i80.0.7i70.0.1.input-13
 }
-set ::workmode showhal
+set ::workmode watchhal
 set ::watchInterval 100
 set ::col1_width 100
 set ::ffmts 
