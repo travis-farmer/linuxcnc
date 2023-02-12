@@ -1,5 +1,14 @@
---- QtVCP Screen Started on: Sun, Feb 12 2023 10:38:54 AM ---
-Sun12 10:38: File Manager error - No such path: /media/travis
-Sun12 10:38: Machine OFF
-Sun12 10:38: Hard limits tripped
-Sun12 10:38: Tool 0:  
+--- QtVCP Screen Started on: Sun, Feb 12 2023 01:17:32 PM ---
+Sun12 13:17: File Manager error - No such path: /media/travis
+Sun12 13:17: Machine OFF
+Sun12 13:17: Hard limits tripped
+Sun12 13:17: Tool 0:  
+Sun12 13:17: Machine ON
+Sun12 13:17: Loaded file /home/travis/linuxcnc/1001.ngc
+Sun12 13:17: Tool 6:  
+Sun12 13:18: Tool 0:  
+Sun12 13:18: Tool 1:  
+Sun12 13:19: Tool 0:  
+Sun12 13:21: Tool 1:  
+Sun12 13:22: Tool 0:  
+Sun12 13:28: Machine OFF
