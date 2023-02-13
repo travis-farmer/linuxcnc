@@ -7,6 +7,7 @@ set ::old_w_leftf 206
 set ::watchlist {
     pin+hm2_7i80.0.7i70.0.1.fieldvoltage
     pin+hm2_7i80.0.7i70.0.1.input-29
+    param+hm2_7i80.0.7i73.0.0.contrast
 }
 set ::workmode watchhal
 set ::watchInterval 100
