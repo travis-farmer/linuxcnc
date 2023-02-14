@@ -33,10 +33,12 @@ addf or2.2 servo-thread
 #########################
 # --- CONTROL PANEL --- #
 #########################
-loadrt lcd fmt_strings="Field Volts %4.4f\nAnd So on|Second Page, Next Inst"
+loadrt lcd fmt_strings="Uair %i Cair %i\nRPM %i\nATC U %b\FF  ATC T %b\FF "
 addf lcd servo-thread
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
-net lcd-field-volts lcd.00.page.00.arg.00 <= hm2_7i80.0.7i70.0.1.fieldvoltage
+#net lcd-atc-air lcd.00.page.00.arg.00 <= hm2_7i80.0.7i70.0.1.fieldvoltage
+
+net vfd-read-rpm => lcd.00.page.00.arg.02
 
 
 ############################
