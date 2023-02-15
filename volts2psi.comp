@@ -1,0 +1,17 @@
+component volts2psi "convert voltage values to PSI, from 0-5v 0-150psi sensor";
+
+pin in float volts in "voltage value, in";
+pin out float PSIout "PSI value, out";
+
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+
+float map(float x, float in_min, float in_max, float out_min, float out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+FUNCTION(_) {
+    PSIout = map(volts, 0.50, 4.5, 0.00, 150.00);
+}

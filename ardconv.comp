@@ -1,0 +1,22 @@
+component ardconv "convert Arduino MB analog values to real values";
+
+pin in float ArdADCin "raw ADC value from Arduino, in";
+pin out float VoltsOut "converted volts, out";
+pin in float VDhigh "voltage divider, upper resistor";
+pin in float VDlow "voltage divider, lower resistor";
+
+
+
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+
+
+FUNCTION(_) {
+    if (VDhigh == 0.00 || VDlow == 0.00) {
+        VoltsOut = ((5.00/1024.00)*ArdADCin);
+    } else {
+        VoltsOut = ((((5.00/1024.00)*(float)ArdADCin)*VDlow)/(VDhigh+VDlow));
+    }
+}
