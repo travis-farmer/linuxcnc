@@ -1,6 +1,6 @@
 component volts2psi "convert voltage values to PSI, from 0-5v 0-150psi sensor";
 
-pin in float volts in "voltage value, in";
+pin in float volts "voltage value, in";
 pin out float PSIout "PSI value, out";
 pin out bit safePSI "PSI is within safe setting";
 pin in float setSafe "the PSI level that is safe";

@@ -1,5 +1,5 @@
-2023-02-15 14:44:06,816 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
+2023-02-16 10:33:57,893 - QTvcp.QTVCP.WIDGETS.DIALOG_WIDGET - WARNING - Detected hal_manualtoolchange component already loaded
    Qtvcp recommends to allow use of it's own component by not loading the original. 
    Qtvcp Integrated toolchange dialog will not show until then
-2023-02-15 14:44:09,377 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
-2023-02-15 14:44:09,390 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
+2023-02-16 10:33:58,694 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui
+2023-02-16 10:33:58,706 - QTvcp.QTVCP.LIB.QT_NGCGUI.NGCGUI - DEBUG - UI Filename: /usr/lib/python3/dist-packages/qtvcp/lib/qt_ngcgui/ngcgui.ui Didn't find a path NGCGUI files
