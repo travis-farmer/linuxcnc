@@ -102,7 +102,7 @@ o500 else
 	o210 endif
 
  o220 if [#<_selected_tool> NE 0]
-  ;M201
+  ;M201                                                                 (Probe new tool)
  o220 endif
 
 o500 endif
