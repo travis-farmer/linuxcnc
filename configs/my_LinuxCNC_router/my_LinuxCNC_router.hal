@@ -151,6 +151,9 @@ net home-y     <=  hm2_7i80.0.gpio.013.in_not
 # --- HOME-Z ---
 net home-z     <=  hm2_7i80.0.gpio.014.in_not
 
+net coolant-mist      <=  iocontrol.0.coolant-mist
+net coolant-flood     <=  iocontrol.0.coolant-flood
+
 ##########################
 # --- AXIS X JOINT 0 --- #
 ##########################
