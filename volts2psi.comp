@@ -2,6 +2,8 @@ component volts2psi "convert voltage values to PSI, from 0-5v 0-150psi sensor";
 
 pin in float volts in "voltage value, in";
 pin out float PSIout "PSI value, out";
+pin out bit safePSI "PSI is within safe setting";
+pin in float setSafe "the PSI level that is safe";
 
 function _;
 license "GPL";
@@ -14,4 +16,9 @@ float map(float x, float in_min, float in_max, float out_min, float out_max) {
 
 FUNCTION(_) {
     PSIout = map(volts, 0.50, 4.5, 0.00, 150.00);
+    if (PSIout >= setSafe) {
+        safePSI = true;
+    } else {
+        safePSI = false;
+    }
 }
