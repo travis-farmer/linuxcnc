@@ -33,12 +33,19 @@ addf or2.2 servo-thread
 #########################
 # --- CONTROL PANEL --- #
 #########################
-loadrt lcd fmt_strings="U air %i C air %i\nRPM %i\nATC U %b\FF  ATC T %b\FF "
+loadrt lcd fmt_strings="U air %f C air %f\nRPM %f\nATC U %b10 ATC T %b10|X %f\nY %f\nZ %f\nS %b\7E %b\7F  RPM %f"
 addf lcd servo-thread
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
-
-net vfd-read-rpm => lcd.00.page.00.arg.02
-
+net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00
+net cpl-c-air-psi volts2psi.0.PSIout => lcd.00.page.00.arg.01
+net vfd-read-rpm-float => lcd.00.page.00.arg.02
+net spindle-is-unlocked => lcd.00.page.00.arg.03
+net spindle-is-hung => lcd.00.page.00.arg.04
+net cpl-x-pos halui.axis.x.pos-feedback => lcd.00.page.01.arg.00
+net cpl-y-pos halui.axis.y.pos-feedback => lcd.00.page.01.arg.01
+net cpl-z-pos halui.axis.z.pos-feedback => lcd.00.page.01.arg.02
+net spindle-cw => lcd.00.page.01.arg.03
+net vfd-read-rpm-float => lcd.00.page.01.arg.04
 
 ############################
 # --- MB2HAL/HAL2MBVFD --- #
@@ -151,8 +158,6 @@ net home-y     <=  hm2_7i80.0.gpio.013.in_not
 # --- HOME-Z ---
 net home-z     <=  hm2_7i80.0.gpio.014.in_not
 
-net coolant-mist      <=  iocontrol.0.coolant-mist
-net coolant-flood     <=  iocontrol.0.coolant-flood
 
 ##########################
 # --- AXIS X JOINT 0 --- #
@@ -342,16 +347,26 @@ net MDI-mode              halui.mode.is-mdi
 ##########################
 # --- Coolant/Vacuum --- #
 ##########################
+loadrt vacuum_control
+addf vacuum-control.0 servo-thread
 
-# --- Vacuum ---
+setp vacuum-control.0.trig-rpm-in 500 # RPM, above that the vacuum is turned on
+
+net coolant-mist vacuum-control.0.cool-mist-in     <=  iocontrol.0.coolant-mist
+net coolant-flood vacuum-control.0.cool-flood-in    <=  iocontrol.0.coolant-flood
+net spindle-vel-cmd-rpm-abs => vacuum-control.0.spind-rpm-in
+
 setp hm2_7i80.0.gpio.004.invert_output false
 setp hm2_7i80.0.gpio.004.is_output true
-loadrt wcomp count=1
-addf wcomp.0 servo-thread
-net spindle-vel-cmd-rpm-abs => wcomp.0.in
-setp wcomp.0.min 500
-setp wcomp.0.max 24000
-net spind-rpm-vac-control wcomp.0.out => hm2_7i80.0.gpio.004.out
+net spind-rpm-vac-control vacuum-control.0.vac-out => hm2_7i80.0.gpio.004.out
+
+setp hm2_7i80.0.gpio.008.invert_output false
+setp hm2_7i80.0.gpio.008.is_output true
+net coolant-mist-vac-control vacuum-control.0.cool-mist-out => hm2_7i80.0.gpio.008.out
+
+setp hm2_7i80.0.gpio.007.invert_output false
+setp hm2_7i80.0.gpio.007.is_output true
+net coolant-flood-vac-control vacuum-control.0.cool-flood-out => hm2_7i80.0.gpio.007.out
 
 #########################
 # --- Other Signals --- #

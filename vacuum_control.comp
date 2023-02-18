@@ -11,8 +11,8 @@ component vacuum_control                 "This component services the dust vacuu
 pin in bit cool_mist_in              "if high, start mist";
 pin in bit cool_flood_in             "if high, start flood";
 pin in bit vac_arm_in                "if high, arm vacuum";
-pin in bit vac_trig_in                "if high, spindle rpm trigger. if low, coolant trigger.";
-pin in unsigned spind_rpm_in               "reads the spindle RPM.";
+pin in float spind_rpm_in               "reads the spindle RPM.";
+pin in float trig_rpm_in                "RPM that turns on the vacuum";
 pin out bit cool_mist_out             "turn on mist coolant";
 pin out bit cool_mist_inv_out         "turn on mist coolant invert";
 pin out bit cool_flood_out            "turn on flood coolant";
@@ -20,22 +20,10 @@ pin out bit cool_flood_inv_out        "turn on flood coolant invert";
 pin out bit vac_out                   "turn on vacuum";
 pin out bit vac_inv_out               "turn on vacuum invert";
 
-
-option singleton yes;               // makes no sense to have more than one of these components running
-option userspace yes;
-
+function _;
 author "Travis Farmer";
 license "GPL";
 ;;
-
-#include <stdio.h>    /* Standard input/output definitions */
-#include <stdlib.h>
-#include <stdint.h>   /* Standard types */
-#include <string.h>   /* String function definitions */
-#include <unistd.h>   /* UNIX standard function definitions */
-#include <errno.h>    /* Error number definitions */
-#include <sys/ioctl.h>
-#include <inttypes.h>
 
 void vac_on(bool enable) {
   if (enable == true) {
@@ -67,49 +55,27 @@ void cool_mist_on(bool enable) {
   }
 }
 
-void user_mainloop(void)
-{
+FUNCTION(_) {
 
-    while(true)
-        {
-
-
-            // ************************************************************************************
-            // IT DOESN'T MATTER IF THERE ARE NO OTHER INSTANCES ie SINGLETON, MUST USE THIS MACRO
-            // In this case, if you don't, no data gets written
-            // ************************************************************************************
-        FOR_ALL_INSTS()
-        {
-            if (vac_arm_in == 1 || true) {
-                cool_mist_on(false);
-                cool_flood_on(false);
-                if (vac_trig_in == 1) {
-                  if (cool_mist_in == 1 || cool_flood_in == 1) {
-                    vac_on(true);
-                  } else {
-                    vac_on(false);
-                  }
-                } else {
-                  if (spind_rpm_in >= 750) {
-                    vac_on(true);
-                  } else {
-                    vac_on(false);
-                  }
-                }
-            } else {
-                vac_on(false);
-                if (cool_mist_in == 1) {
-                  cool_mist_on(true);
-                } else {
-                  cool_mist_on(false);
-                }
-                if (cool_flood_in == 1) {
-                  cool_flood_on(true);
-                } else {
-                  cool_flood_on(false);
-                }
-            }
+    if (vac_arm_in == 1) {
+        cool_mist_on(false);
+        cool_flood_on(false);
+        if (spind_rpm_in >= trig_rpm_in) {
+            vac_on(true);
+        } else {
+            vac_on(false);
+        }
+    } else {
+        vac_on(false);
+        if (cool_mist_in == 1) {
+            cool_mist_on(true);
+        } else {
+            cool_mist_on(false);
+        }
+        if (cool_flood_in == 1) {
+            cool_flood_on(true);
+        } else {
+            cool_flood_on(false);
         }
     }
-    exit(0);
 }
