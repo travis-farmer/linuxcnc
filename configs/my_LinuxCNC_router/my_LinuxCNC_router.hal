@@ -56,6 +56,10 @@ net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-01
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-02
 net cpl-jog-enable axis.x.jog-enable axis.y.jog-enable axis.z.jog-enable <= hm2_7i80.0.7i73.0.0.input-03
 
+loadrt matrix_kb config=R8C8
+addf matrix_kb.0 servo-thread
+net cpl-scan-code hm2_7i80.0.7i73.0.0.keycode => matrix_kb.0.keycode
+# matrix_kb.0.key.rRcC
 
 ############################
 # --- MB2HAL/HAL2MBVFD --- #
