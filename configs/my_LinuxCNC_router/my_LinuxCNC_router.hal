@@ -30,23 +30,28 @@ addf or2.0 servo-thread
 addf or2.1 servo-thread
 addf or2.2 servo-thread
 addf or2.3 servo-thread
-
+loadrt volts2psi count=2
+addf volts2psi.0 servo-thread
+addf volts2psi.1 servo-thread
+loadrt vacuum_control
+addf vacuum-control.0 servo-thread
 #########################
 # --- CONTROL PANEL --- #
 #########################
-loadrt lcd fmt_strings="U air %3.2f C air %3.2f\nRPM %5.1f\nATC U %b10 ATC T %b10|X %f\nY %f\nZ %f\nS %b\7E %b\7F  RPM %5.1f"
+loadrt lcd fmt_strings="U %f\nC %f\nRPM %f %b\7E %b\7F \nATC U %b10 ATC T %b10|X %f\nY %f\nZ %f\nS %b\7E %b\7F  RPM %f"
 addf lcd servo-thread
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
 net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00
 net cpl-c-air-psi volts2psi.0.PSIout => lcd.00.page.00.arg.01
 net vfd-read-rpm-float => lcd.00.page.00.arg.02
-net spindle-is-unlocked => lcd.00.page.00.arg.03
-net spindle-is-hung => lcd.00.page.00.arg.04
+net spindle-is-unlocked => lcd.00.page.00.arg.05
+net spindle-is-hung => lcd.00.page.00.arg.06
 net cpl-x-pos halui.axis.x.pos-feedback => lcd.00.page.01.arg.00
 net cpl-y-pos halui.axis.y.pos-feedback => lcd.00.page.01.arg.01
 net cpl-z-pos halui.axis.z.pos-feedback => lcd.00.page.01.arg.02
-net spindle-cw => lcd.00.page.01.arg.03
-net vfd-read-rpm-float => lcd.00.page.01.arg.04
+net spindle-cw => lcd.00.page.01.arg.03 lcd.00.page.00.arg.03
+net spindle-ccw => lcd.00.page.01.arg.04 lcd.00.page.00.arg.04
+net vfd-read-rpm-float => lcd.00.page.01.arg.05
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-01
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-02
 net cpl-jog-enable axis.x.jog-enable axis.y.jog-enable axis.z.jog-enable <= hm2_7i80.0.7i73.0.0.input-03
@@ -106,10 +111,8 @@ net spindle-ccw   <=  spindle.0.reverse
 net spindle-brake              <=  spindle.0.brake
 
 # --- Spindle ATC input signals ---
-loadrt volts2psi count=2
-addf volts2psi.0 servo-thread
+
 setp volts2psi.0.setSafe 110.00
-addf volts2psi.1 servo-thread
 setp volts2psi.1.setSafe 110.00
 net psi-reg-volts volts2psi.1.volts <= hm2_7i80.0.7i70.0.1.analog1
 net psi-volts volts2psi.0.volts <= hm2_7i80.0.7i70.0.1.analog0
@@ -354,8 +357,7 @@ net MDI-mode              halui.mode.is-mdi
 ##########################
 # --- Coolant/Vacuum --- #
 ##########################
-loadrt vacuum_control
-addf vacuum-control.0 servo-thread
+
 
 setp vacuum-control.0.trig-rpm-in 500 # RPM, above that the vacuum is turned on
 

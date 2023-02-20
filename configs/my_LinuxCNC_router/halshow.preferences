@@ -5,6 +5,10 @@ placeFrames 0.29941860465116277
 set ::ratio 0.29941860465116277
 set ::old_w_leftf 206
 set ::watchlist {
+    pin+volts2psi.0.PSIout
+    pin+volts2psi.1.PSIout
+    pin+hm2_7i80.0.7i73.0.0.keycode
+    pin+lcd.00.contrast
 }
 set ::workmode watchhal
 set ::watchInterval 100

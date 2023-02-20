@@ -70,9 +70,10 @@ o500 else
 
 		o214 if [#<_selected_tool> NE 0]
 			G53 G0 Z#<pocket_safe_z>
-			M64 P0 																			(Release drawbar)
-            M66 P2 L3 Q10														(Wait for drawbar release, TJF)
+																(Wait for drawbar release, TJF)
 			G53 G0 X#<pocket_selected_x> Y#<_ini[TOOL_CHANGE]POCKET_Y>						(Rapid X over selected tool)
+			M64 P0 																			(Release drawbar)
+            M66 P2 L3 Q10	
 			G53 G1 Z[[#<_ini[TOOL_CHANGE]POCKET_Z> + #<_ini[TOOL_CHANGE]DRAWBAR_OFFSET>]] F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Z>	(Move Z onto selected tool)
 			M63 P0 														(Engage drawbar, synchronized with the following move)
 			G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z>

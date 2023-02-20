@@ -2,8 +2,6 @@
 /********************************************************************************
 vacuum_control.comp
 
-userspace component
-
 *********************************************************************************/
 
 component vacuum_control                 "This component services the dust vacuum";
@@ -14,68 +12,35 @@ pin in bit vac_arm_in                "if high, arm vacuum";
 pin in float spind_rpm_in               "reads the spindle RPM.";
 pin in float trig_rpm_in                "RPM that turns on the vacuum";
 pin out bit cool_mist_out             "turn on mist coolant";
-pin out bit cool_mist_inv_out         "turn on mist coolant invert";
 pin out bit cool_flood_out            "turn on flood coolant";
-pin out bit cool_flood_inv_out        "turn on flood coolant invert";
 pin out bit vac_out                   "turn on vacuum";
-pin out bit vac_inv_out               "turn on vacuum invert";
 
 function _;
 author "Travis Farmer";
 license "GPL";
 ;;
 
-void vac_on(bool enable) {
-  if (enable == true) {
-    vac_out = 1;
-    vac_inv_out = 0;
-  } else {
-    vac_out = 0;
-    vac_inv_out = 1;
-  }
-}
-
-void cool_flood_on(bool enable) {
-  if (enable == true) {
-    cool_flood_out = 1;
-    cool_flood_inv_out = 0;
-  } else {
-    cool_flood_out = 0;
-    cool_flood_inv_out = 1;
-  }
-}
-
-void cool_mist_on(bool enable) {
-  if (enable == true) {
-    cool_mist_out = 1;
-    cool_mist_inv_out = 0;
-  } else {
-    cool_mist_out = 0;
-    cool_mist_inv_out = 1;
-  }
-}
-
 FUNCTION(_) {
 
     if (vac_arm_in == 1) {
-        cool_mist_on(false);
-        cool_flood_on(false);
+        cool_mist_out = 0;
+        cool_flood_out = 0;
         if (spind_rpm_in >= trig_rpm_in) {
-            vac_on(true);
+            vac_out = 1;
         } else {
-            vac_on(false);
+            vac_out = 0;
         }
     } else {
-        vac_on(false);
+        vac_out = 0;
         if (cool_mist_in == 1) {
-            cool_mist_on(true);
+            cool_mist_out = 1;
         } else {
-            cool_mist_on(false);
+            cool_mist_out = 0;
         }
         if (cool_flood_in == 1) {
-            cool_flood_on(true);
+            cool_flood_out = 1;
         } else {
-            cool_flood_on(false);
+            cool_flood_out = 0;
         }
     }
 }
