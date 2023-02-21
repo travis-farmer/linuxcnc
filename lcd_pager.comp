@@ -19,32 +19,32 @@ license "GPL";
 
 bool last_up = false;
 bool last_dn = false;
-u32 curr_page = 0;
-s32 lastCntr = 0;
+int curr_page = 0;
+int lastCntr = 0;
 
 void bump_up(unsigned int Pages) {
     curr_page++;
-    if (cur_page > Pages) {
-        cur_page = 0;
+    if (curr_page > Pages) {
+        curr_page = 0;
     }
 }
 
 void bump_dn(unsigned int Pages) {
-    cur_page--;
-    if (cur_page < 0) {
-        cur_page = Pages;
+    curr_page--;
+    if (curr_page < 0) {
+        curr_page = Pages;
     }
 }
 
 FUNCTION(_) {
-    u32 num_pages = (number_pages-1);
+    unsigned int num_pages = (number_pages-1);
     if (page_up_in == 1 && last_up == false) {
         last_up = true;
     } else if (page_up_in == 0 && last_up == true) {
         last_up = false;
         curr_page++;
-        if (cur_page > num_pages) {
-            cur_page = 0;
+        if (curr_page > num_pages) {
+            curr_page = 0;
             bump_up(num_pages);
         }
     } else if (page_dn_in == 1 && last_dn == false) {
@@ -60,5 +60,5 @@ FUNCTION(_) {
         lastCntr = enc_count;
         bump_dn(num_pages);
     }
-    page_out = cur_page;
+    page_out = curr_page;
 }

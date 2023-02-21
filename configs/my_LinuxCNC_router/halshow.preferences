@@ -11,6 +11,9 @@ set ::watchlist {
     pin+lcd.00.contrast
     pin+hm2_7i80.0.7i73.0.0.enc0.count
     pin+lcd.00.page_num
+    pin+hm2_7i80.0.7i73.0.0.input-00
+    pin+hm2_7i80.0.7i73.0.0.input-00-not
+    pin+hm2_7i80.0.7i73.0.0.input-08
 }
 set ::workmode watchhal
 set ::watchInterval 100

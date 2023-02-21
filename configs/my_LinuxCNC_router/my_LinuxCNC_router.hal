@@ -50,7 +50,7 @@ addf lcd-pager.0 servo-thread
 # --- CPL LCD ---
 loadrt lcd fmt_strings="U %f\nC %f\nRPM %f %b\7E %b\7F \nATC U %b10 ATC T %b10|X %f\nY %f\nZ %f\nS %b\7E %b\7F  RPM %f"
 addf lcd servo-thread
-setp lcd-pager.0.num-pages 2
+setp lcd-pager.0.number-pages 2
 net lcd-page-out lcd-pager.0.page-out => lcd.00.page_num
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
 net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00
@@ -77,10 +77,10 @@ net coolant-mist-vac-control => hm2_7i80.0.7i73.0.0.output-01
 net coolant-flood-vac-control => hm2_7i80.0.7i73.0.0.output-02
 
 # --- CPL Encoder ---
-net cpl-jog-x axis.x.jog-counts <= hm2_7i80.0.7i73.0.0.enc0.count
+#net cpl-jog-x axis.x.jog-counts <= hm2_7i80.0.7i73.0.0.enc0.count
 net cpl-jog-y axis.y.jog-counts <= hm2_7i80.0.7i73.0.0.enc1.count
 net cpl-jog-z axis.z.jog-counts <= hm2_7i80.0.7i73.0.0.enc2.count
-net cpl-lcd-page lcd-pager.0.enc_count <= hm2_7i80.0.7i73.0.0.enc3.count
+net cpl-lcd-page lcd-pager.0.enc-count <= hm2_7i80.0.7i73.0.0.enc0.count
 
 
 # --- CPL Key Matrix ---
