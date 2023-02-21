@@ -26,16 +26,16 @@ FUNCTION(_) {
     } else if (page_up_in == 0 && last_up == true) {
         last_up = false;
         curr_page++;
-        if (cur_page > num_pages) {
-            cur_page = 0;
+        if (curr_page > num_pages) {
+            curr_page = 0;
         }
     } else if (page_dn_in == 1 && last_dn == false) {
         last_dn = true;
     } else if (page_dn_in == 0 && last_dn == true) {
         last_dn = false;
-        cur_page--;
-        if (cur_page < 0) {
-            cur_page = num_pages;
+        curr_page--;
+        if (curr_page < 0) {
+            curr_page = num_pages;
         }
     }
 }
