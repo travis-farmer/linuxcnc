@@ -1,0 +1,41 @@
+
+/********************************************************************************
+lcd_pager.comp
+
+*********************************************************************************/
+
+component lcd_pager                 "This component services the LCD Page turner";
+
+pin in bit page_up_in              "bump page up";
+pin in bit page_dn_in             "bump page down";
+pin in unsigned num_pages           "number of pages to turn, total";
+pin out unsigned page_out                "output to LCD page";
+
+function _;
+author "Travis Farmer";
+license "GPL";
+;;
+
+bool last_up = false;
+bool last_dn = false;
+unsigned int curr_page = 0;
+
+FUNCTION(_) {
+    if (page_up_in == 1 && last_up == false) {
+        last_up = true;
+    } else if (page_up_in == 0 && last_up == true) {
+        last_up = false;
+        curr_page++;
+        if (cur_page > num_pages) {
+            cur_page = 0;
+        }
+    } else if (page_dn_in == 1 && last_dn == false) {
+        last_dn = true;
+    } else if (page_dn_in == 0 && last_dn == true) {
+        last_dn = false;
+        cur_page--;
+        if (cur_page < 0) {
+            cur_page = num_pages;
+        }
+    }
+}
