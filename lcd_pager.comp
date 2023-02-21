@@ -8,7 +8,8 @@ component lcd_pager                 "This component services the LCD Page turner
 
 pin in bit page_up_in              "bump page up";
 pin in bit page_dn_in             "bump page down";
-pin in unsigned num_pages           "number of pages to turn, total";
+pin in signed enc_count             "Optional Encoder Input";
+pin in unsigned number_pages           "number of pages to turn, total";
 pin out unsigned page_out                "output to LCD page";
 
 function _;
@@ -18,24 +19,46 @@ license "GPL";
 
 bool last_up = false;
 bool last_dn = false;
-unsigned int curr_page = 0;
+u32 curr_page = 0;
+s32 lastCntr = 0;
+
+void bump_up(unsigned int Pages) {
+    curr_page++;
+    if (cur_page > Pages) {
+        cur_page = 0;
+    }
+}
+
+void bump_dn(unsigned int Pages) {
+    cur_page--;
+    if (cur_page < 0) {
+        cur_page = Pages;
+    }
+}
 
 FUNCTION(_) {
+    u32 num_pages = (number_pages-1);
     if (page_up_in == 1 && last_up == false) {
         last_up = true;
     } else if (page_up_in == 0 && last_up == true) {
         last_up = false;
         curr_page++;
-        if (curr_page > num_pages) {
-            curr_page = 0;
+        if (cur_page > num_pages) {
+            cur_page = 0;
+            bump_up(num_pages);
         }
     } else if (page_dn_in == 1 && last_dn == false) {
         last_dn = true;
     } else if (page_dn_in == 0 && last_dn == true) {
         last_dn = false;
-        curr_page--;
-        if (curr_page < 0) {
-            curr_page = num_pages;
-        }
+        bump_dn(num_pages);
     }
+    if (enc_count > lastCntr) {
+        lastCntr = enc_count;
+        bump_up(num_pages);
+    } else if (enc_count < lastCntr) {
+        lastCntr = enc_count;
+        bump_dn(num_pages);
+    }
+    page_out = cur_page;
 }

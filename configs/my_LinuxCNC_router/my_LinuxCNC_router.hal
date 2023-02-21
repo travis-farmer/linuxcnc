@@ -35,12 +35,23 @@ addf volts2psi.0 servo-thread
 addf volts2psi.1 servo-thread
 loadrt vacuum_control
 addf vacuum-control.0 servo-thread
+loadrt matrix_kb config=8x8
+addf matrix_kb.0 servo-thread
+loadrt near
+addf near.0 servo-thread
+loadrt hal2mbvfd
+addf hal2mbvfd.0 servo-thread
+loadrt lcd_pager
+addf lcd-pager.0 servo-thread
 
 #########################
 # --- CONTROL PANEL --- #
 #########################
+# --- CPL LCD ---
 loadrt lcd fmt_strings="U %f\nC %f\nRPM %f %b\7E %b\7F \nATC U %b10 ATC T %b10|X %f\nY %f\nZ %f\nS %b\7E %b\7F  RPM %f"
 addf lcd servo-thread
+setp lcd-pager.0.num-pages 2
+net lcd-page-out lcd-pager.0.page-out => lcd.00.page_num
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
 net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00
 net cpl-c-air-psi volts2psi.0.PSIout => lcd.00.page.00.arg.01
@@ -54,25 +65,40 @@ net spindle-cw => lcd.00.page.01.arg.03 lcd.00.page.00.arg.03
 net spindle-ccw => lcd.00.page.01.arg.04 lcd.00.page.00.arg.04
 net vfd-read-rpm-float => lcd.00.page.01.arg.05
 
+
+# --- CPL Inputs ---
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-01
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-02
 net cpl-jog-enable axis.x.jog-enable axis.y.jog-enable axis.z.jog-enable <= hm2_7i80.0.7i73.0.0.input-03
-net cpl-jog-x axis.x.jog-counts => hm2_7i80.0.7i73.0.0.enc0.count
 
-loadrt matrix_kb config=8x8
-addf matrix_kb.0 servo-thread
+# --- CPL Outputs ---
+net spind-vac-control => hm2_7i80.0.7i73.0.0.output-00
+net coolant-mist-vac-control => hm2_7i80.0.7i73.0.0.output-01
+net coolant-flood-vac-control => hm2_7i80.0.7i73.0.0.output-02
+
+# --- CPL Encoder ---
+net cpl-jog-x axis.x.jog-counts <= hm2_7i80.0.7i73.0.0.enc0.count
+net cpl-jog-y axis.y.jog-counts <= hm2_7i80.0.7i73.0.0.enc1.count
+net cpl-jog-z axis.z.jog-counts <= hm2_7i80.0.7i73.0.0.enc2.count
+net cpl-lcd-page lcd-pager.0.enc_count <= hm2_7i80.0.7i73.0.0.enc3.count
+
+
+# --- CPL Key Matrix ---
 net cpl-scan-code hm2_7i80.0.7i73.0.0.keycode => matrix_kb.0.keycode
 # matrix_kb.0.key.rRcC
+net cpl-kbd-0-0 matrix_kb.0.key.r0c0 => halui.mdi-command-05 # Machine Home
+net cpl-kbd-0-1 matrix_kb.0.key.r0c1 => halui.mdi-command-06 # Work Home
+net cpl-kbd-0-2 matrix_kb.0.key.r0c2 => halui.program.pause
+net cpl-kbd-0-3 matrix_kb.0.key.r0c3 => halui.program.resume
+
 
 ############################
 # --- MB2HAL/HAL2MBVFD --- #
 ############################
-loadrt near
-addf near.0 servo-thread
+
 setp near.0.difference 5.00
 loadusr -W mb2hal config=mb2hal.ini
-loadrt hal2mbvfd
-addf hal2mbvfd.0 servo-thread
+
 net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn near.0.in2
 net vfd-rpm-percent hal2mbvfd.0.PercentOut => mb2hal.vfdset.00.int
 net vfd-ctrl-out hal2mbvfd.0.VfdCtrlOut => mb2hal.vfdcntrl.00.int
@@ -374,7 +400,7 @@ net spindle-vel-cmd-rpm-abs => vacuum-control.0.spind-rpm-in
 
 setp hm2_7i80.0.gpio.004.invert_output false
 setp hm2_7i80.0.gpio.004.is_output true
-net spind-rpm-vac-control vacuum-control.0.vac-out => hm2_7i80.0.gpio.004.out
+net spind-vac-control vacuum-control.0.vac-out => hm2_7i80.0.gpio.004.out
 
 setp hm2_7i80.0.gpio.008.invert_output false
 setp hm2_7i80.0.gpio.008.is_output true
