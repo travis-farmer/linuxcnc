@@ -9,6 +9,8 @@ set ::watchlist {
     pin+volts2psi.1.PSIout
     pin+hm2_7i80.0.7i73.0.0.keycode
     pin+lcd.00.contrast
+    pin+hm2_7i80.0.7i73.0.0.enc0.count
+    pin+lcd.00.page_num
 }
 set ::workmode watchhal
 set ::watchInterval 100
