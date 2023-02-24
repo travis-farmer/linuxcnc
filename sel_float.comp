@@ -1,0 +1,57 @@
+
+/********************************************************************************
+sel_float.comp
+
+*********************************************************************************/
+
+component lcd_selr                 "This component services the float selector";
+
+pin in bit sel_up_in              "bump selection up";
+pin in bit sel_dn_in             "bump selection down";
+pin in float sel_in.# [10]     "values to select from"
+pin in unsigned number_sels           "number of selections to cycle, total";
+pin out float sel_out                "output to sel";
+
+function _;
+author "Travis Farmer";
+license "GPL";
+;;
+
+bool last_up = false;
+bool last_dn = false;
+int curr_sel = 0;
+int lastCntr = 0;
+
+void bump_up(unsigned int sels) {
+    curr_sel++;
+    if (curr_sel > sels) {
+        curr_sel = sels;
+    }
+}
+
+void bump_dn(unsigned int sels) {
+    curr_sel--;
+    if (curr_sel < 0) {
+        curr_sel = 0;
+    }
+}
+
+FUNCTION(_) {
+    unsigned int num_sels = (number_sels-1);
+    if (sel_up_in == 1 && last_up == false) {
+        last_up = true;
+    } else if (sel_up_in == 0 && last_up == true) {
+        last_up = false;
+        curr_sel++;
+        if (curr_sel > num_sels) {
+            curr_sel = 0;
+            bump_up(num_sels);
+        }
+    } else if (sel_dn_in == 1 && last_dn == false) {
+        last_dn = true;
+    } else if (sel_dn_in == 0 && last_dn == true) {
+        last_dn = false;
+        bump_dn(num_sels);
+    }
+    sel_out = sel_in(curr_sel);
+}
