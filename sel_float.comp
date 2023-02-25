@@ -4,11 +4,11 @@ sel_float.comp
 
 *********************************************************************************/
 
-component lcd_selr                 "This component services the float selector";
+component sel_float                 "This component services the float selector";
 
 pin in bit sel_up_in              "bump selection up";
 pin in bit sel_dn_in             "bump selection down";
-pin in float sel_in.# [10]     "values to select from"
+pin in float sel_in.# [10]     "values to select from";
 pin in unsigned number_sels           "number of selections to cycle, total";
 pin out float sel_out                "output to sel";
 
