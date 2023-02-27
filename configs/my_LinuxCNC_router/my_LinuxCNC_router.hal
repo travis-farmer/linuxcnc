@@ -25,11 +25,14 @@ addf hm2_7i80.0.write         servo-thread
 
 loadrt and2 count=2
 addf and2.0 servo-thread
-loadrt or2 count=4
+addf and2.1 servo-thread
+loadrt or2 count=5
 addf or2.0 servo-thread
 addf or2.1 servo-thread
 addf or2.2 servo-thread
 addf or2.3 servo-thread
+addf or2.4 servo-thread
+
 loadrt volts2psi count=2 #tjf
 addf volts2psi.0 servo-thread
 addf volts2psi.1 servo-thread
@@ -43,8 +46,6 @@ loadrt hal2mbvfd #tjf
 addf hal2mbvfd.0 servo-thread
 loadrt lcd_pager #tjf
 addf lcd-pager.0 servo-thread
-loadrt sel_float #tjf
-addf sel-float.0 servo-thread
 
 #########################
 # --- CONTROL PANEL --- #
@@ -69,10 +70,10 @@ net vfd-read-rpm-float => lcd.00.page.01.arg.05
 
 
 # --- CPL Inputs ---
-net estop-b-in or2.3.in1 <= hm2_7i80.0.7i73.0.0.input-00
+net estop-b-in and2.1.in1 <= hm2_7i80.0.7i73.0.0.input-00-not
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-01
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-02
-net cpl-jog-enable axis.x.jog-enable axis.y.jog-enable axis.z.jog-enable <= hm2_7i80.0.7i73.0.0.input-03
+
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-00
@@ -81,26 +82,22 @@ net coolant-flood-vac-control => hm2_7i80.0.7i73.0.0.output-02
 
 # --- CPL Encoder ---
 #net cpl-jog-x axis.x.jog-counts <= hm2_7i80.0.7i73.0.0.enc0.count
-net cpl-jog-y axis.y.jog-counts <= hm2_7i80.0.7i73.0.0.enc1.count
-net cpl-jog-z axis.z.jog-counts <= hm2_7i80.0.7i73.0.0.enc2.count
+#net cpl-jog-y axis.y.jog-counts <= hm2_7i80.0.7i73.0.0.enc1.count
+#net cpl-jog-z axis.z.jog-counts <= hm2_7i80.0.7i73.0.0.enc2.count
 net cpl-lcd-page lcd-pager.0.enc-count <= hm2_7i80.0.7i73.0.0.enc0.count
 
-setp sel-float.0.number-sels 4
-setp sel-float.0.sel-in.0 1.0
-setp sel-float.0.sel-in.1 0.1
-setp sel-float.0.sel-in.2 0.01
-setp sel-float.0.sel-in.3 0.001
-net cpl-jog-scale axis.x.jog-scale axis.y.jog-scale axis.z.jog-scale <= sel-float.0.sel-out
 
 # --- CPL Key Matrix ---
 net cpl-scan-code hm2_7i80.0.7i73.0.0.keycode => matrix_kb.0.keycode
 # matrix_kb.0.key.rRcC
-net cpl-kbd-0-0 matrix_kb.0.key.r0c0 => halui.mdi-command-05 # Machine Home
-net cpl-kbd-0-1 matrix_kb.0.key.r0c1 => halui.mdi-command-06 # Work Home
-net cpl-kbd-0-2 matrix_kb.0.key.r0c2 => halui.program.pause
-net cpl-kbd-0-3 matrix_kb.0.key.r0c3 => halui.program.resume
-net cpl-kbd-0-4 matrix_kb.0.key.r0c4 => sel-float.0.sel-up-in
-net cpl-kbd-0-5 matrix_kb.0.key.r0c5 => sel-float.0.sel-dn-in
+net cpl-kbd-0-0 matrix_kb.0.key.r0c0 => halui.mdi-command-01 # Machine Home
+net cpl-kbd-0-1 matrix_kb.0.key.r0c1 => halui.mdi-command-00 # Work Home
+net cpl-kbd-0-2 matrix_kb.0.key.r0c2 => or2.3.in0
+net cpl-kbd-0-3 matrix_kb.0.key.r0c3 => or2.4.in0
+
+
+net control-pause halui.program.pause <= or2.3.out
+net control-resume halui.program.resume <= or2.4.out
 
 ############################
 # --- MB2HAL/HAL2MBVFD --- #
@@ -191,8 +188,8 @@ setp hm2_7i80.0.gpio.005.is_output true
 net machine-is-enabled =>     hm2_7i80.0.gpio.005.out
 
 # --- ESTOP-EXT ---
-net estop-a-in or2.3.in0 <= hm2_7i80.0.7i70.0.1.input-24
-net estop-ext     <=  or2.3.out
+net estop-a-in and2.1.in0 <= hm2_7i80.0.7i70.0.1.input-24
+net estop-ext     <=  and2.1.out
 
 # --- PROBE-IN ---
 

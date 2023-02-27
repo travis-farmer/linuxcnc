@@ -1,8 +1,0 @@
-o101 sub
-( Safe return to zero )
-( make sure we are in mm mode )
-G21
-G53 G0 Z0
-G53 G0 X0 Y0
-o101 endsub [1]
-

@@ -14,7 +14,7 @@ o500 if[#<_current_tool> EQ #<_selected_tool>]                     (Same tool as
 o500 else
 	(This is a different tool.)
 
-	o210 if [1] ; #<_hal[tool-change-mode]>
+	o210 if [#<_hal[tool-change-mode]>]
 		; AUTOMATIC TOOL CHANGE
 		#<pocket_current_x> = [#<_ini[TOOL_CHANGE]POCKET_1_X> + [[#<_current_pocket> - 1] * #<_ini[TOOL_CHANGE]POCKET_DELTA_X>]]
 		#<pocket_selected_x> = [#<_ini[TOOL_CHANGE]POCKET_1_X> + [[#<_selected_pocket> - 1] * #<_ini[TOOL_CHANGE]POCKET_DELTA_X>]]
@@ -73,7 +73,7 @@ o500 else
 																(Wait for drawbar release, TJF)
 			G53 G0 X#<pocket_selected_x> Y#<_ini[TOOL_CHANGE]POCKET_Y>						(Rapid X over selected tool)
 			M64 P0 																			(Release drawbar)
-            M66 P2 L3 Q10	
+            M66 P2 L3 Q10
 			G53 G1 Z[[#<_ini[TOOL_CHANGE]POCKET_Z> + #<_ini[TOOL_CHANGE]DRAWBAR_OFFSET>]] F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Z>	(Move Z onto selected tool)
 			M63 P0 														(Engage drawbar, synchronized with the following move)
 			G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z>

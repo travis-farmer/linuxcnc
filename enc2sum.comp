@@ -1,0 +1,19 @@
+/********************************************************************************
+enc2sum.comp
+
+*********************************************************************************/
+
+component enc2sum                 "This component sums two encoders";
+
+pin in signed enc_count0             "input counter 1";
+pin in signed enc_count1             "input counter 2";
+pin out signed count_out                "output count";
+
+function _;
+author "Travis Farmer";
+license "GPL";
+;;
+
+FUNCTION(_) {
+    count_out = (enc_count0 + enc_count1);
+}

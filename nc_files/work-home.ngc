@@ -1,0 +1,6 @@
+o<work-home> sub
+    G0 Z-1
+    G0 X0 Y0
+    G0 Z0
+o<work-home> endsub
+M2
