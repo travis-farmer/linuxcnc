@@ -8,9 +8,9 @@
 
 
 #net spindle-ec    =>    qtdragon.spindle-modbus-errors
-#net spindle-out-amps qtdragon.spindle-amps
+net spindle-out-amps qtdragon.spindle-amps
 #net spindle-commok    =>    qtdragon.spindle-fault
-#net spindle-out-volts => qtdragon.spindle-volts
+net spindle-out-volts => qtdragon.spindle-volts
 net probe-in	=>	qtdragon.led-probe
 
 net limited          qtdragon.led-limits-tripped <= motion.eoffset-limited

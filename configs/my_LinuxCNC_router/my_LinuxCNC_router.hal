@@ -76,9 +76,9 @@ net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-02
 
 
 # --- CPL Outputs ---
-net spind-vac-control => hm2_7i80.0.7i73.0.0.output-00
-net coolant-mist-vac-control => hm2_7i80.0.7i73.0.0.output-01
-net coolant-flood-vac-control => hm2_7i80.0.7i73.0.0.output-02
+net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
+net coolant-mist-vac-control => hm2_7i80.0.7i73.0.0.output-03
+net coolant-flood-vac-control => hm2_7i80.0.7i73.0.0.output-04
 
 # --- CPL Encoder ---
 #net cpl-jog-x axis.x.jog-counts <= hm2_7i80.0.7i73.0.0.enc0.count

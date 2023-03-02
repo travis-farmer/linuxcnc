@@ -4,8 +4,8 @@ pin in float ArdADCin "raw ADC value from Arduino, in";
 pin out float VoltsOut "converted volts, out";
 pin in float VDhigh "voltage divider, upper resistor";
 pin in float VDlow "voltage divider, lower resistor";
-
-
+pin in float MaxValue "the max ADC value";
+pin in float MaxVolts "the Full Scale volts of the ADC";
 
 function _;
 license "GPL";
@@ -15,8 +15,8 @@ author "Travis Farmer";
 
 FUNCTION(_) {
     if (VDhigh == 0.00 || VDlow == 0.00) {
-        VoltsOut = ((5.00/1024.00)*ArdADCin);
+        VoltsOut = ((MaxVolts/MaxValue)*ArdADCin);
     } else {
-        VoltsOut = ((((5.00/1024.00)*(float)ArdADCin)*VDlow)/(VDhigh+VDlow));
+        VoltsOut = ((((MaxVolts/MaxValue)*(float)ArdADCin)*VDlow)/(VDhigh+VDlow));
     }
 }
