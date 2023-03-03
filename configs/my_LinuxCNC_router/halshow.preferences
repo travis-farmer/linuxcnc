@@ -15,8 +15,9 @@ set ::watchlist {
     pin+hm2_7i80.0.7i73.0.0.input-00-not
     pin+hm2_7i80.0.7i73.0.0.input-08
     sig+estop-ext
+    pin+lcd.00.page.00.arg.02
 }
-set ::workmode watchhal
+set ::workmode showhal
 set ::watchInterval 100
 set ::col1_width 100
 set ::ffmts 
