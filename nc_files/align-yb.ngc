@@ -1,7 +1,7 @@
 
 o<align-yb> sub
 ; this subroutine is used when aligning the sheet on the Y axis
-  o101 if #<_metric> GT 0
+  o101 if [#<_metric> GT 0]
     #40=1
   o101 else
     #40=0
@@ -28,7 +28,7 @@ o<align-yb> sub
     G10 L2 P0 R-#<angle>
   o100 endif
   G0 Y-0.125
-  o102 if #40 GT 0
+  o102 if [#40 GT 0]
     G21
   o102 endif
 o<align-yb> endsub

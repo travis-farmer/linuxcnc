@@ -1,5 +1,5 @@
 o<align-xa> sub
-  o101 if #<_metric> GT 0
+  o101 if [#<_metric> GT 0]
     #40=1
   o101 else
     #40=0
@@ -14,7 +14,7 @@ o<align-xa> sub
   #<_start-y> = #5421
   (debug, start XY = #<_start-x> #<_start-y>)
   G0 X-0.125
-  o102 if #40 GT 0
+  o102 if [#40 GT 0]
     G21
   o102 endif
 o<align-xa> endsub
