@@ -104,9 +104,9 @@ net  pdnt.mist.on                         whb.halui.mist.on                     
 
 
 # default function button signals
-net pdnt.button.m-home                    whb.button.m-home                     halui.mdi-command-01                   # Homing use built-in halui home all
+net pdnt.button.m-home                    whb.button.m-home                     or2.5.in1                   # Homing use built-in halui home all
 net pdnt.button.safe-z                    whb.button.safe-z                                  # Safe-z  use MDI command from main.ini
-net pdnt.button.w-home                    whb.button.w-home                     halui.mdi-command-00             # Unpark  use MDI command from main.ini
+net pdnt.button.w-home                    whb.button.w-home                     or2.6.in1             # Unpark  use MDI command from main.ini
 #net pdnt.button.probe-z                   whb.button.probe-z                                 # Probe-Z use MDI command from main.ini
 
 
