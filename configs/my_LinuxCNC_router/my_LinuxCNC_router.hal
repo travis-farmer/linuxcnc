@@ -71,9 +71,9 @@ net vfd-read-rpm-float => lcd.00.page.01.arg.05
 
 
 # --- CPL Inputs ---
-net estop-b-in and2.1.in1 <= hm2_7i80.0.7i73.0.0.input-00-not
-net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-01
-net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-02
+
+net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
+net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01
 
 
 # --- CPL Outputs ---
@@ -190,6 +190,7 @@ net machine-is-enabled =>     hm2_7i80.0.gpio.005.out
 
 # --- ESTOP-EXT ---
 net estop-a-in and2.1.in0 <= hm2_7i80.0.7i70.0.1.input-24
+net estop-b-in and2.1.in1 <= hm2_7i80.0.gpio.002.in_not
 net estop-ext     <=  and2.1.out
 
 # --- PROBE-IN ---
