@@ -184,6 +184,9 @@ setp hm2_7i80.0.gpio.009.invert_output true # air ATC lock relay is active LOW
 setp hm2_7i80.0.gpio.009.is_output true
 net atc-control or2.1.out => hm2_7i80.0.gpio.009.out # output the ATC tool lock/unlock (signal 0 = locked)
 
+setp hm2_7i80.0.gpio.010.invert_output true # air ATC lock relay is active LOW
+setp hm2_7i80.0.gpio.010.is_output true
+net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 ############################
 # --- external signals --- #
 ############################
