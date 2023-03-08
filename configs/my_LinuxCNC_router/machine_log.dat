@@ -1,10 +1,12 @@
---- QtVCP Screen Started on: Sun, Mar 05 2023 01:08:54 PM ---
-Sun05 13:08: File Manager error - No such path: /media/travis
-Sun05 13:08: Machine OFF
-Sun05 13:08: Hard limits tripped
-Sun05 13:08: Tool 0:  
-Sun05 13:08: Machine ON
-Sun05 13:09: Loaded file /home/travis/Documents/carousel_disk002.ngc
-Sun05 13:09: Tool 1:  
-Sun05 13:14: Tool 0:  
-Sun05 13:15: Machine OFF
+--- QtVCP Screen Started on: Wed, Mar 08 2023 10:30:56 AM ---
+Wed08 10:30: File Manager error - No such path: /media/travis
+Wed08 10:30: Machine OFF
+Wed08 10:30: Hard limits tripped
+Wed08 10:30: Tool 0:  
+Wed08 10:31: Machine ON
+Wed08 10:31: Loaded file /home/travis/Documents/CNC_carousel_disk004.ngc
+Wed08 10:31: Tool 1:  
+Wed08 10:32: Started program from line 1
+Wed08 10:32: Run timer stopped at 00:00:35
+Wed08 10:51: Tool 0:  
+Wed08 10:51: Machine OFF

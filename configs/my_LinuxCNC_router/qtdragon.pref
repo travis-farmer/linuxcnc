@@ -20,7 +20,7 @@ CalculatorDialog-geometry = 910 525 472 376
 
 [BOOK_KEEPING]
 last_loaded_directory = /home/travis/Documents
-last_loaded_file = /home/travis/Documents/carousel_disk002.ngc
+last_loaded_file = /home/travis/Documents/CNC_carousel_disk004.ngc
 style_QSS_Path = DEFAULT
 RecentPath_0 = /home/travis/linuxcnc/nc_files/examples/3D_Chips.ngc
 
