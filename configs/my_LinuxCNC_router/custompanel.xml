@@ -134,7 +134,7 @@
         </vbox>
         <vbox>
             <label>
-                <text>"(this tab has nothing on it)"</text>
+                <text>"(this tab has nothing on it, yet...)"</text>
             </label>
         </vbox>
     </tabs>
