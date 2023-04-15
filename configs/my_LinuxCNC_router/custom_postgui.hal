@@ -8,23 +8,16 @@
 
 
 #net spindle-ec    =>    qtdragon.spindle-modbus-errors
-net spindle-out-amps qtdragon.spindle-amps
+#net spindle-out-amps qtdragon.spindle-amps
 #net spindle-commok    =>    qtdragon.spindle-fault
-net spindle-out-volts => qtdragon.spindle-volts
-net probe-in	=>	qtdragon.led-probe
+#net spindle-out-volts => qtdragon.spindle-volts
+#net probe-in	=>	qtdragon.led-probe
 
-net limited          qtdragon.led-limits-tripped <= motion.eoffset-limited
-
-#loadrt time
-#loadrt not
-
-#addf time.0 servo-thread
-#addf not.0 servo-thread
-
-#net prog-running not.0.in <= pdnt.program.is-idle
-#net pdnt.program.is-paused => time.0.pause
-#net cycle-timer time.0.start <= not.0.out
-#net cycle-seconds qtpyvcp.timerseconds.in <= time.0.seconds
-#net cycle-minutes qtpyvcp.timerminutes.in <= time.0.minutes
-#net cycle-hours qtpyvcp.timerhours.in <= time.0.hours
-
+net spindle-vel-cmd-rpm-abs => pyvcp.spindle-rpm
+net spindle-at-speed => pyvcp.spindle-at-speed-led
+net spindle-cw => pyvcp.spindle-forward-led
+net spindle-ccw => pyvcp.spindle-reverse-led
+net cpl-c-air-psi => pyvcp.comp-air
+net cpl-u-air-psi => pyvcp.tool-air
+net spindle-is-unlocked => pyvcp.atc-locked
+net spindle-is-hung => pyvcp.atc-tool

@@ -1,81 +1,141 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <pyvcp>
-         <vbox>
-         <relief>RIDGE</relief>
-         <bd>6</bd>
-                <meter>
-                    <halpin>"spindle-rpm"</halpin>
-                    <text>"Spindle"</text>
-                    <subtext>"RPM"</subtext>
-                    <size>200</size>
-                    <min_>0</min_>
-                    <max_>22000</max_>
-                    <majorscale>2000</majorscale>
-                    <minorscale>1000</minorscale>
-                    <region1>(21000,22000,"red")</region1>
-                    <region2>(17550,21000,"green")</region2>
-                    <region3>(0,17550,"blue")</region3>
-                </meter>
+    <tabs>
+        <names> ["spindle","atc"]</names>
+    </tabs>
+    <tabs>
+        <names>["Spindle", "ATC", "Volts"]</names>
+        <vbox>
+            <meter>
+                <halpin>"spindle-rpm"</halpin>
+                <text>"Spindle"</text>
+                <subtext>"RPM"</subtext>
+                <size>200</size>
+                <min_>0</min_>
+                <max_>22000</max_>
+                <majorscale>2000</majorscale>
+                <minorscale>1000</minorscale>
+                <region1>(21000,24000,"red")</region1>
+                <region2>(12000,21000,"green")</region2>
+                <region3>(0,12000,"blue")</region3>
+            </meter>
+            <label>
+                    <text>"Spindle-At-Speed:"</text>
+                    <font>("Helvetica",20)</font>
+            </label>
+            <hbox>
                 <label>
-                        <text>"Spindle-At-Speed:"</text>
+                        <text>"             "</text>
                         <font>("Helvetica",20)</font>
                 </label>
-                <hbox>
-                    <label>
-                            <text>"             "</text>
-                            <font>("Helvetica",20)</font>
-                    </label>
-                    <led>
-                        <halpin>"spindle-at-speed-led"</halpin>
-                        <size>30</size>
-                        <on_color>"green"</on_color>
-                        <off_color>"red"</off_color>
-                    </led>
-                </hbox>
-                <meter>
-                    <halpin>"spindle-amps"</halpin>
-                    <text>"Spindle"</text>
-                    <subtext>"Amps"</subtext>
-                    <size>100</size>
-                    <min_>0</min_>
-                    <max_>15</max_>
-                    <majorscale>10</majorscale>
-                    <minorscale>1</minorscale>
-                    <region1>(13,15,"red")</region1>
-                    <region2>(10,13,"yellow")</region2>
-                    <region3>(0,10,"green")</region3>
-                </meter>
+                <led>
+                    <halpin>"spindle-at-speed-led"</halpin>
+                    <size>30</size>
+                    <on_color>"green"</on_color>
+                    <off_color>"red"</off_color>
+                </led>
+            </hbox>
+            <label>
+                    <text>"Forward:"</text>
+                    <font>("Helvetica",20)</font>
+            </label>
+            <hbox>
                 <label>
-                        <text>"Forward:"</text>
+                        <text>"             "</text>
                         <font>("Helvetica",20)</font>
                 </label>
-                <hbox>
-                    <label>
-                            <text>"             "</text>
-                            <font>("Helvetica",20)</font>
-                    </label>
-                    <led>
-                        <halpin>"spindle-forward-led"</halpin>
-                        <size>30</size>
-                        <on_color>"green"</on_color>
-                        <off_color>"red"</off_color>
-                    </led>
-                </hbox>
+                <led>
+                    <halpin>"spindle-forward-led"</halpin>
+                    <size>30</size>
+                    <on_color>"green"</on_color>
+                    <off_color>"red"</off_color>
+                </led>
+            </hbox>
+            <label>
+                    <text>"Reverse:"</text>
+                    <font>("Helvetica",20)</font>
+            </label>
+            <hbox>
                 <label>
-                        <text>"Reverse:"</text>
+                        <text>"             "</text>
                         <font>("Helvetica",20)</font>
                 </label>
-                <hbox>
-                    <label>
-                            <text>"             "</text>
-                            <font>("Helvetica",20)</font>
-                    </label>
-                    <led>
-                        <halpin>"spindle-reverse-led"</halpin>
-                        <size>30</size>
-                        <on_color>"green"</on_color>
-                        <off_color>"red"</off_color>
-                    </led>
-                </hbox>
+                <led>
+                    <halpin>"spindle-reverse-led"</halpin>
+                    <size>30</size>
+                    <on_color>"green"</on_color>
+                    <off_color>"red"</off_color>
+                </led>
+            </hbox>
         </vbox>
+        <vbox>
+            <bar>
+                <halpin>"comp-air"</halpin>
+                <min_>0</min_>
+                <max_>150</max_>
+                <format>"3.1f"</format>
+                <bgcolor>"grey"</bgcolor>
+                <fillcolor>"red"</fillcolor>
+                <range1>0,100,"blue"</range1>
+                <range2>101,125,"green"</range2>
+                <range3>125, 150,"red"</range3>
+                <canvas_width>200</canvas_width>
+                <canvas_height>50</canvas_height>
+                <bar_height>30</bar_height>
+                <bar_width>150</bar_width>
+            </bar>
+            <bar>
+                <halpin>"tool-air"</halpin>
+                <min_>0</min_>
+                <max_>150</max_>
+                <format>"3.1f"</format>
+                <bgcolor>"grey"</bgcolor>
+                <fillcolor>"red"</fillcolor>
+                <range1>0,95,"blue"</range1>
+                <range2>95,110,"green"</range2>
+                <range3>110, 150,"red"</range3>
+                <canvas_width>200</canvas_width>
+                <canvas_height>50</canvas_height>
+                <bar_height>30</bar_height>
+                <bar_width>150</bar_width>
+            </bar>
+            <label>
+                    <text>"ATC Locked:"</text>
+                    <font>("Helvetica",20)</font>
+            </label>
+            <hbox>
+                <label>
+                        <text>"ATC Locked"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <led>
+                    <halpin>"atc-locked"</halpin>
+                    <size>30</size>
+                    <on_color>"red"</on_color>
+                    <off_color>"green"</off_color>
+                </led>
+            </hbox>
+                        <label>
+                    <text>"ATC Tool:"</text>
+                    <font>("Helvetica",20)</font>
+            </label>
+            <hbox>
+                <label>
+                        <text>"ATC Tool"</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <led>
+                    <halpin>"atc-tool"</halpin>
+                    <size>30</size>
+                    <on_color>"green"</on_color>
+                    <off_color>"red"</off_color>
+                </led>
+            </hbox>
+        </vbox>
+        <vbox>
+            <label>
+                <text>"(this tab has nothing on it)"</text>
+            </label>
+        </vbox>
+    </tabs>
 </pyvcp>
