@@ -12,12 +12,11 @@
                 <subtext>"RPM"</subtext>
                 <size>200</size>
                 <min_>0</min_>
-                <max_>22000</max_>
+                <max_>24000</max_>
                 <majorscale>2000</majorscale>
                 <minorscale>1000</minorscale>
-                <region1>(21000,24000,"red")</region1>
-                <region2>(12000,21000,"green")</region2>
-                <region3>(0,12000,"blue")</region3>
+                <region1>(12000,24000,"green")</region1>
+                <region2>(0,12000,"blue")</region2>
             </meter>
             <label>
                     <text>"Spindle-At-Speed:"</text>
@@ -77,8 +76,8 @@
                 <bgcolor>"grey"</bgcolor>
                 <fillcolor>"red"</fillcolor>
                 <range1>0,100,"blue"</range1>
-                <range2>101,125,"green"</range2>
-                <range3>125, 150,"red"</range3>
+                <range2>101,130,"green"</range2>
+                <range3>130, 150,"red"</range3>
                 <canvas_width>200</canvas_width>
                 <canvas_height>50</canvas_height>
                 <bar_height>30</bar_height>
@@ -91,21 +90,17 @@
                 <format>"3.1f"</format>
                 <bgcolor>"grey"</bgcolor>
                 <fillcolor>"red"</fillcolor>
-                <range1>0,95,"blue"</range1>
-                <range2>95,110,"green"</range2>
+                <range1>0,92,"blue"</range1>
+                <range2>92,110,"green"</range2>
                 <range3>110, 150,"red"</range3>
                 <canvas_width>200</canvas_width>
                 <canvas_height>50</canvas_height>
                 <bar_height>30</bar_height>
                 <bar_width>150</bar_width>
             </bar>
-            <label>
-                    <text>"ATC Locked:"</text>
-                    <font>("Helvetica",20)</font>
-            </label>
             <hbox>
                 <label>
-                        <text>"ATC Locked"</text>
+                        <text>"ATC Locked: "</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <led>
@@ -115,13 +110,9 @@
                     <off_color>"green"</off_color>
                 </led>
             </hbox>
-                        <label>
-                    <text>"ATC Tool:"</text>
-                    <font>("Helvetica",20)</font>
-            </label>
             <hbox>
                 <label>
-                        <text>"ATC Tool"</text>
+                        <text>"ATC Tool: "</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <led>
