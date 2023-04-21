@@ -162,7 +162,7 @@ net spindle-brake              <=  spindle.0.brake
 # --- Spindle ATC input signals ---
 
 setp volts2psi.0.setSafe 110.00
-setp volts2psi.1.setSafe 110.00
+setp volts2psi.1.setSafe 90.00
 net psi-reg-volts volts2psi.1.volts <= hm2_7i80.0.7i70.0.1.analog1
 net psi-volts volts2psi.0.volts <= hm2_7i80.0.7i70.0.1.analog0
 #M66 P3 L0 - return (#5399) air pressure status (>110psi)
