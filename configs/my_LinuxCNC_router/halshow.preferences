@@ -1,23 +1,19 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 700x475+612+104
+wm geometry . 700x475+822+146
 placeFrames 0.29941860465116277
 set ::ratio 0.29941860465116277
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+volts2psi.0.PSIout
-    pin+volts2psi.1.PSIout
-    pin+hm2_7i80.0.7i73.0.0.keycode
-    pin+lcd.00.contrast
-    pin+hm2_7i80.0.7i73.0.0.enc0.count
-    pin+lcd.00.page_num
-    pin+hm2_7i80.0.7i73.0.0.input-00
-    pin+hm2_7i80.0.7i73.0.0.input-00-not
-    pin+hm2_7i80.0.7i73.0.0.input-08
-    sig+estop-ext
-    pin+lcd.00.page.00.arg.02
+    pin+hm2_7i80.0.7i70.0.1.input-13
+    pin+hm2_7i80.0.7i72.0.2.output-00
+    sig+activate-spind-fan
+    pin+hal2mbvfd.0.SpindFan
+    pin+hal2mbvfd.0.RpmIn
+    pin+hal2mbvfd.0.VfdFwd
+    pin+hal2mbvfd.0.VfdRev
 }
-set ::workmode showhal
+set ::workmode watchhal
 set ::watchInterval 100
 set ::col1_width 100
 set ::ffmts 
