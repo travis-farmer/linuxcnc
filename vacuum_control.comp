@@ -11,36 +11,42 @@ pin in bit cool_flood_in             "if high, start flood";
 pin in bit vac_arm_in                "if high, arm vacuum";
 pin in float spind_rpm_in               "reads the spindle RPM.";
 pin in float trig_rpm_in                "RPM that turns on the vacuum";
+pin in bit laser_mode_in              "if high, laser mode active"
 pin out bit cool_mist_out             "turn on mist coolant";
 pin out bit cool_flood_out            "turn on flood coolant";
 pin out bit vac_out                   "turn on vacuum";
-
+pin out bit laser_air_out               "turn on laser air";
 function _;
 author "Travis Farmer";
 license "GPL";
 ;;
 
 FUNCTION(_) {
-
-    if (vac_arm_in == 1) {
-        cool_mist_out = 0;
-        cool_flood_out = 0;
-        if (spind_rpm_in >= trig_rpm_in) {
-            vac_out = 1;
+    if (laser_mode_in == 1) {
+        if (cool_mist_in == 1 || cool_flood_in ==1) {laser_air_out = 1;}
+        else {laser_air_out = 0;}
+    } else {
+        laser_air_out = 0;
+        if (vac_arm_in == 1) {
+            cool_mist_out = 0;
+            cool_flood_out = 0;
+            if (spind_rpm_in >= trig_rpm_in) {
+                vac_out = 1;
+            } else {
+                vac_out = 0;
+            }
         } else {
             vac_out = 0;
-        }
-    } else {
-        vac_out = 0;
-        if (cool_mist_in == 1) {
-            cool_mist_out = 1;
-        } else {
-            cool_mist_out = 0;
-        }
-        if (cool_flood_in == 1) {
-            cool_flood_out = 1;
-        } else {
-            cool_flood_out = 0;
+            if (cool_mist_in == 1) {
+                cool_mist_out = 1;
+            } else {
+                cool_mist_out = 0;
+            }
+            if (cool_flood_in == 1) {
+                cool_flood_out = 1;
+            } else {
+                cool_flood_out = 0;
+            }
         }
     }
 }

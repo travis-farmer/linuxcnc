@@ -49,14 +49,16 @@ loadrt hal2mbvfd #tjf
 addf hal2mbvfd.0 servo-thread
 loadrt lcd_pager #tjf
 addf lcd-pager.0 servo-thread
+loadrt LaserAnalog #tjf
+addf LaserAnalog.0 servo-thread
 
 #########################
 # --- CONTROL PANEL --- #
 #########################
 # --- CPL LCD ---
-loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b10 TC %bAM\nATC U %b10 ATC T %b10|X %f\nY %f\nZ %f\nS %b\7E %b\7F  RPM %f"
+loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b10 TC %bAM\nATC U %b10 ATC T %b10"
 addf lcd servo-thread
-setp lcd-pager.0.number-pages 2
+setp lcd-pager.0.number-pages 1
 net lcd-page-out lcd-pager.0.page-out => lcd.00.page_num
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
 net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00
@@ -68,19 +70,12 @@ net tool-change-mode => lcd.00.page.00.arg.05
 net spindle-is-unlocked => lcd.00.page.00.arg.06
 net spindle-is-hung => lcd.00.page.00.arg.07
 
-#net cpl-x-pos halui.axis.x.pos-feedback => lcd.00.page.01.arg.00
-#net cpl-y-pos halui.axis.y.pos-feedback => lcd.00.page.01.arg.01
-#net cpl-z-pos halui.axis.z.pos-feedback => lcd.00.page.01.arg.02
-net spindle-cw => lcd.00.page.01.arg.03
-net spindle-ccw => lcd.00.page.01.arg.04
-net vfd-read-rpm-float => lcd.00.page.01.arg.05
-
 
 # --- CPL Inputs ---
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-
+net laser-mode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02-not
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
@@ -108,24 +103,18 @@ net control-resume halui.program.resume <= or2.4.out
 net control-m-home or2.5.out => halui.mdi-command-01
 net control-w-home or2.6.out => halui.mdi-command-00
 
-############################
-# --- MB2HAL/HAL2MBVFD --- #
-############################
+#####################
+# --- HAL2MBVFD --- #
+#####################
 
 setp near.0.difference 5.00
-loadusr -W mb2hal config=mb2hal.ini
 
 net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn near.0.in2
-net vfd-rpm-percent hal2mbvfd.0.PercentOut => mb2hal.vfdset.00.int
-net vfd-ctrl-out hal2mbvfd.0.VfdCtrlOut => mb2hal.vfdcntrl.00.int
+#net spindle-float-out hal2mbvfd.0.FloatOut => TODO
 net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
 net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
-net vfd-read-rpm-float mb2hal.vfdparam.04.float => hal2mbvfd.0.VfdRunRpmIn near.0.in1
-net vfd-conv-rps hal2mbvfd.0.VfdRunRpsOut => spindle.0.speed-in
-net spindle-out-amps <= mb2hal.vfdparam.02.float
-net spindle-out-volts <= mb2hal.vfdparam.03.float
-#net spindle-commok <= mb2hal...
-#net spindle-ec <= mb2hal...
+net vfd-read-rpm-float hm2_7i80.0.7i70.0.1.analog2 => hal2mbvfd.0.VfdRpmFloat
+net vfd-conv-rpm hal2mbvfd.0.VfdRunRpmOut => spindle.0.speed-in near.0.in1
 setp hm2_7i80.0.gpio.006.invert_output true
 setp hm2_7i80.0.gpio.006.is_output true
 net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00      <=  hal2mbvfd.0.SpindFan
@@ -171,6 +160,16 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 setp hm2_7i80.0.gpio.010.invert_output true # air ATC lock relay is active LOW
 setp hm2_7i80.0.gpio.010.is_output true
 net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
+
+########################
+# --- Laser Analog --- #
+########################
+# M67 E0 Q0
+net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
+#net LaserFloatOut LaserAnalog.0.FloatOut => TODO
+net LaserEnable LaserAnalog.0.LaserEnable => hm2_7i80.0.7i72.0.2.output-05
+net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
+
 ############################
 # --- external signals --- #
 ############################

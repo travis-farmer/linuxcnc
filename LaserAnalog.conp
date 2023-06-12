@@ -1,0 +1,23 @@
+component LaserAnalog "convert analog values for Laser 0-10v out";
+
+pin in float LaserIn "Laser set value 0.00-1.00, in";
+pin out float FloatOut "Laser 0-10v value, out";
+pin out float PercentOut "Laser 0-100% value, out";
+pin out bit LaserEnable "Laser Enable Relay, out";
+
+
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+
+double map(double x, double in_min, double in_max, double out_min, double out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+FUNCTION(_) {
+    FloatOut = map(LaserIn,0.000,1.000,0.000,10.000);
+    PercentOut = map(FloatOut,0.00,10.00,0.00,100.00);
+    if (LaserIn == 0.00) {LaserEnable = false;}
+    else {LaserEnable = true;}
+}

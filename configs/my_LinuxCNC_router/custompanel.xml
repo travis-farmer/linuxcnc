@@ -4,7 +4,7 @@
         <names> ["spindle","atc"]</names>
     </tabs>
     <tabs>
-        <names>["Spindle", "ATC", "Volts"]</names>
+        <names>["Spindle", "ATC", "Laser"]</names>
         <vbox>
             <meter>
                 <halpin>"spindle-rpm"</halpin>
@@ -124,9 +124,28 @@
             </hbox>
         </vbox>
         <vbox>
-            <label>
-                <text>"(this tab has nothing on it, yet...)"</text>
-            </label>
+            <meter>
+                <halpin>"laser-power"</halpin>
+                <text>"Laser Power"</text>
+                <subtext>"RPM"</subtext>
+                <size>200</size>
+                <min_>0</min_>
+                <max_>100</max_>
+                <majorscale>10</majorscale>
+                <minorscale>1</minorscale>
+            </meter>
+            <hbox>
+                <label>
+                        <text>"Laser Active: "</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <led>
+                    <halpin>"laser-active"</halpin>
+                    <size>30</size>
+                    <on_color>"blue"</on_color>
+                    <off_color>"black"</off_color>
+                </led>
+            </hbox>
         </vbox>
     </tabs>
 </pyvcp>

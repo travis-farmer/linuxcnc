@@ -13,7 +13,7 @@
 #net spindle-out-volts => qtdragon.spindle-volts
 #net probe-in	=>	qtdragon.led-probe
 
-net vfd-read-rpm-float => pyvcp.spindle-rpm
+net vfd-conv-rpm => pyvcp.spindle-rpm
 net spindle-at-speed => pyvcp.spindle-at-speed-led
 net spindle-cw => pyvcp.spindle-forward-led
 net spindle-ccw => pyvcp.spindle-reverse-led
@@ -21,3 +21,5 @@ net cpl-c-air-psi => pyvcp.comp-air
 net cpl-u-air-psi => pyvcp.tool-air
 net spindle-is-unlocked => pyvcp.atc-locked
 net spindle-is-hung => pyvcp.atc-tool
+net LaserPercentOut => pyvcp.laser-power
+net LaserPercentOut LaserAnalog.0.PercentOut => pyvcp.laser-active

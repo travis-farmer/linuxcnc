@@ -1,12 +1,11 @@
-component hal2mbvfd "exchange HAL pins for mb2hal values, Fuling DZB300 series VFD";
+component hal2mbvfd "exchange HAL pins for analog values, Fuling DZB300 series VFD";
 
 pin in float RpmIn "RPM set value, in";
-pin out s32 PercentOut "RPM percent value, out";
+pin out float FloatOut "RPM 0-10v value, out";
 pin in bit VfdFwd "Run VFD in Forward Direction";
 pin in bit VfdRev "Run VFD in Reverse Direction";
-pin out s32 VfdCtrlOut "send the VFD control signal to MB2HAL pin";
-pin in float VfdRunRpmIn "running RPM of VFD/Motor";
-pin out float VfdRunRpsOut "RPS conversion of VFD/Motor RPM";
+pin in float VfdRpmFloat "0-10v output of VFD, motor speed"
+pin out float VfdRunRpmOut "RPS conversion of VFD/Motor RPM";
 pin out bit SpindFan "turn on the spindle cooling fan";
 
 
@@ -20,9 +19,9 @@ double map(double x, double in_min, double in_max, double out_min, double out_ma
 }
 
 FUNCTION(_) {
-    PercentOut = (int)map(RpmIn,0,24000,0,5000);
-    if (VfdFwd == true) {VfdCtrlOut = 0x0001; SpindFan = true;}
-    else if (VfdRev == true) {VfdCtrlOut = 0x0002; SpindFan = true;}
-    else {VfdCtrlOut = 0x0005; SpindFan = false;}
-    VfdRunRpsOut = VfdRunRpmIn / 60;
+    FloatOut = (int)map(RpmIn,0,24000,0,10);
+    if (VfdFwd == true) {SpindFan = true;}
+    else if (VfdRev == true) {SpindFan = true;}
+    else {SpindFan = false;}
+    VfdRunRpmOut = map(VfdRpmFloat,0.00,10.00,0.00,24000.00);
 }
