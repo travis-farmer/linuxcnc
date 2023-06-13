@@ -4,7 +4,7 @@ pin in float RpmIn "RPM set value, in";
 pin out float FloatOut "RPM 0-10v value, out";
 pin in bit VfdFwd "Run VFD in Forward Direction";
 pin in bit VfdRev "Run VFD in Reverse Direction";
-pin in float VfdRpmFloat "0-10v output of VFD, motor speed"
+pin in float VfdRpmFloat "0-10v output of VFD, motor speed";
 pin out float VfdRunRpmOut "RPS conversion of VFD/Motor RPM";
 pin out bit SpindFan "turn on the spindle cooling fan";
 

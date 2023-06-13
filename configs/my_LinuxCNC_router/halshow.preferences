@@ -13,6 +13,13 @@ set ::watchlist {
     pin+hal2mbvfd.0.VfdFwd
     pin+hal2mbvfd.0.VfdRev
     pin+hm2_7i80.0.7i72.0.2.fieldvoltage
+    pin+hm2_7i80.0.7i70.0.1.analog0
+    pin+hm2_7i80.0.7i70.0.1.analog1
+    pin+hm2_7i80.0.7i70.0.1.analog2
+    pin+volts2psi.0.PSIout
+    pin+volts2psi.0.volts
+    pin+volts2psi.1.PSIout
+    pin+volts2psi.1.volts
 }
 set ::workmode watchhal
 set ::watchInterval 100
