@@ -75,7 +75,7 @@ net spindle-is-hung => lcd.00.page.00.arg.07
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-net laser-mode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02-not
+net laser-mode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
@@ -459,6 +459,8 @@ setp vacuum-control.0.trig-rpm-in 500 # RPM, above that the vacuum is turned on
 net coolant-mist vacuum-control.0.cool-mist-in     <=  iocontrol.0.coolant-mist
 net coolant-flood vacuum-control.0.cool-flood-in    <=  iocontrol.0.coolant-flood
 net spindle-vel-cmd-rpm-abs => vacuum-control.0.spind-rpm-in
+
+net laser-air-out-relay hm2_7i80.0.7i72.0.2.output-06 <= vacuum-control.0.laser-air-out
 
 setp hm2_7i80.0.gpio.004.invert_output false
 setp hm2_7i80.0.gpio.004.is_output true
