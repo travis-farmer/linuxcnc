@@ -51,6 +51,37 @@ loadrt lcd_pager #tjf
 addf lcd-pager.0 servo-thread
 loadrt LaserAnalog #tjf
 addf LaserAnalog.0 servo-thread
+loadrt ardconv count=3 #tjf
+addf ardconv.0 servo-thread
+addf ardconv.2 servo-thread
+addf ardconv.3 servo-thread
+
+##################
+# --- MB2HAL --- #
+##################
+loadusr -W mb2hal config=mb2hal.ini
+# --- compressor psi ---
+#setp ardconv.0.VDhigh 0.00
+#setp ardconv.0.VDlow 0.00
+#setp ardconv.0.MaxValue 1024.00
+#setp ardconv.0.MaxVolts 5.00
+#net ArdAinA ardconv.0.ArdADCin <= #TODO
+
+# --- ATC unlock psi ---
+#setp ardconv.1.VDhigh 0.00
+#setp ardconv.1.VDlow 0.00
+#setp ardconv.1.MaxValue 1024.00
+#setp ardconv.1.MaxVolts 5.00
+#net ArdAinB ardconv.1.ArdADCin <= #TODO
+
+# --- VFD analog speed ---
+#setp ardconv.2.VDhigh 10000.00
+#setp ardconv.2.VDlow 10000.00
+#setp ardconv.2.MaxValue 1024.00
+#setp ardconv.2.MaxVolts 5.00
+#net ArdAinC ardconv.2.ArdADCin <= #TODO
+
+
 
 #########################
 # --- 7i83 settings --- #
