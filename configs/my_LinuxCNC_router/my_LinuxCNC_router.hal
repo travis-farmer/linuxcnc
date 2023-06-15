@@ -53,6 +53,17 @@ loadrt LaserAnalog #tjf
 addf LaserAnalog.0 servo-thread
 
 #########################
+# --- 7i83 settings --- #
+#########################
+setp hm2_7i80.0.7i83.0.3.analogout0-maxlim 10
+setp hm2_7i80.0.7i83.0.3.analogout0-minlim 0
+setp hm2_7i80.0.7i83.0.3.analogout1-maxlim 10
+setp hm2_7i80.0.7i83.0.3.analogout1-minlim 0
+setp hm2_7i80.0.7i83.0.3.analogout0-scalemax 10
+setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
+
+
+#########################
 # --- CONTROL PANEL --- #
 #########################
 # --- CPL LCD ---
@@ -110,7 +121,7 @@ net control-w-home or2.6.out => halui.mdi-command-00
 setp near.0.difference 5.00
 
 net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn near.0.in2
-#net spindle-float-out hal2mbvfd.0.FloatOut => TODO
+net spindle-float-out hal2mbvfd.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
 net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
 net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
 net vfd-read-rpm-float hm2_7i80.0.7i70.0.1.analog2 => hal2mbvfd.0.VfdRpmFloat
@@ -166,7 +177,7 @@ net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 ########################
 # M67 E0 Q0
 net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
-#net LaserFloatOut LaserAnalog.0.FloatOut => TODO
+net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
 net LaserEnable LaserAnalog.0.LaserEnable => hm2_7i80.0.7i72.0.2.output-05
 net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 
@@ -460,7 +471,7 @@ net coolant-mist vacuum-control.0.cool-mist-in     <=  iocontrol.0.coolant-mist
 net coolant-flood vacuum-control.0.cool-flood-in    <=  iocontrol.0.coolant-flood
 net spindle-vel-cmd-rpm-abs => vacuum-control.0.spind-rpm-in
 
-net laser-air-out-relay hm2_7i80.0.7i72.0.2.output-06 <= vacuum-control.0.laser-air-out
+
 
 setp hm2_7i80.0.gpio.004.invert_output false
 setp hm2_7i80.0.gpio.004.is_output true
@@ -487,7 +498,7 @@ net probe-in     =>  motion.probe-input
 net in-position               <=  motion.in-position
 
 
-net machine-is-enabled hm2_7i80.0.7i72.0.2.output-01      <=  motion.motion-enabled
+net machine-is-enabled hm2_7i80.0.7i72.0.2.output-01 hm2_7i80.0.7i83.0.3.analogena0 hm2_7i80.0.7i83.0.3.analogena1    <=  motion.motion-enabled
 
 #  ---digital in / out signals---
 

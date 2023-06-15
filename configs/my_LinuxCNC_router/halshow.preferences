@@ -1,25 +1,20 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 700x475+822+146
-placeFrames 0.29941860465116277
-set ::ratio 0.29941860465116277
+wm geometry . 853x423+741+193
+placeFrames 0.4171511627906977
+set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+hm2_7i80.0.7i70.0.1.input-13
-    pin+hm2_7i80.0.7i72.0.2.output-00
-    sig+activate-spind-fan
-    pin+hal2mbvfd.0.SpindFan
+    pin+hm2_7i80.0.7i83.0.3.fieldvoltage
+    pin+hm2_7i80.0.7i83.0.3.analogout0
+    param+hm2_7i80.0.7i83.0.3.analogout0-maxlim
+    param+hm2_7i80.0.7i83.0.3.analogout0-minlim
+    param+hm2_7i80.0.7i83.0.3.analogout0-scalemax
+    pin+hm2_7i80.0.7i83.0.3.analogena1
+    pin+hm2_7i80.0.7i83.0.3.analogout1
+    pin+hm2_7i80.0.7i83.0.3.analogena0
     pin+hal2mbvfd.0.RpmIn
-    pin+hal2mbvfd.0.VfdFwd
-    pin+hal2mbvfd.0.VfdRev
-    pin+hm2_7i80.0.7i72.0.2.fieldvoltage
-    pin+hm2_7i80.0.7i70.0.1.analog0
-    pin+hm2_7i80.0.7i70.0.1.analog1
-    pin+hm2_7i80.0.7i70.0.1.analog2
-    pin+volts2psi.0.PSIout
-    pin+volts2psi.0.volts
-    pin+volts2psi.1.PSIout
-    pin+volts2psi.1.volts
+    pin+hal2mbvfd.0.FloatOut
 }
 set ::workmode watchhal
 set ::watchInterval 100
