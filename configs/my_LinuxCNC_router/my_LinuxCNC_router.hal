@@ -53,8 +53,8 @@ loadrt LaserAnalog #tjf
 addf LaserAnalog.0 servo-thread
 loadrt ardconv count=3 #tjf
 addf ardconv.0 servo-thread
+addf ardconv.1 servo-thread
 addf ardconv.2 servo-thread
-addf ardconv.3 servo-thread
 
 ##################
 # --- MB2HAL --- #
