@@ -136,8 +136,8 @@ net cpl-scan-code hm2_7i80.0.7i73.0.0.keycode => matrix_kb.0.keycode
 # matrix_kb.0.key.rRcC
 net cpl-kbd-0-0 matrix_kb.0.key.r0c0 => or2.5.in0 # Machine Home
 net cpl-kbd-0-1 matrix_kb.0.key.r0c1 => or2.6.in0 # Work Home
-net cpl-kbd-0-2 matrix_kb.0.key.r0c2 => or2.3.in0
-net cpl-kbd-0-3 matrix_kb.0.key.r0c3 => or2.4.in0
+net cpl-kbd-0-2 matrix_kb.0.key.r0c2 => or2.3.in0 # pause
+net cpl-kbd-0-3 matrix_kb.0.key.r0c3 => or2.4.in0 # resume
 
 
 net control-pause halui.program.pause <= or2.3.out
@@ -157,8 +157,6 @@ net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
 net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
 net vfd-read-rpm-float hm2_7i80.0.7i70.0.1.analog2 => hal2mbvfd.0.VfdRpmFloat
 net vfd-conv-rpm hal2mbvfd.0.VfdRunRpmOut => spindle.0.speed-in near.0.in1
-setp hm2_7i80.0.gpio.006.invert_output true
-setp hm2_7i80.0.gpio.006.is_output true
 net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00 hm2_7i80.0.7i83.0.3.analogena0     <=  hal2mbvfd.0.SpindFan
 
 ###################
@@ -207,11 +205,15 @@ net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 # --- Laser Analog --- #
 ########################
 
+# M68 E0 Q0
 # M67 E0 Q0
 net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
 net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
-net LaserEnable LaserAnalog.0.LaserEnable => hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1
+net LaserEnable LaserAnalog.0.LaserEnable
 net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
+#M64 P2 - turn on digital output immediately.
+#M65 P2 - turn off digital output immediately.
+net LaserOn hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= motion.digital-out-02
 
 ############################
 # --- external signals --- #
@@ -221,9 +223,6 @@ net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 setp hm2_7i80.0.gpio.000.invert_output true # stepper enable
 setp hm2_7i80.0.gpio.000.is_output true
 net machine-is-enabled =>     hm2_7i80.0.gpio.000.out
-setp hm2_7i80.0.gpio.005.invert_output true # VFD enable
-setp hm2_7i80.0.gpio.005.is_output true
-net machine-is-enabled =>     hm2_7i80.0.gpio.005.out
 
 # --- ESTOP-EXT ---
 net estop-a-in and2.1.in0 <= hm2_7i80.0.7i70.0.1.input-15

@@ -18,13 +18,9 @@
                 <region1>(12000,24000,"green")</region1>
                 <region2>(0,12000,"blue")</region2>
             </meter>
-            <label>
-                    <text>"Spindle-At-Speed:"</text>
-                    <font>("Helvetica",20)</font>
-            </label>
             <hbox>
                 <label>
-                        <text>"             "</text>
+                        <text>"Spindle-At-Speed:"</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <led>
@@ -34,13 +30,9 @@
                     <off_color>"red"</off_color>
                 </led>
             </hbox>
-            <label>
-                    <text>"Forward:"</text>
-                    <font>("Helvetica",20)</font>
-            </label>
             <hbox>
                 <label>
-                        <text>"             "</text>
+                        <text>"Forward:"</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <led>
@@ -50,13 +42,9 @@
                     <off_color>"red"</off_color>
                 </led>
             </hbox>
-            <label>
-                    <text>"Reverse:"</text>
-                    <font>("Helvetica",20)</font>
-            </label>
             <hbox>
                 <label>
-                        <text>"             "</text>
+                        <text>"Reverse:"</text>
                         <font>("Helvetica",20)</font>
                 </label>
                 <led>
@@ -127,7 +115,7 @@
             <meter>
                 <halpin>"laser-power"</halpin>
                 <text>"Laser Power"</text>
-                <subtext>"RPM"</subtext>
+                <subtext>"Percent"</subtext>
                 <size>200</size>
                 <min_>0</min_>
                 <max_>100</max_>
