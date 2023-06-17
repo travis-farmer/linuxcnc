@@ -5,16 +5,11 @@ placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+hm2_7i80.0.7i83.0.3.fieldvoltage
-    pin+hm2_7i80.0.7i83.0.3.analogout0
-    param+hm2_7i80.0.7i83.0.3.analogout0-maxlim
-    param+hm2_7i80.0.7i83.0.3.analogout0-minlim
-    param+hm2_7i80.0.7i83.0.3.analogout0-scalemax
-    pin+hm2_7i80.0.7i83.0.3.analogena1
-    pin+hm2_7i80.0.7i83.0.3.analogout1
-    pin+hm2_7i80.0.7i83.0.3.analogena0
-    pin+hal2mbvfd.0.RpmIn
-    pin+hal2mbvfd.0.FloatOut
+    pin+LaserAnalog.0.FloatOut
+    pin+LaserAnalog.0.LaserEnable
+    pin+LaserAnalog.0.LaserIn
+    pin+LaserAnalog.0.PercentOut
+    pin+motion.analog-in-00
 }
 set ::workmode watchhal
 set ::watchInterval 100

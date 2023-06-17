@@ -149,3 +149,21 @@ m5
 m3 s24000
 m3 s12000
 m3 s24000
+m67 e0 q1
+m67 e0 q0
+m67 e0 q1
+m67 e0 q0
+m67 e0 q1
+m67 e0 q0
+m68 e0 q1
+m68 e0 q0
+m68 e0 q1
+m68 e0 q0
+m68 e0 q1
+m68 e0 q0
+m68 e0 q1
+m68 e0 q0
+m68 e0 q0.001
+m68 e0 q0.01
+m68 e0 q0.1
+m68 e0 q0
