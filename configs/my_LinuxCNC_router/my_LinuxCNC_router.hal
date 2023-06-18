@@ -55,6 +55,8 @@ loadrt ardconv count=3 #tjf
 addf ardconv.0 servo-thread
 addf ardconv.1 servo-thread
 addf ardconv.2 servo-thread
+loadrt timedelay
+addf timedelay.0 servo-thread
 
 ##################
 # --- MB2HAL --- #
@@ -205,15 +207,18 @@ net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 # --- Laser Analog --- #
 ########################
 
+setp timedelay.0.on-delay 0.00
+setp timedelay.0.off-delay 5.00
+
 # M68 E0 Q0
 # M67 E0 Q0
 net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
 net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
-net LaserEnable LaserAnalog.0.LaserEnable
 net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 #M64 P2 - turn on digital output immediately.
 #M65 P2 - turn off digital output immediately.
-net LaserOn hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= motion.digital-out-02
+net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= motion.digital-out-02
+net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
 ############################
 # --- external signals --- #

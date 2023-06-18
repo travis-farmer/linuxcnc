@@ -130,7 +130,31 @@
                 <led>
                     <halpin>"laser-active"</halpin>
                     <size>30</size>
-                    <on_color>"blue"</on_color>
+                    <on_color>"green"</on_color>
+                    <off_color>"black"</off_color>
+                </led>
+            </hbox>
+            <hbox>
+                <label>
+                        <text>"Laser Air: "</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <led>
+                    <halpin>"laser-air"</halpin>
+                    <size>30</size>
+                    <on_color>"green"</on_color>
+                    <off_color>"black"</off_color>
+                </led>
+            </hbox>
+            <hbox>
+                <label>
+                        <text>"Laser Fume: "</text>
+                        <font>("Helvetica",20)</font>
+                </label>
+                <led>
+                    <halpin>"laser-fume"</halpin>
+                    <size>30</size>
+                    <on_color>"green"</on_color>
                     <off_color>"black"</off_color>
                 </led>
             </hbox>
