@@ -90,9 +90,9 @@ addf timedelay.0 servo-thread
 #########################
 setp hm2_7i80.0.7i83.0.3.analogout0-maxlim 10
 setp hm2_7i80.0.7i83.0.3.analogout0-minlim 0
+setp hm2_7i80.0.7i83.0.3.analogout0-scalemax 10
 setp hm2_7i80.0.7i83.0.3.analogout1-maxlim 10
 setp hm2_7i80.0.7i83.0.3.analogout1-minlim 0
-setp hm2_7i80.0.7i83.0.3.analogout0-scalemax 10
 setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
 
 
