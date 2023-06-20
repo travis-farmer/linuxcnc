@@ -10,6 +10,8 @@ set ::watchlist {
     pin+LaserAnalog.0.LaserIn
     pin+LaserAnalog.0.PercentOut
     pin+motion.analog-in-00
+    pin+volts2psi.1.PSIout
+    pin+volts2psi.0.PSIout
 }
 set ::workmode watchhal
 set ::watchInterval 100
