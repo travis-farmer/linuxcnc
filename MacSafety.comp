@@ -1,0 +1,48 @@
+component MacSafety "manage safety interlocks, and display signal tower";
+
+pin out bit InterlockOut "true when machine is safe";
+pin out bit SigRed "Red signal output";
+pin out bit SigYellow "Yellow signal output";
+pin out bit SigGreen "Green signal output";
+pin out bit SigBuzzer "Buzzer signal output";
+pin out bit DoorUnlockOut "True when machine is safe to open, and door button pressed";
+pin in bit ProgPausedIn "halui.program.is-paused connection";
+pin in bit ProgRunningIn "halui.program.is-running connection";
+pin in bit ProgIdleIn "halui.program.is-idle connection";
+pin in bit DoorInterlockIn "input from door interlock, true when safe";
+pin in bit DoorUnlockButtonIn "input from door unlock button";
+
+
+
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+
+FUNCTION(_) {
+    // InterlockOut and DoorUnlockOut proc
+    if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false) {
+        InterlockOut = true;
+        if (DoorUnlockButtonIn == true) {SigBuzzer = true;}
+        else {SigBuzzer = false;}
+    } else if (ProgPausedIn == true || ProgIdleIn == true) {
+        InterlockOut = false;
+        if (DoorUnlockButtonIn == true) {DoorUnlockOut = true;}
+        else {DoorUnlockOut = false;}
+    }
+
+    // Signal Lights Proc
+    if (ProgRunningIn == true && ProgPausedIn == false) {
+        SigRed = true;
+        sigYellow = false;
+        sigGreen = false;
+    } else if (ProgPausedIn == true && DoorInterlockIn == false) {
+        SigRed = false;
+        SigYellow = true;
+        SigGreen = false;
+    } else if (ProgRunningIn == false && ProgIdleIn == true) {
+        SigRed = false;
+        SigYellow = false;
+        SigGreen = true;
+    }
+}

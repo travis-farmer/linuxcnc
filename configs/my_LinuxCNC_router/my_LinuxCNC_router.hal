@@ -57,6 +57,19 @@ addf ardconv.1 servo-thread
 addf ardconv.2 servo-thread
 loadrt timedelay
 addf timedelay.0 servo-thread
+loadrt MacSafety
+addf MacSafety.0 servo-thread
+
+#####################
+# --- MacSafety --- #
+#####################
+net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
+net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18
+net MS-DoorLockOut MacSafety.0.DoorLockOut => hm2_7i80.0.7i72.0.2.output-08
+net MS-SignalRed MacSafety.0.SigRed => hm2_7i80.0.7i72.0.2.output-09
+net MS-SignalYellow MacSafety.0.SigYellow => hm2_7i80.0.7i72.0.2.output-10
+net MS-SignalGreen MacSafety.0.SigGreen => hm2_7i80.0.7i72.0.2.output-11
+net MS-SignalBuzzer MacSafety.0.SigBuzzer => hm2_7i80.0.7i72.0.2.output-12
 
 ##################
 # --- MB2HAL --- #
@@ -217,7 +230,9 @@ net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
 net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 #M64 P2 - turn on digital output immediately.
 #M65 P2 - turn off digital output immediately.
-net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= motion.digital-out-02
+net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02
+net MS-InterlockOut LaserAnalog.0.DoorInterlockIn <= MacSafety.0.InterlockOut
+net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
 net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
 ############################
