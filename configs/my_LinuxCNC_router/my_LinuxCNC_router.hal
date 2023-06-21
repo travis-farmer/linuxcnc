@@ -65,7 +65,7 @@ addf MacSafety.0 servo-thread
 #####################
 net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
 net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18
-net MS-DoorLockOut MacSafety.0.DoorLockOut => hm2_7i80.0.7i72.0.2.output-08
+net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 net MS-SignalRed MacSafety.0.SigRed => hm2_7i80.0.7i72.0.2.output-09
 net MS-SignalYellow MacSafety.0.SigYellow => hm2_7i80.0.7i72.0.2.output-10
 net MS-SignalGreen MacSafety.0.SigGreen => hm2_7i80.0.7i72.0.2.output-11
