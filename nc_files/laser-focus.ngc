@@ -16,17 +16,20 @@ o<laser-focus> sub
  G59.3																		(Switch temporarily to G59.3 WCS for probing)
  G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
  M66 P1 L0
- o313 if [#5399 EQ 1]
+ o313 if [#5399 EQ 0]
     (abort,Probe not in spindle)
  o313 endif
- G38.2 G90 Z1 F#<_ini[LASER_FOCUS]PROBE_SEARCH>	(Probe move to work)
- G0 G91 Z0.5                                                                (backoff half an inch)
- G38.2 G90 Z0.75 F#<_ini[LASER_FOCUS]PROBE_FINE>	(Measure Fine)
- G38.5 G91 Z0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>		(Back off until probe breaks contact)
- #<_new_work_height> = #5063
+ G91
+ G38.2 Z-0.75 F#<_ini[LASER_FOCUS]PROBE_SEARCH>	(Probe move to work)
+ G38.5 Z0.75 F#<_ini[LASER_FOCUS]PROBE_SEARCH>                                                             (backoff half an inch)
+ G38.2 Z-0.75 F#<_ini[LASER_FOCUS]PROBE_FINE>	(Measure Fine)
+ G38.5 Z0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>		(Back off until probe breaks contact)
+ #<laser_ride_height> = [#5063 - [#<_ini[LASER_FOCUS]LASER_DIFF> + #<_ini[LASER_FOCUS]LASER_FOCUS>]]
+
+
  G53 G90 G0 Z0										(Z up to safe position)
  M0                                                 (pause for probe removal)
- #<laser_ride_height> = [#<_new_work_height> - [#<_ini[LASER_FOCUS]LASER_DIFF + #<_ini[LASER_FOCUS]LASER_FOCUS]]
+
  G53 G90 G0 Z#<laser_ride_height>
 
  (Restore original coordinate system. G54 to G59.2 only)

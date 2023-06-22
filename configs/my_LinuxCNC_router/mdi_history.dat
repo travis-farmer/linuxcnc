@@ -167,3 +167,6 @@ m68 e0 q0.001
 m68 e0 q0.01
 m68 e0 q0.1
 m68 e0 q0
+o<laser-focus> call
+G90
+o<laser-focus> call
