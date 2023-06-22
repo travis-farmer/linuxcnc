@@ -19,18 +19,17 @@ o<laser-focus> sub
  o313 if [#5399 EQ 0]
     (abort,Probe not in spindle)
  o313 endif
- G91
- G38.2 Z-0.75 F#<_ini[LASER_FOCUS]PROBE_SEARCH>	(Probe move to work)
- G38.5 Z0.75 F#<_ini[LASER_FOCUS]PROBE_SEARCH>                                                             (backoff half an inch)
- G38.2 Z-0.75 F#<_ini[LASER_FOCUS]PROBE_FINE>	(Measure Fine)
- G38.5 Z0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>		(Back off until probe breaks contact)
- #<laser_ride_height> = [#5063 - [#<_ini[LASER_FOCUS]LASER_DIFF> + #<_ini[LASER_FOCUS]LASER_FOCUS>]]
+ G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>	(Probe move to work)
+ G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>  (backoff)
+ G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_FINE>	(Measure Fine)
+ G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>    (Back off until probe breaks contact)
+ #<laser_ride_height> = [#5063 - #<_ini[LASER_FOCUS]LASER_FOCUS>]
+ (print,laser ride height: #<laser_ride_height>)
 
+ ;G53 G0 Z0										(Z up to safe position)
+ ;M0                                                 (pause for probe removal)
 
- G53 G90 G0 Z0										(Z up to safe position)
- M0                                                 (pause for probe removal)
-
- G53 G90 G0 Z#<laser_ride_height>
+ ;G53 G0 Z#<laser_ride_height>
 
  (Restore original coordinate system. G54 to G59.2 only)
  o100 if[#<coord_system_was> EQ 540]
