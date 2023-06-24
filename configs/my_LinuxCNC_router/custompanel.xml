@@ -158,6 +158,22 @@
                     <off_color>"black"</off_color>
                 </led>
             </hbox>
+            <button>
+                <halpin>"probe-focus-button"</halpin>
+                <text>"Probe Focus"</text>
+            </button>
         </vbox>
     </tabs>
+    <hbox>
+        <label>
+                <text>"Probe: "</text>
+                <font>("Helvetica",20)</font>
+        </label>
+        <led>
+            <halpin>"probe-input"</halpin>
+            <size>20</size>
+            <on_color>"green"</on_color>
+            <off_color>"black"</off_color>
+        </led>
+    </hbox>
 </pyvcp>
