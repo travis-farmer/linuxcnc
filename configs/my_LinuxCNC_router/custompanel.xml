@@ -162,6 +162,10 @@
                 <halpin>"probe-focus-button"</halpin>
                 <text>"Probe Focus"</text>
             </button>
+            <button>
+                <halpin>"kill-laser-button"</halpin>
+                <text>"Kill Laser"</text>
+            </button>
         </vbox>
     </tabs>
     <hbox>

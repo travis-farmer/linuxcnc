@@ -26,4 +26,6 @@ net LaserPercentOut LaserAnalog.0.PercentOut => pyvcp.laser-power
 net LaserAirOut => pyvcp.laser-air
 net fume-extraction-ssr => pyvcp.laser-fume
 net probe-focus-butt pyvcp.probe-focus-button => halui.mdi-command-08
+net kill-laser-butt pyvcp.kill-laser-button => halui.mdi-command-09
+
 net probe-in	=>	pyvcp.probe-input
