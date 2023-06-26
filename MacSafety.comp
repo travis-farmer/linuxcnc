@@ -23,91 +23,56 @@ license "GPL";
 author "Travis Farmer";
 ;;
 
-void signalRed() { // Failure conditions such as an emergency stop or machine fault
-    SigRed = true;
-    SigYellow = false;
-    SigGreen = false;
-}
-
-void signalYellow() { // Warnings such as over-temperature or over-pressure conditions
-    SigRed = false;
-    SigYellow = true;
-    SigGreen = false;
-}
-
-void signalGreen() { // Normal machine or process operation
-    SigRed = false;
-    SigYellow = false;
-    SigGreen = true;
-}
-
-void signalBlue(bool value) { // Laser active
-    if (value == true) {
-        SigBlue = true;
-    } else {
-        SigBlue = false;
-    }
-}
-
-void signalWhite(bool value) { // Machine running a program
-    if (value == true) {
-        SigWhite = true;
-    } else {
-        SigWhite = false;
-    }
-}
-
-void signalBuzzer(bool value) {
-    if (value == true) {
-        SigBuzzer = true;
-    } else {
-        SigBuzzer = false;
-    }
-}
-
-
-
 FUNCTION(_) {
     // InterlockOut and DoorUnlockOut proc
     if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false && EstopIn == false) {
         InterlockOut = true;
-        if (DoorUnlockButtonIn == true) {signalBuzzer(true);}
-        else {signalBuzzer(false);}
-        SendEstop = false;
+        if (DoorUnlockButtonIn == true) {SigBuzzer = true;}
+        else {SigBuzzer = false;}
+        SendEstop = true;
     } else if (ProgPausedIn == true || ProgIdleIn == true && EstopIn == false) {
         InterlockOut = false;
-        signalBuzzer(false);
+        SigBuzzer = false;
         if (DoorUnlockButtonIn == true) {DoorUnlockOut = true;}
         else {DoorUnlockOut = false;}
-        SendEstop = false;
-    } else if ((ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && EstopIn == false) || TrigEstop == true) {
-        InterlockOut = false;
-        signalBuzzer(true);
         SendEstop = true;
+    } else if ((ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && EstopIn == false) || TrigEstop == false) {
+        InterlockOut = false;
+        SigBuzzer = true;
+        SendEstop = false;
     }
 
     // Signal Lights Proc
     if (ProgRunningIn == true && ProgPausedIn == false && LaserRunningIn == false && EstopIn == false) {
-        signalGreen();
-        signalWhite(true);
-        signalBlue(false);
-        }
+        SigRed = false;
+	SigYellow = true;
+	SigGreen = false;
+        SigWhite = true;
+        SigBlue = false;
     } else if (ProgPausedIn == true && DoorInterlockIn == false && EstopIn == false) {
-        signalGreen();
-        signalWhite(false);
-        signalBlue(false);
+        SigRed = false;
+        SigYellow = true;
+        SigGreen = false;
+        SigWhite = false;
+        SigBlue = false;
     } else if (ProgRunningIn == false && ProgIdleIn == true && EstopIn == false) {
-        signalGreen();
-        signalWhite(false);
-        signalBlue(false);
+        SigRed = false;
+        SigYellow = true;
+        SigGreen = false;
+        SigWhite = false;
+        SigBlue = false;
     } else if (ProgRunningIn == true && ProgPausedIn == false && LaserRunningIn == true && EstopIn == false) {
-        signalGreen();
-        signalBlue(true);
-        signalWhite(false);
+        SigRed = false;
+        SigYellow = true;
+        SigGreen = false;
+        SigBlue = true;
+        SigWhite = false;
     } else if (EstopIn == true) {
-        signalRed();
-        signalBlue(false);
-        signalWhite(false);
+        SigRed = true;
+        SigYellow = false;
+        SigGreen = false;
+        SigBlue = false;
+        SigWhite = false;
 
     }
 }

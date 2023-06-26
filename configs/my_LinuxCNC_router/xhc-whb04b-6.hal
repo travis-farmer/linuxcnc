@@ -17,9 +17,9 @@ net pdnt.machine.on                       whb.halui.machine.on                  
 net pdnt.machine.off                      whb.halui.machine.off                 halui.machine.off
 
 # program related signals
-net pdnt.program.is-idle        MacSafety.0.ProgIdleIn          whb.halui.program.is-idle             halui.program.is-idle
-net pdnt.program.is-paused      MacSafety.0.ProgPausedIn          whb.halui.program.is-paused           halui.program.is-paused
-net pdnt.program-is-running    MacSafety.0.ProgRunningIn   and2.2.in0        whb.halui.program.is-running          halui.program.is-running
+net pdnt.program.is-idle                  whb.halui.program.is-idle             halui.program.is-idle
+net pdnt.program.is-paused                whb.halui.program.is-paused           halui.program.is-paused
+net pdnt.program-is-running       and2.2.in0        whb.halui.program.is-running          halui.program.is-running
 net pdnt.program.resume                   whb.halui.program.resume              or2.4.in1
 net pdnt.program.pause                    whb.halui.program.pause               or2.3.in1
 net pdnt.program.run                      whb.halui.program.run                 halui.program.run

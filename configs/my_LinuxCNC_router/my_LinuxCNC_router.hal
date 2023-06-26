@@ -58,22 +58,22 @@ addf ardconv.1 servo-thread
 addf ardconv.2 servo-thread
 loadrt timedelay
 addf timedelay.0 servo-thread
-loadrt MacSafety
-addf MacSafety.0 servo-thread
+#loadrt MacSafety
+#addf MacSafety.0 servo-thread
 
 #####################
 # --- MacSafety --- #
 #####################
-net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
-net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v
-net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
-net MS-SignalRed MacSafety.0.SigRed => hm2_7i80.0.7i72.0.2.output-09
-net MS-SignalYellow MacSafety.0.SigYellow => hm2_7i80.0.7i72.0.2.output-10
-net MS-SignalGreen MacSafety.0.SigGreen => hm2_7i80.0.7i72.0.2.output-11
-net MS-SignalBuzzer MacSafety.0.SigBuzzer => hm2_7i80.0.7i72.0.2.output-12
-net MS-SignalBlue MacSafety.0.SigBlue => hm2_7i80.0.7i72.0.2.output-13
-net MS-SignalWhite MacSafety.0.SigWhite => hm2_7i80.0.7i72.0.2.output-14
-net LaserOn => MacSafety.0.LaserRunningIn
+#net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
+#net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v
+#net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
+#net MS-SignalRed MacSafety.0.SigRed => hm2_7i80.0.7i72.0.2.output-09
+#net MS-SignalYellow MacSafety.0.SigYellow => hm2_7i80.0.7i72.0.2.output-10
+#net MS-SignalGreen MacSafety.0.SigGreen => hm2_7i80.0.7i72.0.2.output-11
+#net MS-SignalBuzzer MacSafety.0.SigBuzzer => hm2_7i80.0.7i72.0.2.output-12
+#net MS-SignalBlue MacSafety.0.SigBlue => hm2_7i80.0.7i72.0.2.output-13
+#net MS-SignalWhite MacSafety.0.SigWhite => hm2_7i80.0.7i72.0.2.output-14
+#net LaserOn => MacSafety.0.LaserRunningIn
 
 ##################
 # --- MB2HAL --- #
@@ -235,8 +235,8 @@ net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 #M64 P2 - turn on digital output immediately.
 #M65 P2 - turn off digital output immediately.
 net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02
-setp and2.2.in1 1 # TODO: Fix this, connect to machine door interlock, when built.
-net LaserInterlock LaserAnalog.0.DoorInterlockIn <= and2.2.out
+
+setp LaserAnalog.0.DoorInterlockIn 1
 net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
 net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
@@ -250,8 +250,8 @@ setp hm2_7i80.0.gpio.000.is_output true
 net machine-is-enabled =>     hm2_7i80.0.gpio.000.out
 
 # --- ESTOP-EXT ---
-net estop-a-in MacSafety.0.EstopIn and2.1.in0 <= hm2_7i80.0.7i70.0.1.input-15
-net estop-b-in and2.1.in1 <= MacSafety.0.SendEstop
+net estop-a-in and2.1.in0 <= hm2_7i80.0.7i70.0.1.input-15
+setp and2.1.in1 1
 net estop-ext     <=  and2.1.out
 
 # --- PROBE-IN ---

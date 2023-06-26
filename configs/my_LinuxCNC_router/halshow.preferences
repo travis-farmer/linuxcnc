@@ -1,17 +1,13 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 853x423+741+193
+wm geometry . 853x423+911+146
 placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+LaserAnalog.0.FloatOut
-    pin+LaserAnalog.0.LaserEnable
-    pin+LaserAnalog.0.LaserIn
-    pin+LaserAnalog.0.PercentOut
-    pin+motion.analog-in-00
-    pin+volts2psi.1.PSIout
-    pin+volts2psi.0.PSIout
+    pin+hm2_7i80.0.7i70.0.1.input-15
+    pin+MacSafety.0.SendEstop
+    pin+MacSafety.0.TrigEstop
 }
 set ::workmode watchhal
 set ::watchInterval 100
