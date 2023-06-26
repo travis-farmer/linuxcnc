@@ -8,7 +8,6 @@ pin out bit SigBlue "Blue signal output";
 pin out bit SigWhite "White signal output";
 pin out bit SigBuzzer "Buzzer signal output";
 pin out bit DoorUnlockOut "True when machine is safe to open, and door button pressed";
-pin out bit SendEstop "true when sending ESTOP";
 pin in bit ProgPausedIn "halui.program.is-paused connection";
 pin in bit ProgRunningIn "halui.program.is-running connection";
 pin in bit ProgIdleIn "halui.program.is-idle connection";
@@ -16,7 +15,6 @@ pin in bit DoorInterlockIn "input from door interlock, true when safe";
 pin in bit DoorUnlockButtonIn "input from door unlock button";
 pin in bit LaserRunningIn "input from laser enable";
 pin in bit EstopIn "input from ESTOP";
-pin in bit TrigEstop "alternate ESTOP trigger";
 
 function _;
 license "GPL";
@@ -25,28 +23,25 @@ author "Travis Farmer";
 
 FUNCTION(_) {
     // InterlockOut and DoorUnlockOut proc
-    if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false && EstopIn == false) {
+    if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false) {
         InterlockOut = true;
         if (DoorUnlockButtonIn == true) {SigBuzzer = true;}
         else {SigBuzzer = false;}
-        SendEstop = true;
-    } else if (ProgPausedIn == true || ProgIdleIn == true && EstopIn == false) {
+    } else if (ProgPausedIn == true || ProgIdleIn == true) {
         InterlockOut = false;
         SigBuzzer = false;
         if (DoorUnlockButtonIn == true) {DoorUnlockOut = true;}
         else {DoorUnlockOut = false;}
-        SendEstop = true;
-    } else if ((ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && EstopIn == false) || TrigEstop == false) {
+    } else if (ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false) {
         InterlockOut = false;
         SigBuzzer = true;
-        SendEstop = false;
     }
 
     // Signal Lights Proc
     if (ProgRunningIn == true && ProgPausedIn == false && LaserRunningIn == false && EstopIn == false) {
         SigRed = false;
-	SigYellow = true;
-	SigGreen = false;
+	    SigYellow = true;
+	    SigGreen = false;
         SigWhite = true;
         SigBlue = false;
     } else if (ProgPausedIn == true && DoorInterlockIn == false && EstopIn == false) {

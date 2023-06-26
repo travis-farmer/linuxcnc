@@ -58,22 +58,22 @@ addf ardconv.1 servo-thread
 addf ardconv.2 servo-thread
 loadrt timedelay
 addf timedelay.0 servo-thread
-#loadrt MacSafety
-#addf MacSafety.0 servo-thread
+loadrt MacSafety
+addf MacSafety.0 servo-thread
 
 #####################
 # --- MacSafety --- #
 #####################
-#net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
-#net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v
-#net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
-#net MS-SignalRed MacSafety.0.SigRed => hm2_7i80.0.7i72.0.2.output-09
-#net MS-SignalYellow MacSafety.0.SigYellow => hm2_7i80.0.7i72.0.2.output-10
-#net MS-SignalGreen MacSafety.0.SigGreen => hm2_7i80.0.7i72.0.2.output-11
-#net MS-SignalBuzzer MacSafety.0.SigBuzzer => hm2_7i80.0.7i72.0.2.output-12
-#net MS-SignalBlue MacSafety.0.SigBlue => hm2_7i80.0.7i72.0.2.output-13
-#net MS-SignalWhite MacSafety.0.SigWhite => hm2_7i80.0.7i72.0.2.output-14
-#net LaserOn => MacSafety.0.LaserRunningIn
+net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
+net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v
+net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
+net MS-SignalRed MacSafety.0.SigRed => hm2_7i80.0.7i72.0.2.output-09
+net MS-SignalYellow MacSafety.0.SigYellow => hm2_7i80.0.7i72.0.2.output-10
+net MS-SignalGreen MacSafety.0.SigGreen => hm2_7i80.0.7i72.0.2.output-11
+net MS-SignalBuzzer MacSafety.0.SigBuzzer => hm2_7i80.0.7i72.0.2.output-12
+net MS-SignalBlue MacSafety.0.SigBlue => hm2_7i80.0.7i72.0.2.output-13
+net MS-SignalWhite MacSafety.0.SigWhite => hm2_7i80.0.7i72.0.2.output-14
+net LaserOn => MacSafety.0.LaserRunningIn
 
 ##################
 # --- MB2HAL --- #
@@ -560,7 +560,7 @@ net machine-is-enabled hm2_7i80.0.7i72.0.2.output-01      <=  motion.motion-enab
 
 #  ---estop signals---
 
-net estop-out     <=  iocontrol.0.user-enable-out
+net estop-out  MacSafety.0.EstopIn    <=  iocontrol.0.user-enable-out
 net estop-ext     =>  iocontrol.0.emc-enable-in
 
 #  ---manual tool change signals---
