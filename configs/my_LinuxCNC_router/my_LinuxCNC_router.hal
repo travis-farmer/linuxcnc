@@ -136,7 +136,7 @@ net spindle-is-hung => lcd.00.page.00.arg.07
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-net laser-mode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
+net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02

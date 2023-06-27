@@ -15,6 +15,7 @@ pin in bit DoorInterlockIn "input from door interlock, true when safe";
 pin in bit DoorUnlockButtonIn "input from door unlock button";
 pin in bit LaserRunningIn "input from laser enable";
 pin in bit EstopIn "input from ESTOP";
+pin in bit LaserMode "input from laser mode switch";
 
 function _;
 license "GPL";
@@ -23,7 +24,7 @@ author "Travis Farmer";
 
 FUNCTION(_) {
     // InterlockOut and DoorUnlockOut proc
-    if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false) {
+    if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false && LaserMode == true) {
         InterlockOut = true;
         if (DoorUnlockButtonIn == true) {SigBuzzer = true;}
         else {SigBuzzer = false;}
@@ -32,37 +33,37 @@ FUNCTION(_) {
         SigBuzzer = false;
         if (DoorUnlockButtonIn == true) {DoorUnlockOut = true;}
         else {DoorUnlockOut = false;}
-    } else if (ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false) {
+    } else if (ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && LaserMode == true) {
         InterlockOut = false;
         SigBuzzer = true;
     }
 
     // Signal Lights Proc
-    if (ProgRunningIn == true && ProgPausedIn == false && LaserRunningIn == false && EstopIn == false) {
+    if (ProgRunningIn == true && ProgPausedIn == false && LaserRunningIn == false && EstopIn == true) {
         SigRed = false;
 	    SigYellow = true;
 	    SigGreen = false;
         SigWhite = true;
         SigBlue = false;
-    } else if (ProgPausedIn == true && DoorInterlockIn == false && EstopIn == false) {
+    } else if (ProgPausedIn == true && DoorInterlockIn == false && EstopIn == true) {
         SigRed = false;
         SigYellow = true;
         SigGreen = false;
         SigWhite = false;
         SigBlue = false;
-    } else if (ProgRunningIn == false && ProgIdleIn == true && EstopIn == false) {
+    } else if (ProgRunningIn == false && ProgIdleIn == true && EstopIn == true) {
         SigRed = false;
         SigYellow = true;
         SigGreen = false;
         SigWhite = false;
         SigBlue = false;
-    } else if (ProgRunningIn == true && ProgPausedIn == false && LaserRunningIn == true && EstopIn == false) {
+    } else if (ProgRunningIn == true && ProgPausedIn == false && LaserRunningIn == true && EstopIn == true) {
         SigRed = false;
         SigYellow = true;
         SigGreen = false;
         SigBlue = true;
-        SigWhite = false;
-    } else if (EstopIn == true) {
+        SigWhite = true;
+    } else if (EstopIn == false) {
         SigRed = true;
         SigYellow = false;
         SigGreen = false;
