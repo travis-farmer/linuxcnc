@@ -180,4 +180,41 @@
             <off_color>"black"</off_color>
         </led>
     </hbox>
+        <button>
+        <halpin>"load-probe-button"</halpin>
+        <text>"Load 3D Probe"</text>
+    </button>
+    <table flexible_rows="[2]" flexible_columns="[1,2]">
+    <tablesticky sticky="new"/>
+    <tablerow/>
+        <tablespan columns="2"/>
+        <button>
+            <halpin>"clear-offset-button"</halpin>
+            <text>"Clear Offset"</text>
+        </button>
+    <tablerow/>
+        <button>
+            <halpin>"align-x-a-button"</halpin>
+            <text>"Align X1"</text>
+        </button>
+        <button>
+            <halpin>"align-x-b-button"</halpin>
+            <text>"Align X2"</text>
+        </button>
+    <tablerow/>
+        <button>
+            <halpin>"align-y-a-button"</halpin>
+            <text>"Align Y1"</text>
+        </button>
+        <button>
+            <halpin>"align-y-b-button"</halpin>
+            <text>"Align Y2"</text>
+        </button>
+    </table>
+    <button>
+        <halpin>"unload-tool-button"</halpin>
+        <text>"Unload Tool"</text>
+    </button>
+
+
 </pyvcp>

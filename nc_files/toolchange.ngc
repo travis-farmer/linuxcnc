@@ -67,7 +67,7 @@ o500 else
 			M61 Q0																			(Set current tool to 0)
 		o213 endif
 
-		o214 if [#<_selected_tool> NE 0]
+		o214 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99]
 			G53 G0 Z#<pocket_safe_z>
 																(Wait for ATC release, TJF)
 			G53 G0 A#<pocket_selected_a> Y#<_ini[TOOL_CHANGE]POCKET_Y> X#<_ini[TOOL_CHANGE]POCKET_X>	(Rapid X over selected tool)
@@ -84,6 +84,18 @@ o500 else
 			;o315 endif
 			G53 G0 Z0																		(Rapid retract Z)
 			M61 Q#<_selected_tool>															(Set current tool)
+        o214 elseif [#<_selected_tool> EQ 99]
+            ; MANUAL TOOL CHANGE TO PROBE
+            M65 P0
+            G4
+            G90 G0															(Absolute distance mode Rapid move)
+            G53 Z#<_ini0[TOOLSENSOR]Z_SAFE>									(Change Z Position)
+
+            G59.3															(Switch temporarily to G59.3 WCS for probing)
+            G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
+
+            G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
+            M6 T#<_selected_tool>
 		o214 else
 			M65 P0																			(Engage ATC immediately)
 			G53 G0 Z0
@@ -92,9 +104,9 @@ o500 else
 		M65 P1                                                                               (Move out tool carousel)
 	o210 else
 		; MANUAL TOOL CHANGE
-		G40
+		G4
 		G90 G0															(Absolute distance mode Rapid move)
-		G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
+		G53 Z#<_ini0[TOOLSENSOR]Z_SAFE>									(Change Z Position)
 
 		G59.3															(Switch temporarily to G59.3 WCS for probing)
 		G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
@@ -103,8 +115,8 @@ o500 else
 		M6 T#<_selected_tool>											(Do built-in M6 routine - pops up prompt)
 	o210 endif
 
- o220 if [#<_selected_tool> NE 0]
-  ;M201                                                                 (Probe new tool)
+ o220 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99]
+  ;M201                                                                 (Probe new tool, but not the 3d probe 99)
  o220 endif
 
 o500 endif

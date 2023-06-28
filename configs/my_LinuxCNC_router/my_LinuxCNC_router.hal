@@ -67,40 +67,13 @@ addf MacSafety.0 servo-thread
 net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
 net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v
 net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
-net MS-SignalRed MacSafety.0.SigRed => hm2_7i80.0.7i72.0.2.output-09
-net MS-SignalYellow MacSafety.0.SigYellow => hm2_7i80.0.7i72.0.2.output-10
-net MS-SignalGreen MacSafety.0.SigGreen => hm2_7i80.0.7i72.0.2.output-11
-net MS-SignalBuzzer MacSafety.0.SigBuzzer => hm2_7i80.0.7i72.0.2.output-12
-net MS-SignalBlue MacSafety.0.SigBlue => hm2_7i80.0.7i72.0.2.output-13
-net MS-SignalWhite MacSafety.0.SigWhite => hm2_7i80.0.7i72.0.2.output-14
-net LaserOn => MacSafety.0.LaserRunningIn
 
 ##################
 # --- MB2HAL --- #
 ##################
 #loadusr -W mb2hal config=mb2hal.ini
-# --- compressor psi ---
-#setp ardconv.0.VDhigh 0.00
-#setp ardconv.0.VDlow 0.00
-#setp ardconv.0.MaxValue 1024.00
-#setp ardconv.0.MaxVolts 5.00
-#net ArdAinA ardconv.0.ArdADCin <= #TODO
-
-# --- ATC unlock psi ---
-#setp ardconv.1.VDhigh 0.00
-#setp ardconv.1.VDlow 0.00
-#setp ardconv.1.MaxValue 1024.00
-#setp ardconv.1.MaxVolts 5.00
-#net ArdAinB ardconv.1.ArdADCin <= #TODO
-
-# --- VFD analog speed ---
-#setp ardconv.2.VDhigh 10000.00
-#setp ardconv.2.VDlow 10000.00
-#setp ardconv.2.MaxValue 1024.00
-#setp ardconv.2.MaxVolts 5.00
-#net ArdAinC ardconv.2.ArdADCin <= #TODO
-
-
+#net LaserOn => # TODO ArdSafetyLights.04
+#net estop-out => # TODO ArdSafetyLights.03
 
 #########################
 # --- 7i83 settings --- #
@@ -236,7 +209,7 @@ net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 #M65 P2 - turn off digital output immediately.
 net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02
 
-setp LaserAnalog.0.DoorInterlockIn 1
+net MS-InterlockOut MacSafety.0.InterlockOut => LaserAnalog.0.DoorInterlockIn
 net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
 net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
