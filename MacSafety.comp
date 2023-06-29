@@ -19,15 +19,11 @@ FUNCTION(_) {
     // InterlockOut and DoorUnlockOut proc
     if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false && LaserMode == true) {
         InterlockOut = true;
-        if (DoorUnlockButtonIn == true) {SigBuzzer = true;}
-        else {SigBuzzer = false;}
     } else if (ProgPausedIn == true || ProgIdleIn == true) {
         InterlockOut = false;
-        SigBuzzer = false;
         if (DoorUnlockButtonIn == true) {DoorUnlockOut = true;}
         else {DoorUnlockOut = false;}
     } else if (ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && LaserMode == true) {
         InterlockOut = false;
-        SigBuzzer = true;
     }
 }

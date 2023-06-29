@@ -60,6 +60,13 @@ loadrt timedelay
 addf timedelay.0 servo-thread
 loadrt MacSafety
 addf MacSafety.0 servo-thread
+loadrt time
+addf time.0 servo-thread
+
+################
+# --- MQTT --- #
+################
+loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=halui.machine.is-on,halui.max-velocity.value,halui.program.is-running,halui.program.is-paused,halui.program.is-idle,LaserAnalog.0.LaserEnableOut
 
 #####################
 # --- MacSafety --- #
@@ -72,8 +79,6 @@ net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 # --- MB2HAL --- #
 ##################
 #loadusr -W mb2hal config=mb2hal.ini
-#net LaserOn => # TODO ArdSafetyLights.04
-#net estop-out => # TODO ArdSafetyLights.03
 
 #########################
 # --- 7i83 settings --- #
