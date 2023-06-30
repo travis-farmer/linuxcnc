@@ -34,9 +34,9 @@ net load-probe-butt pyvcp.load-probe-button => halui.mdi-command-10
 
 net clear-offsets-butt pyvcp.clear-offset-button => halui.mdi-command-02
 net xa-offset-butt pyvcp.align-x-a-button => halui.mdi-command-03
-net xa-offset-butt pyvcp.align-x-b-button => halui.mdi-command-04
-net xa-offset-butt pyvcp.align-y-a-button => halui.mdi-command-05
-net xa-offset-butt pyvcp.align-y-b-button => halui.mdi-command-06
+net xb-offset-butt pyvcp.align-x-b-button => halui.mdi-command-04
+net ya-offset-butt pyvcp.align-y-a-button => halui.mdi-command-05
+net yb-offset-butt pyvcp.align-y-b-button => halui.mdi-command-06
 
 net cycle-seconds pyvcp.time-seconds <= time.0.seconds
 net cycle-minutes pyvcp.time-minutes <= time.0.minutes
