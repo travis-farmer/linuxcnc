@@ -60,13 +60,28 @@ loadrt timedelay
 addf timedelay.0 servo-thread
 loadrt MacSafety
 addf MacSafety.0 servo-thread
-loadrt time
+loadrt time count-2
 addf time.0 servo-thread
+addf time.1 servo-thread
 
 ################
 # --- MQTT --- #
 ################
-loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=halui.machine.is-on,halui.max-velocity.value,halui.program.is-running,halui.program.is-paused,halui.program.is-idle,LaserOn
+net mqtt-machine-is-on time.1.start <= halui.machine.is-on
+net mqtt-max-vel <= halui.max-velocity.value
+net mqtt-prog-is-running time.0.start  MacSafety.0.ProgRunningIn     and2.2.in0 <= halui.program.is-running
+net mqtt-prog-is-paused time.0.pause   MacSafety.0.ProgPausedIn <= halui.program.is-paused
+net mqtt-prog-is-idle MacSafety.0.ProgIdleIn <= halui.program.is-idle
+net cycle-seconds <= time.0.seconds
+net cycle-minutes <= time.0.minutes
+net cycle-hours <= time.0.hours
+net lcnc-seconds <= time.1.seconds
+net lcnc-minutes <= time.1.minutes
+net lcnc-hours <= time.1.hours
+
+# mqtt-publisher: very slow to respond, and closes in a last published state, no clean shutdown.
+loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-max-vel,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,LaserOn,cpl-u-air-psi,cpl-c-air-psi
+setp mqtt-publisher.period 1
 
 #####################
 # --- MacSafety --- #
@@ -79,6 +94,8 @@ net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 # --- MB2HAL --- #
 ##################
 #loadusr -W mb2hal config=mb2hal.ini
+
+
 
 #########################
 # --- 7i83 settings --- #
@@ -122,10 +139,11 @@ net coolant-mist-vac-control => hm2_7i80.0.7i73.0.0.output-03
 net coolant-flood-vac-control => hm2_7i80.0.7i73.0.0.output-04
 
 # --- CPL Encoder ---
-#net cpl-jog-x axis.x.jog-counts <= hm2_7i80.0.7i73.0.0.enc0.count
-#net cpl-jog-y axis.y.jog-counts <= hm2_7i80.0.7i73.0.0.enc1.count
-#net cpl-jog-z axis.z.jog-counts <= hm2_7i80.0.7i73.0.0.enc2.count
 net cpl-lcd-page lcd-pager.0.enc-count <= hm2_7i80.0.7i73.0.0.enc0.count
+net cpl-feed-override halui.feed-override.counts <= hm2_7i80.0.7i73.0.0.enc1.count
+
+setp halui.feed-override.scale 0.25
+setp halui.feed-override.count-enable 1
 
 
 # --- CPL Key Matrix ---
@@ -538,7 +556,7 @@ net machine-is-enabled hm2_7i80.0.7i72.0.2.output-01      <=  motion.motion-enab
 
 #  ---estop signals---
 
-net estop-out  MacSafety.0.EstopIn    <=  iocontrol.0.user-enable-out
+net estop-out time.1.pause  MacSafety.0.EstopIn    <=  iocontrol.0.user-enable-out
 net estop-ext     =>  iocontrol.0.emc-enable-in
 
 #  ---manual tool change signals---
