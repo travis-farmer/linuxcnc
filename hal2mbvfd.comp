@@ -19,9 +19,9 @@ double map(double x, double in_min, double in_max, double out_min, double out_ma
 }
 
 FUNCTION(_) {
-    FloatOut = (int)map(RpmIn,0,24000,0,10);
+    FloatOut = (int)map(RpmIn,0.00,24000.00,0.00,10.00);
     if (VfdFwd == true) {SpindFan = true;}
     else if (VfdRev == true) {SpindFan = true;}
     else {SpindFan = false;}
-    VfdRunRpmOut = map(VfdRpmFloat,0.00,10.00,0.00,24000.00);
+    VfdRunRpmOut = map(VfdRpmFloat,0.00,10.82,0.00,24000.00);
 }

@@ -60,15 +60,14 @@ loadrt timedelay
 addf timedelay.0 servo-thread
 loadrt MacSafety
 addf MacSafety.0 servo-thread
-loadrt time count-2
+loadrt time count=2
 addf time.0 servo-thread
 addf time.1 servo-thread
 
 ################
 # --- MQTT --- #
 ################
-net mqtt-machine-is-on time.1.start <= halui.machine.is-on
-net mqtt-max-vel <= halui.max-velocity.value
+net machine-is-on => time.1.start
 net mqtt-prog-is-running time.0.start  MacSafety.0.ProgRunningIn     and2.2.in0 <= halui.program.is-running
 net mqtt-prog-is-paused time.0.pause   MacSafety.0.ProgPausedIn <= halui.program.is-paused
 net mqtt-prog-is-idle MacSafety.0.ProgIdleIn <= halui.program.is-idle
@@ -80,8 +79,8 @@ net lcnc-minutes <= time.1.minutes
 net lcnc-hours <= time.1.hours
 
 # mqtt-publisher: very slow to respond, and closes in a last published state, no clean shutdown.
-loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-max-vel,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,LaserOn,cpl-u-air-psi,cpl-c-air-psi
-setp mqtt-publisher.period 0.5
+loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,LaserOn,cpl-u-air-psi,cpl-c-air-psi
+setp mqtt-publisher.period 1
 
 #####################
 # --- MacSafety --- #
@@ -164,7 +163,7 @@ net control-w-home or2.6.out => halui.mdi-command-00
 # --- HAL2MBVFD --- #
 #####################
 
-setp near.0.difference 5.00
+setp near.0.difference 1500.00
 
 net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn near.0.in2
 net spindle-float-out hal2mbvfd.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0

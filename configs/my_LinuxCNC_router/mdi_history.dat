@@ -171,3 +171,13 @@ o<laser-focus> call
 G90
 o<laser-focus> call
 G90
+m3 s12000
+m5
+m3 s12000
+m3 s24000
+m5
+m3 s24000
+m5
+m3 s24000
+m5
+m3 s24000
