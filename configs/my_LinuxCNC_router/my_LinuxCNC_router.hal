@@ -81,7 +81,7 @@ net lcnc-hours <= time.1.hours
 
 # mqtt-publisher: very slow to respond, and closes in a last published state, no clean shutdown.
 loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-max-vel,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,LaserOn,cpl-u-air-psi,cpl-c-air-psi
-setp mqtt-publisher.period 1
+setp mqtt-publisher.period 0.5
 
 #####################
 # --- MacSafety --- #
