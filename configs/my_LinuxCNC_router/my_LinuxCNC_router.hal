@@ -52,10 +52,11 @@ loadrt lcd_pager #tjf
 addf lcd-pager.0 servo-thread
 loadrt LaserAnalog #tjf
 addf LaserAnalog.0 servo-thread
-loadrt ardconv count=3 #tjf
-addf ardconv.0 servo-thread
-addf ardconv.1 servo-thread
-addf ardconv.2 servo-thread
+loadrt adcconv count=4 #tjf
+addf adcconv.0 servo-thread
+addf adcconv.1 servo-thread
+addf adcconv.2 servo-thread
+addf adcconv.3 servo-thread
 loadrt timedelay
 addf timedelay.0 servo-thread
 loadrt MacSafety
@@ -63,6 +64,59 @@ addf MacSafety.0 servo-thread
 loadrt time count=2
 addf time.0 servo-thread
 addf time.1 servo-thread
+#loadrt ads1115 cfg=ssss
+#addf ads1115.0.make-puls servo-thread
+#addf ads1115.0.read servo-thread
+
+###################
+# --- ADS1115 --- #
+###################
+#setp ads1115.0.a0msb 0xc1
+#setp ads1115.0.a1msb 0xd1
+#setp ads1115.0.a2msb 0xe1
+#setp ads1115.0.a3msb 0xf1
+
+
+#net SDAOut <= ads1115.0.SDAOut
+#net SCLOut <= ads1115.0.SCLOut
+#net SDAIn => ads1115.0.SDAIn
+
+#setp hm2_7i80.0.gpio.011.invert_output true
+#setp hm2_7i80.0.gpio.011.is_output true
+#setp hm2_7i80.0.gpio.012.invert_output false
+#setp hm2_7i80.0.gpio.012.is_output true
+#net SDAOut => hm2_7i80.0.gpio.011.out
+#net SCLOut => hm2_7i80.0.gpio.012.out
+#net SDAIn <= hm2_7i80.0.gpio.013.in
+
+#setp adcconv.0.VDhigh 0.00
+#setp adcconv.0.VDlow 0.00
+#setp adcconv.0.MaxValue 65536
+#setp adcconv.0.MaxVolts 6.144
+#net adc-a-raw ads1115.0.outA0 => adcconv.0.ArdADCin
+#net adc-a-vout <= adcconv.0.VoltsOut
+
+#setp adcconv.1.VDhigh 0.00
+#setp adcconv.1.VDlow 0.00
+#setp adcconv.1.MaxValue 65536
+#setp adcconv.1.MaxVolts 6.144
+#net adc-b-raw ads1115.0.outA1 => adcconv.1.ArdADCin
+#net adc-b-vout <= adcconv.1.VoltsOut
+
+#setp adcconv.2.VDhigh 0.00
+#setp adcconv.2.VDlow 0.00
+#setp adcconv.2.MaxValue 65536
+#setp adcconv.2.MaxVolts 6.144
+#net adc-c-raw ads1115.0.outA2 => adcconv.2.ArdADCin
+#net adc-c-vout <= adcconv.2.VoltsOut
+
+#setp adcconv.3.VDhigh 0.00
+#setp adcconv.3.VDlow 0.00
+#setp adcconv.3.MaxValue 65536
+#setp adcconv.3.MaxVolts 6.144
+#net adc-d-raw ads1115.0.outA3 => adcconv.3.ArdADCin
+#net adc-d-vout <= adcconv.3.VoltsOut
+
 
 ################
 # --- MQTT --- #
