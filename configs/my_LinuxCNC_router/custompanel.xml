@@ -55,6 +55,25 @@
                     <off_color>"red"</off_color>
                 </led>
             </hbox>
+            <label>
+                    <text>"Spindle Temp (F)"</text>
+                    <font>("Helvetica",14)</font>
+            </label>
+            <bar>
+                <halpin>"spindle-temp"</halpin>
+                <min_>-40</min_>
+                <max_>200</max_>
+                <format>"3.3f"</format>
+                <bgcolor>"grey"</bgcolor>
+                <fillcolor>"red"</fillcolor>
+                <range1>-40,32,"blue"</range1>
+                <range2>32,100,"green"</range2>
+                <range3>100, 200,"red"</range3>
+                <canvas_width>200</canvas_width>
+                <canvas_height>50</canvas_height>
+                <bar_height>30</bar_height>
+                <bar_width>150</bar_width>
+            </bar>
         </vbox>
         <vbox>
             <bar>
