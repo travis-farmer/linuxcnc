@@ -1,4 +1,4 @@
-component ardconv "convert Arduino MB analog values to real values";
+component adcconv "convert ADC analog values to real values";
 
 pin in float ArdADCin "raw ADC value from Arduino, in";
 pin out float VoltsOut "converted volts, out";
