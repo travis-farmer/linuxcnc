@@ -146,7 +146,7 @@ net lcnc-minutes <= time.1.minutes
 net lcnc-hours <= time.1.hours
 
 # mqtt-publisher: very slow to respond, and closes in a last published state, no clean shutdown.
-loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER --mqtt-user=[MQTT]USERNAME --mqtt-password=[MQTT]PASSWORD keys=mqtt-machine-is-on,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,estop-out,LaserOn,cpl-u-air-psi,cpl-c-air-psi,cycle-hours,cycle-minutes,cycle-seconds,lcnc-hours,lcnc-minutes,lcnc-seconds
+loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,estop-out,LaserOn,cpl-u-air-psi,cpl-c-air-psi,cycle-hours,cycle-minutes,cycle-seconds,lcnc-hours,lcnc-minutes,lcnc-seconds
 setp mqtt-publisher.period 1
 
 #####################
