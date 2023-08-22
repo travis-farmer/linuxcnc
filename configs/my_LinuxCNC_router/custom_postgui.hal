@@ -17,7 +17,7 @@ net vfd-conv-rpm => pyvcp.spindle-rpm
 net spindle-at-speed => pyvcp.spindle-at-speed-led
 net spindle-cw => pyvcp.spindle-forward-led
 net spindle-ccw => pyvcp.spindle-reverse-led
-#net spindle-temp max31855.N.temp-fahrenheit.0 => pyvcp.spindle-temp
+net spindle-temp max31855.0.temp-fahrenheit.0 => pyvcp.spindle-temp
 
 
 net cpl-c-air-psi => pyvcp.comp-air
