@@ -1,5 +1,0 @@
-#!/bin/bash
-temp=$1
-halcmd setp hotend-temp-tgt $temp
-/home/travis/linuxcnc/configs/my_LinuxCNC_3dprinter/waitfor hotend-is-on TRUE
-exit 0

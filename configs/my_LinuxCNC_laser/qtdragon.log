@@ -1,9 +1,0 @@
-2023-01-10 10:43:17,274 - QTvcp.QTVCP.LIB.SYS_NOTIFY - WARNING - Could not import DBusQtMainLoop, is package 'python-dbus.mainloop.pyqt5' installed?
-2023-01-10 10:43:24,984 - QTvcp.QTVCP.LIB.AUDIO_PLAYER - WARNING - audio alerts - Is python3-espeak installed? (sudo apt install python3-espeak)
-2023-01-10 10:43:24,988 - QTvcp.QTVCP.LIB.AUDIO_PLAYER - WARNING - audio alerts - Is espeak installed? (sudo apt install espeak)
-2023-01-10 10:43:24,988 - QTvcp.QTVCP.LIB.AUDIO_PLAYER - WARNING - Text to speech output not available. 
-2023-01-10 10:43:25,164 - QTvcp.QTVCP.WIDGETS.GCODE_EDITOR - CRITICAL - Can't import QsciScintilla - is package python3-pyqt5.qsci installed?
-Traceback (most recent call last):
-  File "/usr/lib/python3/dist-packages/qtvcp/widgets/gcode_editor.py", line 58, in <module>
-    from PyQt5.Qsci import QsciScintilla, QsciLexerCustom, QsciLexerPython
-ModuleNotFoundError: No module named 'PyQt5.Qsci'

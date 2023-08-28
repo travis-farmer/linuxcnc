@@ -1,4 +1,0 @@
-#!/bin/bash
-temp=$1
-halcmd setp hotend-temp-tgt $temp
-exit 0

@@ -1,4 +1,0 @@
-#!/bin/bash
-pwm=$1
-halcmd setp part-fan-pwm  $pwm
-exit 0
