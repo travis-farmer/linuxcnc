@@ -8,7 +8,7 @@ loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JO
 loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=0 num_stepgens=4 sserial_port_0=01100000"
 
-loadrt pid names=pid.x,pid.y,pid.z,pid.a
+loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
 loadrt lowpass names=lowpass.spindle
 
@@ -18,7 +18,6 @@ addf motion-controller        servo-thread
 addf pid.x.do-pid-calcs       servo-thread
 addf pid.y.do-pid-calcs       servo-thread
 addf pid.z.do-pid-calcs       servo-thread
-addf pid.a.do-pid-calcs       servo-thread
 addf abs.spindle              servo-thread
 addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
@@ -332,9 +331,6 @@ net home-y     <=  hm2_7i80.0.7i70.0.1.input-07-not
 # --- HOME-Z ---
 net home-z     <=  hm2_7i80.0.7i70.0.1.input-08-not
 
-# --- HOME-A ---
-net home-a     <=  hm2_7i80.0.7i70.0.1.input-09
-
 
 ##########################
 # --- AXIS X JOINT 0 --- #
@@ -490,58 +486,6 @@ net z-enable     => hm2_7i80.0.stepgen.02.enable
 # ---setup home / limit switch signals ---
 
 net home-z     =>  joint.2.home-sw-in #joint.2.neg-lim-sw-in
-
-##########################
-# --- AXIS A JOINT 2 --- #
-##########################
-
-setp   pid.a.Pgain     [JOINT_3]P
-setp   pid.a.Igain     [JOINT_3]I
-setp   pid.a.Dgain     [JOINT_3]D
-setp   pid.a.bias      [JOINT_3]BIAS
-setp   pid.a.FF0       [JOINT_3]FF0
-setp   pid.a.FF1       [JOINT_3]FF1
-setp   pid.a.FF2       [JOINT_3]FF2
-setp   pid.a.deadband  [JOINT_3]DEADBAND
-setp   pid.a.maxoutput [JOINT_3]MAX_OUTPUT
-setp   pid.a.error-previous-target true
-# This setting is to limit bogus stepgen
-# velocity corrections caused by position
-# feedback sample time jitter.
-setp   pid.a.maxerror 0.000500
-
-net a-index-enable  <=> pid.a.index-enable
-net a-enable        =>  pid.a.enable
-net a-pos-cmd       =>  pid.a.command
-net a-pos-fb        =>  pid.a.feedback
-net a-output        <=  pid.a.output
-
-# Step Gen signals/setup
-
-setp   hm2_7i80.0.stepgen.03.dirsetup        [JOINT_3]DIRSETUP
-setp   hm2_7i80.0.stepgen.03.dirhold         [JOINT_3]DIRHOLD
-setp   hm2_7i80.0.stepgen.03.steplen         [JOINT_3]STEPLEN
-setp   hm2_7i80.0.stepgen.03.stepspace       [JOINT_3]STEPSPACE
-setp   hm2_7i80.0.stepgen.03.position-scale  [JOINT_3]STEP_SCALE
-setp   hm2_7i80.0.stepgen.03.step_type        0
-setp   hm2_7i80.0.stepgen.03.control-type     1
-setp   hm2_7i80.0.stepgen.03.maxaccel         [JOINT_3]STEPGEN_MAXACCEL
-setp   hm2_7i80.0.stepgen.03.maxvel           [JOINT_3]STEPGEN_MAXVEL
-
-# ---closedloop stepper signals---
-
-net a-pos-cmd    <= joint.3.motor-pos-cmd
-net a-vel-cmd    <= joint.3.vel-cmd
-net a-output     <= hm2_7i80.0.stepgen.03.velocity-cmd
-net a-pos-fb     <= hm2_7i80.0.stepgen.03.position-fb
-net a-pos-fb     => joint.3.motor-pos-fb
-net a-enable     <= joint.3.amp-enable-out
-net a-enable     => hm2_7i80.0.stepgen.03.enable
-
-
-# ---setup home / limit switch signals ---
-
-net home-a     =>  joint.3.home-sw-in
 
 #******************************
 # connect miscellaneous signals
