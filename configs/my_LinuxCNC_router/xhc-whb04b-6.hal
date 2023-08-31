@@ -46,27 +46,27 @@ net pdnt.mode.is-teleop                   halui.mode.is-teleop                  
 net axis-select-x                    whb.halui.axis.x.select
 net axis-select-y                    whb.halui.axis.y.select
 net axis-select-z                    whb.halui.axis.z.select
-net axis-select-a                    whb.halui.axis.a.select
+#net axis-select-a                    whb.halui.axis.a.select
 
 net pdnt.axis.x.jog-scale                 whb.axis.x.jog-scale                  axis.x.jog-scale
 net pdnt.axis.y.jog-scale                 whb.axis.y.jog-scale                  axis.y.jog-scale
 net pdnt.axis.z.jog-scale                 whb.axis.z.jog-scale                  axis.z.jog-scale
-net pdnt.axis.a.jog-scale                 whb.axis.a.jog-scale                  axis.a.jog-scale
+#net pdnt.axis.a.jog-scale                 whb.axis.a.jog-scale                  axis.a.jog-scale
 
 net pdnt.axis.x.jog-counts                whb.axis.x.jog-counts                 axis.x.jog-counts
 net pdnt.axis.y.jog-counts                whb.axis.y.jog-counts                 axis.y.jog-counts
 net pdnt.axis.z.jog-counts                whb.axis.z.jog-counts                 axis.z.jog-counts
-net pdnt.axis.a.jog-counts                whb.axis.a.jog-counts                 axis.a.jog-counts
+#net pdnt.axis.a.jog-counts                whb.axis.a.jog-counts                 axis.a.jog-counts
 
 net pdnt.axis.x.jog-enable                whb.axis.x.jog-enable                 axis.x.jog-enable
 net pdnt.axis.y.jog-enable                whb.axis.y.jog-enable                 axis.y.jog-enable
 net pdnt.axis.z.jog-enable                whb.axis.z.jog-enable                 axis.z.jog-enable
-net pdnt.axis.a.jog-enable                whb.axis.a.jog-enable                 axis.a.jog-enable
+#net pdnt.axis.a.jog-enable                whb.axis.a.jog-enable                 axis.a.jog-enable
 
 net pdnt.axis.x.jog-vel-mode              whb.axis.x.jog-vel-mode               axis.x.jog-vel-mode
 net pdnt.axis.y.jog-vel-mode              whb.axis.y.jog-vel-mode               axis.y.jog-vel-mode
 net pdnt.axis.z.jog-vel-mode              whb.axis.z.jog-vel-mode               axis.z.jog-vel-mode
-net pdnt.axis.a.jog-vel-mode              whb.axis.a.jog-vel-mode               axis.a.jog-vel-mode
+#net pdnt.axis.a.jog-vel-mode              whb.axis.a.jog-vel-mode               axis.a.jog-vel-mode
 
 
 # macro buttons to MDI commands
@@ -162,11 +162,11 @@ net pdnt.feed-override.decrease           whb.halui.feed-override.decrease      
 net pdnt.axis.x.pos-feedback              halui.axis.x.pos-feedback             whb.halui.axis.x.pos-feedback
 net pdnt.axis.y.pos-feedback              halui.axis.y.pos-feedback             whb.halui.axis.y.pos-feedback
 net pdnt.axis.z.pos-feedback              halui.axis.z.pos-feedback             whb.halui.axis.z.pos-feedback
-net pdnt.axis.a.pos-feedback              halui.axis.a.pos-feedback             whb.halui.axis.a.pos-feedback
+#net pdnt.axis.a.pos-feedback              halui.axis.a.pos-feedback             whb.halui.axis.a.pos-feedback
 
 
 # axis position related signals relative
 net pdnt.axis.x.pos-relative              halui.axis.x.pos-relative             whb.halui.axis.x.pos-relative
 net pdnt.axis.y.pos-relative              halui.axis.y.pos-relative             whb.halui.axis.y.pos-relative
 net pdnt.axis.z.pos-relative              halui.axis.z.pos-relative             whb.halui.axis.z.pos-relative
-net pdnt.axis.a.pos-relative              halui.axis.a.pos-relative             whb.halui.axis.a.pos-relative
+#net pdnt.axis.a.pos-relative              halui.axis.a.pos-relative             whb.halui.axis.a.pos-relative
