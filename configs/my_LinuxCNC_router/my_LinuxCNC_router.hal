@@ -74,6 +74,8 @@ addf max31855.0.bitbang-spi servo-thread
 ####################
 setp hm2_7i80.0.gpio.017.is_output true
 setp hm2_7i80.0.gpio.016.is_output true
+setp hm2_7i80.0.gpio.017.invert_output false
+setp hm2_7i80.0.gpio.016.invert_output false
 
 net spi.clk.in hm2_7i80.0.gpio.017.out max31855.0.clk.out
 net spi.cs.in hm2_7i80.0.gpio.016.out max31855.0.cs.out
