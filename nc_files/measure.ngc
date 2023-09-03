@@ -31,18 +31,16 @@ o<measure> sub
  (Measure tool to get offset)
  ;S500 M4																	(Run spindle in reverse at minimum speed - Note: causes downstream issues, don't do this!)
  ;M64 P2																		(Turn on optical sensor)
- G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to optical sensor)
+ ;G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to optical sensor)
  ;M65 P2																		(Turn off optical sensor)
- G0 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF>
- M66 P6 L4 Q1																(Wait for optical-in to deactivate)
+ ;G0 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF>
+ ;M66 P6 L4 Q1																(Wait for optical-in to deactivate)
+
  G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Measure Gross)
  G38.5 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF> F#<_ini[TOOLSENSOR]PROBE_VEL>		(Back off until probe breaks contact)
  ;G0 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF>										(Back off safe distance)
  ;G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]PROBE_VEL>		(Measure fine)
  #<_new_tlo> = #5063
- M5																			(Stop spindle)
- ;G38.5 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF> F#<_ini[TOOLSENSOR]SEARCH_VEL>		(Back off until probe breaks contact)
- ;G0 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF>										(Back off safe distance)
  G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>										(Z up to safe position)
 
  (Restore original coordinate system. G54 to G59.2 only)
