@@ -6,10 +6,12 @@ Machine Info:
 
 Techno/Isel Gantry CNC router table
 
-Perske 3-phase 5HP spindle
+Rattm Motor? 3PH, 4.5KW ATC (ISO-30) Spindle (24Krpm)
 
-LinuxCNC 2.9 PRE
+LinuxCNC 2.9 PRE 1
 
-Mesa 7i80HD-16 I/O board (Ethernet)
+Mesa 7i80HD-25 I/O board (Ethernet)
 
-HY VFD (HY04D023B?) (Modbus control ovr RS485)
+7i44 board, with SSerial boards: 7i73, 7i83, 7i72, 7i70
+
+Fuling 5.5KW 220V VFD
