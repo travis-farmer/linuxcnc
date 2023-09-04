@@ -10,7 +10,7 @@ Rattm Motor? 3PH, 4.5KW ATC (ISO-30) Spindle (24Krpm)
 
 LinuxCNC 2.9 PRE 1
 
-Mesa 7i80HD-25 I/O board (Ethernet)
+Mesa 7i80HD-25 I/O board (Ethernet) (firmware in travis.zip)
 
 7i44 board, with SSerial boards: 7i73, 7i83, 7i72, 7i70
 
