@@ -6,7 +6,7 @@ o999 if[#<_task> NE 0]
  M5                                                                 (Turn spindle off)
  G4 P6                                                             (Dwell for spindle stop)
  M9                                                                 (Turn coolant off)
- G17 G20 G40 G64 P0.001 G80 G94 G97 G98                             (Baseline modal state)
+ G17 G20 G40 G64 P0.001 G80 G94 G97 G98 G49                            (Baseline modal state)
 
 o500 if[#<_current_tool> EQ #<_selected_tool>]                     (Same tool as before so no need to do anything.)
 
@@ -44,7 +44,7 @@ o500 else
 
 		G90 G0                                                          (Absolute distance mode Rapid move)
 		G53 Z#<_ini[TOOLSENSOR]Z_SAFE>	   	 (Change Z Position)
-        M64 P1                                                                              (move in tool carousel)
+        ;M64 P1                                                                              (move in tool carousel)
 		o213 if [#<_current_tool> NE 0 AND #<_current_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
 			G53 G0 X#<pocket_current_x> Y#<pocket_approach_y>	(Rapid YX to approach position for current tool's pocket)
 			G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z> 											(Rapid Z to pocket height)
@@ -112,7 +112,7 @@ o500 else
 			G53 G0 Z0
 			G53 G0 X0 Y0
 		o214 endif
-		M65 P1                                                                               (Move out tool carousel)
+		;M65 P1                                                                               (Move out tool carousel)
 	o210 else
 		; MANUAL TOOL CHANGE
 		G4
@@ -136,7 +136,7 @@ M72                                                                	(Restore sav
 o501 if [EXISTS[#<_new_tlo>]]
 	G43.1 Z#<_new_tlo>													(Re-Set Dynamic TLO)
 o501 else
-	G43.1 Z0
+	G43
 o501 endif
 
 o999 endif
