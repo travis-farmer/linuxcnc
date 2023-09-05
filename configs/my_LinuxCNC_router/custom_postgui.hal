@@ -18,6 +18,11 @@ net spindle-at-speed => pyvcp.spindle-at-speed-led
 net spindle-cw => pyvcp.spindle-forward-led
 net spindle-ccw => pyvcp.spindle-reverse-led
 net spindle-temp max31855.0.temp-fahrenheit.0 => pyvcp.spindle-temp
+
+net cpl-c-air-psi => pyvcp.comp-air
+net cpl-u-air-psi => pyvcp.tool-air
+net spindle-is-unlocked => pyvcp.atc-locked
+net spindle-is-hung => pyvcp.atc-tool
 net tool-pocket-01 => pyvcp.tool-pocket-01
 net tool-pocket-02 => pyvcp.tool-pocket-02
 net tool-pocket-03 => pyvcp.tool-pocket-03
@@ -34,11 +39,6 @@ net tool-pocket-13 => pyvcp.tool-pocket-13
 net tool-pocket-14 => pyvcp.tool-pocket-14
 net tool-pocket-15 => pyvcp.tool-pocket-15
 
-
-net cpl-c-air-psi => pyvcp.comp-air
-net cpl-u-air-psi => pyvcp.tool-air
-net spindle-is-unlocked => pyvcp.atc-locked
-net spindle-is-hung => pyvcp.atc-tool
 net LaserOn => pyvcp.laser-active
 net LaserPercentOut LaserAnalog.0.PercentOut => pyvcp.laser-power
 net LaserAirOut => pyvcp.laser-air

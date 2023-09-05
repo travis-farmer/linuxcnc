@@ -91,29 +91,27 @@
                 <bar_height>30</bar_height>
                 <bar_width>150</bar_width>
             </bar>
-            <bar>
+            <meter>
                 <halpin>"tool-air"</halpin>
+                <text>"Air"</text>
+                <subtext>"PSI"</subtext>
+                <size>175</size>
                 <min_>0</min_>
-                <max_>150</max_>
-                <format>"3.1f"</format>
-                <bgcolor>"grey"</bgcolor>
-                <fillcolor>"red"</fillcolor>
-                <range1>0,92,"blue"</range1>
-                <range2>92,110,"green"</range2>
-                <range3>110, 150,"red"</range3>
-                <canvas_width>200</canvas_width>
-                <canvas_height>50</canvas_height>
-                <bar_height>30</bar_height>
-                <bar_width>150</bar_width>
-            </bar>
+                <max_>200</max_>
+                <majorscale>10</majorscale>
+                <minorscale>1</minorscale>
+                <region1>(120,200,"yellow")</region1>
+                <region2>(90,120,"green")</region2>
+                <region3>(0,90,"red")</region3>
+            </meter>
             <hbox>
                 <label>
                         <text>"ATC Locked: "</text>
-                        <font>("Helvetica",20)</font>
+                        <font>("Helvetica",15)</font>
                 </label>
                 <led>
                     <halpin>"atc-locked"</halpin>
-                    <size>30</size>
+                    <size>20</size>
                     <on_color>"red"</on_color>
                     <off_color>"green"</off_color>
                 </led>
@@ -121,11 +119,11 @@
             <hbox>
                 <label>
                         <text>"ATC Tool: "</text>
-                        <font>("Helvetica",20)</font>
+                        <font>("Helvetica",15)</font>
                 </label>
                 <led>
                     <halpin>"atc-tool"</halpin>
-                    <size>30</size>
+                    <size>20</size>
                     <on_color>"green"</on_color>
                     <off_color>"red"</off_color>
                 </led>
