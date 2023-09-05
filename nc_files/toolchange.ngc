@@ -1,5 +1,5 @@
 (customized, based on https://github.com/Funkenjaeger )
-(was for a rack tool changer, now for a carousel.)
+(was for a rack tool changer, then for a carousel, now back to a rack...)
 o<toolchange> sub
 o999 if[#<_task> NE 0]
  M70                                                                (Save modal state)
@@ -25,14 +25,14 @@ o500 else
 			(abort,No air pressure)
 		o216 endif
 
-		o211 if [#<_current_tool> NE 0]
+		o211 if [#<_current_tool> NE 0 AND #<_selected_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
 			;M66 P[#<_current_pocket> + 9] L0												(Check tool pocket sensor, TODO)
 			;o215 if [#5399 EQ 1]
 				;(abort,Current pocket has a tool in it)
 			;o215 endif
 		o211 endif
 
-		o212 if [#<_selected_tool> NE 0]
+		o212 if [#<_selected_tool> NE 0 AND #<_selected_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
 			;M66 P[#<_selected_pocket> + 9] L0 												(Check tool pocket sensor, TODO)
 			;o221 if [#5399 EQ 0]
 				;(abort,Selected pocket has no tool in it)

@@ -283,6 +283,24 @@ setp hm2_7i80.0.gpio.010.invert_output true # air ATC lock relay is active LOW
 setp hm2_7i80.0.gpio.010.is_output true
 net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 
+# --- Tool Pockets ---
+net tool-pocket-01 hm2_7i80.0.7i70.0.1.input-24 => motion.digital-in-10
+net tool-pocket-02 hm2_7i80.0.7i70.0.1.input-25 => motion.digital-in-11
+net tool-pocket-03 hm2_7i80.0.7i70.0.1.input-26 => motion.digital-in-12
+net tool-pocket-04 hm2_7i80.0.7i70.0.1.input-27 => motion.digital-in-13
+net tool-pocket-05 hm2_7i80.0.7i70.0.1.input-28 => motion.digital-in-14
+net tool-pocket-06 hm2_7i80.0.7i70.0.1.input-29 => motion.digital-in-15
+net tool-pocket-07 hm2_7i80.0.7i70.0.1.input-30 => motion.digital-in-16
+net tool-pocket-08 hm2_7i80.0.7i70.0.1.input-31 => motion.digital-in-17
+net tool-pocket-09 hm2_7i80.0.7i70.0.1.input-32 => motion.digital-in-18
+net tool-pocket-10 hm2_7i80.0.7i70.0.1.input-33 => motion.digital-in-19
+net tool-pocket-11 hm2_7i80.0.7i70.0.1.input-34 => motion.digital-in-20
+net tool-pocket-12 hm2_7i80.0.7i70.0.1.input-35 => motion.digital-in-21
+net tool-pocket-13 hm2_7i80.0.7i70.0.1.input-36 => motion.digital-in-22
+net tool-pocket-14 hm2_7i80.0.7i70.0.1.input-37 => motion.digital-in-23
+net tool-pocket-15 hm2_7i80.0.7i70.0.1.input-38 => motion.digital-in-24
+
+
 ########################
 # --- Laser Analog --- #
 ########################

@@ -18,6 +18,21 @@ net spindle-at-speed => pyvcp.spindle-at-speed-led
 net spindle-cw => pyvcp.spindle-forward-led
 net spindle-ccw => pyvcp.spindle-reverse-led
 net spindle-temp max31855.0.temp-fahrenheit.0 => pyvcp.spindle-temp
+net tool-pocket-01 => pyvcp.tool-pocket-01
+net tool-pocket-02 => pyvcp.tool-pocket-02
+net tool-pocket-03 => pyvcp.tool-pocket-03
+net tool-pocket-04 => pyvcp.tool-pocket-04
+net tool-pocket-05 => pyvcp.tool-pocket-05
+net tool-pocket-06 => pyvcp.tool-pocket-06
+net tool-pocket-07 => pyvcp.tool-pocket-07
+net tool-pocket-08 => pyvcp.tool-pocket-08
+net tool-pocket-09 => pyvcp.tool-pocket-09
+net tool-pocket-10 => pyvcp.tool-pocket-10
+net tool-pocket-11 => pyvcp.tool-pocket-11
+net tool-pocket-12 => pyvcp.tool-pocket-12
+net tool-pocket-13 => pyvcp.tool-pocket-13
+net tool-pocket-14 => pyvcp.tool-pocket-14
+net tool-pocket-15 => pyvcp.tool-pocket-15
 
 
 net cpl-c-air-psi => pyvcp.comp-air
