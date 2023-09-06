@@ -68,6 +68,8 @@ addf time.1 servo-thread
 #addf ads1115.0.read servo-thread
 loadrt max31855 personality=1
 addf max31855.0.bitbang-spi servo-thread
+loadrt rpmlimiter personality=10
+addf rpmlimiter.0 servo-thread
 
 ####################
 # --- MAX31855 --- #
@@ -231,9 +233,25 @@ net control-w-home or2.6.out => halui.mdi-command-00
 # --- HAL2MBVFD --- #
 #####################
 
+# --- rpmlimiter ---
+net current-tool iocontrol.0.tool-number => rpmlimiter.0.tool-number
+# tool.00.max = pocket 1, tool.01.max = pocket 2, ect...
+setp rpmlimiter.0.tool.00.max 24000
+setp rpmlimiter.0.tool.01.max 24000
+setp rpmlimiter.0.tool.02.max 24000
+setp rpmlimiter.0.tool.03.max 24000
+setp rpmlimiter.0.tool.04.max 24000
+setp rpmlimiter.0.tool.05.max 24000
+setp rpmlimiter.0.tool.06.max 12000
+setp rpmlimiter.0.tool.07.max 24000
+setp rpmlimiter.0.tool.08.max 24000
+setp rpmlimiter.0.tool.09.max 24000
+
+
 setp near.0.difference 1500.00
 
-net spindle-vel-cmd-rpm-abs => hal2mbvfd.0.RpmIn near.0.in2
+net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpm-out
+net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpm-in
 net spindle-float-out hal2mbvfd.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
 net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
 net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
