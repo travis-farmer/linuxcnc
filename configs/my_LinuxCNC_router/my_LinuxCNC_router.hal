@@ -250,8 +250,8 @@ setp rpmlimiter.0.tool.09.max 24000
 
 setp near.0.difference 1500.00
 
-net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpm-out
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpm-in
+net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpm-out
 net spindle-float-out hal2mbvfd.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
 net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
 net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
