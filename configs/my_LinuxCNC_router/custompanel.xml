@@ -160,7 +160,6 @@
                     <on_color>"green"</on_color>
                     <off_color>"red"</off_color>
                 </led>
-            <tablerow/>
                 <led>
                     <halpin>"tool-pocket-06"</halpin>
                     <size>10</size>
