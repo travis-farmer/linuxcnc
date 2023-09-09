@@ -1,7 +1,7 @@
 component rpmlimiter "limit spindle RPM by tool number";
 
 pin in s32 toolnumber "tool number, in";
-pin in float tool.#.max [100 : (personality+1)] "rpm max for tool, in.n.max";
+pin in float tool.#.max [100 : (personality)] "rpm max for tool, in.n.max";
 pin in float rpmin "RPM input, in";
 pin out float rpmout "RPM output, out";
 function _;
