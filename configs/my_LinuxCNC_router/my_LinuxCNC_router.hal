@@ -70,6 +70,9 @@ loadrt max31855 personality=1
 addf max31855.0.bitbang-spi servo-thread
 loadrt rpmlimiter personality=10
 addf rpmlimiter.0 servo-thread
+loadrt mult2 count=2
+addf mult2.0 servo-thread
+addf mult2.1 servo-thread
 
 ####################
 # --- MAX31855 --- #
@@ -163,7 +166,12 @@ net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 # --- MB2HAL --- #
 ##################
 #loadusr -W mb2hal config=mb2hal.ini
-
+#setp mult2.0.in0 0.01
+#setp mult2.1.in0 0.01
+#net spindle-temp-fenc mult2.0.in1 <= mb2hal...
+#net spindle-temp-cenc mult2.1.in1 <= mb2hal...
+#net spindle-temp-f <= mult2.0.out
+#net spindle-temp-c <= mult2.1.out
 
 
 #########################
