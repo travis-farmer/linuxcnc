@@ -243,7 +243,6 @@ net control-w-home or2.6.out => halui.mdi-command-00
 
 # --- rpmlimiter ---
 net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
-# tool.00.max = pocket 1, tool.01.max = pocket 2, ect...
 setp rpmlimiter.0.tool.0.max 24000
 setp rpmlimiter.0.tool.1.max 24000
 setp rpmlimiter.0.tool.2.max 24000
