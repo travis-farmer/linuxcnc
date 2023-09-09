@@ -4,7 +4,7 @@ o<toolchange> sub
 o999 if[#<_task> NE 0]
  M70                                                                (Save modal state)
  M5                                                                 (Turn spindle off)
- G4 P6                                                             (Dwell for spindle stop)
+ G4 P14                                                             (Dwell for spindle stop)
  M9                                                                 (Turn coolant off)
  G17 G20 G40 G64 P0.001 G80 G94 G97 G98 G49                            (Baseline modal state)
 
@@ -55,7 +55,7 @@ o500 else
 				;(abort,Failed to deposit current tool)
 			;o222 endif
 			M64 P0 																			(Release ATC)
-            M66 P2 L3 Q10							                                    	(Wait for ATC release, TJF)
+			M66 P2 L3 Q10							                                    	(Wait for ATC release, TJF)
 			G53 G0 Z[#<_ini[TOOL_CHANGE]POCKET_Z> + #<_ini[TOOL_CHANGE]ATC_OFFSET>]
 			G53 G0 Z#<pocket_safe_z>														(Rapid Z to clear tool holders)
 			G4 P0.1
@@ -65,11 +65,11 @@ o500 else
 			;o313 endif
 			M65 P0
 			M61 Q0																			(Set current tool to 0)
-        o213 else
+		o213 elseif [#<_current_tool> GT #<_ini[TOOL_CHANGE]NUM_POCKETS>]
             ; MANUAL TOOL CHANGE TO EXTERNAL TOOL RACK
-            G4
+            G4 P0.1
             G90 G0															(Absolute distance mode Rapid move)
-            G53 Z#<_ini0[TOOLSENSOR]Z_SAFE>									(Change Z Position)
+            G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
 
             G59.3															(Switch temporarily to G59.3 WCS for probing)
             G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
@@ -95,12 +95,12 @@ o500 else
 			;o315 endif
 			G53 G0 Z0																		(Rapid retract Z)
 			M61 Q#<_selected_tool>															(Set current tool)
-        o214 elseif [#<_selected_tool> GT #<_ini[TOOL_CHANGE]NUM_POCKETS>
+        o214 elseif [#<_selected_tool> GT #<_ini[TOOL_CHANGE]NUM_POCKETS>]
             ; MANUAL TOOL CHANGE TO PROBE OR FROM EXTERNAL TOOL RACK
             M65 P0
-            G4
+            G4 P0.1
             G90 G0															(Absolute distance mode Rapid move)
-            G53 Z#<_ini0[TOOLSENSOR]Z_SAFE>									(Change Z Position)
+            G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
 
             G59.3															(Switch temporarily to G59.3 WCS for probing)
             G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
@@ -115,9 +115,9 @@ o500 else
 		;M65 P1                                                                               (Move out tool carousel)
 	o210 else
 		; MANUAL TOOL CHANGE
-		G4
+		G4 P0.1
 		G90 G0															(Absolute distance mode Rapid move)
-		G53 Z#<_ini0[TOOLSENSOR]Z_SAFE>									(Change Z Position)
+		G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
 
 		G59.3															(Switch temporarily to G59.3 WCS for probing)
 		G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)

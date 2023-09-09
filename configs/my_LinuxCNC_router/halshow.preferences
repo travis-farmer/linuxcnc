@@ -5,14 +5,9 @@ placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+max31855.0.fault-flags.0
-    pin+max31855.0.clk.out
-    pin+max31855.0.cs.out
-    pin+max31855.0.data.0.in
-    pin+max31855.0.temp-celsius.0
-    pin+max31855.0.temp-fahrenheit.0
+    pin+iocontrol.0.tool-prep-index
 }
-set ::workmode watchhal
+set ::workmode showhal
 set ::watchInterval 100
 set ::col1_width 100
 set ::ffmts 

@@ -128,7 +128,7 @@
                     <off_color>"red"</off_color>
                 </led>
             </hbox>
-            <table rows="3" cols="5">
+            <table>
             <tablerow/>
                 <led>
                     <halpin>"tool-pocket-01"</halpin>

@@ -4,7 +4,7 @@
 # overwritten when you run PNCconf again
 
 loadrt [KINS]KINEMATICS
-loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=24
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_dio=32
 loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=0 num_stepgens=4 sserial_port_0=01100000"
 
@@ -242,24 +242,25 @@ net control-w-home or2.6.out => halui.mdi-command-00
 #####################
 
 # --- rpmlimiter ---
-net current-tool iocontrol.0.tool-number => rpmlimiter.0.tool-number
+net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 # tool.00.max = pocket 1, tool.01.max = pocket 2, ect...
-setp rpmlimiter.0.tool.00.max 24000
-setp rpmlimiter.0.tool.01.max 24000
-setp rpmlimiter.0.tool.02.max 24000
-setp rpmlimiter.0.tool.03.max 24000
-setp rpmlimiter.0.tool.04.max 24000
-setp rpmlimiter.0.tool.05.max 24000
-setp rpmlimiter.0.tool.06.max 12000
-setp rpmlimiter.0.tool.07.max 24000
-setp rpmlimiter.0.tool.08.max 24000
-setp rpmlimiter.0.tool.09.max 24000
+setp rpmlimiter.0.tool.0.max 24000
+setp rpmlimiter.0.tool.1.max 24000
+setp rpmlimiter.0.tool.2.max 24000
+setp rpmlimiter.0.tool.3.max 24000
+setp rpmlimiter.0.tool.4.max 24000
+setp rpmlimiter.0.tool.5.max 24000
+setp rpmlimiter.0.tool.6.max 12000
+setp rpmlimiter.0.tool.7.max 24000
+setp rpmlimiter.0.tool.8.max 24000
+setp rpmlimiter.0.tool.9.max 24000
+setp rpmlimiter.0.tool.10.max 24000
 
 
 setp near.0.difference 1500.00
 
-net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpm-in
-net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpm-out
+net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
+net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpmout
 net spindle-float-out hal2mbvfd.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
 net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
 net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
@@ -363,7 +364,7 @@ net estop-ext     <=  and2.1.out
 
 # --- PROBE-IN ---
 
-net probe-tool	or2.0.in0      <=  hm2_7i80.0.7i70.0.1.input-14
+net probe-tool	or2.0.in0      <=  hm2_7i80.0.7i70.0.1.input-14-not
 net probe-sensor	or2.0.in1     <=  hm2_7i80.0.7i70.0.1.input-13-not
 net probe-in     <=  or2.0.out
 

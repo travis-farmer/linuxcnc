@@ -1,18 +1,20 @@
 component rpmlimiter "limit spindle RPM by tool number";
 
-pin in unsigned tool-number "tool number, in";
-pin in float tool.#.max [personality] "rpm max for tool, in.n.max";
-pin in float rpm-in "RPM input, in";
-pin out float rpm-out "RPM output, out";
+pin in s32 toolnumber "tool number, in";
+pin in float tool.#.max [100 : (personality+1)] "rpm max for tool, in.n.max";
+pin in float rpmin "RPM input, in";
+pin out float rpmout "RPM output, out";
 function _;
 license "GPL";
 author "Travis Farmer";
 ;;
 
 FUNCTION(_) {
-    if (rpm-in > tool_max(tool-number-1)) {
-        rpm-out = tool_max(tool-number-1);
+    if (rpmin > tool_max(toolnumber) && toolnumber != 99) {
+        rpmout = tool_max(toolnumber);
+    } else if (toolnumber == 99) {
+    	rpmout = 0;
     } else {
-        rpm-out = rpm-in
+        rpmout = rpmin;
     }
 }
