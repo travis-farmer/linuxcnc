@@ -46,6 +46,7 @@ o500 else
 		G53 Z#<_ini[TOOLSENSOR]Z_SAFE>	   	 (Change Z Position)
         ;M64 P1                                                                              (move in tool carousel)
 		o213 if [#<_current_tool> NE 0 AND #<_current_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
+            ; PLAIN AUTO CHANGE, PLACE LAST IN RACK
 			G53 G0 X#<pocket_current_x> Y#<pocket_approach_y>	(Rapid YX to approach position for current tool's pocket)
 			G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z> 											(Rapid Z to pocket height)
 			G53 G1 Y#<_ini[TOOL_CHANGE]POCKET_Y> F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Y>	(Slot tool into pocket)
@@ -59,14 +60,14 @@ o500 else
 			G53 G0 Z[#<_ini[TOOL_CHANGE]POCKET_Z> + #<_ini[TOOL_CHANGE]ATC_OFFSET>]
 			G53 G0 Z#<pocket_safe_z>														(Rapid Z to clear tool holders)
 			G4 P0.1
-			;M66 P1 L0
+			;M66 P[#<_current_pocket> + 9] L0
 			;o313 if [#5399 EQ 1]
 				;(abort,Tool not in pocket after Z retract)
 			;o313 endif
 			M65 P0
 			M61 Q0																			(Set current tool to 0)
 		o213 elseif [#<_current_tool> GT #<_ini[TOOL_CHANGE]NUM_POCKETS>]
-            ; MANUAL TOOL CHANGE TO EXTERNAL TOOL RACK
+            ; MANUAL TOOL CHANGE FROM PROBE, OR TO EXTERNAL TOOL RACK
             G4 P0.1
             G90 G0															(Absolute distance mode Rapid move)
             G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
@@ -78,8 +79,17 @@ o500 else
             M6 T#<_selected_tool>											(Do built-in M6 routine - pops up prompt)
 		o213 endif
 
-		o214 if [#<_selected_tool> NE 0 AND #<_selected_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS> AND #<_selected_tool> NE 99]
+		o214 if [#<_selected_tool> NE 0 AND #<_selected_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
+            ; PLAIN AUTO CHANGE, LOAD NEXT TOOL
+            M66 P3 L0																(Check air pressure sensor, TJF)
+            o216 if [#5399 EQ 0]
+                (abort,No air pressure)
+            o216 endif
 			G53 G0 Z#<pocket_safe_z>
+			M66 P1 L0
+			o313 if [#5399 EQ 0]
+				(abort,Last tool still in spindle!)
+			o313 endif
 																(Wait for ATC release, TJF)
 			G53 G0 X#<pocket_selected_x> Y#<_ini[TOOL_CHANGE]POCKET_Y>	(Rapid XY over selected tool)
 			M64 P0 																			(Release ATC)
@@ -108,13 +118,14 @@ o500 else
             G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
             M6 T#<_selected_tool>
 		o214 else
+		; NO TOOL TO LOAD, EXIT
 			M65 P0																			(Engage ATC immediately)
 			G53 G0 Z0
 			G53 G0 X0 Y0
 		o214 endif
 		;M65 P1                                                                               (Move out tool carousel)
 	o210 else
-		; MANUAL TOOL CHANGE
+		; PLAIN MANUAL TOOL CHANGE
 		G4 P0.1
 		G90 G0															(Absolute distance mode Rapid move)
 		G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)

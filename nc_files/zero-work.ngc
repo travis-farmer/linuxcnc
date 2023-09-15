@@ -1,0 +1,66 @@
+o<zero-work> sub
+ #<coord_system_was>=#<_coord_system>  (Save current coordinate system.)
+ #<wcs_z_varnumber> = [5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
+ #<wcs_z> = #[#<wcs_z_varnumber>]
+ M70                                                                (Save modal state)
+ M5                                                                 (Turn spindle off)
+ M9                                                                 (Turn coolant off)
+ G17 G20 G40 G64 P0.001 G80 G94 G97 G98                             (Baseline modal state)
+ T99 M6                                                             (Get 3D Probe loaded)
+
+ o217 if [#<coord_system_was> EQ 593]
+  (msg,Note: G59.3 coordinate system is active, be sure that's what you intended!)
+ o217 endif
+
+ G59.3																		(Switch temporarily to G59.3 WCS for probing)
+ G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
+ M66 P1 L0
+ o313 if [#5399 EQ 0]
+    (abort,Probe not in spindle)
+ o313 endif
+ G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>	(Probe move to work)
+ G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>  (backoff)
+ G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_FINE>	(Measure Fine)
+ G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>    (Back off until probe breaks contact)
+ #<work_height> = [#5063 - #5403]
+ (debug,probed work height: #<work_height>)
+ #<work-x> = #5061
+ #<work-y> = #5062
+ G53 G0 Z0										(Z up to safe position)
+ (MSG,Remove Probe)
+ M0                                                 (pause for probe removal)
+ M66 P1 L0
+ o313 if [#5399 EQ 1]
+    (abort,Probe still in spindle)
+ o313 endif
+
+ (Restore original coordinate system. G54 to G59.2 only)
+ o100 if[#<coord_system_was> EQ 540]
+   G54
+ o100 endif
+ o101 if[#<coord_system_was> EQ 550]
+   G55
+ o101 endif
+ o102 if[#<coord_system_was> EQ 560]
+   G56
+ o102 endif
+ o103 if[#<coord_system_was> EQ 570]
+   G57
+ o103 endif
+ o104 if[#<coord_system_was> EQ 580]
+   G58
+ o104 endif
+ o105 if[#<coord_system_was> EQ 590]
+   G59
+ o105 endif
+ o106 if[#<coord_system_was> EQ 591]
+   G59.1
+ o106 endif
+ o107 if[#<coord_system_was> EQ 592]
+   G59.2
+ o107 endif
+
+M72                                                                			(Restore saved modal state)
+G10 L2 P1 X#<work-x> Y#<work-y> Z#<work_height>
+o<zero-work> endsub
+M2

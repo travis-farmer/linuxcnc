@@ -1,0 +1,10 @@
+o<probe-print> sub
+    M5
+    M9
+    G38.2 Z-4.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
+    G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
+    G38.2 Z-4.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
+    G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
+    (DEBUG, Probe = %.9f#5063)
+o<probe-print> endsub
+M2

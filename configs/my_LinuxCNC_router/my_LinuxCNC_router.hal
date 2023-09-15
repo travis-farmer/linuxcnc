@@ -290,7 +290,7 @@ net psi-volts volts2psi.0.volts <= hm2_7i80.0.7i70.0.1.analog0
 #M66 P3 L0 - return (#5399) air pressure status (>110psi)
 net spindle-air-pressure motion.digital-in-03 <= volts2psi.1.safePSI
 #M66 P1 L3 Q5 - wait for tool/no tool
-net spindle-is-hung motion.digital-in-01 <= hm2_7i80.0.7i70.0.1.input-11
+net spindle-is-loaded motion.digital-in-01 <= hm2_7i80.0.7i70.0.1.input-11
 #M66 P2 L3 Q5 - wait for lock/unlocked
 net spindle-is-unlocked motion.digital-in-02 <= hm2_7i80.0.7i70.0.1.input-10
 
