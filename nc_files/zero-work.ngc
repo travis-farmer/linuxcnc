@@ -24,8 +24,6 @@ o<zero-work> sub
  G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>    (Back off until probe breaks contact)
  #<work_height> = [#5063 - #<_ini[PROBE]PROBE_SPINDLE>]
  (debug,probed work height: #<work_height>)
- #<work-x> = #5061
- #<work-y> = #5062
  G53 G0 Z0										(Z up to safe position)
  (MSG,Remove Probe)
  M0                                                 (pause for probe removal)
@@ -61,7 +59,7 @@ o<zero-work> sub
  o107 endif
 
 M72                                                                			(Restore saved modal state)
-G10 L2 P1 X#<work-x> Y#<work-y> Z#<work_height>
+G10 L2 P1 Z#<work_height>
 G54 G0
 o<zero-work> endsub
 M2
