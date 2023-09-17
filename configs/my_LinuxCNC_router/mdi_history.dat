@@ -240,3 +240,6 @@ m3 s12000
 m3 s18000
 m3 s20000
 m3 s24000
+o <probe-print> call
+G90
+o <probe-print> call
