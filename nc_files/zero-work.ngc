@@ -11,7 +11,7 @@ o<zero-work> sub
  G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
  M66 P1 L0
  o313 if [#5399 EQ 0]
-    (abort,Probe not in spindle)
+    (abort,Probe not in spindle!)
  o313 endif
  G38.2 Z-1.25 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
@@ -20,8 +20,7 @@ o<zero-work> sub
  #<work_height> = [#5063 - #<_ini[PROBE]PROBE_SPINDLE>]
  (debug,probed work height: %.9f#<work_height>)
  G53 G0 Z0										(Z up to safe position)
- (MSG,Remove Probe)
- M0                                                 (pause for probe removal)
+ T0 M6                                              (pause for probe removal)
  M66 P1 L0
  o313 if [#5399 EQ 1]
     (abort,Probe still in spindle)
@@ -55,6 +54,6 @@ o<zero-work> sub
 
 M72                                                                			(Restore saved modal state)
 G10 L2 P1 Z#<work_height>
-G54 G0
+
 o<zero-work> endsub
 M2
