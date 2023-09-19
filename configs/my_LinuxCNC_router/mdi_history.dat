@@ -243,3 +243,7 @@ m3 s24000
 o <probe-print> call
 G90
 o <probe-print> call
+t11 m6
+t1 m6
+o <probe-print> call
+o <zero-work> call

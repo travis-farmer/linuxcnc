@@ -253,7 +253,6 @@ setp rpmlimiter.0.tool.6.max 12000
 setp rpmlimiter.0.tool.7.max 24000
 setp rpmlimiter.0.tool.8.max 24000
 setp rpmlimiter.0.tool.9.max 24000
-setp rpmlimiter.0.tool.10.max 24000
 
 
 setp near.0.difference 1500.00
