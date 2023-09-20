@@ -1,10 +1,10 @@
-T4  P4  Z0  D0  ;new tool
 T0  P0  Z0  D0
-T1  P1  Z-2.77  D0
+T1  P1  Z0  D0
 T2  P2  Z0  D0
 T3  P3  Z0  D0
+T4  P4  Z0  D0  ;new tool
 T5  P5  Z0  D0
 T6  P6  Z0  D0
 T7  P7  Z0  D0
 T8  P8  Z0  D0
-T99  P99  Z-4.58  D0  ;probe
+T99  P99  Z0  D0  ;probe

@@ -363,7 +363,7 @@ net estop-ext     <=  and2.1.out
 # --- PROBE-IN ---
 
 net probe-tool	or2.0.in0      <=  hm2_7i80.0.7i70.0.1.input-14-not
-net probe-sensor	or2.0.in1     <=  hm2_7i80.0.7i70.0.1.input-13-not
+net probe-sensor	or2.0.in1     <=  hm2_7i80.0.7i70.0.1.input-13
 net probe-in     <=  or2.0.out
 
 
