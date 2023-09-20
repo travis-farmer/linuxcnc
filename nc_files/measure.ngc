@@ -40,7 +40,7 @@ o<measure> sub
  G38.5 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF> F#<_ini[TOOLSENSOR]PROBE_VEL>		(Back off until probe breaks contact)
  ;G0 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF>										(Back off safe distance)
  ;G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]PROBE_VEL>		(Measure fine)
- #<_new_tlo> = #5063
+ #<_new_tlo> = [#<_ini[TOOLSENSOR]SENSOR_SPINDLE> - #5063]
  G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>										(Z up to safe position)
 
  (Restore original coordinate system. G54 to G59.2 only)
