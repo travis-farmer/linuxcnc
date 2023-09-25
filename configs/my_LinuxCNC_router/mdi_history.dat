@@ -247,3 +247,27 @@ t11 m6
 t1 m6
 o <probe-print> call
 o <zero-work> call
+t2 m6
+o <probe-print> call
+t1 m6
+o <probe-print> call
+G90
+o <probe-print> call
+G90
+g53 g0
+g54 g0
+o <probe-print> call
+G90
+o <probe-print> call
+g54 g0
+o <probe-print> call
+m3 s12000
+m5
+o <probe-print> call
+G90
+o <probe-print> call
+G90
+m3 s12000
+m3 s18000
+m3 s24000
+m5
