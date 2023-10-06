@@ -16,7 +16,7 @@ o<probe-print> sub
     G59.3																		(Switch temporarily to G59.3 WCS for probing)
     G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
 
-    G43																		(Enable tool length compensation)
+    G49																		(cancel tool length compensation)
 
     G28.1															(Read current absolute position in machine coordinates into #5161-5166)
 
@@ -25,8 +25,8 @@ o<probe-print> sub
     G38.5 Z0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
     G38.2 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
     G38.5 Z0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
-    ;#<probe-val> = [#<_ini[TOOLSENSOR]SENSOR_SPINDLE> - #5063]
-    #<probe-val> = #5063
+    #<probe-val> = [#<_ini[TOOLSENSOR]SENSOR_SPINDLE> - #5063]
+    ;#<probe-val> = #5063
     G90
     G0 Z0
 
