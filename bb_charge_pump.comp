@@ -7,7 +7,7 @@ userspace component
 
 component bb_charge_pump                 "This component services the BitBang Charge Pump";
 
-pin in bit enable              "if low, start pump";
+pin in bit enable              "if high, start pump";
 pin out bit pump.# [2]  "Pump Outputs.";
 
 
@@ -61,7 +61,7 @@ void user_mainloop(void)
             // ************************************************************************************
         FOR_ALL_INSTS()
         {
-            if (enable == 0) {
+            if (enable == 1) {
                 unsigned long curTime = time_with_ms();
                       if (curTime - lastTimer >= 250) {
                     lastTimer = curTime;

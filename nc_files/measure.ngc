@@ -17,7 +17,7 @@ o<measure> sub
  G59.3																		(Switch temporarily to G59.3 WCS for probing)
  G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
 
- G43																		(Enable tool length compensation)
+ G49																		(Disable tool length compensation)
 
  G28.1																		(Read current absolute position in machine coordinates into #5161-5166)
  o300 if [ [ ABS[#5161 - #<_ini[TOOLSENSOR]X_LOC>] LT 0.01 ] AND [ ABS[#5162 - #<_ini[TOOLSENSOR]Y_LOC>] LT 0.01 ] ]
@@ -71,6 +71,6 @@ o<measure> sub
 
 M72                                                                			(Restore saved modal state)
 G43.1 Z#<_new_tlo>															(Set Dynamic TLO)
-
+;G10 L1 P#<_current_tool> Z#<_new_tlo>
 o<measure> endsub
 M2

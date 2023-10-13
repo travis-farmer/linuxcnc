@@ -168,6 +168,10 @@ net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 # --- MB2HAL --- #
 ##################
 #loadusr -W mb2hal config=mb2hal.ini
+#loadusr -W bb_charge_pump
+#net machine-is-enabled <= bb-charge-pump.enable
+#net charge-pump-a bb-charge-pump.pump.0 => mb2hal...
+#net charge-pump-b bb-charge-pump.pump.1 => mb2hal...
 #setp mult2.0.in0 0.01
 #setp mult2.1.in0 0.01
 #net spindle-temp-fenc mult2.0.in1 <= mb2hal...

@@ -28,7 +28,7 @@ o<probe-print> sub
     #<probe-val> = [#<_ini[TOOLSENSOR]SENSOR_SPINDLE> - #5063]
     ;#<probe-val> = #5063
     G90
-    G0 Z0
+    G53 G0 Z0
 
     (Restore original coordinate system. G54 to G59.2 only)
     o100 if[#<coord_system_was> EQ 540]
