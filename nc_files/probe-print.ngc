@@ -58,5 +58,6 @@ o<probe-print> sub
 
     M72                                                                			(Restore saved modal state)
     (DEBUG, Probe negative TLO = %.9f#<probe-val>)
+    G43
 o<probe-print> endsub
 M2
