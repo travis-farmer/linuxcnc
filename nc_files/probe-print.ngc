@@ -24,14 +24,14 @@ o<probe-print> sub
 
     G28.1															(Read current absolute position in machine coordinates into #5161-5166)
 
-    G91
-    G38.2 Z-5.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
-    G38.5 Z0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
-    G38.2 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
-    G38.5 Z0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
+    ;G91
+    G38.3 Z-5.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
+    G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
+    G38.3 Z-5.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
+    G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
     #<probe-val> = [#5063 - #<_ini[TOOLSENSOR]SENSOR_SPINDLE>]
     ;#<probe-val> = #5063
-    G90
+    ;G90
     G53 G0 Z0
 
     (Restore original coordinate system. G54 to G59.2 only)
@@ -61,7 +61,7 @@ o<probe-print> sub
     o107 endif
 
     M72                                                                			(Restore saved modal state)
-    (DEBUG, Probe negative TLO = %.9f#<probe-val>)
+    (DEBUG, Probe TLO = %.9f#<probe-val>)
     G43
 o<probe-print> endsub
 M2

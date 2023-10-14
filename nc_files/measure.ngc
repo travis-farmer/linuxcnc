@@ -13,6 +13,10 @@ o<measure> sub
  o217 if [#<coord_system_was> EQ 593]
   (msg,Note: G59.3 coordinate system is active, be sure that's what you intended!)
  o217 endif
+ o217 if [#5210 EQ 1]
+  (msg,Warning: G92 or G52 is active!)
+ o217 endif
+
 
  G59.3																		(Switch temporarily to G59.3 WCS for probing)
  G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
@@ -29,18 +33,11 @@ o<measure> sub
  o300 endif
 
  (Measure tool to get offset)
- ;S500 M4																	(Run spindle in reverse at minimum speed - Note: causes downstream issues, don't do this!)
- ;M64 P2																		(Turn on optical sensor)
- ;G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to optical sensor)
- ;M65 P2																		(Turn off optical sensor)
- ;G0 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF>
- ;M66 P6 L4 Q1																(Wait for optical-in to deactivate)
-
- G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Measure Gross)
- G38.5 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF> F#<_ini[TOOLSENSOR]PROBE_VEL>		(Back off until probe breaks contact)
- ;G0 G91 Z#<_ini[TOOLSENSOR]Z_BACKOFF>										(Back off safe distance)
- ;G38.2 G90 Z#<_ini[TOOLSENSOR]Z_PROBE_DISTANCE> F#<_ini[TOOLSENSOR]PROBE_VEL>		(Measure fine)
- #<_new_tlo> = [#<_ini[TOOLSENSOR]SENSOR_SPINDLE> - #5063]
+ G38.3 Z-5.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
+ G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
+ G38.3 Z-5.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
+ G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
+ #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]SENSOR_SPINDLE>]
  G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>										(Z up to safe position)
 
  (Restore original coordinate system. G54 to G59.2 only)
@@ -70,7 +67,7 @@ o<measure> sub
  o107 endif
 
 M72                                                                			(Restore saved modal state)
-G43.1 Z#<_new_tlo>															(Set Dynamic TLO)
-;G10 L1 P#<_current_tool> Z#<_new_tlo>
+;G43.1 Z#<_new_tlo>															(Set Dynamic TLO)
+G10 L1 P#<_current_tool> Z#<_new_tlo>
 o<measure> endsub
 M2

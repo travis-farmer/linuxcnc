@@ -138,17 +138,16 @@ o500 else
 	o210 endif
 
  o220 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99]
-  ;M201                                                                 (Probe new tool, but not the 3d probe 99)
+  o221 if [#5403 EQ 0]                                                   (if current tool offset is zero)
+   ;M201                                                                 (Probe new tool, but not the 3d probe 99)
+   (msg,Note: Tool has zero value for offset! would be probed.)
+  o221 endif
  o220 endif
 
 o500 endif
 
 M72                                                                	(Restore saved modal state)
-o501 if [EXISTS[#<_new_tlo>]]
-	G43.1 Z#<_new_tlo>													(Re-Set Dynamic TLO)
-o501 else
-	G43
-o501 endif
+G43
 
 o999 endif
 o<toolchange> endsub
