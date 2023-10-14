@@ -1,10 +1,10 @@
 T0  P0  Z0  D0
-T1  P1  D0.125
-T2  P2  Z-4.161  D0.25
+T1  P1  Z-1.353  D0.125
+T2  P2  Z0.074  D0.25
 T3  P3  Z0  D0
 T4  P4  Z0  D0  ;new tool
 T5  P5  Z0  D0
 T6  P6  Z0  D0
 T7  P7  Z0  D0
 T8  P8  Z0  D0
-T99  P99  Z0  D0  ;probe
+T99  P99  Z0  D0  ;probe stay zero

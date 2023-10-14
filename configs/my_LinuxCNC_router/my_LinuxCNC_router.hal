@@ -369,7 +369,7 @@ net estop-ext     <=  and2.1.out
 # --- PROBE-IN ---
 setp debounce.0.delay 4
 net probe-tool-debounce debounce.0.0.in <= hm2_7i80.0.7i70.0.1.input-14-not
-net probe-sensor-debounce debounce.0.1.in <= hm2_7i80.0.7i70.0.1.input-13
+net probe-sensor-debounce debounce.0.1.in <= hm2_7i80.0.7i70.0.1.input-13-not
 
 net probe-tool	or2.0.in0      <=  debounce.0.0.out
 net probe-sensor	or2.0.in1     <=  debounce.0.1.out

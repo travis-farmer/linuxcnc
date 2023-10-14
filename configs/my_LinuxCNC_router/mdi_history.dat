@@ -313,3 +313,23 @@ t1 m6
 m3 s12000
 m3 s18000
 m3 s24000
+o <probe-print> call
+t1 m6
+o <probe-print> call
+t2 m6
+o <probe-print> call
+g0 x0 y0
+t1 m6
+g0 x0 y0
+o <probe-print> call
+G90
+o <probe-print> call
+G90
+o <probe-print> call
+G54 G0
+g0 x0 y0
+o <probe-print> call
+g0 x0 y0
+t2 m6
+o <probe-print> call
+g0 x0 y0
