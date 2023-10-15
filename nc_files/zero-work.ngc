@@ -7,6 +7,10 @@ o<zero-work> sub
  M9                                                                 (Turn coolant off)
  G17 G20 G40 G64 P0.001 G80 G94 G97 G98                             (Baseline modal state)
 
+ o217 if [#<coord_system_was> EQ 593]
+  (msg,Note: G59.3 coordinate system is active, be sure that's what you intended!)
+ o217 endif
+
  G59.3																		(Switch temporarily to G59.3 WCS for probing)
  G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
  M66 P1 L0
@@ -15,9 +19,9 @@ o<zero-work> sub
  o313 endif
  G38.2 Z-1.25 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
- G38.2 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
+ G38.2 Z-4.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
- #<work_height> = [#5063 - #<_ini[PROBE]PROBE_SPINDLE>]
+ #<work_height> = #5063                       (work height is probed height, because the probe is the reference tool)
  (debug,probed work height: %.9f#<work_height>)
  G53 G0 Z0										(Z up to safe position)
  T0 M6                                              (pause for probe removal)
@@ -53,7 +57,7 @@ o<zero-work> sub
  o107 endif
 
 M72                                                                			(Restore saved modal state)
-G10 L2 P1 Z#<work_height>
+G10 L2 P0 Z#<work_height>
 
 o<zero-work> endsub
 M2

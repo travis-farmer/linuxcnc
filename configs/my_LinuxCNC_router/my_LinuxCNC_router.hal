@@ -161,7 +161,7 @@ setp mqtt-publisher.period 1
 # --- MacSafety --- #
 #####################
 net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
-net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v
+net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v, no enclosure yet
 net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 
 ##################

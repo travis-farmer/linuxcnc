@@ -33,11 +33,11 @@ o<measure> sub
  o300 endif
 
  (Measure tool to get offset)
- G38.3 Z-5.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
+ G38.3 Z-4.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
- G38.3 Z-5.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
+ G38.3 Z-4.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
- #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]SENSOR_SPINDLE>]
+ #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
  G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>										(Z up to safe position)
 
  (Restore original coordinate system. G54 to G59.2 only)

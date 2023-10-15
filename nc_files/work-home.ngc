@@ -1,6 +1,6 @@
 o<work-home> sub
-    G0 Z-1
+    G53 G0 Z0
     G0 X0 Y0
-    G0 Z0
+    G1 Z0 F8
 o<work-home> endsub
 M2
