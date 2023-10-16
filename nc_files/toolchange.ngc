@@ -137,7 +137,7 @@ o500 else
 		M6 T#<_selected_tool>											(Do built-in M6 routine - pops up prompt)
 	o210 endif
 
- o220 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99]
+ o220 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99]            (not tool zero or 99, as zero is no tool, and 99 is 3D probe)
   o221 if [#5403 EQ 0]                                                   (if current tool offset is zero)
    ;M201                                                                 (Probe new tool, but not the 3d probe 99)
    (msg,Note: Tool has zero value for offset! would be probed.)
