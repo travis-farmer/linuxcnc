@@ -13,9 +13,9 @@ o<probe-print> sub
         (msg,Note: G59.3 coordinate system is active, be sure that's what you intended!)
     o217 endif
 
-    o217 if [#5210 EQ 1]
+    o218 if [#5210 EQ 1]
         (msg,Warning: G92 or G52 is active!)
-    o217 endif
+    o218 endif
 
     G59.3																		(Switch temporarily to G59.3 WCS for probing)
     G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)

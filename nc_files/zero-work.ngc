@@ -11,13 +11,14 @@ o<zero-work> sub
   (msg,Note: G59.3 coordinate system is active, be sure that's what you intended!)
  o217 endif
 
- G59.3																		(Switch temporarily to G59.3 WCS for probing)
- G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
+ 
  M66 P1 L0
  o313 if [#5399 EQ 0 OR #<_current_tool> NE 99]
     (abort,Probe not in spindle!)
  o313 endif
- G38.2 Z-1.25 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
+ G59.3																		(Switch temporarily to G59.3 WCS for probing)
+ G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
+ G38.2 Z-4.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
  G38.2 Z-4.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
@@ -26,34 +27,34 @@ o<zero-work> sub
  G53 G0 Z0										(Z up to safe position)
  T0 M6                                              (probe removal)
  M66 P1 L0
- o313 if [#5399 EQ 1]
+ o314 if [#5399 EQ 1]
     (abort,Probe still in spindle)
- o313 endif
+ o314 endif
 
  (Restore original coordinate system. G54 to G59.2 only)
  o100 if[#<coord_system_was> EQ 540]
-   G54
+   G54 G0
  o100 endif
  o101 if[#<coord_system_was> EQ 550]
-   G55
+   G55 G0
  o101 endif
  o102 if[#<coord_system_was> EQ 560]
-   G56
+   G56 G0
  o102 endif
  o103 if[#<coord_system_was> EQ 570]
-   G57
+   G57 G0
  o103 endif
  o104 if[#<coord_system_was> EQ 580]
-   G58
+   G58 G0
  o104 endif
  o105 if[#<coord_system_was> EQ 590]
-   G59
+   G59 G0
  o105 endif
  o106 if[#<coord_system_was> EQ 591]
-   G59.1
+   G59.1 G0
  o106 endif
  o107 if[#<coord_system_was> EQ 592]
-   G59.2
+   G59.2 G0
  o107 endif
 
 M72                                                                			(Restore saved modal state)

@@ -333,3 +333,19 @@ g0 x0 y0
 t2 m6
 o <probe-print> call
 g0 x0 y0
+o <probe-print> call
+g0 x0 y0
+o <zero-work> call
+g0 x0 y0
+g54 g0
+g0 x0 y0
+o <zero-work> call
+G54 G0
+g0 x0 y0
+o <zero-work> call
+g0 x0 y0
+g54 g0
+g0 x0 y0
+o <zero-work> call
+t1 m6
+o <work-home> call
