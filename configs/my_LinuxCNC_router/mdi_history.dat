@@ -349,3 +349,7 @@ g0 x0 y0
 o <zero-work> call
 t1 m6
 o <work-home> call
+m3 s12000
+m3 s18000
+m3 s24000
+m5
