@@ -10,9 +10,9 @@ author "Travis Farmer";
 ;;
 
 FUNCTION(_) {
-    if (toolnumber == 99) {rpmout = 0;}
+    if (toolnumber == 99 || toolnumber == 98) {rpmout = 0;}
     else {
-        if (rpmin > tool_max(toolnumber) && toolnumber != 99) {
+        if (rpmin > tool_max(toolnumber) && toolnumber != 99 && toolnumber != 98) {
             rpmout = tool_max(toolnumber);
         } else {
             rpmout = rpmin;

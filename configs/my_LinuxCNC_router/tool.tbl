@@ -7,4 +7,5 @@ T5  P5  Z0  D0
 T6  P6  Z0  D0
 T7  P7  Z0  D0
 T8  P8  Z0  D0
+T98 P98 X0  Y0  Z0  D0  ;Laser, set X Y and Z
 T99  P99  Z0  D0  ;probe stay zero

@@ -4,7 +4,12 @@ o<toolchange> sub
 o999 if[#<_task> NE 0]
  M70                                                                (Save modal state)
  M5                                                                 (Turn spindle off)
- G4 P20                                                             (Dwell for spindle stop)
+ o400 if[#<_current_tool> EQ 99 OR #<_current_tool> EQ 98]
+    (dont dwell, spindle not turning)
+ o400 else
+    G4 P20                                                             (Dwell for spindle stop)
+ o400 endif
+
  M9                                                                 (Turn coolant off)
  G17 G20 G40 G64 P0.001 G80 G94 G97 G98 G49                            (Baseline modal state)
 

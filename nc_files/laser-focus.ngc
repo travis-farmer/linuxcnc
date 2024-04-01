@@ -16,6 +16,10 @@ o<laser-focus> sub
  G59.3																		(Switch temporarily to G59.3 WCS for probing)
  G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
  M66 P1 L0
+ o313 if [#5399 EQ 0 OR #<_current_tool> NE 99]
+    T99 M6
+ o313 endif
+ M66 P1 L0
  o313 if [#5399 EQ 0]
     (abort,Probe not in spindle)
  o313 endif
@@ -29,10 +33,14 @@ o<laser-focus> sub
  (debug,laser ride height: %.9f#<laser_ride_height>)
 
  G53 G0 Z0										(Z up to safe position)
- (msg,Please remove probe, so it will not get damaged!)
- M0                                                 (pause for probe removal)
+ T98 M6                                         (change to laser virtual tool)
+ M66 P1 L0
+ o313 if [#5399 NE 0]                           (should be no tool loaded for laser)
+    G53 G0 Z0
+    G0 X0 Y0
+    G1 Z0 F#<_ini[LASER_FOCUS]PROBE_FINE>
+ o313 endif
 
- G53 G0 Z#<laser_ride_height>
 
  (Restore original coordinate system. G54 to G59.2 only)
  o100 if[#<coord_system_was> EQ 540]

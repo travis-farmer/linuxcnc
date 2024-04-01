@@ -75,6 +75,9 @@ addf mult2.0 servo-thread
 addf mult2.1 servo-thread
 loadrt debounce cfg=2
 addf debounce.0 servo-thread
+loadrt toggle count=1
+addf toggle.0 servo-thread
+
 
 ####################
 # --- MAX31855 --- #
@@ -214,7 +217,7 @@ net spindle-is-hung => lcd.00.page.00.arg.07
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
+
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
@@ -236,16 +239,17 @@ net cpl-kbd-0-0 matrix_kb.0.key.r0c0 => or2.5.in0 # Machine Home
 net cpl-kbd-0-1 matrix_kb.0.key.r0c1 => or2.6.in0 # Work Home
 net cpl-kbd-0-2 matrix_kb.0.key.r0c2 => or2.3.in0 # pause
 net cpl-kbd-0-3 matrix_kb.0.key.r0c3 => or2.4.in0 # resume
-
+net cpl-kbd-0-4 matrix_kb.0.key.r0c4 => toggle.0.in # laser mode
 
 net control-pause halui.program.pause <= or2.3.out
 net control-resume halui.program.resume <= or2.4.out
 net control-m-home or2.5.out => halui.mdi-command-01
 net control-w-home or2.6.out => halui.mdi-command-00
+net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= toggle.0.out # laser mode toggle
 
-#####################
-# --- HAL2MBVFD --- #
-#####################
+###################
+# --- HAL2VFD --- #
+###################
 
 # --- rpmlimiter ---
 net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
