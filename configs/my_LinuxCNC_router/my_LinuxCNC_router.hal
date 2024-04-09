@@ -198,11 +198,13 @@ setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
 # --- CONTROL PANEL --- #
 #########################
 # --- CPL LCD ---
-loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b10 TC %bAM\nATC U %b10 ATC T %b10"
+loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b\FF  TC %bAM\nATC U %b\FF  ATC T %b\FF |Laser Mode: %b\FF \nLaser Power: %3.3f\nLaser Air: %b\FF \nLaser Fume: %b\FF |Machine: %b\FF \nInterlock: %b\FF \nProbe S: %b\FF \nProbe T: %b\FF "
 addf lcd servo-thread
-setp lcd-pager.0.number-pages 1
+setp lcd-pager.0.number-pages 2
 net lcd-page-out lcd-pager.0.page-out => lcd.00.page_num
+
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
+# --- Page 00 ---
 net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00
 net cpl-c-air-psi volts2psi.0.PSIout => lcd.00.page.00.arg.01
 net cpl-tool-number halui.tool.number => lcd.00.page.00.arg.02
@@ -211,7 +213,16 @@ net spind-vac-control => lcd.00.page.00.arg.04
 net tool-change-mode => lcd.00.page.00.arg.05
 net spindle-is-unlocked => lcd.00.page.00.arg.06
 net spindle-is-hung => lcd.00.page.00.arg.07
-
+# --- Page 01 ---
+net laser-mode => lcd.00.page.01.arg.00
+net LaserAnalogIn => lcd.00.page.01.arg.01
+net LaserAirOut => lcd.00.page.01.arg.02
+net fume-extraction-ssr => lcd.00.page.01.arg.03
+# --- Page 02 ---
+net machine-is-enabled => lcd.00.page.02.arg.00
+net MS-DoorInterlock => lcd.00.page.02.arg.01
+net probe-sensor => lcd.00.page.02.arg.02
+net probe-tool => lcd.00.page.02.arg.03
 
 # --- CPL Inputs ---
 
@@ -259,7 +270,7 @@ setp rpmlimiter.0.tool.2.max 24000
 setp rpmlimiter.0.tool.3.max 24000
 setp rpmlimiter.0.tool.4.max 24000
 setp rpmlimiter.0.tool.5.max 24000
-setp rpmlimiter.0.tool.6.max 12000
+setp rpmlimiter.0.tool.6.max 24000
 setp rpmlimiter.0.tool.7.max 24000
 setp rpmlimiter.0.tool.8.max 24000
 setp rpmlimiter.0.tool.9.max 24000
@@ -270,8 +281,10 @@ setp near.0.difference 1500.00
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpmout
 net spindle-float-out hal2mbvfd.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
+
 net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
 net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
+
 net vfd-read-rpm-float hm2_7i80.0.7i70.0.1.analog2 => hal2mbvfd.0.VfdRpmFloat
 net vfd-conv-rpm hal2mbvfd.0.VfdRunRpmOut => spindle.0.speed-in near.0.in1
 net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00 hm2_7i80.0.7i83.0.3.analogena0     <=  hal2mbvfd.0.SpindFan
