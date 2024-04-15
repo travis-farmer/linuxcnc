@@ -1,11 +1,11 @@
 T0  P0  Z0  D0
-T1  P1  Z-1.353  D0.125 ;proven value
-T2  P2  Z0.074  D0.25 ;proven value
+T1  P1  Z-1.353  D0.125  ;proven value
+T2  P2  Z0.074  D0.25  ;proven value
 T3  P3  Z0  D0
 T4  P4  Z0  D0  ;new tool
 T5  P5  Z0  D0
 T6  P6  Z0  D0
 T7  P7  Z0  D0
 T8  P8  Z0  D0
-T98 P98 X0  Y0  Z0  D0  ;Laser, set X Y and Z
+T98  P98  X4.457  Y-1.841  Z-2.320  D0  ;laser, set x y and z
 T99  P99  Z0  D0  ;probe stay zero

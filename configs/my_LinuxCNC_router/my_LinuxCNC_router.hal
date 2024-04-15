@@ -146,7 +146,7 @@ net spi.data0.in hm2_7i80.0.gpio.015.in_not max31855.0.data.0.in
 # --- MQTT --- #
 ################
 net machine-is-on => time.1.start
-net mqtt-prog-is-running time.0.start  MacSafety.0.ProgRunningIn     and2.2.in0 <= halui.program.is-running
+net mqtt-prog-is-running time.0.start       and2.2.in0 <= halui.program.is-running
 net mqtt-prog-is-paused time.0.pause   MacSafety.0.ProgPausedIn <= halui.program.is-paused
 net mqtt-prog-is-idle MacSafety.0.ProgIdleIn <= halui.program.is-idle
 net cycle-seconds <= time.0.seconds
@@ -163,6 +163,7 @@ setp mqtt-publisher.period 1
 #####################
 # --- MacSafety --- #
 #####################
+setp MacSafety.0.ProgRunningIn 1
 net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
 net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v, no enclosure yet
 net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
@@ -228,7 +229,7 @@ net probe-tool => lcd.00.page.02.arg.03
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-
+net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02-not
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
@@ -256,7 +257,7 @@ net control-pause halui.program.pause <= or2.3.out
 net control-resume halui.program.resume <= or2.4.out
 net control-m-home or2.5.out => halui.mdi-command-01
 net control-w-home or2.6.out => halui.mdi-command-00
-net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= toggle.0.out # laser mode toggle
+#net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= toggle.0.out # laser mode toggle
 
 ###################
 # --- HAL2VFD --- #

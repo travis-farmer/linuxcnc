@@ -20,55 +20,63 @@ o<laser-focus> sub
     T99 M6
  o313 endif
  M66 P1 L0
- o313 if [#5399 EQ 0]
+ o314 if [#5399 EQ 0]
     (abort,Probe not in spindle)
- o313 endif
+ o314 endif
  G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>	(Probe move to work)
  G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>  (backoff)
  G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_FINE>	(Measure Fine)
  G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>    (Back off until probe breaks contact)
 
  (laser focus is 50mm from base of module, not nose of nozzle)
- #<laser_ride_height> = [#5063 - #<_ini[LASER_FOCUS]LASER_FOCUS>]
+ #<laser_ride_height> = #5063
  (debug,laser ride height: %.9f#<laser_ride_height>)
 
- G53 G0 Z0										(Z up to safe position)
- T98 M6                                         (change to laser virtual tool)
- M66 P1 L0
- o313 if [#5399 NE 0]                           (should be no tool loaded for laser)
-    G53 G0 Z0
-    G0 X0 Y0
-    G1 Z0 F#<_ini[LASER_FOCUS]PROBE_FINE>
- o313 endif
 
 
  (Restore original coordinate system. G54 to G59.2 only)
  o100 if[#<coord_system_was> EQ 540]
+   G10 L2 P1 Z#5063
    G54
  o100 endif
  o101 if[#<coord_system_was> EQ 550]
+   G10 L2 P2 Z#5063
    G55
  o101 endif
  o102 if[#<coord_system_was> EQ 560]
+   G10 L2 P3 Z#5063
    G56
  o102 endif
  o103 if[#<coord_system_was> EQ 570]
+   G10 L2 P4 Z#5063
    G57
  o103 endif
  o104 if[#<coord_system_was> EQ 580]
+   G10 L2 P5 Z#5063
    G58
  o104 endif
  o105 if[#<coord_system_was> EQ 590]
+   G10 L2 P6 Z#5063
    G59
  o105 endif
  o106 if[#<coord_system_was> EQ 591]
+   G10 L2 P7 Z#5063
    G59.1
  o106 endif
  o107 if[#<coord_system_was> EQ 592]
+   G10 L2 P8 Z#5063
    G59.2
  o107 endif
 
 M72                                                                			(Restore saved modal state)
-
+ 
+ G53 G0 Z0										(Z up to safe position)
+ T98 M6                                         (change to laser virtual tool)
+ M66 P1 L0
+ o315 if [#5399 EQ 0]                           (should be no tool loaded for laser)
+    G53 G0 Z0
+    G0 X0 Y0
+    G0 Z0
+ o315 endif
 o<laser-focus> endsub
 M2
