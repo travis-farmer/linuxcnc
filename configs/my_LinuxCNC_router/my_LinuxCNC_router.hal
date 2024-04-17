@@ -27,6 +27,7 @@ loadrt and2 count=3
 addf and2.0 servo-thread
 addf and2.1 servo-thread
 addf and2.2 servo-thread
+
 loadrt or2 count=7
 addf or2.0 servo-thread
 addf or2.1 servo-thread
@@ -362,9 +363,9 @@ setp timedelay.0.off-delay 5.00
 net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
 net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
 net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
-#M64 P2 - turn on digital output immediately.
-#M65 P2 - turn off digital output immediately.
-net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02
+#                                                                           M64 P2 - turn on digital output immediately.
+#                                                                           M65 P2 - turn off digital output immediately.
+net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 #        laser E-Stop handled by MacSafety componant
 
 net MS-InterlockOut MacSafety.0.InterlockOut => LaserAnalog.0.DoorInterlockIn
 net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut

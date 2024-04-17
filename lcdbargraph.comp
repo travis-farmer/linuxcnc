@@ -1,0 +1,24 @@
+component lcdbargraph "lcd bar graph display";
+
+pin in s32 value "Value in, in";
+pin out bit barpin.# [20 : (personality)] "Pins to attach to bar graph segments, barpin.# out";
+pin in s32 valuemax "Max value, in";
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+
+s32 map(s32 x, s32 in_min, s32 in_max, s32 out_min, s32 out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+FUNCTION(_) {
+  for (int i = 0; i <= personality; i++) {
+    if (i < map(value,0,personality,0,valuemax)) {
+      barpin(i) = 1;
+    }
+    else {
+      barpin(i) = 0;
+    }
+  }
+}
