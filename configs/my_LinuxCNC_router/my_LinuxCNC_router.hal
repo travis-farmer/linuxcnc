@@ -79,62 +79,11 @@ addf debounce.0 servo-thread
 loadrt toggle count=1
 addf toggle.0 servo-thread
 
-
-###################
-# --- ADS1115 --- #
-###################
-#setp ads1115.0.a0msb 0xc1
-#setp ads1115.0.a1msb 0xd1
-#setp ads1115.0.a2msb 0xe1
-#setp ads1115.0.a3msb 0xf1
-
-
-#net SDAOut <= ads1115.0.SDAOut
-#net SCLOut <= ads1115.0.SCLOut
-#net SDAIn => ads1115.0.SDAIn
-
-#setp hm2_7i80.0.gpio.011.invert_output true
-#setp hm2_7i80.0.gpio.011.is_output true
-#setp hm2_7i80.0.gpio.012.invert_output false
-#setp hm2_7i80.0.gpio.012.is_output true
-#net SDAOut => hm2_7i80.0.gpio.011.out
-#net SCLOut => hm2_7i80.0.gpio.012.out
-#net SDAIn <= hm2_7i80.0.gpio.013.in
-
-#setp adcconv.0.VDhigh 0.00
-#setp adcconv.0.VDlow 0.00
-#setp adcconv.0.MaxValue 65536
-#setp adcconv.0.MaxVolts 6.144
-#net adc-a-raw ads1115.0.outA0 => adcconv.0.ArdADCin
-#net adc-a-vout <= adcconv.0.VoltsOut
-
-#setp adcconv.1.VDhigh 0.00
-#setp adcconv.1.VDlow 0.00
-#setp adcconv.1.MaxValue 65536
-#setp adcconv.1.MaxVolts 6.144
-#net adc-b-raw ads1115.0.outA1 => adcconv.1.ArdADCin
-#net adc-b-vout <= adcconv.1.VoltsOut
-
-#setp adcconv.2.VDhigh 0.00
-#setp adcconv.2.VDlow 0.00
-#setp adcconv.2.MaxValue 65536
-#setp adcconv.2.MaxVolts 6.144
-#net adc-c-raw ads1115.0.outA2 => adcconv.2.ArdADCin
-#net adc-c-vout <= adcconv.2.VoltsOut
-
-#setp adcconv.3.VDhigh 0.00
-#setp adcconv.3.VDlow 0.00
-#setp adcconv.3.MaxValue 65536
-#setp adcconv.3.MaxVolts 6.144
-#net adc-d-raw ads1115.0.outA3 => adcconv.3.ArdADCin
-#net adc-d-vout <= adcconv.3.VoltsOut
-
-
 ################
 # --- MQTT --- #
 ################
 net machine-is-on => time.1.start
-net mqtt-prog-is-running time.0.start       and2.2.in0 <= halui.program.is-running
+net mqtt-prog-is-running time.0.start  MacSafety.0.ProgRunningIn     and2.2.in0 <= halui.program.is-running
 net mqtt-prog-is-paused time.0.pause   MacSafety.0.ProgPausedIn <= halui.program.is-paused
 net mqtt-prog-is-idle MacSafety.0.ProgIdleIn <= halui.program.is-idle
 net cycle-seconds <= time.0.seconds
@@ -151,7 +100,7 @@ setp mqtt-publisher.period 1
 #####################
 # --- MacSafety --- #
 #####################
-setp MacSafety.0.ProgRunningIn 1
+#setp MacSafety.0.ProgRunningIn 1
 net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
 net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v, no enclosure yet
 net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
@@ -160,10 +109,6 @@ net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 # --- MB2HAL --- #
 ##################
 #loadusr -W mb2hal config=mb2hal.ini
-#loadusr -W bb_charge_pump
-#net machine-is-enabled <= bb-charge-pump.enable
-#net charge-pump-a bb-charge-pump.pump.0 => mb2hal...
-#net charge-pump-b bb-charge-pump.pump.1 => mb2hal...
 #setp mult2.0.in0 0.01
 #setp mult2.1.in0 0.01
 #net spindle-temp-fenc mult2.0.in1 <= mb2hal...
@@ -217,7 +162,7 @@ net probe-tool => lcd.00.page.02.arg.03
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
 net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02-not
+net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
