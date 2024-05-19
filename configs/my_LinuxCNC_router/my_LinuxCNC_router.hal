@@ -108,14 +108,42 @@ net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 ##################
 # --- MB2HAL --- #
 ##################
-#loadusr -W mb2hal config=mb2hal.ini
+loadusr -W mb2hal config=mb2hal.ini
 #setp mult2.0.in0 0.01
 #setp mult2.1.in0 0.01
 #net spindle-temp-fenc mult2.0.in1 <= mb2hal...
 #net spindle-temp-cenc mult2.1.in1 <= mb2hal...
 #net spindle-temp-f <= mult2.0.out
 #net spindle-temp-c <= mult2.1.out
+# --- rpmlimiter ---
+net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
+setp rpmlimiter.0.tool.0.max 24000
+setp rpmlimiter.0.tool.1.max 24000
+setp rpmlimiter.0.tool.2.max 24000
+setp rpmlimiter.0.tool.3.max 24000
+setp rpmlimiter.0.tool.4.max 24000
+setp rpmlimiter.0.tool.5.max 24000
+setp rpmlimiter.0.tool.6.max 24000
+setp rpmlimiter.0.tool.7.max 24000
+setp rpmlimiter.0.tool.8.max 24000
+setp rpmlimiter.0.tool.9.max 24000
 
+
+setp near.0.difference 1500.00
+
+net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
+net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpmout
+
+net vfd-rpm-percent hal2mbvfd.0.PercentOut => mb2hal.vfdset.00.int
+net vfd-ctrl-out hal2mbvfd.0.VfdCtrlOut => mb2hal.vfdcntrl.00.int
+net spindle-cw => hal2mbvfd.0.VfdFwd
+net spindle-ccw => hal2mbvfd.0.VfdRev
+net vfd-read-rpm mb2hal.vfdparam.04.float => hal2mbvfd.0.VfdRunRpmIn near.0.in1
+net vfd-conv-rps hal2mbvfd.0.VfdRunRpsOut => spindle.0.speed-in
+net spindle-out-amps <= mb2hal.vfdparam.02.float
+net spindle-out-volts <= mb2hal.vfdparam.03.float
+#                               fan relay                  VFD enable
+net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00 hm2_7i80.0.7i72.0.2.output-03     <=  hal2mbvfd.0.SpindFan
 
 #########################
 # --- 7i83 settings --- #
@@ -123,10 +151,6 @@ net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 setp hm2_7i80.0.7i83.0.3.analogout0-maxlim 10
 setp hm2_7i80.0.7i83.0.3.analogout0-minlim 0
 setp hm2_7i80.0.7i83.0.3.analogout0-scalemax 10
-setp hm2_7i80.0.7i83.0.3.analogout1-maxlim 10
-setp hm2_7i80.0.7i83.0.3.analogout1-minlim 0
-setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
-
 
 #########################
 # --- CONTROL PANEL --- #
@@ -191,37 +215,6 @@ net control-resume halui.program.resume <= or2.4.out
 net control-m-home or2.5.out => halui.mdi-command-01
 net control-w-home or2.6.out => halui.mdi-command-00
 #net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= toggle.0.out # laser mode toggle
-
-###################
-# --- HAL2VFD --- #
-###################
-
-# --- rpmlimiter ---
-net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
-setp rpmlimiter.0.tool.0.max 24000
-setp rpmlimiter.0.tool.1.max 24000
-setp rpmlimiter.0.tool.2.max 24000
-setp rpmlimiter.0.tool.3.max 24000
-setp rpmlimiter.0.tool.4.max 24000
-setp rpmlimiter.0.tool.5.max 24000
-setp rpmlimiter.0.tool.6.max 24000
-setp rpmlimiter.0.tool.7.max 24000
-setp rpmlimiter.0.tool.8.max 24000
-setp rpmlimiter.0.tool.9.max 24000
-
-
-setp near.0.difference 1500.00
-
-net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
-net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpmout
-net spindle-float-out hal2mbvfd.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
-
-net spindle-cw => hal2mbvfd.0.VfdFwd hm2_7i80.0.7i72.0.2.output-03
-net spindle-ccw => hal2mbvfd.0.VfdRev hm2_7i80.0.7i72.0.2.output-04
-
-net vfd-read-rpm-float hm2_7i80.0.7i70.0.1.analog2 => hal2mbvfd.0.VfdRpmFloat
-net vfd-conv-rpm hal2mbvfd.0.VfdRunRpmOut => spindle.0.speed-in near.0.in1
-net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00 hm2_7i80.0.7i83.0.3.analogena0     <=  hal2mbvfd.0.SpindFan
 
 ###################
 # --- spindle --- #
@@ -293,14 +286,14 @@ setp timedelay.0.off-delay 5.00
 # M68 E0 Q0
 # M67 E0 Q0
 net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
-net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
+net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
 net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 #                                                                           M64 P2 - turn on digital output immediately.
 #                                                                           M65 P2 - turn off digital output immediately.
 net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 #        laser E-Stop handled by MacSafety componant
 
 net MS-InterlockOut MacSafety.0.InterlockOut => LaserAnalog.0.DoorInterlockIn
-net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
+net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena0 <= LaserAnalog.0.LaserEnableOut
 net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
 ############################
