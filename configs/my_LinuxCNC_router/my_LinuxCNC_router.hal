@@ -303,7 +303,7 @@ net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 # --- MACHINE-IS-ENABLED ---
 setp hm2_7i80.0.gpio.000.invert_output true # stepper enable
 setp hm2_7i80.0.gpio.000.is_output true
-net machine-is-enabled =>     hm2_7i80.0.gpio.047.out
+net machine-is-enabled =>     hm2_7i80.0.gpio.047.out # stepper enable
 
 # --- ESTOP-EXT ---
 net estop-a-in and2.1.in0 <= hm2_7i80.0.7i70.0.1.input-15
@@ -553,7 +553,7 @@ net probe-in     =>  motion.probe-input
 net in-position               <=  motion.in-position
 
 
-net machine-is-enabled hm2_7i80.0.7i72.0.2.output-01      <=  motion.motion-enabled
+net machine-is-enabled hm2_7i80.0.7i72.0.2.output-01      <=  motion.motion-enabled # VFD enable
 
 #  ---digital in / out signals---
 
