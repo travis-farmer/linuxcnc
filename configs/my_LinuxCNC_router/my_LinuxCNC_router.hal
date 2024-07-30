@@ -104,7 +104,14 @@ setp mqtt-publisher.period 1
 net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
 net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v, no enclosure yet
 net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
-
+net enable-manual-change-button motion.digital-out-01 # => hm2_7i80.0.7i71---output-xx # enable LED for spindle change.
+net MS-SignalTowerGreen MacSafety.0.SignalTowerGreen # => hm2_7i80.0.7i71---output-00
+net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber # => hm2_7i80.0.7i71---output-01
+net MS-SignalTowerRed MacSafety.0.SignalTowerRed # => hm2_7i80.0.7i71---output-02
+net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite # => hm2_7i80.0.7i71---output-03
+net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue # => hm2_7i80.0.7i71---output-04
+net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer # => hm2_7i80.0.7i71---output-05
+net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-02
 ##################
 # --- MB2HAL --- #
 ##################
@@ -257,7 +264,7 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 
 setp hm2_7i80.0.gpio.010.invert_output true # air ATC lock relay is active LOW
 setp hm2_7i80.0.gpio.010.is_output true
-net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
+#net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 
 # --- Tool Pockets ---
 net tool-pocket-01 hm2_7i80.0.7i70.0.1.input-24 => motion.digital-in-10
@@ -294,7 +301,7 @@ net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 #        laser E-Stop handled by MacSafety componant
 
 net MS-InterlockOut MacSafety.0.InterlockOut => LaserAnalog.0.DoorInterlockIn
-net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena0 <= LaserAnalog.0.LaserEnableOut
+net LaserOn MacSafety.0.LaserActive timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena0 <= LaserAnalog.0.LaserEnableOut
 net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
 ############################

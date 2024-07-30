@@ -112,7 +112,7 @@ o500 else
 			M61 Q#<_selected_tool>															(Set current tool)
         o214 elseif [#<_selected_tool> GT #<_ini[TOOL_CHANGE]NUM_POCKETS>]
             ; MANUAL TOOL CHANGE TO PROBE OR FROM EXTERNAL TOOL RACK
-            M65 P0
+            M65 P0 (close ATC)
             G4 P0.1
             G90 G0															(Absolute distance mode Rapid move)
             G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
@@ -121,7 +121,11 @@ o500 else
             G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
 
             G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
-            M6 T#<_selected_tool>
+            M64 P1 (turn on MTC available LED)
+						M64 P3 (turn on MTC waiting LED)
+						M6 T#<_selected_tool>
+						M65 P1 (turn off MTC available LED)
+						M65 P3 (turn off MTC waiting LED)
 		o214 else
 		; NO TOOL TO LOAD, EXIT
 			M65 P0																			(Engage ATC immediately)

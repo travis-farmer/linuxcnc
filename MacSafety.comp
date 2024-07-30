@@ -2,6 +2,12 @@ component MacSafety "manage safety interlocks, and display signal tower";
 
 pin out bit InterlockOut "true when machine is safe";
 pin out bit DoorUnlockOut "True when machine is safe to open, and door button pressed";
+pin out bit SignalTowerRed "Signal Tower RED output";
+pin out bit SignalTowerAmber "Signal Tower Amber output";
+pin out bit SignalTowerGreen "Signal Tower Green output";
+pin out bit SignalTowerWhite "Signal Tower WHite output";
+pin out bit SignalTowerBlue "Signal Tower Blue output";
+pin out bit SignalTowerBuzzer "Signal Tower Buzzer output";
 pin in bit ProgPausedIn "halui.program.is-paused connection";
 pin in bit ProgRunningIn "halui.program.is-running connection";
 pin in bit ProgIdleIn "halui.program.is-idle connection";
@@ -9,6 +15,8 @@ pin in bit DoorInterlockIn "input from door interlock, true when safe";
 pin in bit DoorUnlockButtonIn "input from door unlock button";
 pin in bit EstopIn "input from ESTOP";
 pin in bit LaserMode "input from laser mode switch";
+pin in bit ManualChangeWaiting "Waiting for manual tool change";
+pin in bit LaserActive "Laser is ACTIVE LED";
 
 function _;
 license "GPL";
@@ -25,5 +33,32 @@ FUNCTION(_) {
         else {DoorUnlockOut = false;}
     } else if (ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && LaserMode == true) {
         InterlockOut = false;
+    }
+    // status LED Tower - red, amber, green, blue, white, buzzer
+    if (ProgRunningIn == true || ProgIdleIn == true) {
+        SignalTowerGreen = true;
+        SignalTowerAmber = false;
+        SignalTowerRed = false;
+        SignalTowerBuzzer = false;
+    } elseif (ProgPausedIn == true) {
+        SignalTowerGreen = false;
+        SignalTowerAmber = true;
+        SignalTowerRed = false;
+        SignalTowerBuzzer = false;
+    } elseif (EstopIn == true) {
+        SignalTowerGreen = false;
+        SignalTowerAmber = false;
+        SignalTowerRed = true;
+        SignalTowerBuzzer = true;
+    }
+    if (LaserActive == true) {
+        SignalTowerWhite = true;
+    } else {
+        SignalTowerWhite = false;
+    }
+    if (ManualChangeWaiting == true) {
+        SignalTowerBlue = true;
+    } else {
+        SignalTowerBlue = false;
     }
 }
