@@ -20,3 +20,7 @@ look for something like encoder.N.counter-mode bit rw
 ------------------------------------------------------
  Open /etc/lightdm/lightdm.conf for editing. Search for autologin-user=; uncomment line (remove #) and add username; also uncomment next line (autologin-user-timeout=0). Save file, close text editor, and reboot to test. As discussed below, it's not clear the second modification is needed, or even does anything, but it's the official Debian recommendation.
  check VFD F4.17 value ?100%?
+
+ halcompile -i MacSafety.comp
+ halcompile -i hal2mbvfd.comp
+ 
