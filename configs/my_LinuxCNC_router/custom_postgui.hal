@@ -59,3 +59,10 @@ net yb-offset-butt pyvcp.align-y-b-button => halui.mdi-command-06
 net cycle-seconds => pyvcp.time-seconds
 net cycle-minutes => pyvcp.time-minutes
 net cycle-hours => pyvcp.time-hours
+
+net MS-SignalTowerRed => pyvcp.stack-red
+net MS-SignalTowerAmber => pyvcp.stack-amber
+net MS-SignalTowerGreen => pyvcp.stack-green
+net MS-SignalTowerBlue => pyvcp.stack-blue
+net MS-SignalTowerWhite => pyvcp.stack-white
+net MS-SignalTowerBuzzer => pyvcp.stack-buzzer
