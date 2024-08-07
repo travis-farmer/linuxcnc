@@ -25,6 +25,6 @@ FUNCTION(_) {
     if (VfdFwd == true) {VfdCtrlOut = 0x0001; SpindFan = true;}
     else if (VfdRev == true) {VfdCtrlOut = 0x0002; SpindFan = true;}
     else {VfdCtrlOut = 0x0005; SpindFan = false;}
-    VfdRunRpmOut = (120 * VfdRunFreqIn) / 4;
+    VfdRunRpmOut = (120 * (VfdRunFreqIn / 10)) / 4;
     VfdRunRpsOut = VfdRunRpmOut / 60;
 }

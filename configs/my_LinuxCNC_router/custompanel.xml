@@ -361,8 +361,8 @@
         <bd>6</bd>
         <rectled>
             <halpin>"stack-red"</halpin>
-            <height>"50"</height>
-            <width>"100"</width>
+            <height>"20"</height>
+            <width>"20"</width>
             <on_color>"red"</on_color>
             <off_color>"gray"</off_color>
         </rectled>
@@ -372,8 +372,8 @@
         <bd>6</bd>
         <rectled>
             <halpin>"stack-amber"</halpin>
-            <height>"50"</height>
-            <width>"100"</width>
+            <height>"20"</height>
+            <width>"20"</width>
             <on_color>"yellow"</on_color>
             <off_color>"gray"</off_color>
         </rectled>
@@ -383,8 +383,8 @@
         <bd>6</bd>
         <rectled>
             <halpin>"stack-green"</halpin>
-            <height>"50"</height>
-            <width>"100"</width>
+            <height>"20"</height>
+            <width>"20"</width>
             <on_color>"green"</on_color>
             <off_color>"gray"</off_color>
         </rectled>
@@ -394,8 +394,8 @@
         <bd>6</bd>
         <rectled>
             <halpin>"stack-blue"</halpin>
-            <height>"50"</height>
-            <width>"100"</width>
+            <height>"20"</height>
+            <width>"20"</width>
             <on_color>"blue"</on_color>
             <off_color>"gray"</off_color>
         </rectled>
@@ -405,8 +405,8 @@
         <bd>6</bd>
         <rectled>
             <halpin>"stack-white"</halpin>
-            <height>"50"</height>
-            <width>"100"</width>
+            <height>"20"</height>
+            <width>"20"</width>
             <on_color>"white"</on_color>
             <off_color>"gray"</off_color>
         </rectled>
@@ -416,8 +416,8 @@
         <bd>6</bd>
         <rectled>
             <halpin>"stack-buzzer"</halpin>
-            <height>"50"</height>
-            <width>"100"</width>
+            <height>"20"</height>
+            <width>"20"</width>
             <on_color>"black"</on_color>
             <off_color>"gray"</off_color>
         </rectled>
