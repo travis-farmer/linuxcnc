@@ -104,24 +104,22 @@ setp mqtt-publisher.period 1
 net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.input-17
 net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v, no enclosure yet
 net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
+
 net enable-manual-change-button motion.digital-out-03 # => hm2_7i80.0.7i71---output-xx # enable LED for spindle change.
+
 net MS-SignalTowerGreen MacSafety.0.SignalTowerGreen # => hm2_7i80.0.7i71---output-00
 net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber # => hm2_7i80.0.7i71---output-01
 net MS-SignalTowerRed MacSafety.0.SignalTowerRed # => hm2_7i80.0.7i71---output-02
 net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite # => hm2_7i80.0.7i71---output-03
 net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue # => hm2_7i80.0.7i71---output-04
 net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer # => hm2_7i80.0.7i71---output-05
+
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
 ##################
 # --- MB2HAL --- #
 ##################
 loadusr -W mb2hal config=mb2hal.ini
-#setp mult2.0.in0 0.01
-#setp mult2.1.in0 0.01
-#net spindle-temp-fenc mult2.0.in1 <= mb2hal...
-#net spindle-temp-cenc mult2.1.in1 <= mb2hal...
-#net spindle-temp-f <= mult2.0.out
-#net spindle-temp-c <= mult2.1.out
+
 # --- rpmlimiter ---
 net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 setp rpmlimiter.0.tool.0.max 24000
@@ -136,7 +134,7 @@ setp rpmlimiter.0.tool.8.max 24000
 setp rpmlimiter.0.tool.9.max 24000
 
 
-setp near.0.difference 1500.00
+setp near.0.difference 200.00
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited hal2mbvfd.0.RpmIn near.0.in2 <= rpmlimiter.0.rpmout
@@ -151,7 +149,7 @@ net vfd-conv-rps hal2mbvfd.0.VfdRunRpsOut => spindle.0.speed-in
 net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
 #                               fan relay                  VFD enable
-net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00 hm2_7i80.0.7i72.0.2.output-03     <=  hal2mbvfd.0.SpindFan
+net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00     <=  hal2mbvfd.0.SpindFan
 
 #########################
 # --- 7i83 settings --- #

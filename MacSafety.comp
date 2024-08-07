@@ -35,7 +35,7 @@ FUNCTION(_) {
         InterlockOut = false;
     }
     // status LED Tower - red, amber, green, blue, white, buzzer
-    if ((ProgRunningIn == true || ProgIdleIn == true) && EstopIn == false) {
+    if (ProgRunningIn == true) {
         SignalTowerGreen = true;
         SignalTowerAmber = false;
         SignalTowerRed = false;
@@ -50,6 +50,11 @@ FUNCTION(_) {
         SignalTowerAmber = false;
         SignalTowerRed = true;
         SignalTowerBuzzer = true;
+    } else {
+        SignalTowerGreen = false;
+        SignalTowerAmber = false;
+        SignalTowerRed = false;
+        SignalTowerBuzzer = false;
     }
     if (LaserActive == true) {
         SignalTowerWhite = true;
