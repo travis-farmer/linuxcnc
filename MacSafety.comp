@@ -40,12 +40,12 @@ FUNCTION(_) {
         SignalTowerAmber = false;
         SignalTowerRed = false;
         SignalTowerBuzzer = false;
-    } elseif (ProgPausedIn == true) {
+    } else if (ProgPausedIn == true) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
         SignalTowerBuzzer = false;
-    } elseif (EstopIn == true) {
+    } else if (EstopIn == true) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;

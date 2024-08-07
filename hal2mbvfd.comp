@@ -7,7 +7,7 @@ pin in bit VfdRev "Run VFD in Reverse Direction";
 pin out s32 VfdCtrlOut "send the VFD control signal to MB2HAL pin";
 pin in float VfdRunFreqIn "running Frequency of VFD/Motor";
 pin out float VfdRunRpsOut "RPS conversion of VFD/Motor RPM";
-pin out float VfdRunRpmOut "VFD/Motor RPM"
+pin out float VfdRunRpmOut "VFD/Motor RPM";
 pin out bit SpindFan "turn on the spindle cooling fan";
 
 
