@@ -9,7 +9,8 @@ pin in float VfdRunFreqIn "running Frequency of VFD/Motor";
 pin out float VfdRunRpsOut "RPS conversion of VFD/Motor RPM";
 pin out float VfdRunRpmOut "VFD/Motor RPM";
 pin out bit SpindFan "turn on the spindle cooling fan";
-
+pin in float SpinTempC "spindle temp in C";
+pin out float SpinTempF "spindle temp out F";
 
 function _;
 license "GPL";
@@ -27,4 +28,5 @@ FUNCTION(_) {
     else {VfdCtrlOut = 0x0005; SpindFan = false;}
     VfdRunRpmOut = (120 * (VfdRunFreqIn / 10)) / 4;
     VfdRunRpsOut = VfdRunRpmOut / 60;
+    SpinTempF = ((9/5) (SpinTempC / 10)) + 32;
 }
