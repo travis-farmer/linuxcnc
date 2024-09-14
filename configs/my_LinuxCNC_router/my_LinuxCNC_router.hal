@@ -105,14 +105,14 @@ net MS-DoorUnlockButton MacSafety.0.DoorUnlockButtonIn <= hm2_7i80.0.7i70.0.1.in
 net MS-DoorInterlock MacSafety.0.DoorInterlockIn <= hm2_7i80.0.7i70.0.1.input-18 # TODO: temporarily tie to 24v, no enclosure yet
 net MS-DoorUnlockOut MacSafety.0.DoorUnlockOut => hm2_7i80.0.7i72.0.2.output-08
 
-net enable-manual-change-button motion.digital-out-03 # => hm2_7i80.0.7i71---output-xx # enable LED for spindle change.
+net enable-manual-change-button motion.digital-out-03 => hm2_7i80.0.7i72.0.2.output-12 # enable LED for spindle change.
 
-net MS-SignalTowerGreen MacSafety.0.SignalTowerGreen # => hm2_7i80.0.7i71---output-00
-net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber # => hm2_7i80.0.7i71---output-01
-net MS-SignalTowerRed MacSafety.0.SignalTowerRed # => hm2_7i80.0.7i71---output-02
-net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite # => hm2_7i80.0.7i71---output-03
-net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue # => hm2_7i80.0.7i71---output-04
-net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer # => hm2_7i80.0.7i71---output-05
+net MS-SignalTowerGreen MacSafety.0.SignalTowerGreen => hm2_7i80.0.7i72.0.2.output-13
+net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber => hm2_7i80.0.7i72.0.2.output-14
+net MS-SignalTowerRed MacSafety.0.SignalTowerRed => hm2_7i80.0.7i72.0.2.output-15
+net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite => hm2_7i80.0.7i72.0.2.output-16
+net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output-17
+net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.output-18
 
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
 ##################
