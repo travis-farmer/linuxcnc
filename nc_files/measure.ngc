@@ -24,7 +24,7 @@ o<measure> sub
  G49																		(Disable tool length compensation)
 
  G28.1																		(Read current absolute position in machine coordinates into #5161-5166)
- o300 if[#<_current_tool> LT 98]                                            (if not the laser)
+ o300 if[#<_current_tool> NE 98]                                            (if not the laser)
      o301 if [ [ ABS[#5161 - #<_ini[TOOLSENSOR]X_LOC>] LT 0.01 ] AND [ ABS[#5162 - #<_ini[TOOLSENSOR]Y_LOC>] LT 0.01 ] ]
         G53 G0 X#<_ini[TOOLSENSOR]X_LOC> Y#<_ini[TOOLSENSOR]Y_LOC>					(Move to tool setter postion)
      o301 else
@@ -47,7 +47,7 @@ o<measure> sub
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
  G38.3 Z-4.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
- o303 if[#<_current_tool> LT 98]                                            (if not the laser)
+ o303 if[#<_current_tool> NE 98]                                            (if not the laser)
     #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
     G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>										(Z up to safe position)
  o303 else                                                                  (else the laser)

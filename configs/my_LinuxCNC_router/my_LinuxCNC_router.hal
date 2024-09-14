@@ -262,9 +262,13 @@ net spindle-unlock motion.digital-out-00 => or2.1.in0
 
 net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool lock/unlock (signal 0 = locked)
 
-setp hm2_7i80.0.gpio.010.invert_output true # air ATC lock relay is active LOW
-setp hm2_7i80.0.gpio.010.is_output true
+#setp hm2_7i80.0.gpio.010.invert_output true # air ATC lock relay is active LOW
+#setp hm2_7i80.0.gpio.010.is_output true
 #net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
+
+# --- VFD signals to test first ---
+net hrdwr-spindle-at-speed <= hm2_7i80.0.7i70.0.1.input-19-not
+net hrdwr-spindle-null-speed <= hm2_7i80.0.7i70.0.1.input-20-not
 
 # --- Tool Pockets ---
 net tool-pocket-01 hm2_7i80.0.7i70.0.1.input-24 => motion.digital-in-10
