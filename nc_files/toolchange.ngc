@@ -77,9 +77,6 @@ o500 else
             G90 G0															(Absolute distance mode Rapid move)
             G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
 
-            G59.3															(Switch temporarily to G59.3 WCS for probing)
-            G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
-
             G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
             M6 T#<_selected_tool>											(Do built-in M6 routine - pops up prompt)
 		o213 endif
@@ -115,10 +112,7 @@ o500 else
 					M65 P0 (close ATC)
 					G4 P0.1
 					G90 G0															(Absolute distance mode Rapid move)
-					G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
-
-					G59.3															(Switch temporarily to G59.3 WCS for probing)
-					G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
+					G53 Z0									(Change Z Position)
 
 					G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
 					M64 P3 (turn on MTC available LED)
@@ -132,25 +126,18 @@ o500 else
 			G53 G0 Z0
 			G53 G0 X0 Y0
 		o214 endif
-		;M65 P1                                                                               (Move out tool carousel)
 	o210 else
 		; PLAIN MANUAL TOOL CHANGE
 		G4 P0.1
 		G90 G0															(Absolute distance mode Rapid move)
 		G53 Z#<_ini[TOOLSENSOR]Z_SAFE>									(Change Z Position)
 
-		G59.3															(Switch temporarily to G59.3 WCS for probing)
-		G10 L2 P9 X0 Y0 Z0												(Zero out work coordinate offsets in G59.3)
-
 		G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
 		M6 T#<_selected_tool>											(Do built-in M6 routine - pops up prompt)
 	o210 endif
 
  o220 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99 AND #<_selected_tool> NE 98]            (not tool zero or 99, as zero is no tool, and 99 is 3D probe)
-  ;o221 if [#5403 EQ 0]                                                   (if current tool offset is zero)
-   ;M201                                                                 (Probe new tool, but not the 3d probe 99)
-   (msg,Note: Tool has zero value for offset! would be probed.)
-  ;o221 endif
+   ;M201                                                                 (Probe tool, but not the 3d probe 99, or laser 98)
  o220 endif
 
 o500 endif
