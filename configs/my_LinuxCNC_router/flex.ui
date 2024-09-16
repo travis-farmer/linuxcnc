@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1357</width>
+    <width>1325</width>
     <height>869</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -687,6 +687,104 @@
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="0" column="2" rowspan="2">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="minimumSize">
+       <size>
+        <width>450</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Info</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="task_state_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="file_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="motion_line_lb">
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" colspan="3">
+        <widget class="QLabel" name="motion_mode_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="3">
+        <widget class="QLabel" name="exec_state_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="interp_state_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="task_mode_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="3">
+        <widget class="QLabel" name="motion_type_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_37">
+         <property name="text">
+          <string>Current Line</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="current_line_lb">
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_38">
+         <property name="text">
+          <string>Motion Line</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="2" column="0" colspan="3">
@@ -2213,20 +2311,7 @@
            <string>MDI Buttons</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_24">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton">
-             <property name="text">
-              <string>G0 X0 Y0</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>mdi</string>
-             </property>
-             <property name="command" stdset="0">
-              <string>G0 X0 Y0</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
+           <item row="2" column="0">
             <widget class="QPushButton" name="pushButton_2">
              <property name="text">
               <string>G0 Z0</string>
@@ -2236,6 +2321,32 @@
              </property>
              <property name="command" stdset="0">
               <string>G0 Z0</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>Machine Home XY</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>mdi</string>
+             </property>
+             <property name="command" stdset="0">
+              <string>G53 G0 X0 Y0</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton_5">
+             <property name="text">
+              <string>Machine Home Z</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>mdi</string>
+             </property>
+             <property name="command" stdset="0">
+              <string>G53 G0 Z0</string>
              </property>
             </widget>
            </item>
@@ -2358,33 +2469,51 @@
            <string>HAL Buttons</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_34">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_3">
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton_4">
              <property name="text">
-              <string>MDI Button</string>
+              <string>Kill Laser</string>
              </property>
              <property name="function" stdset="0">
               <string>hal_pin</string>
              </property>
              <property name="pin_0" stdset="0">
-              <string>hal-mdi-01, HAL_BIT, HAL_OUT</string>
+              <string>hal-mdi-09, HAL_BIT, HAL_OUT</string>
              </property>
              <property name="required" stdset="0">
               <string>homed</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_4">
+           <item row="2" column="0">
+            <widget class="QPushButton" name="pushButton_6">
              <property name="text">
-              <string>Just HAL</string>
+              <string>Probe Work Zero Z</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_0" stdset="0">
+              <string>hal-mdi-11, HAL_BIT, HAL_OUT</string>
+             </property>
+             <property name="required" stdset="0">
+              <string>homed</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_5">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton_3">
              <property name="text">
-              <string>More Hal</string>
+              <string>Probe Laser Focus</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_0" stdset="0">
+              <string>hal-mdi-08, HAL_BIT, HAL_OUT</string>
+             </property>
+             <property name="required" stdset="0">
+              <string>homed</string>
              </property>
             </widget>
            </item>
@@ -2488,104 +2617,6 @@
       </widget>
      </widget>
     </item>
-    <item row="0" column="2" rowspan="2">
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="minimumSize">
-       <size>
-        <width>450</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Info</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="2" column="0" colspan="2">
-        <widget class="QLabel" name="task_state_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="file_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="motion_line_lb">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2" colspan="3">
-        <widget class="QLabel" name="motion_mode_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" colspan="3">
-        <widget class="QLabel" name="exec_state_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QLabel" name="interp_state_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
-        <widget class="QLabel" name="task_mode_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2" colspan="3">
-        <widget class="QLabel" name="motion_type_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="label_37">
-         <property name="text">
-          <string>Current Line</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="current_line_lb">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="label_38">
-         <property name="text">
-          <string>Motion Line</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2593,7 +2624,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1357</width>
+     <width>1325</width>
      <height>26</height>
     </rect>
    </property>
