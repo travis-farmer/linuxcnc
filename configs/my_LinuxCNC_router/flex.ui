@@ -2478,10 +2478,16 @@
               <string>hal_pin</string>
              </property>
              <property name="pin_0" stdset="0">
-              <string>hal-mdi-09, HAL_BIT, HAL_OUT</string>
+              <string>hal-mdi-09</string>
              </property>
              <property name="required" stdset="0">
               <string>homed</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
              </property>
             </widget>
            </item>
@@ -2494,10 +2500,16 @@
               <string>hal_pin</string>
              </property>
              <property name="pin_0" stdset="0">
-              <string>hal-mdi-11, HAL_BIT, HAL_OUT</string>
+              <string>hal-mdi-11</string>
              </property>
              <property name="required" stdset="0">
               <string>homed</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
              </property>
             </widget>
            </item>
@@ -2514,6 +2526,12 @@
              </property>
              <property name="required" stdset="0">
               <string>homed</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
              </property>
             </widget>
            </item>
