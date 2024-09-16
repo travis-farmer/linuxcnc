@@ -1138,7 +1138,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>View Perspective</string>
+            <string>Perspective</string>
            </property>
           </widget>
           <widget class="QPushButton" name="view_x_pb">
@@ -1151,7 +1151,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>View X</string>
+            <string>X</string>
            </property>
           </widget>
           <widget class="QPushButton" name="view_y_pb">
@@ -1164,7 +1164,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>View Y</string>
+            <string>Y</string>
            </property>
           </widget>
           <widget class="QPushButton" name="view_z_pb">
@@ -1177,7 +1177,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>View Z</string>
+            <string>Z</string>
            </property>
           </widget>
           <widget class="QPushButton" name="view_clear_pb">
