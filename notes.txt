@@ -24,3 +24,5 @@ halcompile -i hal2mbvfd.comp
 VFD F2.19 = 1 (spindle at speed)
 VFD F2.20 = 6 (null speed)
 VFD F2.21 = 3 (fault output)
+
+Update Flex deb to latest, from https://gnipsel.com/linuxcnc/flexgui/index.html

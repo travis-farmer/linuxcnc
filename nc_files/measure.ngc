@@ -24,37 +24,23 @@ o<measure> sub
  G49																		(Disable tool length compensation)
 
  G28.1																		(Read current absolute position in machine coordinates into #5161-5166)
- o300 if[#<_current_tool> LT 98]                                            (if not the laser)
-     o301 if [ [ ABS[#5161 - #<_ini[TOOLSENSOR]X_LOC>] LT 0.01 ] AND [ ABS[#5162 - #<_ini[TOOLSENSOR]Y_LOC>] LT 0.01 ] ]
-        G53 G0 X#<_ini[TOOLSENSOR]X_LOC> Y#<_ini[TOOLSENSOR]Y_LOC>					(Move to tool setter postion)
-     o301 else
-        G53 G90 G0 Z0																(Z up)
-        G53 G0 X#<_ini[TOOLSENSOR]X_LOC> Y#<_ini[TOOLSENSOR]Y_LOC>					(Move to tool setter postion)
-        G53 G0 Z#<_ini[TOOLSENSOR]Z_PROBE_START>									(Move Z  to safe height above tool setter to start probe)
-     o301 endif
- o300 else                                                                  (else the laser)
-    o302 if [ [ ABS[#5161 - #<_ini[TOOLSENSOR]LASER_X_LOC>] LT 0.01 ] AND [ ABS[#5162 - #<_ini[TOOLSENSOR]LASER_Y_LOC>] LT 0.01 ] ]
-        G53 G0 X#<_ini[TOOLSENSOR]LASER_X_LOC> Y#<_ini[TOOLSENSOR]LASER_Y_LOC>					(Move to tool setter postion)
-     o302 else
-        G53 G90 G0 Z0																(Z up)
-        G53 G0 X#<_ini[TOOLSENSOR]LASER_X_LOC> Y#<_ini[TOOLSENSOR]LASER_Y_LOC>					(Move to tool setter postion)
-        G53 G0 Z#<_ini[TOOLSENSOR]Z_PROBE_START>									(Move Z  to safe height above tool setter to start probe)
-     o302 endif
- o300 endif
+
+#<pocket_approach_y> = [#<_ini[TOOL_CHANGE]POCKET_Y> + #<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>]
+
+  G53 G0 X#<_ini[TOOLSENSOR]X_LOC> Y#<pocket_approach_y>					(Move to tool setter slot)
+  G53 G90 G0 Z0																                    (Z up)
+  G53 G0 Y#<_ini[TOOLSENSOR]Y_LOC>					                      (Move to tool setter postion)
+  G53 G0 Z#<_ini[TOOLSENSOR]Z_PROBE_START>									      (Move Z  to safe height above tool setter to start probe)
 
  (Measure tool to get offset)
- G38.3 Z-4.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
- G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
- G38.3 Z-4.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
- G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
- o303 if[#<_current_tool> LT 98]                                            (if not the laser)
-    #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
-    G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>										(Z up to safe position)
- o303 else                                                                  (else the laser)
-    #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
-    #<_new_tlo> = [#<_new_tlo> + #<_ini[LASER_FOCUS]LASER_FOCUS>]
-    G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>
- o303 endif
+ G38.3 Z-4.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	                    (Probe move to work)
+ G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>                       (backoff)
+ G38.3 Z-4.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	                      (Measure Fine)
+ G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>                        (Back off until probe breaks contact)
+
+  #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
+  G53 G90 G0 Z#<_ini[TOOLSENSOR]Z_SAFE>										        (Z up to safe position)
+  G53 G0 Y#<pocket_approach_y>					                          (Move out of tool setter postion)
 
  (Restore original coordinate system. G54 to G59.2 only)
  o100 if[#<coord_system_was> EQ 540]

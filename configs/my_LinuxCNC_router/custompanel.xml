@@ -293,9 +293,9 @@
         </led>
     </hbox>
         <button>
-        <halpin>"load-probe-button"</halpin>
-        <text>"Load 3D Probe"</text>
-    </button>
+            <halpin>"load-probe-button"</halpin>
+            <text>"Load 3D Probe"</text>
+        </button>
     <table flexible_rows="[2]" flexible_columns="[1,2]">
     <tablesticky sticky="new"/>
     <tablerow/>
@@ -376,6 +376,7 @@
                 <on_color>"green"</on_color>
                 <off_color>"gray"</off_color>
             </led>
+        <tablerow/>
             <led>
                 <halpin>"stack-blue"</halpin>
                 <size>15</size>
@@ -394,6 +395,5 @@
                 <on_color>"black"</on_color>
                 <off_color>"gray"</off_color>
             </led>
-        <tablerow/>
     </table>
 </pyvcp>
