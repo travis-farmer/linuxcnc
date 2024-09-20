@@ -145,7 +145,7 @@ o500 else
 	o210 endif
 
  o220 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99 AND #<_selected_tool> NE 98]            (not tool zero or 99, as zero is no tool, and 99 is 3D probe)
-   ;M101                                                                 (Probe tool, but not the 3d probe 99, or laser 98)
+   ;M201                                                                 (Probe tool, but not the 3d probe 99, or laser 98)
  o220 endif
 
 o500 endif

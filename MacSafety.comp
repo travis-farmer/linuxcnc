@@ -17,7 +17,7 @@ pin in bit EstopIn "input from ESTOP";
 pin in bit LaserMode "input from laser mode switch";
 pin in bit ManualChangeWaiting "Waiting for manual tool change";
 pin in bit LaserActive "Laser is ACTIVE LED";
-
+pin in bit ATCairLow "ATC Air is too LOW";
 function _;
 license "GPL";
 author "Travis Farmer";
@@ -35,20 +35,20 @@ FUNCTION(_) {
         InterlockOut = false;
     }
     // status LED Tower - red, amber, green, blue, white, buzzer
-    if (ProgRunningIn == true) {
-        SignalTowerGreen = true;
+    if (EstopIn == true) {
+        SignalTowerGreen = false;
         SignalTowerAmber = false;
-        SignalTowerRed = false;
+        SignalTowerRed = true;
         SignalTowerBuzzer = false;
-    } else if (ProgPausedIn == true) {
+    } else if (ProgPausedIn == true || ATCairLow == true) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
         SignalTowerBuzzer = false;
-    } else if (EstopIn == true) {
-        SignalTowerGreen = false;
+    } else if (ProgRunningIn == true) {
+        SignalTowerGreen = true;
         SignalTowerAmber = false;
-        SignalTowerRed = true;
+        SignalTowerRed = false;
         SignalTowerBuzzer = true;
     } else {
         SignalTowerGreen = false;

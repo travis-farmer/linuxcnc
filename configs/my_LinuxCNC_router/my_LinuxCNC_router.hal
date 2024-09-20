@@ -94,8 +94,8 @@ net lcnc-minutes <= time.1.minutes
 net lcnc-hours <= time.1.hours
 
 # mqtt-publisher: very slow to respond, and closes in a last published state, no clean shutdown.
-loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,estop-out,LaserOn,cpl-u-air-psi,cpl-c-air-psi,cycle-hours,cycle-minutes,cycle-seconds,lcnc-hours,lcnc-minutes,lcnc-seconds
-setp mqtt-publisher.period 1
+#loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,estop-out,LaserOn,cpl-u-air-psi,cpl-c-air-psi,cycle-hours,cycle-minutes,cycle-seconds,lcnc-hours,lcnc-minutes,lcnc-seconds
+#setp mqtt-publisher.period 1
 
 #####################
 # --- MacSafety --- #
@@ -565,7 +565,7 @@ net probe-in     =>  motion.probe-input
 net in-position               <=  motion.in-position
 
 
-net machine-is-enabled hm2_7i80.0.7i72.0.2.output-04 hm2_7i80.0.7i72.0.2.output-01      <=  motion.motion-enabled # VFD enable
+net machine-is-enabled hm2_7i80.0.7i72.0.2.output-04 hm2_7i80.0.7i72.0.2.output-01      <=  motion.motion-enabled # VFD enable, Z axis enable
 
 #  ---digital in / out signals---
 
