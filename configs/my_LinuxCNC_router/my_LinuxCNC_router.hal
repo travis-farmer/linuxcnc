@@ -26,7 +26,6 @@ addf hm2_7i80.0.write         servo-thread
 loadrt and2 count=3
 addf and2.0 servo-thread
 addf and2.1 servo-thread
-addf and2.2 servo-thread
 
 loadrt or2 count=7
 addf or2.0 servo-thread
@@ -83,7 +82,7 @@ addf toggle.0 servo-thread
 # --- MQTT --- #
 ################
 net machine-is-on => time.1.start
-net mqtt-prog-is-running time.0.start  MacSafety.0.ProgRunningIn     and2.2.in0 <= halui.program.is-running
+net mqtt-prog-is-running time.0.start  MacSafety.0.ProgRunningIn <= halui.program.is-running
 net mqtt-prog-is-paused time.0.pause   MacSafety.0.ProgPausedIn <= halui.program.is-paused
 net mqtt-prog-is-idle MacSafety.0.ProgIdleIn <= halui.program.is-idle
 net cycle-seconds <= time.0.seconds
@@ -115,7 +114,7 @@ net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output
 net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.output-18
 
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
-net spindle-air-pressure => MacSafety.0.ATCairLow
+net spindle-air-pressure => MacSafety.0.ATCairGood
 
 ##################
 # --- MB2HAL --- #
