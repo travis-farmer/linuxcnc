@@ -172,8 +172,8 @@ net lcd-page-out lcd-pager.0.page-out => lcd.00.page_num
 
 net lcd-out-stream lcd.00.out => hm2_7i80.0.7i73.0.0.display
 # --- Page 00 ---
-net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00
-net cpl-c-air-psi volts2psi.0.PSIout => lcd.00.page.00.arg.01
+net cpl-u-air-psi volts2psi.1.PSIout => lcd.00.page.00.arg.00 motion.analog-in-01
+net cpl-c-air-psi volts2psi.0.PSIout => lcd.00.page.00.arg.01 motion.analog-in-00
 net cpl-tool-number halui.tool.number => lcd.00.page.00.arg.02
 net vac-arm-trig => lcd.00.page.00.arg.03
 net spind-vac-control => lcd.00.page.00.arg.04
@@ -268,8 +268,8 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 #net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 
 # --- VFD signals to test first ---
-net hrdwr-spindle-at-speed <= hm2_7i80.0.7i70.0.1.input-19-not
-net hrdwr-spindle-null-speed <= hm2_7i80.0.7i70.0.1.input-20-not
+net hrdwr-spindle-at-speed motion.digital-in-25 <= hm2_7i80.0.7i70.0.1.input-19-not
+net hrdwr-spindle-null-speed motion.digital-in-26 <= hm2_7i80.0.7i70.0.1.input-20-not
 
 # --- Tool Pockets ---
 net tool-pocket-01 hm2_7i80.0.7i70.0.1.input-24 => motion.digital-in-10
