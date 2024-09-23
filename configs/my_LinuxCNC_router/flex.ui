@@ -3539,6 +3539,19 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
+       <widget class="QPushButton" name="probing_enable_pb">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>260</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Probe Enable</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -3554,49 +3567,140 @@
        <string>Info</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="2" column="0" colspan="2">
-        <widget class="QLabel" name="file_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
        <item row="5" column="1">
-        <widget class="QLabel" name="probe_tripped_lb">
+        <widget class="QLabel" name="din_29_lb">
          <property name="text">
           <string>TextLabel</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="2">
-        <widget class="QLabel" name="label_63">
+       <item row="9" column="3">
+        <widget class="QLabel" name="ain_1_lb">
          <property name="text">
-          <string>At Speed</string>
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="3">
-        <widget class="QLabel" name="din_25_lb">
+       <item row="9" column="1">
+        <widget class="QLabel" name="ain_0_lb">
          <property name="text">
           <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="stop_pb">
+         <property name="text">
+          <string>Stop</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QLabel" name="label_66">
+         <property name="text">
+          <string>Tool PSI</string>
          </property>
         </widget>
        </item>
        <item row="5" column="2">
+        <widget class="QLabel" name="label_69">
+         <property name="text">
+          <string>Mist</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_68">
+         <property name="text">
+          <string>Flood</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLabel" name="din_30_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="estop_pb">
+         <property name="text">
+          <string>E-Stop</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="power_pb">
+         <property name="text">
+          <string>Power</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="pause_pb">
+         <property name="text">
+          <string>Pause</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="resume_pb">
+         <property name="text">
+          <string>Resume</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_64">
+         <property name="text">
+          <string>Comp PSI</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="din_27_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="2">
         <widget class="QLabel" name="label_65">
          <property name="text">
           <string>Zero Speed</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="2">
-        <widget class="QLabel" name="interp_state_lb">
+       <item row="4" column="3">
+        <widget class="QLabel" name="din_28_lb">
          <property name="text">
           <string>TextLabel</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_67">
+         <property name="text">
+          <string>Vacuum</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLabel" name="din_26_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="file_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
         <widget class="QLabel" name="label_47">
          <property name="text">
           <string>Probe</string>
@@ -3606,87 +3710,42 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="estop_pb">
+       <item row="4" column="2">
+        <widget class="QLabel" name="label_70">
          <property name="text">
-          <string>E-Stop</string>
+          <string>Air Good</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="power_pb">
+       <item row="10" column="1">
+        <widget class="QLabel" name="probe_tripped_lb">
          <property name="text">
-          <string>Power</string>
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="pause_pb">
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_63">
          <property name="text">
-          <string>Pause</string>
+          <string>At Speed</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="resume_pb">
+       <item row="7" column="1">
+        <widget class="QLabel" name="din_25_lb">
          <property name="text">
-          <string>Resume</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="mist_pb_2">
-         <property name="text">
-          <string>Mist</string>
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="flood_pb_2">
-         <property name="text">
-          <string>Flood</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="stop_pb">
-         <property name="text">
-          <string>Stop</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="home_all_pb_2">
-         <property name="text">
-          <string>Home All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
         <widget class="QLabel" name="label_37">
          <property name="text">
           <string>Current Line</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="3">
-        <widget class="QLabel" name="din_26_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <widget class="QLabel" name="motion_line_lb">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
+       <item row="1" column="1">
         <widget class="QLabel" name="current_line_lb">
          <property name="text">
           <string>0</string>
@@ -3696,45 +3755,20 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
+       <item row="1" column="2">
         <widget class="QLabel" name="label_38">
          <property name="text">
           <string>Motion Line</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_64">
+       <item row="1" column="3">
+        <widget class="QLabel" name="motion_line_lb">
          <property name="text">
-          <string>Comp PSI</string>
+          <string>0</string>
          </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <widget class="QLabel" name="ain_0_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="2">
-        <widget class="QLabel" name="label_66">
-         <property name="text">
-          <string>Tool PSI</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="3">
-        <widget class="QLabel" name="ain_1_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="din_27_lb">
-         <property name="text">
-          <string>TextLabel</string>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
