@@ -2514,11 +2514,11 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="inXminusYplus">
+        <widget class="QPushButton" name="probe_inXplusYminus">
          <property name="geometry">
           <rect>
-           <x>5</x>
-           <y>5</y>
+           <x>130</x>
+           <y>130</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2527,100 +2527,11 @@
           <string/>
          </property>
         </widget>
-        <widget class="QPushButton" name="inXminusYminus">
+        <widget class="QPushButton" name="probe_inXplus">
          <property name="geometry">
           <rect>
-           <x>5</x>
-           <y>135</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="inXminus">
-         <property name="geometry">
-          <rect>
-           <x>5</x>
-           <y>70</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="function" stdset="0">
-          <string>mdi</string>
-         </property>
-         <property name="command" stdset="0">
-          <string>o&lt;p_right&gt; call</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="inYminus">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>135</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="function" stdset="0">
-          <string>mdi</string>
-         </property>
-         <property name="command" stdset="0">
-          <string>o&lt;p_back&gt;  call</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="inhole">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>70</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="function" stdset="0">
-          <string>mdi</string>
-         </property>
-         <property name="command" stdset="0">
-          <string>o&lt;p_hole&gt;  call</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="inYplus">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>5</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="function" stdset="0">
-          <string>mdi</string>
-         </property>
-         <property name="command" stdset="0">
-          <string>o&lt;p_front&gt; call</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="inXplus">
-         <property name="geometry">
-          <rect>
-           <x>135</x>
-           <y>70</y>
+           <x>130</x>
+           <y>65</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2635,11 +2546,11 @@
           <string>o&lt;p_left&gt;  call</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="inXplusYminus">
+        <widget class="QPushButton" name="probe_inXminusYplus">
          <property name="geometry">
           <rect>
-           <x>135</x>
-           <y>135</y>
+           <x>0</x>
+           <y>0</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2648,11 +2559,100 @@
           <string/>
          </property>
         </widget>
-        <widget class="QPushButton" name="inXplusYplus">
+        <widget class="QPushButton" name="probe_inXplusYplus">
          <property name="geometry">
           <rect>
-           <x>135</x>
-           <y>5</y>
+           <x>130</x>
+           <y>0</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_inYminus">
+         <property name="geometry">
+          <rect>
+           <x>65</x>
+           <y>130</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;p_back&gt;  call</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_inhole">
+         <property name="geometry">
+          <rect>
+           <x>65</x>
+           <y>65</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;p_hole&gt;  call</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_inXminus">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>65</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;p_right&gt; call</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_inYplus">
+         <property name="geometry">
+          <rect>
+           <x>65</x>
+           <y>0</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;p_front&gt; call</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_inXminusYminus">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>130</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2693,36 +2693,10 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="XminusYplus">
+        <widget class="QPushButton" name="probe_Xminus">
          <property name="geometry">
           <rect>
-           <x>5</x>
-           <y>5</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="XminusYminus">
-         <property name="geometry">
-          <rect>
-           <x>5</x>
-           <y>135</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="Xminus">
-         <property name="geometry">
-          <rect>
-           <x>135</x>
+           <x>130</x>
            <y>70</y>
            <width>65</width>
            <height>65</height>
@@ -2738,11 +2712,24 @@
           <string>o&lt;p_right&gt; call</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="Yminus">
+        <widget class="QPushButton" name="probe_XplusYminus">
          <property name="geometry">
           <rect>
-           <x>70</x>
-           <y>5</y>
+           <x>130</x>
+           <y>135</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_wk_center">
+         <property name="geometry">
+          <rect>
+           <x>65</x>
+           <y>70</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2754,39 +2741,13 @@
           <string>mdi</string>
          </property>
          <property name="command" stdset="0">
-          <string>o&lt;p_back&gt; call</string>
+          <string>o&lt;p_bar&gt; call</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="wk_center">
+        <widget class="QPushButton" name="probe_XminusYplus">
          <property name="geometry">
           <rect>
-           <x>70</x>
-           <y>70</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="XplusYminus">
-         <property name="geometry">
-          <rect>
-           <x>135</x>
-           <y>135</y>
-           <width>65</width>
-           <height>65</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="XplusYplus">
-         <property name="geometry">
-          <rect>
-           <x>135</x>
+           <x>0</x>
            <y>5</y>
            <width>65</width>
            <height>65</height>
@@ -2796,10 +2757,42 @@
           <string/>
          </property>
         </widget>
-        <widget class="QPushButton" name="Yplus">
+        <widget class="QPushButton" name="probe_XplusYplus">
          <property name="geometry">
           <rect>
-           <x>70</x>
+           <x>130</x>
+           <y>5</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_Xplus">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>70</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;p_left&gt;  call</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_Yplus">
+         <property name="geometry">
+          <rect>
+           <x>65</x>
            <y>135</y>
            <width>65</width>
            <height>65</height>
@@ -2815,11 +2808,11 @@
           <string>o&lt;p_front&gt; call</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="Xplus">
+        <widget class="QPushButton" name="probe_Yminus">
          <property name="geometry">
           <rect>
-           <x>5</x>
-           <y>70</y>
+           <x>65</x>
+           <y>5</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2831,7 +2824,20 @@
           <string>mdi</string>
          </property>
          <property name="command" stdset="0">
-          <string>o&lt;p_left&gt;  call</string>
+          <string>o&lt;p_back&gt; call</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="probe_XminusYminus">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>135</y>
+           <width>65</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </widget>
@@ -2866,11 +2872,11 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="ts_height">
+        <widget class="QPushButton" name="probe_ts_height">
          <property name="geometry">
           <rect>
-           <x>70</x>
-           <y>5</y>
+           <x>65</x>
+           <y>10</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2885,11 +2891,11 @@
           <string>o&lt;p_tool&gt; call</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="workpiece_height">
+        <widget class="QPushButton" name="probe_workpiece_height">
          <property name="geometry">
           <rect>
-           <x>5</x>
-           <y>5</y>
+           <x>0</x>
+           <y>10</y>
            <width>65</width>
            <height>65</height>
           </rect>
@@ -2921,70 +2927,20 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_51">
-        <property name="geometry">
-         <rect>
-          <x>620</x>
-          <y>25</y>
-          <width>111</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>LINEAR UNITS</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="probe_linear_units">
-        <property name="geometry">
-         <rect>
-          <x>735</x>
-          <y>5</y>
-          <width>91</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="decimals">
-         <number>0</number>
-        </property>
-        <property name="maximum">
-         <double>1.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>1.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>1.000000000000000</double>
-        </property>
-        <property name="function" stdset="0">
-         <string>hal_pin</string>
-        </property>
-        <property name="pin_name" stdset="0">
-         <string>probe_linear_units</string>
-        </property>
-        <property name="hal_type" stdset="0">
-         <string>HAL_FLOAT</string>
-        </property>
-        <property name="hal_dir" stdset="0">
-         <string>HAL_OUT</string>
-        </property>
-       </widget>
        <widget class="QDoubleSpinBox" name="probe_search_feed">
         <property name="geometry">
          <rect>
-          <x>735</x>
-          <y>60</y>
+          <x>750</x>
+          <y>10</y>
           <width>91</width>
           <height>28</height>
          </rect>
         </property>
         <property name="decimals">
-         <number>2</number>
+         <number>3</number>
         </property>
         <property name="maximum">
-         <double>50.000000000000000</double>
+         <double>100.000000000000000</double>
         </property>
         <property name="singleStep">
          <double>0.100000000000000</double>
@@ -3005,11 +2961,27 @@
          <string>HAL_OUT</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label_51">
+        <property name="geometry">
+         <rect>
+          <x>635</x>
+          <y>220</y>
+          <width>111</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>FINAL DIST</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
        <widget class="QLabel" name="label_52">
         <property name="geometry">
          <rect>
-          <x>620</x>
-          <y>80</y>
+          <x>635</x>
+          <y>25</y>
           <width>111</width>
           <height>19</height>
          </rect>
@@ -3021,45 +2993,27 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="QDoubleSpinBox" name="probe_final_dist">
+       <widget class="QLabel" name="label_53">
         <property name="geometry">
          <rect>
-          <x>735</x>
-          <y>280</y>
-          <width>91</width>
-          <height>28</height>
+          <x>635</x>
+          <y>125</y>
+          <width>111</width>
+          <height>19</height>
          </rect>
         </property>
-        <property name="decimals">
-         <number>3</number>
+        <property name="text">
+         <string>SEARCH DIST</string>
         </property>
-        <property name="maximum">
-         <double>10.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>0.010000000000000</double>
-        </property>
-        <property name="value">
-         <double>0.100000000000000</double>
-        </property>
-        <property name="function" stdset="0">
-         <string>hal_pin</string>
-        </property>
-        <property name="pin_name" stdset="0">
-         <string>probe_final_dist</string>
-        </property>
-        <property name="hal_type" stdset="0">
-         <string>HAL_FLOAT</string>
-        </property>
-        <property name="hal_dir" stdset="0">
-         <string>HAL_OUT</string>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
        <widget class="QDoubleSpinBox" name="probe_retract_dist">
         <property name="geometry">
          <rect>
-          <x>735</x>
-          <y>225</y>
+          <x>750</x>
+          <y>160</y>
           <width>91</width>
           <height>28</height>
          </rect>
@@ -3089,64 +3043,35 @@
          <string>HAL_OUT</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_53">
+       <widget class="QDoubleSpinBox" name="probe_x_coord_2">
         <property name="geometry">
          <rect>
-          <x>620</x>
-          <y>135</y>
-          <width>111</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>PROBE FEED</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_54">
-        <property name="geometry">
-         <rect>
-          <x>620</x>
-          <y>295</y>
-          <width>111</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>FINAL DIST</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="probe_fine_feed">
-        <property name="geometry">
-         <rect>
-          <x>735</x>
-          <y>115</y>
+          <x>750</x>
+          <y>260</y>
           <width>91</width>
           <height>28</height>
          </rect>
         </property>
         <property name="decimals">
-         <number>2</number>
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>-500.000000000000000</double>
         </property>
         <property name="maximum">
-         <double>25.000000000000000</double>
+         <double>500.000000000000000</double>
         </property>
         <property name="singleStep">
-         <double>0.100000000000000</double>
+         <double>0.001000000000000</double>
         </property>
         <property name="value">
-         <double>5.000000000000000</double>
+         <double>-10.000000000000000</double>
         </property>
         <property name="function" stdset="0">
          <string>hal_pin</string>
         </property>
         <property name="pin_name" stdset="0">
-         <string>probe_fine_feed</string>
+         <string>probe_x_coord</string>
         </property>
         <property name="hal_type" stdset="0">
          <string>HAL_FLOAT</string>
@@ -3155,11 +3080,27 @@
          <string>HAL_OUT</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label_54">
+        <property name="geometry">
+         <rect>
+          <x>635</x>
+          <y>75</y>
+          <width>111</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>FINE  FEED</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
        <widget class="QDoubleSpinBox" name="probe_search_dist">
         <property name="geometry">
          <rect>
-          <x>735</x>
-          <y>170</y>
+          <x>750</x>
+          <y>110</y>
           <width>91</width>
           <height>28</height>
          </rect>
@@ -3192,102 +3133,17 @@
          <string>HAL_OUT</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_55">
+       <widget class="QDoubleSpinBox" name="probe_final_dist">
         <property name="geometry">
          <rect>
-          <x>620</x>
-          <y>240</y>
-          <width>111</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>RETRACT DIST</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_56">
-        <property name="geometry">
-         <rect>
-          <x>620</x>
-          <y>190</y>
-          <width>111</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>SEARCH DIST</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_57">
-        <property name="geometry">
-         <rect>
-          <x>860</x>
-          <y>70</y>
-          <width>121</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Y PROBE COORD</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="probe_y_coord">
-        <property name="geometry">
-         <rect>
-          <x>985</x>
-          <y>55</y>
+          <x>750</x>
+          <y>210</y>
           <width>91</width>
           <height>28</height>
          </rect>
         </property>
         <property name="decimals">
          <number>3</number>
-        </property>
-        <property name="minimum">
-         <double>-500.000000000000000</double>
-        </property>
-        <property name="maximum">
-         <double>500.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>0.001000000000000</double>
-        </property>
-        <property name="value">
-         <double>6.000000000000000</double>
-        </property>
-        <property name="function" stdset="0">
-         <string>hal_pin</string>
-        </property>
-        <property name="pin_name" stdset="0">
-         <string>probe_y_coord</string>
-        </property>
-        <property name="hal_type" stdset="0">
-         <string>HAL_FLOAT</string>
-        </property>
-        <property name="hal_dir" stdset="0">
-         <string>HAL_OUT</string>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="probe_tip_diam">
-        <property name="geometry">
-         <rect>
-          <x>985</x>
-          <y>275</y>
-          <width>91</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="decimals">
-         <number>2</number>
         </property>
         <property name="maximum">
          <double>10.000000000000000</double>
@@ -3296,13 +3152,13 @@
          <double>0.010000000000000</double>
         </property>
         <property name="value">
-         <double>3.000000000000000</double>
+         <double>0.100000000000000</double>
         </property>
         <property name="function" stdset="0">
          <string>hal_pin</string>
         </property>
         <property name="pin_name" stdset="0">
-         <string>probe_tip_diam</string>
+         <string>probe_final_dist</string>
         </property>
         <property name="hal_type" stdset="0">
          <string>HAL_FLOAT</string>
@@ -3311,11 +3167,11 @@
          <string>HAL_OUT</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_58">
+       <widget class="QLabel" name="label_55">
         <property name="geometry">
          <rect>
-          <x>860</x>
-          <y>15</y>
+          <x>625</x>
+          <y>270</y>
           <width>121</width>
           <height>19</height>
          </rect>
@@ -3327,126 +3183,23 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_59">
+       <widget class="QDoubleSpinBox" name="probe_fine_feed">
         <property name="geometry">
          <rect>
-          <x>860</x>
-          <y>235</y>
-          <width>121</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>HOLE MAX RAD</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="probe_z_max_probe">
-        <property name="geometry">
-         <rect>
-          <x>985</x>
-          <y>165</y>
+          <x>750</x>
+          <y>60</y>
           <width>91</width>
           <height>28</height>
          </rect>
         </property>
         <property name="decimals">
          <number>3</number>
-        </property>
-        <property name="minimum">
-         <double>-50.000000000000000</double>
         </property>
         <property name="maximum">
          <double>50.000000000000000</double>
         </property>
         <property name="singleStep">
-         <double>0.010000000000000</double>
-        </property>
-        <property name="value">
-         <double>-2.000000000000000</double>
-        </property>
-        <property name="function" stdset="0">
-         <string>hal_pin</string>
-        </property>
-        <property name="pin_name" stdset="0">
-         <string>probe_z_max_probe</string>
-        </property>
-        <property name="hal_type" stdset="0">
-         <string>HAL_FLOAT</string>
-        </property>
-        <property name="hal_dir" stdset="0">
-         <string>HAL_OUT</string>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="probe_max_hole_r">
-        <property name="geometry">
-         <rect>
-          <x>985</x>
-          <y>220</y>
-          <width>91</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="decimals">
-         <number>3</number>
-        </property>
-        <property name="singleStep">
-         <double>0.001000000000000</double>
-        </property>
-        <property name="value">
-         <double>1.000000000000000</double>
-        </property>
-        <property name="function" stdset="0">
-         <string>hal_pin</string>
-        </property>
-        <property name="pin_name" stdset="0">
-         <string>probe_max_hole_r</string>
-        </property>
-        <property name="hal_type" stdset="0">
-         <string>HAL_FLOAT</string>
-        </property>
-        <property name="hal_dir" stdset="0">
-         <string>HAL_OUT</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_60">
-        <property name="geometry">
-         <rect>
-          <x>870</x>
-          <y>125</y>
-          <width>111</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Z START</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="probe_x_coord">
-        <property name="geometry">
-         <rect>
-          <x>985</x>
-          <y>0</y>
-          <width>91</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="decimals">
-         <number>3</number>
-        </property>
-        <property name="minimum">
-         <double>-500.000000000000000</double>
-        </property>
-        <property name="maximum">
-         <double>500.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>0.001000000000000</double>
+         <double>0.100000000000000</double>
         </property>
         <property name="value">
          <double>10.000000000000000</double>
@@ -3455,7 +3208,7 @@
          <string>hal_pin</string>
         </property>
         <property name="pin_name" stdset="0">
-         <string>probe_x_coord</string>
+         <string>probe_fine_feed</string>
         </property>
         <property name="hal_type" stdset="0">
          <string>HAL_FLOAT</string>
@@ -3464,11 +3217,43 @@
          <string>HAL_OUT</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label_56">
+        <property name="geometry">
+         <rect>
+          <x>635</x>
+          <y>170</y>
+          <width>111</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>RETRACT DIST</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_57">
+        <property name="geometry">
+         <rect>
+          <x>870</x>
+          <y>270</y>
+          <width>121</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>PROBE TIP DIAM</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
        <widget class="QDoubleSpinBox" name="probe_z_start">
         <property name="geometry">
          <rect>
-          <x>985</x>
-          <y>110</y>
+          <x>995</x>
+          <y>60</y>
           <width>91</width>
           <height>28</height>
          </rect>
@@ -3501,17 +3286,238 @@
          <string>HAL_OUT</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_61">
+       <widget class="QDoubleSpinBox" name="probe_max_bar_r">
         <property name="geometry">
          <rect>
-          <x>860</x>
-          <y>290</y>
+          <x>995</x>
+          <y>210</y>
+          <width>91</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="maximum">
+         <double>99.989999999999995</double>
+        </property>
+        <property name="singleStep">
+         <double>0.001000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="function" stdset="0">
+         <string>hal_pin</string>
+        </property>
+        <property name="pin_name" stdset="0">
+         <string>probe_max_bar_r</string>
+        </property>
+        <property name="hal_type" stdset="0">
+         <string>HAL_FLOAT</string>
+        </property>
+        <property name="hal_dir" stdset="0">
+         <string>HAL_OUT</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_58">
+        <property name="geometry">
+         <rect>
+          <x>880</x>
+          <y>120</y>
+          <width>111</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Z MAX PROBE</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_59">
+        <property name="geometry">
+         <rect>
+          <x>870</x>
+          <y>220</y>
           <width>121</width>
           <height>19</height>
          </rect>
         </property>
         <property name="text">
-         <string>PROBE TIP DIAM</string>
+         <string>MAX BAR RAD</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="probe_y_coord">
+        <property name="geometry">
+         <rect>
+          <x>995</x>
+          <y>10</y>
+          <width>91</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>-500.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>500.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.001000000000000</double>
+        </property>
+        <property name="value">
+         <double>-6.000000000000000</double>
+        </property>
+        <property name="function" stdset="0">
+         <string>hal_pin</string>
+        </property>
+        <property name="pin_name" stdset="0">
+         <string>probe_y_coord</string>
+        </property>
+        <property name="hal_type" stdset="0">
+         <string>HAL_FLOAT</string>
+        </property>
+        <property name="hal_dir" stdset="0">
+         <string>HAL_OUT</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="probe_tip_diam">
+        <property name="geometry">
+         <rect>
+          <x>995</x>
+          <y>260</y>
+          <width>91</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.078700000000000</double>
+        </property>
+        <property name="function" stdset="0">
+         <string>hal_pin</string>
+        </property>
+        <property name="pin_name" stdset="0">
+         <string>probe_tip_diam</string>
+        </property>
+        <property name="hal_type" stdset="0">
+         <string>HAL_FLOAT</string>
+        </property>
+        <property name="hal_dir" stdset="0">
+         <string>HAL_OUT</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="probe_z_max_probe">
+        <property name="geometry">
+         <rect>
+          <x>995</x>
+          <y>110</y>
+          <width>91</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="minimum">
+         <double>-50.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>50.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="value">
+         <double>-2.000000000000000</double>
+        </property>
+        <property name="function" stdset="0">
+         <string>hal_pin</string>
+        </property>
+        <property name="pin_name" stdset="0">
+         <string>probe_z_max_probe</string>
+        </property>
+        <property name="hal_type" stdset="0">
+         <string>HAL_FLOAT</string>
+        </property>
+        <property name="hal_dir" stdset="0">
+         <string>HAL_OUT</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_60">
+        <property name="geometry">
+         <rect>
+          <x>870</x>
+          <y>170</y>
+          <width>121</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>MAX HOLE RAD</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="probe_max_hole_r">
+        <property name="geometry">
+         <rect>
+          <x>995</x>
+          <y>160</y>
+          <width>91</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="decimals">
+         <number>3</number>
+        </property>
+        <property name="singleStep">
+         <double>0.001000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="function" stdset="0">
+         <string>hal_pin</string>
+        </property>
+        <property name="pin_name" stdset="0">
+         <string>probe_max_hole_r</string>
+        </property>
+        <property name="hal_type" stdset="0">
+         <string>HAL_FLOAT</string>
+        </property>
+        <property name="hal_dir" stdset="0">
+         <string>HAL_OUT</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_61">
+        <property name="geometry">
+         <rect>
+          <x>870</x>
+          <y>20</y>
+          <width>121</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Y PROBE COORD</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3520,14 +3526,14 @@
        <widget class="QLabel" name="label_62">
         <property name="geometry">
          <rect>
-          <x>870</x>
-          <y>180</y>
+          <x>880</x>
+          <y>70</y>
           <width>111</width>
           <height>19</height>
          </rect>
         </property>
         <property name="text">
-         <string>Z MAX PROBE</string>
+         <string>Z START</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -3720,6 +3726,13 @@
        </item>
        <item row="6" column="3">
         <widget class="QLabel" name="ain_1_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="din_27_lb">
          <property name="text">
           <string>TextLabel</string>
          </property>
