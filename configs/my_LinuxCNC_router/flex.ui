@@ -3628,12 +3628,18 @@
          <property name="text">
           <string>E-Stop</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="2" column="1">
         <widget class="QPushButton" name="power_pb">
          <property name="text">
           <string>Power</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -3921,6 +3927,9 @@
    </property>
   </action>
   <action name="actionE_Stop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>E Stop</string>
    </property>
@@ -3929,6 +3938,9 @@
    </property>
   </action>
   <action name="actionPower">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Power</string>
    </property>
