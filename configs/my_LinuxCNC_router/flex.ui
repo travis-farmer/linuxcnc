@@ -2226,60 +2226,7 @@
           <property name="title">
            <string>MDI Buttons</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_24">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton">
-             <property name="text">
-              <string>Machine Home</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>mdi</string>
-             </property>
-             <property name="command" stdset="0">
-              <string>o&lt;mac-home&gt; call</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QPushButton" name="pushButton_6">
-             <property name="text">
-              <string>Probe Work Zero Z</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>mdi</string>
-             </property>
-             <property name="command" stdset="0">
-              <string>o&lt;zero-work&gt; call</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_4">
-             <property name="text">
-              <string>Kill Laser</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>mdi</string>
-             </property>
-             <property name="command" stdset="0">
-              <string>o&lt;kill-laser&gt; call</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_3">
-             <property name="text">
-              <string>Probe Laser Focus</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>mdi</string>
-             </property>
-             <property name="command" stdset="0">
-              <string>o&lt;laser-focus&gt; call</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <layout class="QGridLayout" name="gridLayout_24"/>
          </widget>
         </item>
         <item row="1" column="0" colspan="3">
@@ -2313,35 +2260,6 @@
             <widget class="QPushButton" name="feed_override_pb">
              <property name="text">
               <string>Feed Override Enable</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_11">
-          <property name="title">
-           <string>Coolant</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_25">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="flood_pb">
-             <property name="text">
-              <string>Flood</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="mist_pb">
-             <property name="text">
-              <string>Mist</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -2398,6 +2316,75 @@
            <string>HAL Buttons</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_34"/>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_11">
+          <property name="title">
+           <string>Settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_25">
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="text">
+              <string>ATC Enable</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>atcenable</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkBox">
+             <property name="text">
+              <string>Vac Enable</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>vacuumenable</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="checkBox_3">
+             <property name="text">
+              <string>Laser Mode</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>lasermode</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -3567,22 +3554,68 @@
        <string>Info</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="5" column="1">
+       <item row="3" column="3">
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>Kill Laser</string>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;kill-laser&gt; call</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Machine Home</string>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;mac-home&gt; call</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="flood_pb">
+         <property name="text">
+          <string>Flood</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QPushButton" name="mist_pb">
+         <property name="text">
+          <string>Mist</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="1">
+        <widget class="QLabel" name="ain_0_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
         <widget class="QLabel" name="din_29_lb">
          <property name="text">
           <string>TextLabel</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="3">
+       <item row="11" column="3">
         <widget class="QLabel" name="ain_1_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <widget class="QLabel" name="ain_0_lb">
          <property name="text">
           <string>TextLabel</string>
          </property>
@@ -3595,31 +3628,38 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="2">
+       <item row="11" column="2">
         <widget class="QLabel" name="label_66">
          <property name="text">
           <string>Tool PSI</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
-        <widget class="QLabel" name="label_69">
-         <property name="text">
-          <string>Mist</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
+       <item row="7" column="0">
         <widget class="QLabel" name="label_68">
          <property name="text">
           <string>Flood</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="3">
+       <item row="7" column="2">
+        <widget class="QLabel" name="label_69">
+         <property name="text">
+          <string>Mist</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
         <widget class="QLabel" name="din_30_lb">
          <property name="text">
           <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="label_64">
+         <property name="text">
+          <string>Comp PSI</string>
          </property>
         </widget>
        </item>
@@ -3630,6 +3670,13 @@
          </property>
          <property name="checkable">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="resume_pb">
+         <property name="text">
+          <string>Resume</string>
          </property>
         </widget>
        </item>
@@ -3650,52 +3697,38 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="resume_pb">
-         <property name="text">
-          <string>Resume</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="label_64">
-         <property name="text">
-          <string>Comp PSI</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLabel" name="din_27_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="2">
-        <widget class="QLabel" name="label_65">
-         <property name="text">
-          <string>Zero Speed</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="3">
-        <widget class="QLabel" name="din_28_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="label_67">
          <property name="text">
           <string>Vacuum</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="3">
-        <widget class="QLabel" name="din_26_lb">
+       <item row="6" column="1">
+        <widget class="QLabel" name="din_27_lb">
          <property name="text">
           <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QLabel" name="label_65">
+         <property name="text">
+          <string>Zero Speed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QLabel" name="din_28_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QLabel" name="label_70">
+         <property name="text">
+          <string>Air Good</string>
          </property>
         </widget>
        </item>
@@ -3706,7 +3739,7 @@
          </property>
         </widget>
        </item>
-       <item row="10" column="0">
+       <item row="12" column="0">
         <widget class="QLabel" name="label_47">
          <property name="text">
           <string>Probe</string>
@@ -3716,38 +3749,17 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="2">
-        <widget class="QLabel" name="label_70">
-         <property name="text">
-          <string>Air Good</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
+       <item row="12" column="1">
         <widget class="QLabel" name="probe_tripped_lb">
          <property name="text">
           <string>TextLabel</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_63">
-         <property name="text">
-          <string>At Speed</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QLabel" name="din_25_lb">
+       <item row="9" column="3">
+        <widget class="QLabel" name="din_26_lb">
          <property name="text">
           <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_37">
-         <property name="text">
-          <string>Current Line</string>
          </property>
         </widget>
        </item>
@@ -3761,10 +3773,31 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_37">
+         <property name="text">
+          <string>Current Line</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="2">
         <widget class="QLabel" name="label_38">
          <property name="text">
           <string>Motion Line</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_63">
+         <property name="text">
+          <string>At Speed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLabel" name="din_25_lb">
+         <property name="text">
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
@@ -3775,6 +3808,32 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QPushButton" name="probe_LsrFoc">
+         <property name="text">
+          <string>Prb Laser Focus</string>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;laser-focus&gt; call</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="probe_WkZ">
+         <property name="text">
+          <string>Prb Wrk Z</string>
+         </property>
+         <property name="function" stdset="0">
+          <string>mdi</string>
+         </property>
+         <property name="command" stdset="0">
+          <string>o&lt;zero-work&gt; call</string>
          </property>
         </widget>
        </item>

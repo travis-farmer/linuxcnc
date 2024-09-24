@@ -193,9 +193,9 @@ net probe-tool => lcd.00.page.02.arg.03
 
 # --- CPL Inputs ---
 
-net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
-net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
+#net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
+#net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
+#net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
