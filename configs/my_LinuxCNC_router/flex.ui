@@ -2521,272 +2521,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_7">
-       <attribute name="title">
-        <string>Misc.</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_28">
-        <item row="0" column="2">
-         <widget class="QGroupBox" name="groupBox_10">
-          <property name="title">
-           <string>Yet More Settings</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_24"/>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="3">
-         <widget class="QCheckBox" name="print_states_cb">
-          <property name="text">
-           <string>Print States</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="4">
-         <widget class="QGroupBox" name="groupBox_13">
-          <property name="title">
-           <string>Feed</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_27">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_30">
-             <property name="text">
-              <string>Feed Override &gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="feed_override_enabled_lb">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="2">
-            <widget class="QPushButton" name="feed_override_pb">
-             <property name="text">
-              <string>Feed Override Enable</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QGroupBox" name="groupBox_12">
-          <property name="title">
-           <string>Program Options</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_26">
-           <item row="1" column="0">
-            <widget class="QPushButton" name="block_delete_pb">
-             <property name="text">
-              <string>Block Delete /</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QPushButton" name="hal_meter_pb">
-             <property name="text">
-              <string>HAL Meter</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="show_hal_pb">
-             <property name="text">
-              <string>Show HAL</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="optional_stop_pb">
-             <property name="text">
-              <string>Optional Stop at M1</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QPushButton" name="hal_scope_pb">
-             <property name="text">
-              <string>HAL Scope</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>More Settings</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_34"/>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_11">
-          <property name="title">
-           <string>Settings</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_25">
-           <item row="1" column="0">
-            <widget class="QCheckBox" name="checkBox_2">
-             <property name="text">
-              <string>ATC Enable</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>hal_pin</string>
-             </property>
-             <property name="pin_name" stdset="0">
-              <string>atcenable</string>
-             </property>
-             <property name="hal_type" stdset="0">
-              <string>HAL_BIT</string>
-             </property>
-             <property name="hal_dir" stdset="0">
-              <string>HAL_OUT</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBox">
-             <property name="text">
-              <string>Vac Enable</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="function" stdset="0">
-              <string>hal_pin</string>
-             </property>
-             <property name="pin_name" stdset="0">
-              <string>vacuumenable</string>
-             </property>
-             <property name="hal_type" stdset="0">
-              <string>HAL_BIT</string>
-             </property>
-             <property name="hal_dir" stdset="0">
-              <string>HAL_OUT</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QCheckBox" name="checkBox_3">
-             <property name="text">
-              <string>Laser Mode</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>hal_pin</string>
-             </property>
-             <property name="pin_name" stdset="0">
-              <string>lasermode</string>
-             </property>
-             <property name="hal_type" stdset="0">
-              <string>HAL_BIT</string>
-             </property>
-             <property name="hal_dir" stdset="0">
-              <string>HAL_OUT</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>Errors</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_17">
-        <item row="0" column="0">
-         <widget class="QPlainTextEdit" name="errors_pte"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QFrame" name="frame_3">
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_11">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="clear_errors_pb">
-             <property name="text">
-              <string>Clear Errors</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_14">
-       <attribute name="title">
-        <string>Calc</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QTabWidget" name="tabWidget_3">
-          <property name="tabPosition">
-           <enum>QTabWidget::North</enum>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab_15">
-           <attribute name="title">
-            <string>FSC</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
-            <item>
-             <widget class="QFrame" name="fsc_container">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_16">
-           <attribute name="title">
-            <string>DFS</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
-            <item>
-             <widget class="QFrame" name="dsf_container">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
       <widget class="QWidget" name="tab_18">
        <attribute name="title">
         <string>Probing</string>
@@ -3831,6 +3565,272 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Errors</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_17">
+        <item row="0" column="0">
+         <widget class="QPlainTextEdit" name="errors_pte"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QFrame" name="frame_3">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="clear_errors_pb">
+             <property name="text">
+              <string>Clear Errors</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_14">
+       <attribute name="title">
+        <string>Calc</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTabWidget" name="tabWidget_3">
+          <property name="tabPosition">
+           <enum>QTabWidget::North</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_15">
+           <attribute name="title">
+            <string>FSC</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QFrame" name="fsc_container">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_16">
+           <attribute name="title">
+            <string>DFS</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QFrame" name="dsf_container">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>Settings</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_28">
+        <item row="0" column="2">
+         <widget class="QGroupBox" name="groupBox_10">
+          <property name="title">
+           <string>Yet More Settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_24"/>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QCheckBox" name="print_states_cb">
+          <property name="text">
+           <string>Print States</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QGroupBox" name="groupBox_13">
+          <property name="title">
+           <string>Feed</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_27">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_30">
+             <property name="text">
+              <string>Feed Override &gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="feed_override_enabled_lb">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QPushButton" name="feed_override_pb">
+             <property name="text">
+              <string>Feed Override Enable</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QGroupBox" name="groupBox_12">
+          <property name="title">
+           <string>Program Options</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_26">
+           <item row="1" column="0">
+            <widget class="QPushButton" name="block_delete_pb">
+             <property name="text">
+              <string>Block Delete /</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="hal_meter_pb">
+             <property name="text">
+              <string>HAL Meter</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="show_hal_pb">
+             <property name="text">
+              <string>Show HAL</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="optional_stop_pb">
+             <property name="text">
+              <string>Optional Stop at M1</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QPushButton" name="hal_scope_pb">
+             <property name="text">
+              <string>HAL Scope</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>More Settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_34"/>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_11">
+          <property name="title">
+           <string>Settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_25">
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="text">
+              <string>ATC Enable</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>atcenable</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkBox">
+             <property name="text">
+              <string>Vac Enable</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>vacuumenable</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="checkBox_3">
+             <property name="text">
+              <string>Laser Mode</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>lasermode</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
