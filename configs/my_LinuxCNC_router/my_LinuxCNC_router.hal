@@ -157,9 +157,9 @@ net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00     <=  hal2mbvfd.0.SpindFa
 #########################
 # --- 7i83 settings --- #
 #########################
-setp hm2_7i80.0.7i83.0.3.analogout0-maxlim 10
-setp hm2_7i80.0.7i83.0.3.analogout0-minlim 0
-setp hm2_7i80.0.7i83.0.3.analogout0-scalemax 10
+setp hm2_7i80.0.7i83.0.3.analogout1-maxlim 10
+setp hm2_7i80.0.7i83.0.3.analogout1-minlim 0
+setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
 
 #########################
 # --- CONTROL PANEL --- #
@@ -299,14 +299,14 @@ setp timedelay.0.off-delay 5.00
 # M68 E0 Q0
 # M67 E0 Q0
 net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
-net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout0
+net LaserFloatOut LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
 net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 #                                                                           M64 P2 - turn on digital output immediately.
 #                                                                           M65 P2 - turn off digital output immediately.
 net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 #        laser E-Stop handled by MacSafety componant
 
 net MS-InterlockOut MacSafety.0.InterlockOut => LaserAnalog.0.DoorInterlockIn
-net LaserOn MacSafety.0.LaserActive timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena0 <= LaserAnalog.0.LaserEnableOut
+net LaserOn MacSafety.0.LaserActive timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
 net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
 ############################
