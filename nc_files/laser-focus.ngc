@@ -29,6 +29,7 @@ o<laser-focus> sub
  G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>    (Back off until probe breaks contact)
 
  (laser focus is 50mm from base of module, not nose of nozzle)
+ (laser ride height offset is built into tool DB for 98)
  #<laser_ride_height> = #5063
  (debug,laser ride height: %.9f#<laser_ride_height>)
 
