@@ -234,7 +234,7 @@
        <item row="0" column="2" colspan="2">
         <widget class="QLCDNumber" name="spindle_speed_0_lcd">
          <property name="digitCount">
-          <number>10</number>
+          <number>7</number>
          </property>
          <property name="mode">
           <enum>QLCDNumber::Dec</enum>
