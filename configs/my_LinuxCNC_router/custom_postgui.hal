@@ -69,4 +69,4 @@
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= flexhal.vacuumenable
 net tool-change-mode <= flexhal.atcenable
-net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= flexhal.LaserMode
+net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= flexhal.lasermode
