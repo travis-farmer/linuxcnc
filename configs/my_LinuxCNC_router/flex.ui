@@ -232,7 +232,14 @@
         </widget>
        </item>
        <item row="0" column="2" colspan="2">
-        <widget class="QLCDNumber" name="spindle_speed_0_lcd"/>
+        <widget class="QLCDNumber" name="spindle_speed_0_lcd">
+         <property name="digitCount">
+          <number>10</number>
+         </property>
+         <property name="mode">
+          <enum>QLCDNumber::Dec</enum>
+         </property>
+        </widget>
        </item>
        <item row="1" column="3">
         <widget class="QLabel" name="motion_line_lb">
@@ -994,6 +1001,16 @@
            <string>TextLabel</string>
           </property>
          </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_19">
+       <attribute name="title">
+        <string>Setup</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QTextEdit" name="textEdit"/>
         </item>
        </layout>
       </widget>
