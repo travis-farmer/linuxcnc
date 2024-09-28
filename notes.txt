@@ -24,3 +24,4 @@ VFD F2.19 = 1 (spindle at speed)
 VFD F2.20 = 6 (null speed)
 VFD F2.21 = 3 (fault output)
 
+halcompile -i ./load_conv.comp
