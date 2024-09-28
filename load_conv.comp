@@ -7,9 +7,10 @@ setp load-conv.0.maxamps 10.7
 */
 component load_conv "calculates percentage of load based on motor Amps";
 
-pin in float amps "Amps in, in";
+pin in float amps "Amps * 100, in";
 pin out float load "Percent load out, out";
 pin in float maxamps "Max amps, in";
+pin out float convamps "Converted amps value. out";
 function _;
 license "GPL";
 author "Travis Farmer";
@@ -18,5 +19,6 @@ author "Travis Farmer";
 #include <rtapi_math.h>
 
 FUNCTION(_) {
-  load = round((amps/100.0)/(maxamps/100.0));
+  convamps = (amps/100);
+  load = round(convamps/(maxamps/100.0));
 }
