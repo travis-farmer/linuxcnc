@@ -22,6 +22,5 @@ look for something like encoder.N.counter-mode bit rw
 halcompile -i hal2mbvfd.comp - error
 VFD F2.19 = 1 (spindle at speed)
 VFD F2.20 = 6 (null speed)
-VFD F2.21 = 3 (fault output)
+VFD F2.21 = 18 (running, connect dirrectly to power spindle fan to free up an output and relay) 
 
-halcompile -i ./load_conv.comp
