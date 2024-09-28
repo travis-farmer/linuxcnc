@@ -1031,7 +1031,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>12</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2973,7 +2973,7 @@
        <widget class="QDoubleSpinBox" name="probe_search_feed">
         <property name="geometry">
          <rect>
-          <x>750</x>
+          <x>1000</x>
           <y>10</y>
           <width>91</width>
           <height>28</height>
@@ -3007,7 +3007,7 @@
        <widget class="QLabel" name="label_51">
         <property name="geometry">
          <rect>
-          <x>635</x>
+          <x>885</x>
           <y>220</y>
           <width>111</width>
           <height>19</height>
@@ -3023,7 +3023,7 @@
        <widget class="QLabel" name="label_52">
         <property name="geometry">
          <rect>
-          <x>635</x>
+          <x>885</x>
           <y>25</y>
           <width>111</width>
           <height>19</height>
@@ -3039,7 +3039,7 @@
        <widget class="QLabel" name="label_53">
         <property name="geometry">
          <rect>
-          <x>635</x>
+          <x>885</x>
           <y>125</y>
           <width>111</width>
           <height>19</height>
@@ -3055,7 +3055,7 @@
        <widget class="QDoubleSpinBox" name="probe_retract_dist">
         <property name="geometry">
          <rect>
-          <x>750</x>
+          <x>1000</x>
           <y>160</y>
           <width>91</width>
           <height>28</height>
@@ -3089,7 +3089,7 @@
        <widget class="QDoubleSpinBox" name="probe_x_coord_2">
         <property name="geometry">
          <rect>
-          <x>750</x>
+          <x>1000</x>
           <y>260</y>
           <width>91</width>
           <height>28</height>
@@ -3126,7 +3126,7 @@
        <widget class="QLabel" name="label_54">
         <property name="geometry">
          <rect>
-          <x>635</x>
+          <x>885</x>
           <y>75</y>
           <width>111</width>
           <height>19</height>
@@ -3142,7 +3142,7 @@
        <widget class="QDoubleSpinBox" name="probe_search_dist">
         <property name="geometry">
          <rect>
-          <x>750</x>
+          <x>1000</x>
           <y>110</y>
           <width>91</width>
           <height>28</height>
@@ -3179,7 +3179,7 @@
        <widget class="QDoubleSpinBox" name="probe_final_dist">
         <property name="geometry">
          <rect>
-          <x>750</x>
+          <x>1000</x>
           <y>210</y>
           <width>91</width>
           <height>28</height>
@@ -3213,7 +3213,7 @@
        <widget class="QLabel" name="label_55">
         <property name="geometry">
          <rect>
-          <x>625</x>
+          <x>875</x>
           <y>270</y>
           <width>121</width>
           <height>19</height>
@@ -3229,7 +3229,7 @@
        <widget class="QDoubleSpinBox" name="probe_fine_feed">
         <property name="geometry">
          <rect>
-          <x>750</x>
+          <x>1000</x>
           <y>60</y>
           <width>91</width>
           <height>28</height>
@@ -3263,7 +3263,7 @@
        <widget class="QLabel" name="label_56">
         <property name="geometry">
          <rect>
-          <x>635</x>
+          <x>885</x>
           <y>170</y>
           <width>111</width>
           <height>19</height>
@@ -3279,7 +3279,7 @@
        <widget class="QLabel" name="label_57">
         <property name="geometry">
          <rect>
-          <x>870</x>
+          <x>1105</x>
           <y>270</y>
           <width>121</width>
           <height>19</height>
@@ -3295,7 +3295,7 @@
        <widget class="QDoubleSpinBox" name="probe_z_start">
         <property name="geometry">
          <rect>
-          <x>995</x>
+          <x>1230</x>
           <y>60</y>
           <width>91</width>
           <height>28</height>
@@ -3332,7 +3332,7 @@
        <widget class="QDoubleSpinBox" name="probe_max_bar_r">
         <property name="geometry">
          <rect>
-          <x>995</x>
+          <x>1230</x>
           <y>210</y>
           <width>91</width>
           <height>28</height>
@@ -3366,7 +3366,7 @@
        <widget class="QLabel" name="label_58">
         <property name="geometry">
          <rect>
-          <x>880</x>
+          <x>1115</x>
           <y>120</y>
           <width>111</width>
           <height>19</height>
@@ -3382,7 +3382,7 @@
        <widget class="QLabel" name="label_59">
         <property name="geometry">
          <rect>
-          <x>870</x>
+          <x>1105</x>
           <y>220</y>
           <width>121</width>
           <height>19</height>
@@ -3398,7 +3398,7 @@
        <widget class="QDoubleSpinBox" name="probe_y_coord">
         <property name="geometry">
          <rect>
-          <x>995</x>
+          <x>1230</x>
           <y>10</y>
           <width>91</width>
           <height>28</height>
@@ -3435,7 +3435,7 @@
        <widget class="QDoubleSpinBox" name="probe_tip_diam">
         <property name="geometry">
          <rect>
-          <x>995</x>
+          <x>1230</x>
           <y>260</y>
           <width>91</width>
           <height>28</height>
@@ -3469,7 +3469,7 @@
        <widget class="QDoubleSpinBox" name="probe_z_max_probe">
         <property name="geometry">
          <rect>
-          <x>995</x>
+          <x>1230</x>
           <y>110</y>
           <width>91</width>
           <height>28</height>
@@ -3506,7 +3506,7 @@
        <widget class="QLabel" name="label_60">
         <property name="geometry">
          <rect>
-          <x>870</x>
+          <x>1105</x>
           <y>170</y>
           <width>121</width>
           <height>19</height>
@@ -3522,7 +3522,7 @@
        <widget class="QDoubleSpinBox" name="probe_max_hole_r">
         <property name="geometry">
          <rect>
-          <x>995</x>
+          <x>1230</x>
           <y>160</y>
           <width>91</width>
           <height>28</height>
@@ -3553,7 +3553,7 @@
        <widget class="QLabel" name="label_61">
         <property name="geometry">
          <rect>
-          <x>870</x>
+          <x>1105</x>
           <y>20</y>
           <width>121</width>
           <height>19</height>
@@ -3569,7 +3569,7 @@
        <widget class="QLabel" name="label_62">
         <property name="geometry">
          <rect>
-          <x>880</x>
+          <x>1115</x>
           <y>70</y>
           <width>111</width>
           <height>19</height>
@@ -3809,7 +3809,7 @@
               <string>Vac Enable</string>
              </property>
              <property name="checked">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="function" stdset="0">
               <string>hal_pin</string>
