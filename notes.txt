@@ -24,3 +24,4 @@ VFD F2.19 = 1 (spindle at speed)
 VFD F2.20 = 6 (null speed)
 VFD F2.21 = 18 (running, connect dirrectly to power spindle fan to free up an output and relay) 
 
+wire in spindle temp sensor and Modbus module (12v)

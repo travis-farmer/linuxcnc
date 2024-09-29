@@ -155,6 +155,7 @@ net spindle-out-volts <= mb2hal.vfdparam.03.float
 net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00     <=  hal2mbvfd.0.SpindFan
 
 #net spindle-temp-c mb2hal.SpindTemp.00.float => hal2mbvfd.0.SpinTempC
+net spindle-temp-f hal2mbvfd.0.SpinTempF => motion.analog-in-04
 
 #########################
 # --- 7i83 settings --- #
