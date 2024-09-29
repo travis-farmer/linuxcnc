@@ -1067,11 +1067,11 @@
       </widget>
       <widget class="QWidget" name="tab_19">
        <attribute name="title">
-        <string>Setup</string>
+        <string>Info</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QTextEdit" name="textEdit"/>
+         <widget class="QPlainTextEdit" name="info_pte"/>
         </item>
        </layout>
       </widget>
