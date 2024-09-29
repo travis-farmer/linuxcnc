@@ -1,19 +1,22 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 853x423+1019+85
+wm geometry . 853x423+280+203
 placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+iocontrol.0.tool-prep-index
-    pin+matrix_kb.0.key.r0c4
-    pin+MacSafety.0.LaserMode
-    pin+MacSafety.0.DoorInterlockIn
-    pin+MacSafety.0.ProgPausedIn
-    pin+hm2_7i80.0.7i72.0.2.output-05
-    pin+hm2_7i80.0.7i83.0.3.analogena1
-    pin+hm2_7i80.0.7i83.0.3.analogout1
-    pin+MacSafety.0.ProgRunningIn
+    pin+hm2_7i80.0.7i70.0.1.input-19
+    pin+hm2_7i80.0.7i70.0.1.input-19-not
+    pin+hm2_7i80.0.7i70.0.1.input-20
+    pin+hm2_7i80.0.7i70.0.1.input-20-not
+    pin+hm2_7i80.0.7i70.0.1.input-18
+    pin+hm2_7i80.0.7i70.0.1.input-21
+    pin+hm2_7i80.0.7i70.0.1.input-21-not
+    pin+mb2hal.SpindTemp.00.float
+    pin+mb2hal.SpindTemp.00.int
+    pin+mb2hal.SpindTemp.num_errors
+    pin+mb2hal.SpindTemp.01.float
+    pin+mb2hal.SpindTemp.01.int
 }
 set ::workmode watchhal
 set ::watchInterval 100

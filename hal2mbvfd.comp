@@ -28,5 +28,5 @@ FUNCTION(_) {
     else {VfdCtrlOut = 0x0005; SpindFan = false;}
     VfdRunRpmOut = (120 * (VfdRunFreqIn / 10)) / 4;
     VfdRunRpsOut = VfdRunRpmOut / 60;
-    SpinTempF = (1.8 * (SpinTempC / 10)) + 32;
+    SpinTempF = (SpinTempC / 1000);
 }
