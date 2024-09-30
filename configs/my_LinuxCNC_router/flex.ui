@@ -64,7 +64,7 @@
        <item row="8" column="2">
         <widget class="QLabel" name="label_69">
          <property name="toolTip">
-          <string extracomment="Coolant mist on?"/>
+          <string/>
          </property>
          <property name="text">
           <string>Mist</string>
@@ -81,7 +81,7 @@
        <item row="8" column="0">
         <widget class="QLabel" name="label_68">
          <property name="toolTip">
-          <string extracomment="coolant flood on?"/>
+          <string/>
          </property>
          <property name="text">
           <string>Flood</string>
@@ -143,7 +143,7 @@
        <item row="7" column="0">
         <widget class="QLabel" name="label_67">
          <property name="toolTip">
-          <string extracomment="is Vacuum running"/>
+          <string/>
          </property>
          <property name="text">
           <string>Vacuum</string>
@@ -153,17 +153,17 @@
        <item row="10" column="2">
         <widget class="QLabel" name="label_65">
          <property name="toolTip">
-          <string extracomment="Spindle ZERO SPEED?"/>
+          <string/>
          </property>
          <property name="text">
-          <string>Zero Speed</string>
+          <string>Spindle Run</string>
          </property>
         </widget>
        </item>
        <item row="7" column="2">
         <widget class="QLabel" name="label_70">
          <property name="toolTip">
-          <string extracomment="is air PSI good for ATC"/>
+          <string/>
          </property>
          <property name="text">
           <string>Air Good</string>
@@ -221,7 +221,7 @@
        <item row="10" column="0">
         <widget class="QLabel" name="label_63">
          <property name="toolTip">
-          <string extracomment="spindle AT SPEED?"/>
+          <string/>
          </property>
          <property name="text">
           <string>At Speed</string>
@@ -245,7 +245,7 @@
        <item row="6" column="0">
         <widget class="QPushButton" name="probing_enable_pb">
          <property name="toolTip">
-          <string extracomment="Enable probe functions"/>
+          <string/>
          </property>
          <property name="text">
           <string>Probe Enable</string>
@@ -275,7 +275,7 @@
        <item row="6" column="1">
         <widget class="QPushButton" name="probe_WkZ">
          <property name="toolTip">
-          <string extracomment="probe for work Z height, then unload 3D probe."/>
+          <string/>
          </property>
          <property name="text">
           <string>Prb Wrk Z</string>
@@ -291,7 +291,7 @@
        <item row="4" column="1">
         <widget class="QPushButton" name="pushButton">
          <property name="toolTip">
-          <string extracomment="Z up, then go to machine home."/>
+          <string/>
          </property>
          <property name="text">
           <string>Machine Home</string>
@@ -317,7 +317,7 @@
        <item row="6" column="2">
         <widget class="QPushButton" name="probe_LsrFoc">
          <property name="toolTip">
-          <string extracomment="Probe for laser work height, then unload 3D, probe"/>
+          <string/>
          </property>
          <property name="text">
           <string>Prb Laser Focus</string>
@@ -343,7 +343,7 @@
        <item row="5" column="2">
         <widget class="QPushButton" name="pushButton_4">
          <property name="toolTip">
-          <string extracomment="Shut off laser, if not killed by a E-Stop."/>
+          <string/>
          </property>
          <property name="text">
           <string>Kill Laser</string>
@@ -397,7 +397,7 @@
        <item row="13" column="2">
         <widget class="QLabel" name="label_83">
          <property name="text">
-          <string>Spindle TempF</string>
+          <string>Spindle Temp</string>
          </property>
         </widget>
        </item>
@@ -1106,7 +1106,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>10</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
