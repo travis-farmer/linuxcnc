@@ -4,16 +4,14 @@ o<toolchange> sub
 o999 if[#<_task> NE 0]
  M70                                                                (Save modal state)
  
-	
+	M5
  o400 if[#<_current_tool> EQ 99 OR #<_current_tool> EQ 98]
     (dont dwell, spindle not turning)
  o400 else
-    M66 P26 L0																											(Check spindle running, TJF)
-		o215 if [#5399 EQ 0]
-		M5																															(Turn spindle off, just in case bad signal)
-		o215 else
-			M5																														(turn spindle off)
-			G4 P6                                                         (Dwell for spindle stop)
+    M66 P26 L4 Q10																									(Check spindle running, TJF)
+		o215 if [#5399 EQ -1]
+			M5																															(Turn spindle off, just in case bad signal)
+			G4 25																														(dwell to let spindle stop)
 		o215 endif
  o400 endif
 
