@@ -4049,7 +4049,7 @@
               <string>Vac Enable</string>
              </property>
              <property name="checked">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="function" stdset="0">
               <string>hal_pin</string>
