@@ -272,7 +272,8 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 
 # --- VFD signals to test first ---
 net hrdwr-spindle-at-speed motion.digital-in-25 <= hm2_7i80.0.7i70.0.1.input-19-not
-net hrdwr-spindle-null-speed motion.digital-in-26 <= hm2_7i80.0.7i70.0.1.input-20-not
+net hrdwr-spindle-running motion.digital-in-26 <= hm2_7i80.0.7i70.0.1.input-20-not
+
 setp load-conv.0.maxamps 10.7
 net spindle-out-amps => load-conv.0.amps
 net spindle-load load-conv.0.load => motion.analog-in-02
