@@ -4146,6 +4146,7 @@
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionQuick_Reference"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -4381,6 +4382,11 @@
   <action name="actionOverlay">
    <property name="text">
     <string>Overlay</string>
+   </property>
+  </action>
+  <action name="actionQuick_Reference">
+   <property name="text">
+    <string>Quick Reference</string>
    </property>
   </action>
  </widget>
