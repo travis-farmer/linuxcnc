@@ -11,7 +11,8 @@ o999 if[#<_task> NE 0]
     M66 P26 L4 Q10																									(Check spindle running, TJF)
 		o215 if [#5399 EQ -1]
 			M5																															(Turn spindle off, just in case bad signal)
-			G4 25																														(dwell to let spindle stop)
+			(msg,Warning, spindle brake not active! PAUSED)
+			M0																														(pause to let spindle stop)
 		o215 endif
  o400 endif
 

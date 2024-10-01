@@ -9,6 +9,8 @@ G40 (cutter compensation off)
 M5  (spindle off)
 G80 (cancel modal motion)
 M9  (mist and coolant off)
+M68 E0 Q0   (Laser PWM zero)
+M65 P2  (Laser relay OFF)
 
 o100 if [#1 eq 5]
     (machine on)
