@@ -6,8 +6,8 @@ o999 if[#<_task> NE 0]
  
 	M5
 	M66 P26 L0
-	o400 if[#5399 NE 0]
-		M66 P26 L2 Q7	(Check spindle running, TJF)
+	o400 if[#5399 EQ 0]
+		M66 P26 L1 Q7	(Check spindle running, TJF)
 		o215 if [#5399 EQ -1]
 			M5	(Turn spindle off, just in case bad signal)
 			(msg,Warning, spindle brake not active! PAUSED)
