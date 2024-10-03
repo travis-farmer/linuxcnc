@@ -265,7 +265,7 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 #net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 
 # --- VFD hardware signals ---
-net hrdwr-spindle-running motion.digital-in-26 <= hm2_7i80.0.7i70.0.1.input-20
+net hrdwr-spindle-running motion.digital-in-26 <= hm2_7i80.0.7i70.0.1.input-20-not
 
 setp load-conv.0.maxamps 10.7
 net spindle-out-amps => load-conv.0.amps
