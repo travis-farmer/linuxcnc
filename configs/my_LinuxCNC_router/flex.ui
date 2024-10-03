@@ -3423,6 +3423,114 @@
              </property>
             </widget>
            </widget>
+           <widget class="QGroupBox" name="groupBox_24">
+            <property name="geometry">
+             <rect>
+              <x>220</x>
+              <y>30</y>
+              <width>211</width>
+              <height>181</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Old Angle Probe</string>
+            </property>
+            <widget class="QPushButton" name="probe_aXa">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>93</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Align Xa</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>mdi</string>
+             </property>
+             <property name="command" stdset="0">
+              <string>o&lt;align-xa&gt; call</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="probe_aXb">
+             <property name="geometry">
+              <rect>
+               <x>110</x>
+               <y>30</y>
+               <width>93</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Align Xb</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>mdi</string>
+             </property>
+             <property name="command" stdset="0">
+              <string>o&lt;align-xb&gt; call</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="probe_aYa">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>90</y>
+               <width>93</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Align Ya</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>mdi</string>
+             </property>
+             <property name="command" stdset="0">
+              <string>o&lt;align-ya&gt; call</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="probe_aYb">
+             <property name="geometry">
+              <rect>
+               <x>110</x>
+               <y>90</y>
+               <width>93</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Align Yb</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>mdi</string>
+             </property>
+             <property name="command" stdset="0">
+              <string>o&lt;align-yb&gt; call</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pushButton_7">
+             <property name="geometry">
+              <rect>
+               <x>60</x>
+               <y>140</y>
+               <width>93</width>
+               <height>28</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Clear Align</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>mdi</string>
+             </property>
+             <property name="command" stdset="0">
+              <string>o&lt;clear-offset&gt; call</string>
+             </property>
+            </widget>
+           </widget>
           </widget>
           <widget class="QWidget" name="tab_21">
            <attribute name="title">
