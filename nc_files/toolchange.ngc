@@ -8,7 +8,7 @@ o999 if[#<_task> NE 0]
  o400 if[#<_current_tool> EQ 99 OR #<_current_tool> EQ 98]
     (dont dwell, spindle not turning)
  o400 else
-    M66 P26 L4 Q10																									(Check spindle running, TJF)
+    M66 P26 L4 Q7																									(Check spindle running, TJF)
 		o215 if [#5399 EQ -1]
 			M5																															(Turn spindle off, just in case bad signal)
 			(msg,Warning, spindle brake not active! PAUSED)
