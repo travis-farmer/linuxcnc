@@ -33,20 +33,6 @@
        <string>Info</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="9" column="3">
-        <widget class="QLabel" name="ain_1_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <widget class="QLabel" name="ain_0_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
        <item row="9" column="2">
         <widget class="QLabel" name="label_66">
          <property name="toolTip">
@@ -71,13 +57,24 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QPushButton" name="power_pb">
+       <item row="9" column="3">
+        <widget class="QLabel" name="ain_1_lb">
          <property name="text">
-          <string>Power</string>
+          <string>TextLabel</string>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLabel" name="ain_0_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="file_lb">
+         <property name="text">
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
@@ -98,24 +95,20 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="file_lb">
+       <item row="3" column="1">
+        <widget class="QPushButton" name="power_pb">
          <property name="text">
-          <string>TextLabel</string>
+          <string>Power</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="10" column="1">
-        <widget class="QLabel" name="probe_tripped_lb">
+       <item row="1" column="1">
+        <widget class="QLabel" name="current_line_lb">
          <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QLabel" name="label_47">
-         <property name="text">
-          <string>Probe</string>
+          <string>0</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -132,20 +125,20 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="current_line_lb">
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_38">
+         <property name="text">
+          <string>Motion Line</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="motion_line_lb">
          <property name="text">
           <string>0</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="label_38">
-         <property name="text">
-          <string>Motion Line</string>
          </property>
         </widget>
        </item>
@@ -201,36 +194,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="motion_line_lb">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QPushButton" name="mist_pb">
-         <property name="text">
-          <string>Mist</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="flood_pb">
-         <property name="text">
-          <string>Flood</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item row="6" column="2">
         <widget class="QPushButton" name="probe_LsrFoc">
          <property name="toolTip">
@@ -244,6 +207,16 @@
          </property>
          <property name="command" stdset="0">
           <string>o&lt;laser-focus&gt; call</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QPushButton" name="mist_pb">
+         <property name="text">
+          <string>Mist</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -263,8 +236,18 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
-        <widget class="QLabel" name="ain_3_lb">
+       <item row="5" column="0">
+        <widget class="QPushButton" name="flood_pb">
+         <property name="text">
+          <string>Flood</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="3">
+        <widget class="QLabel" name="ain_2_lb">
          <property name="text">
           <string>TextLabel</string>
          </property>
@@ -287,6 +270,13 @@
          </property>
         </widget>
        </item>
+       <item row="8" column="1">
+        <widget class="QLabel" name="ain_3_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="0">
         <widget class="QPushButton" name="estop_pb">
          <property name="text">
@@ -297,13 +287,6 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="3">
-        <widget class="QLabel" name="ain_2_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="2">
         <widget class="QPushButton" name="optional_stop_pb">
          <property name="toolTip">
@@ -311,6 +294,13 @@
          </property>
          <property name="text">
           <string>M1 Option</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QPushButton" name="clear_info_pb">
+         <property name="text">
+          <string>Clr Info History</string>
          </property>
         </widget>
        </item>
@@ -4243,13 +4233,6 @@
             <widget class="QPushButton" name="hal_scope_pb">
              <property name="text">
               <string>HAL Scope</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="clear_info_pb">
-             <property name="text">
-              <string>Clear Info History</string>
              </property>
             </widget>
            </item>
