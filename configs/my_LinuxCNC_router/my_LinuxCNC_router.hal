@@ -526,15 +526,15 @@ net spindle-vel-cmd-rpm-abs => vacuum-control.0.spind-rpm-in
 
 #setp hm2_7i80.0.gpio.004.invert_output false
 #setp hm2_7i80.0.gpio.004.is_output true
-net spind-vac-control vacuum-control.0.vac-out => hm2_7i80.0.7i72.0.2.output-09 motion.digital-in-27
+net spind-vac-control vacuum-control.0.vac-out => hm2_7i80.0.7i72.0.2.output-09
 
 #setp hm2_7i80.0.gpio.008.invert_output false
 #setp hm2_7i80.0.gpio.008.is_output true
-net coolant-mist-vac-control vacuum-control.0.cool-mist-out => hm2_7i80.0.7i72.0.2.output-10 motion.digital-in-30
+net coolant-mist-vac-control vacuum-control.0.cool-mist-out => hm2_7i80.0.7i72.0.2.output-10
 
 #setp hm2_7i80.0.gpio.007.invert_output false
 #setp hm2_7i80.0.gpio.007.is_output true
-net coolant-flood-vac-control vacuum-control.0.cool-flood-out => hm2_7i80.0.7i72.0.2.output-11 motion.digital-in-29
+net coolant-flood-vac-control vacuum-control.0.cool-flood-out => hm2_7i80.0.7i72.0.2.output-11
 
 #########################
 # --- Other Signals --- #
