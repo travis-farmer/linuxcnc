@@ -1,0 +1,10 @@
+# example of a machine specific settings
+windows:
+  mainwindow:
+    kwargs:
+      confirm_exit: false
+data_plugins:
+  notifications:
+    provider: qtpyvcp.plugins.notifications:Notifications
+    kwargs:
+      enabled: true
