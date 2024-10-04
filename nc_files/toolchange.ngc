@@ -5,9 +5,9 @@ o999 if[#<_task> NE 0]
 	M70	(Save modal state)
  
 	M5
-	M66 P26 L0
+	M66 P10 L0
 	o400 if[#5399 EQ 0]
-		M66 P26 L3 Q10	(Check spindle running, TJF)
+		M66 P10 L3 Q10	(Check spindle running, TJF)
 		o215 if [#5399 EQ -1]
 			M5	(Turn spindle off, just in case bad signal)
 			(msg,Warning, spindle brake not active! PAUSED)
@@ -36,14 +36,14 @@ o999 if[#<_task> NE 0]
 			o216 endif
 
 			o211 if [#<_current_tool> NE 0 AND #<_selected_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
-				;M66 P[#<_current_pocket> + 9] L0	(Check tool pocket sensor, TODO)
+				;M66 P[#<_current_pocket> + 10] L0	(Check tool pocket sensor, TODO)
 				;o215 if [#5399 EQ 1]
 					;(abort,Current pocket has a tool in it)
 				;o215 endif
 			o211 endif
 
 			o212 if [#<_selected_tool> NE 0 AND #<_selected_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
-				;M66 P[#<_selected_pocket> + 9] L0	(Check tool pocket sensor, TODO)
+				;M66 P[#<_selected_pocket> + 10] L0	(Check tool pocket sensor, TODO)
 				;o221 if [#5399 EQ 0]
 					;(abort,Selected pocket has no tool in it)
 				;o221 endif
