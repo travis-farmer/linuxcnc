@@ -33,24 +33,13 @@
        <string>Info</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="12" column="3">
-        <widget class="QLabel" name="ain_1_lb">
-         <property name="text">
-          <string>TextLabel</string>
+       <item row="9" column="2">
+        <widget class="QLabel" name="label_66">
+         <property name="toolTip">
+          <string>Tool Regulated PSI</string>
          </property>
-        </widget>
-       </item>
-       <item row="12" column="1">
-        <widget class="QLabel" name="ain_0_lb">
          <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <widget class="QLabel" name="din_29_lb">
-         <property name="text">
-          <string>TextLabel</string>
+          <string>Tool PSI</string>
          </property>
         </widget>
        </item>
@@ -61,43 +50,6 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="2">
-        <widget class="QLabel" name="label_69">
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Mist</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="3">
-        <widget class="QLabel" name="din_30_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QLabel" name="label_68">
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Flood</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="2">
-        <widget class="QLabel" name="label_66">
-         <property name="toolTip">
-          <string>Tool Regulated PSI</string>
-         </property>
-         <property name="text">
-          <string>Tool PSI</string>
-         </property>
-        </widget>
-       </item>
        <item row="3" column="2">
         <widget class="QPushButton" name="pause_pb">
          <property name="text">
@@ -105,7 +57,28 @@
          </property>
         </widget>
        </item>
-       <item row="12" column="0">
+       <item row="9" column="3">
+        <widget class="QLabel" name="ain_1_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLabel" name="ain_0_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="file_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
         <widget class="QLabel" name="label_64">
          <property name="toolTip">
           <string>Compressed Air Inlet PSI</string>
@@ -132,88 +105,6 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="3">
-        <widget class="QLabel" name="din_28_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <widget class="QLabel" name="din_27_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_67">
-         <property name="toolTip">
-          <string>dust vacuum run</string>
-         </property>
-         <property name="text">
-          <string>Vacuum</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="2">
-        <widget class="QLabel" name="label_65">
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Spindle Run</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="2">
-        <widget class="QLabel" name="label_70">
-         <property name="toolTip">
-          <string>Tool Air PSI good for ATC operations</string>
-         </property>
-         <property name="text">
-          <string>Air Good</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QLabel" name="label_47">
-         <property name="text">
-          <string>Probe</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="1">
-        <widget class="QLabel" name="probe_tripped_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="3">
-        <widget class="QLabel" name="din_26_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="file_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <widget class="QLabel" name="din_25_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="1">
         <widget class="QLabel" name="current_line_lb">
          <property name="text">
@@ -221,30 +112,6 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QLabel" name="label_63">
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>At Speed</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_37">
-         <property name="text">
-          <string>Current Line</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="label_38">
-         <property name="text">
-          <string>Motion Line</string>
          </property>
         </widget>
        </item>
@@ -258,16 +125,10 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2" colspan="2">
-        <widget class="QLCDNumber" name="spindle_speed_0_lcd">
-         <property name="toolTip">
-          <string>Spindle RPM</string>
-         </property>
-         <property name="digitCount">
-          <number>7</number>
-         </property>
-         <property name="mode">
-          <enum>QLCDNumber::Dec</enum>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_38">
+         <property name="text">
+          <string>Motion Line</string>
          </property>
         </widget>
        </item>
@@ -278,6 +139,13 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_37">
+         <property name="text">
+          <string>Current Line</string>
          </property>
         </widget>
        </item>
@@ -313,13 +181,16 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="flood_pb">
-         <property name="text">
-          <string>Flood</string>
+       <item row="0" column="2" colspan="2">
+        <widget class="QLCDNumber" name="spindle_speed_0_lcd">
+         <property name="toolTip">
+          <string>Spindle RPM</string>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
+         <property name="digitCount">
+          <number>7</number>
+         </property>
+         <property name="mode">
+          <enum>QLCDNumber::Dec</enum>
          </property>
         </widget>
        </item>
@@ -365,6 +236,47 @@
          </property>
         </widget>
        </item>
+       <item row="5" column="0">
+        <widget class="QPushButton" name="flood_pb">
+         <property name="text">
+          <string>Flood</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="3">
+        <widget class="QLabel" name="ain_2_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="2">
+        <widget class="QLabel" name="label_82">
+         <property name="toolTip">
+          <string>Spindle Load %</string>
+         </property>
+         <property name="text">
+          <string>Spindle Load</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_81">
+         <property name="text">
+          <string>Spindle Amps</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLabel" name="ain_3_lb">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="0">
         <widget class="QPushButton" name="estop_pb">
          <property name="text">
@@ -375,51 +287,6 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="0">
-        <widget class="QLabel" name="label_81">
-         <property name="text">
-          <string>Spindle Amps</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="1">
-        <widget class="QLabel" name="ain_3_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="2">
-        <widget class="QLabel" name="label_82">
-         <property name="toolTip">
-          <string>Spindle Load %</string>
-         </property>
-         <property name="text">
-          <string>Spindle Load</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="3">
-        <widget class="QLabel" name="ain_2_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="2">
-        <widget class="QLabel" name="label_83">
-         <property name="text">
-          <string>Spindle Temp</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="3">
-        <widget class="QLabel" name="ain_4_lb">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="2">
         <widget class="QPushButton" name="optional_stop_pb">
          <property name="toolTip">
@@ -427,6 +294,13 @@
          </property>
          <property name="text">
           <string>M1 Option</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QPushButton" name="clear_info_pb">
+         <property name="text">
+          <string>Clr Info History</string>
          </property>
         </widget>
        </item>
@@ -4359,13 +4233,6 @@
             <widget class="QPushButton" name="hal_scope_pb">
              <property name="text">
               <string>HAL Scope</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="clear_info_pb">
-             <property name="text">
-              <string>Clear Info History</string>
              </property>
             </widget>
            </item>

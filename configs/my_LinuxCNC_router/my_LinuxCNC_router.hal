@@ -4,7 +4,7 @@
 # overwritten when you run PNCconf again
 
 loadrt [KINS]KINEMATICS
-loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES num_dio=64 num_aio=64
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES num_dio=32 num_aio=10
 loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=0 num_stepgens=4 sserial_port_0=01100000"
 
@@ -114,7 +114,7 @@ net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output
 net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.output-18
 
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
-net spindle-air-pressure => MacSafety.0.ATCairGood motion.digital-in-28
+net spindle-air-pressure => MacSafety.0.ATCairGood
 
 ##################
 # --- MB2HAL --- #
@@ -149,7 +149,7 @@ net spindle-out-volts <= mb2hal.vfdparam.03.float
 net activate-spind-fan hm2_7i80.0.7i72.0.2.output-00     <=  hal2mbvfd.0.SpindFan
 
 #net spindle-temp-c mb2hal.SpindTemp.00.float => hal2mbvfd.0.SpinTempC
-net spindle-temp-f hal2mbvfd.0.SpinTempF => motion.analog-in-04
+#net spindle-temp-f hal2mbvfd.0.SpinTempF => motion.analog-in-04
 
 #########################
 # --- 7i83 settings --- #
@@ -230,7 +230,7 @@ net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
 # --- Spindle signals ---
-net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19-not =>  spindle.0.at-speed motion.digital-in-25
+net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19-not =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
@@ -265,30 +265,12 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 #net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 
 # --- VFD hardware signals ---
-net hrdwr-spindle-running motion.digital-in-26 <= hm2_7i80.0.7i70.0.1.input-20-not
+net hrdwr-spindle-running motion.digital-in-26 <= hm2_7i80.0.7i70.0.1.input-10
 
 setp load-conv.0.maxamps 10.7
 net spindle-out-amps => load-conv.0.amps
 net spindle-load load-conv.0.load => motion.analog-in-02
 net spindle-converted-amps motion.analog-in-03 <= load-conv.0.convamps
-
-# --- Tool Pockets ---
-net tool-pocket-01 hm2_7i80.0.7i70.0.1.input-24 => motion.digital-in-10
-net tool-pocket-02 hm2_7i80.0.7i70.0.1.input-25 => motion.digital-in-11
-net tool-pocket-03 hm2_7i80.0.7i70.0.1.input-26 => motion.digital-in-12
-net tool-pocket-04 hm2_7i80.0.7i70.0.1.input-27 => motion.digital-in-13
-net tool-pocket-05 hm2_7i80.0.7i70.0.1.input-28 => motion.digital-in-14
-net tool-pocket-06 hm2_7i80.0.7i70.0.1.input-29 => motion.digital-in-15
-net tool-pocket-07 hm2_7i80.0.7i70.0.1.input-30 => motion.digital-in-16
-net tool-pocket-08 hm2_7i80.0.7i70.0.1.input-31 => motion.digital-in-17
-net tool-pocket-09 hm2_7i80.0.7i70.0.1.input-32 => motion.digital-in-18
-net tool-pocket-10 hm2_7i80.0.7i70.0.1.input-33 => motion.digital-in-19
-net tool-pocket-11 hm2_7i80.0.7i70.0.1.input-34 => motion.digital-in-20
-net tool-pocket-12 hm2_7i80.0.7i70.0.1.input-35 => motion.digital-in-21
-net tool-pocket-13 hm2_7i80.0.7i70.0.1.input-36 => motion.digital-in-22
-net tool-pocket-14 hm2_7i80.0.7i70.0.1.input-37 => motion.digital-in-23
-net tool-pocket-15 hm2_7i80.0.7i70.0.1.input-38 => motion.digital-in-24
-
 
 ########################
 # --- Laser Analog --- #
@@ -544,15 +526,15 @@ net spindle-vel-cmd-rpm-abs => vacuum-control.0.spind-rpm-in
 
 #setp hm2_7i80.0.gpio.004.invert_output false
 #setp hm2_7i80.0.gpio.004.is_output true
-net spind-vac-control vacuum-control.0.vac-out => hm2_7i80.0.7i72.0.2.output-09 motion.digital-in-27
+net spind-vac-control vacuum-control.0.vac-out => hm2_7i80.0.7i72.0.2.output-09
 
 #setp hm2_7i80.0.gpio.008.invert_output false
 #setp hm2_7i80.0.gpio.008.is_output true
-net coolant-mist-vac-control vacuum-control.0.cool-mist-out => hm2_7i80.0.7i72.0.2.output-10 motion.digital-in-30
+net coolant-mist-vac-control vacuum-control.0.cool-mist-out => hm2_7i80.0.7i72.0.2.output-10
 
 #setp hm2_7i80.0.gpio.007.invert_output false
 #setp hm2_7i80.0.gpio.007.is_output true
-net coolant-flood-vac-control vacuum-control.0.cool-flood-out => hm2_7i80.0.7i72.0.2.output-11 motion.digital-in-29
+net coolant-flood-vac-control vacuum-control.0.cool-flood-out => hm2_7i80.0.7i72.0.2.output-11
 
 #########################
 # --- Other Signals --- #
