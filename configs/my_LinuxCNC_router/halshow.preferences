@@ -12,11 +12,6 @@ set ::watchlist {
     pin+hm2_7i80.0.7i70.0.1.input-18
     pin+hm2_7i80.0.7i70.0.1.input-21
     pin+hm2_7i80.0.7i70.0.1.input-21-not
-    pin+mb2hal.SpindTemp.00.float
-    pin+mb2hal.SpindTemp.00.int
-    pin+mb2hal.SpindTemp.num_errors
-    pin+mb2hal.SpindTemp.01.float
-    pin+mb2hal.SpindTemp.01.int
 }
 set ::workmode watchhal
 set ::watchInterval 100
