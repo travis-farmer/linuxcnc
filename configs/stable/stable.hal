@@ -142,6 +142,7 @@ net vfd-ctrl-out hal2mbvfd.0.VfdCtrlOut => mb2hal.vfdcntrl.00.int
 net spindle-cw => hal2mbvfd.0.VfdFwd
 net spindle-ccw => hal2mbvfd.0.VfdRev
 net vfd-read-freq mb2hal.vfdparam.01.float => hal2mbvfd.0.VfdRunFreqIn # VFD reports wrong rpm, so we calculate from frequency.
+net vfd-read-rpm <= hal2mbvfd.0.VfdRunRpmOut
 net vfd-conv-rps hal2mbvfd.0.VfdRunRpsOut => spindle.0.speed-in
 net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
@@ -265,7 +266,7 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 #net atc-carousel-swing motion.digital-out-01 => hm2_7i80.0.gpio.010.out
 
 # --- VFD hardware signals ---
-net hrdwr-spindle-running motion.digital-in-10 <= hm2_7i80.0.7i70.0.1.input-20
+net hrdwr-spindle-running motion.digital-in-00 <= hm2_7i80.0.7i70.0.1.input-20
 
 setp load-conv.0.maxamps 10.7
 net spindle-out-amps => load-conv.0.amps

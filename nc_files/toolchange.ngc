@@ -4,9 +4,9 @@ o<toolchange> sub
 	M70	(Save modal state)
  
 	M5
-	M66 P10 L0
+	M66 P0 L0
 	o400 if[#5399 EQ 0]
-		M66 P10 L3 Q10	(Check spindle running, TJF)
+		M66 P0 L3 Q10	(Check spindle running, TJF)
 		o215 if [#5399 EQ -1]
 			M5	(Turn spindle off, just in case bad signal)
 			(msg,Warning, spindle brake not active! PAUSED)
