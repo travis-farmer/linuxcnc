@@ -1,7 +1,6 @@
 (customized, based on https://github.com/Funkenjaeger )
 (was for a rack tool changer, then for a carousel, now back to a rack...)
 o<toolchange> sub
-o999 if[#<_task> NE 0]
 	M70	(Save modal state)
  
 	M5
@@ -16,7 +15,7 @@ o999 if[#<_task> NE 0]
 	o400 endif
 
 	M9	(Turn coolant off)
-	G17 G20 G40 G64 P0.001 G80 G94 G97 G98 G49	(Baseline modal state)
+	G17 G20 G40 G61 G80 G94 G97 G98 G49	(Baseline modal state)
 
 	o500 if[#<_current_tool> EQ #<_selected_tool>]	(Same tool as before so no need to do anything.)
 
@@ -157,7 +156,5 @@ o999 if[#<_task> NE 0]
 
 	M72	(Restore saved modal state)
 	G43
-
-o999 endif
 o<toolchange> endsub
 M2

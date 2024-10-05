@@ -7,7 +7,7 @@ o<measure> sub
  M70                                                                (Save modal state)
  M5                                                                 (Turn spindle off)
  M9                                                                 (Turn coolant off)
- G17 G20 G40 G64 P0.001 G80 G94 G97 G98                             (Baseline modal state)
+ G17 G20 G40 G61 G80 G94 G97 G98 G49                             (Baseline modal state)
 
 
  o217 if [#<coord_system_was> EQ 593]
