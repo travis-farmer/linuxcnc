@@ -1,0 +1,27 @@
+(Gcode test run for auto-tool-change)
+T3 M6 (1/4in ball end mill)
+M3 S24000 (Spindle RPM24000, forward)
+G0 Z1 (safe Z)
+G0 X0 Y0 (Work Home)
+G1 Y2.4 Z-0.1 F15
+G1 X2.4 Z-0.2 F25
+G0 Z1 (safe Z)
+M5
+T2 M6 (1/4in V-bit)
+M3 S18000
+G0 Z0
+G1 X2.4 Y2.4 Z-0.1 F35
+G1 X2 Y3 Z0.3 F45
+G0 Z1 (safe Z)
+M5
+T1 M6 (1/8in flat end mill)
+M3 S12000
+G0 Z0
+G0 X3 Y3
+G0 Z0.1
+F45
+G91 G98 G81 X4 Y5 Z-1.1 R1.8 L3
+G90 G0 Z1 (safe Z)
+G0 X0 Y0 (Work Home)
+M5
+M2
