@@ -5,7 +5,7 @@ o<toolchange> sub
  
 	M5
 	M66 P0 L0
-	o10000 if[#5399 EQ 0]
+	o1000 if[#5399 EQ 0]
 		M66 P0 L3 Q10	(Check spindle running, TJF)
 		o1100 if [#5399 EQ -1]
 			M5	(Turn spindle off, just in case bad signal)
