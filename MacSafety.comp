@@ -23,7 +23,51 @@ license "GPL";
 author "Travis Farmer";
 ;;
 
+#include <stdio.h>    /* Standard input/output definitions */
+#include <stdlib.h>
+#include <stdint.h>   /* Standard types */
+#include <string.h>   /* String function definitions */
+#include <unistd.h>   /* UNIX standard function definitions */
+#include <errno.h>    /* Error number definitions */
+#include <sys/ioctl.h>
+#include <inttypes.h>
+#include <math.h>
+#include <time.h>
+
+unsigned long lastTimer = 0UL;
+bool BuzzerState = false;
+bool BuzzerFired = false;
+
+unsigned long time_with_ms (void)
+{
+    unsigned long            ms; // Milliseconds
+    time_t          s;  // Seconds
+    struct timespec spec;
+
+    clock_gettime(CLOCK_REALTIME, &spec);
+
+    s  = spec.tv_sec;
+    ms = (spec.tv_nsec / 1.0e6); // Convert nanoseconds to milliseconds
+    if (ms > 4294967295) {
+        ms = 0;
+    }
+    return(ms);
+}
+
 FUNCTION(_) {
+    // if state active, buzzer for 2500ms
+    if (BuzzerState == true) {
+        unsigned long curTime = time_with_ms();
+        if (curTime - lastTimer >= 2500) {
+            lastTimer = 0UL;
+            BuzzerState = false;
+            SignalTowerBuzzer = false;
+        } else {
+            SignalTowerBuzzer = true;
+            BuzzerFired = true;
+        }
+    }
+
     // InterlockOut and DoorUnlockOut proc
     if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false && LaserMode == true) {
         InterlockOut = true;
@@ -34,27 +78,33 @@ FUNCTION(_) {
     } else if (ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && LaserMode == true) {
         InterlockOut = false;
     }
+
     // status LED Tower - red, amber, green, blue, white, buzzer
     if (EstopIn == true) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;
-        SignalTowerBuzzer = true;
+        if (BuzzerFired == false) {
+            BuzzerState = true;
+        }
     } else if (ProgPausedIn == true || ATCairGood == false) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
-        SignalTowerBuzzer = false;
+        BuzzerState = false;
+        BuzzerFired = false;
     } else if (ProgRunningIn == true) {
         SignalTowerGreen = true;
         SignalTowerAmber = false;
         SignalTowerRed = false;
-        SignalTowerBuzzer = false;
+        BuzzerState = false;
+        BuzzerFired = false;
     } else {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = false;
-        SignalTowerBuzzer = false;
+        BuzzerState = false;
+        BuzzerFired = false;
     }
     if (LaserActive == true) {
         SignalTowerWhite = true;
