@@ -1,0 +1,23 @@
+o<align-ya> sub
+  o101 if [#<_metric> GT 0]
+    #40=1
+  o101 else
+    #40=0
+  o101 endif
+  G20
+  G91
+  G38.3 Y4.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	                    (Probe move to work)
+  G38.5 Y-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>                       (backoff)
+  G38.3 Y4.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	                      (Measure Fine)
+  G38.5 Y-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>                        (Back off until probe breaks contact)
+  G90
+; this subroutine records the current location of x and y into
+; the global variables _start-x and _start-y
+  #<_start-x> = #5420
+  #<_start-y> = #5421
+  (debug, start XY = #<_start-x> #<_start-y>)
+  o102 if [#40 GT 0]
+    G21
+  o102 endif
+o<align-ya> endsub
+M2

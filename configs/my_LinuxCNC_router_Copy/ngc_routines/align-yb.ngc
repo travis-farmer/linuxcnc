@@ -1,0 +1,36 @@
+
+o<align-yb> sub
+; this subroutine is used when aligning the sheet on the Y axis
+  o101 if [#<_metric> GT 0]
+    #40=1
+  o101 else
+    #40=0
+  o101 endif
+  G20
+  G91
+  G38.3 Y4.75 F#<_ini[TOOLSENSOR]SEARCH_VEL>	                    (Probe move to work)
+  G38.5 Y-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>                       (backoff)
+  G38.3 Y4.75 F#<_ini[TOOLSENSOR]PROBE_VEL>	                      (Measure Fine)
+  G38.5 Y-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>                        (Back off until probe breaks contact)
+  G90
+  #<_end-x> = #5420
+  #<_end-y> = #5421
+  (debug, end XY = #<_end-x> #<_end-y>)
+  #<length-a> = ABS[[#<_start-y> - #<_end-y>]]
+  #<length-b> = ABS[[#<_start-x> - #<_end-x>]]
+  (debug,a=#<length-a> b=#<length-b>)
+  #<angle> = [ATAN[#<length-b>]/[#<length-a>]]
+  (debug,angle=#<angle>)
+  o100 if[#<_end-x> GT #<_start-x>]
+    (msg, Angle is CCW)
+    G10 L2 P0 R#<angle>
+  o100 else
+    (msg, Angle is CW)
+    G10 L2 P0 R-#<angle>
+  o100 endif
+  o102 if [#40 GT 0]
+    G21
+  o102 endif
+o<align-yb> endsub
+M2
+
