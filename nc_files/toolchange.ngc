@@ -29,7 +29,8 @@ o<toolchange> sub
 
 			M66 P3 L0	(Check air pressure sensor, TJF)
 			o2110 if [#5399 EQ 0]
-				(abort,No air pressure)
+				(msg,No air pressure PAUSED)
+				M0 (pause)
 			o2110 endif
 
 			(Basic sanity checks done - start the tool change process)
@@ -75,7 +76,8 @@ o<toolchange> sub
 				(-=PLAIN AUTO CHANGE, LOAD NEXT TOOL=-)
 				M66 P3 L0	(Check air pressure sensor, TJF)
 				o2131 if [#5399 EQ 0]
-						(abort,No air pressure)
+						(msg,No air pressure PAUSED)
+						M0 (pause)
 				o2131 endif
 				G53 G0 Z#<pocket_safe_z>
 				M66 P1 L0
