@@ -159,6 +159,20 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="run_pb">
+         <property name="text">
+          <string>Run</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="stop_pb">
+         <property name="text">
+          <string>Stop</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -172,7 +186,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPlainTextEdit" name="info_pte"/>
+        <widget class="QPlainTextEdit" name="gcode_pte"/>
        </item>
       </layout>
      </widget>
@@ -246,7 +260,7 @@
      <x>0</x>
      <y>0</y>
      <width>846</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
