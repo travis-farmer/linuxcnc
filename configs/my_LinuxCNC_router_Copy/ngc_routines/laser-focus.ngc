@@ -24,10 +24,10 @@ o<laser-focus> sub
  o314 if [#5399 EQ 0]
     (abort,Probe not in spindle)
  o314 endif
- G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>	(Probe move to work)
- G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_SEARCH>  (backoff)
- G38.2 Z-4.5 F#<_ini[LASER_FOCUS]PROBE_FINE>	(Measure Fine)
- G38.5 Z-0.5 F#<_ini[LASER_FOCUS]PROBE_FINE>    (Back off until probe breaks contact)
+  G38.2 Z[#<z_home> - 4.5] F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
+  G38.5 Z[#<z_home> - 0.5] F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
+  G38.2 Z[#<z_home> - 4.5] F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
+  G38.5 Z[#<z_home> - 0.5] F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
 
  (laser focus is 50mm from base of module, not nose of nozzle)
  (laser ride height offset is built into tool DB for 98)
