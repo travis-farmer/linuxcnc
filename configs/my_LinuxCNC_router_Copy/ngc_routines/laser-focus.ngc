@@ -2,6 +2,7 @@ o<laser-focus> sub
  #<coord_system_was>=#<_coord_system>  (Save current coordinate system.)
  #<wcs_z_varnumber> = [5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
  #<wcs_z> = #[#<wcs_z_varnumber>]
+  #<z_home> = #<_ini[JOINT_2]HOME>
 
  M70                                                                (Save modal state)
  M5                                                                 (Turn spindle off)
@@ -71,11 +72,11 @@ o<laser-focus> sub
 
 M72                                                                			(Restore saved modal state)
  
- G53 G0 Z0										(Z up to safe position)
+ G53 G0 Z#<z_home>										(Z up to safe position)
  T98 M6                                         (change to laser virtual tool)
  M66 P1 L0
- o315 if [#5399 EQ 0]                           (should be no tool loaded for laser)
-    G53 G0 Z0
+ o315 if [#5399 EQ 0 AND #<_coord_system> NE 593]                           (should be no tool loaded for laser)
+    G53 G0 Z#<z_home>
     G0 X0 Y0
     G0 Z0
  o315 endif
