@@ -3,6 +3,7 @@ o<measure> sub
   #<coord_system_was>=#<_coord_system>  (Save current coordinate system.)
   #<wcs_z_varnumber> = [5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
   #<wcs_z> = #[#<wcs_z_varnumber>]
+  #<z_home> = #<_ini[JOINT_2]HOME>
 
   M70 (Save modal state)
   M5  (Turn spindle off)
@@ -26,7 +27,7 @@ o<measure> sub
   #<pocket_approach_y> = [#<_ini[TOOL_CHANGE]POCKET_Y> + #<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>]
 
   G53 G0 X#<_ini[TOOLSENSOR]X_LOC> Y#<pocket_approach_y>  (Move to tool setter slot)
-  G53 G0 Z0 (Z up)
+  G53 G0 Z#<z_home> (Z up)
   G53 G0 Y#<_ini[TOOLSENSOR]Y_LOC>  (Move to tool setter postion)
   G53 G0 Z#<_ini[TOOLSENSOR]Z_PROBE_START>  (Move Z  to safe height above tool setter to start probe)
 
@@ -37,7 +38,7 @@ o<measure> sub
   G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL> (Back off until probe breaks contact)
 
   #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
-  G53 G0 Z#<_ini[TOOLSENSOR]Z_SAFE> (Z up to safe position)
+  G53 G0 Z#<z_home> (Z up to safe position)
   G53 G0 Y#<pocket_approach_y>  (Move out of tool setter postion)
 
   (Restore original coordinate system. G54 to G59.2 only)
