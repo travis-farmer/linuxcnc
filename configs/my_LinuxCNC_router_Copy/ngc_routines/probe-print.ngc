@@ -30,7 +30,11 @@ o<probe-print> sub
     G38.5 Z[#<z_home> - 0.5] F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
     G38.2 Z[#<z_home> - 4.5] F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
     G38.5 Z[#<z_home> - 0.5] F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
-    #<probe-val> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
+    o250 if [#<z_home> EQ 0.0]
+        #<probe-val> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
+    o250 else
+        #<probe-val> = [#<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE> - #5063]
+    o250
     ;#<probe-val> = #5063
     ;G90
     G53 G0 Z#<z_home>

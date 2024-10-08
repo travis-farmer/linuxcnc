@@ -37,7 +37,11 @@ o<measure> sub
   G38.2 Z[#<z_home> - 5.7] F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
   G38.5 Z[#<z_home> - 0.5] F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
 
-  #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
+  o250 if [#<z_home> EQ 0.0]
+    #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
+  o250 else
+    #<_new_tlo> = [#<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE> - #5063]
+  o250
   G53 G0 Z#<z_home> (Z up to safe position)
   G53 G0 Y#<pocket_approach_y>  (Move out of tool setter postion)
 
