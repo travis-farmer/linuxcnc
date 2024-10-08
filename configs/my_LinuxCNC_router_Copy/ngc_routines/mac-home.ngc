@@ -1,5 +1,5 @@
 o<mac-home> sub
-    G53 G0 Z0
+    G53 G0 Z#<_ini[JOINT_2]HOME>
     G53 G0 X0 Y0
 o<mac-home> endsub
 M2
