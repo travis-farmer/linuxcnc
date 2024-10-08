@@ -2,6 +2,7 @@ o<zero-work> sub
  #<coord_system_was>=#<_coord_system>  (Save current coordinate system.)
  #<wcs_z_varnumber> = [5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
  #<wcs_z> = #[#<wcs_z_varnumber>]
+ #<z_home> = #<_ini[JOINT_2]HOME>
  M70                                                                (Save modal state)
  M5                                                                 (Turn spindle off)
  M9                                                                 (Turn coolant off)
@@ -18,13 +19,13 @@ o<zero-work> sub
  o313 endif
  G59.3																		(Switch temporarily to G59.3 WCS for probing)
  G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
- G38.2 Z-4.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
- G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
- G38.2 Z-4.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
- G38.5 Z-0.5 F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
+ G38.2 Z[#<z_home> - 4.5] F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
+ G38.5 Z[#<z_home> - 0.5] F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
+ G38.2 Z[#<z_home> - 4.5] F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
+ G38.5 Z[#<z_home> - 0.5] F#<_ini[TOOLSENSOR]PROBE_VEL>    (Back off until probe breaks contact)
  #<work_height> = #5063                       (work height is probed height, because the probe is the reference tool)
  (debug,probed work height: %.9f#<work_height>)
- G53 G0 Z0										(Z up to safe position)
+ G53 G0 Z#<z_home>										(Z up to safe position)
  T0 M6                                              (probe removal)
  M66 P1 L0
  o314 if [#5399 EQ 1]
