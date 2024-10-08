@@ -2,6 +2,7 @@ o<probe-print> sub
      #<coord_system_was>=#<_coord_system>  (Save current coordinate system.)
     #<wcs_z_varnumber> = [5203 + [20* #5220]] (5223 for G54, 5243 for G55, etc)
     #<wcs_z> = #[#<wcs_z_varnumber>]
+    #<z_home> = #<_ini[JOINT_2]HOME>
 
     M70                                                                (Save modal state)
     M5                                                                 (Turn spindle off)
@@ -32,7 +33,7 @@ o<probe-print> sub
     #<probe-val> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
     ;#<probe-val> = #5063
     ;G90
-    G53 G0 Z0
+    G53 G0 Z#<z_home>
 
     (Restore original coordinate system. G54 to G59.2 only)
     o100 if[#<coord_system_was> EQ 540]
