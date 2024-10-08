@@ -40,7 +40,7 @@ o<measure> sub
   o250 if [#<z_home> EQ 0.0]
     #<_new_tlo> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
   o250 else
-    #<_new_tlo> = [#<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE> - #5063]
+    #<_new_tlo> = [#<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE> - #5063] (msg,UNPROVEN)
   o250
   G53 G0 Z#<z_home> (Z up to safe position)
   G53 G0 Y#<pocket_approach_y>  (Move out of tool setter postion)

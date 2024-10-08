@@ -33,7 +33,7 @@ o<probe-print> sub
     o250 if [#<z_home> EQ 0.0]
         #<probe-val> = [#5063 - #<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE>]
     o250 else
-        #<probe-val> = [#<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE> - #5063]
+        #<probe-val> = [#<_ini[TOOLSENSOR]TOOLSENSOR_SPINDLEPROBE> - #5063] (msg,UNPROVEN)
     o250
     ;#<probe-val> = #5063
     ;G90
