@@ -1704,63 +1704,63 @@
            <item row="1" column="0">
             <widget class="QPushButton" name="tool_change_pb_1">
              <property name="text">
-              <string>Tool 1</string>
+              <string>[1] 1/8in FEM</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
             <widget class="QPushButton" name="tool_change_pb_2">
              <property name="text">
-              <string>Tool 2</string>
+              <string>[2] 30deg V</string>
              </property>
             </widget>
            </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="tool_change_pb_3">
              <property name="text">
-              <string>Tool 3</string>
+              <string>[3] Tap Ball</string>
              </property>
             </widget>
            </item>
            <item row="1" column="3">
             <widget class="QPushButton" name="tool_change_pb_4">
              <property name="text">
-              <string>Tool 4</string>
+              <string>[4]  1/4in BEM</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0">
             <widget class="QPushButton" name="tool_change_pb_5">
              <property name="text">
-              <string>Tool 5</string>
+              <string>[5] 90deg V</string>
              </property>
             </widget>
            </item>
            <item row="3" column="1">
             <widget class="QPushButton" name="tool_change_pb_6">
              <property name="text">
-              <string>Tool 6</string>
+              <string>[6] 1/4in DC FEM</string>
              </property>
             </widget>
            </item>
            <item row="3" column="2">
             <widget class="QPushButton" name="tool_change_pb_7">
              <property name="text">
-              <string>Tool 7</string>
+              <string>[7] 1/4in plastic</string>
              </property>
             </widget>
            </item>
            <item row="3" column="3">
             <widget class="QPushButton" name="tool_change_pb_8">
              <property name="text">
-              <string>Tool 8</string>
+              <string>[8] 1.5in Spoil</string>
              </property>
             </widget>
            </item>
            <item row="5" column="0">
             <widget class="QPushButton" name="tool_change_pb_9">
              <property name="text">
-              <string>Tool 9</string>
+              <string>[9] 1/4in UC FEM</string>
              </property>
             </widget>
            </item>
