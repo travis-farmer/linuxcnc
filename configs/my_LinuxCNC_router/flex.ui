@@ -4080,6 +4080,9 @@
         <height>0</height>
        </size>
       </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::West</enum>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
