@@ -1925,7 +1925,7 @@
            <enum>QTabWidget::West</enum>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_21">
            <attribute name="title">
@@ -1974,6 +1974,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/Lx_out.png</normaloff>images/Lx_out.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -1992,6 +2002,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/Lx_in.png</normaloff>images/Lx_in.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2012,6 +2032,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/Ly_in.png</normaloff>images/Ly_in.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2030,6 +2060,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/Ly_out.png</normaloff>images/Ly_out.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2066,6 +2106,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/workpiece_height.png</normaloff>images/workpiece_height.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2084,6 +2134,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/ts_height.png</normaloff>images/ts_height.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2214,6 +2274,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/X-Y+.png</normaloff>images/X-Y+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
             </widget>
             <widget class="QPushButton" name="probe_Xplus">
              <property name="geometry">
@@ -2226,6 +2296,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/X+.png</normaloff>images/X+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2246,6 +2326,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/X+Y-.png</normaloff>images/X+Y-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
             </widget>
             <widget class="QPushButton" name="probe_Yplus">
              <property name="geometry">
@@ -2258,6 +2348,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/Y+.png</normaloff>images/Y+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2278,6 +2378,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/X-Y-.png</normaloff>images/X-Y-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
             </widget>
             <widget class="QPushButton" name="probe_XplusYplus">
              <property name="geometry">
@@ -2291,6 +2401,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/X+Y+.png</normaloff>images/X+Y+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
             </widget>
             <widget class="QPushButton" name="probe_wk_center">
              <property name="geometry">
@@ -2303,6 +2423,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/xy_center.png</normaloff>images/xy_center.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2323,6 +2453,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/Y-.png</normaloff>images/Y-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2341,6 +2481,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/X-.png</normaloff>images/X-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2377,6 +2527,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inX-Y+.png</normaloff>images/inX-Y+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
             </widget>
             <widget class="QPushButton" name="probe_inXminus">
              <property name="geometry">
@@ -2389,6 +2549,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inX-.png</normaloff>images/inX-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2409,6 +2579,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inX+Y-.png</normaloff>images/inX+Y-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
             </widget>
             <widget class="QPushButton" name="probe_inhole">
              <property name="geometry">
@@ -2421,6 +2601,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inHole.png</normaloff>images/inHole.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2441,6 +2631,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inX+.png</normaloff>images/inX+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2460,6 +2660,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inX-Y-.png</normaloff>images/inX-Y-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
             </widget>
             <widget class="QPushButton" name="probe_inYplus">
              <property name="geometry">
@@ -2472,6 +2682,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inY+.png</normaloff>images/inY+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2492,6 +2712,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inY-.png</normaloff>images/inY-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2510,6 +2740,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/inX+Y+.png</normaloff>images/inX+Y+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
             </widget>
            </widget>
@@ -2577,6 +2817,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleX+.png</normaloff>images/angleX+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2595,6 +2845,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleX-.png</normaloff>images/angleX-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2615,6 +2875,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleY-.png</normaloff>images/angleY-.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2633,6 +2903,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleY+.png</normaloff>images/angleY+.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2793,6 +3073,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleY-flip.png</normaloff>images/angleY-flip.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2811,6 +3101,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleY+flip.png</normaloff>images/angleY+flip.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
@@ -2831,6 +3131,16 @@
              <property name="text">
               <string/>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleX-flip.png</normaloff>images/angleX-flip.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
+             </property>
              <property name="function" stdset="0">
               <string>mdi</string>
              </property>
@@ -2849,6 +3159,16 @@
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>images/angleX+flip.png</normaloff>images/angleX+flip.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>64</width>
+               <height>64</height>
+              </size>
              </property>
              <property name="function" stdset="0">
               <string>mdi</string>
