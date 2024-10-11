@@ -1,5 +1,0 @@
-o<kill-laser> sub
-    M68 E0 Q0
-    M65 P2
-o<kill-laser> endsub
-M2
