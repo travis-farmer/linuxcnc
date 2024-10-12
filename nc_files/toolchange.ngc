@@ -135,7 +135,13 @@ o<toolchange> sub
 		o2100 endif
 
 		o2200 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99 AND #<_selected_tool> NE 98]            (not tool zero or 99, as zero is no tool, and 99 is 3D probe)
-			M201	(Probe tool, but not the 3d probe 99, or laser 98)
+			o2210 if [#<_hal[tool-change-probe]>] (probe all tools when used)
+				M201	(Probe tool, but not the 3d probe 99, or laser 98)
+			o2210 else
+				o2211 if [#5403 EQ 0]
+					M201 (Probes tools that are set to zero, only)
+				o2211 endif
+			o2210 endif
 		o2200 endif
 
 	o2000 endif

@@ -3963,28 +3963,6 @@
            <string>Settings</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_25">
-           <item row="1" column="0">
-            <widget class="QCheckBox" name="checkBox_2">
-             <property name="toolTip">
-              <string>Enable Automatic Tool Change Operations</string>
-             </property>
-             <property name="text">
-              <string>ATC Enable</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>hal_pin</string>
-             </property>
-             <property name="pin_name" stdset="0">
-              <string>atcenable</string>
-             </property>
-             <property name="hal_type" stdset="0">
-              <string>HAL_BIT</string>
-             </property>
-             <property name="hal_dir" stdset="0">
-              <string>HAL_OUT</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QCheckBox" name="checkBox">
              <property name="toolTip">
@@ -4023,6 +4001,50 @@
              </property>
              <property name="pin_name" stdset="0">
               <string>lasermode</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="toolTip">
+              <string>Enable Automatic Tool Change Operations</string>
+             </property>
+             <property name="text">
+              <string>ATC Enable</string>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>atcenable</string>
+             </property>
+             <property name="hal_type" stdset="0">
+              <string>HAL_BIT</string>
+             </property>
+             <property name="hal_dir" stdset="0">
+              <string>HAL_OUT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="checkBox_4">
+             <property name="text">
+              <string>Probe after ATC/MTC</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="function" stdset="0">
+              <string>hal_pin</string>
+             </property>
+             <property name="pin_name" stdset="0">
+              <string>atcprobe</string>
              </property>
              <property name="hal_type" stdset="0">
               <string>HAL_BIT</string>
