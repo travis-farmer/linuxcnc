@@ -1678,7 +1678,7 @@
               <string>Change to tool #98</string>
              </property>
              <property name="text">
-              <string>Laser</string>
+              <string>[98] Laser</string>
              </property>
             </widget>
            </item>
@@ -1688,7 +1688,7 @@
               <string>Change to tool #99</string>
              </property>
              <property name="text">
-              <string>3D Probe</string>
+              <string>[99] 3D Probe</string>
              </property>
             </widget>
            </item>
