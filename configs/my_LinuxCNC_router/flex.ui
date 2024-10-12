@@ -2226,6 +2226,25 @@
              </property>
             </widget>
            </widget>
+           <widget class="QLabel" name="label_68">
+            <property name="geometry">
+             <rect>
+              <x>450</x>
+              <y>10</y>
+              <width>391</width>
+              <height>131</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap>images/FlexGUI-whitebg1.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
           </widget>
           <widget class="QWidget" name="Edge">
            <attribute name="title">
