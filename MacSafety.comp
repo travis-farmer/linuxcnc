@@ -64,22 +64,6 @@ unsigned long time_with_ms (void)
     return(ms);
 }
 
-bool TriggerWarning(void) {
-    if (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-bool TriggerEstop(void) {
-    if (SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 FUNCTION(_) {
     // if state active, buzzer for 2500ms
     if (BuzzerState == true) {
@@ -106,7 +90,7 @@ FUNCTION(_) {
     }
 
     // status LED Tower - red, amber, green, blue, white, buzzer
-    if (EstopIn == true || TriggerEstop() == true) {
+    if (EstopIn == true || (SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop)) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;
@@ -114,10 +98,10 @@ FUNCTION(_) {
             BuzzerState = true;
         }
         if (EstopIn == false && EstopFired == false) {
-            EstopOut = false;
+            EstopOut = true;
             EstopFired = true;
         }
-    } else if (ProgPausedIn == true || TriggerWarning() == true) {
+    } else if (ProgPausedIn == true || (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger)) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
@@ -146,8 +130,8 @@ FUNCTION(_) {
     } else {
         SignalTowerBlue = false;
     }
-    if (EstopFired == true && TriggerEstop == false) {
-        EstopOut = true;
+    if (EstopFired == true && (SpindTemp < SpindTempEstop || SpindHP < SpindHpEstop)) {
+        EstopOut = false;
         EstopFired = false;
     }
 }

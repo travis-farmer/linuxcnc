@@ -16,17 +16,16 @@ o<toolchange> sub
 
 	M9	(Turn coolant off)
 	G17 G20 G40 G61 G80 G94 G97 G98 G49	(Baseline modal state)
+	#<pocket_current_x> = [#<_ini[TOOL_CHANGE]POCKET_1_X> + [[#<_current_pocket> - 1] * #<_ini[TOOL_CHANGE]POCKET_DELTA_X>]]
+	#<pocket_selected_x> = [#<_ini[TOOL_CHANGE]POCKET_1_X> + [[#<_selected_pocket> - 1] * #<_ini[TOOL_CHANGE]POCKET_DELTA_X>]]
+	#<pocket_approach_y> = [#<_ini[TOOL_CHANGE]POCKET_Y> + #<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>]
 
+	#<pocket_safe_z> = [#<_ini[JOINT_2]HOME>] (max clearance over tool pockets, TJF)
 	o2000 if[#<_current_tool> NE #<_selected_tool>]	(Same tool as before so no need to do anything.)
 		(This is a different tool.)
 
 		o2100 if [#<_hal[tool-change-mode]>]
 			( -=AUTOMATIC TOOL CHANGE=- )
-			#<pocket_current_x> = [#<_ini[TOOL_CHANGE]POCKET_1_X> + [[#<_current_pocket> - 1] * #<_ini[TOOL_CHANGE]POCKET_DELTA_X>]]
-			#<pocket_selected_x> = [#<_ini[TOOL_CHANGE]POCKET_1_X> + [[#<_selected_pocket> - 1] * #<_ini[TOOL_CHANGE]POCKET_DELTA_X>]]
-			#<pocket_approach_y> = [#<_ini[TOOL_CHANGE]POCKET_Y> + #<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>]
-			;#<pocket_safe_z> = [#<_ini[TOOL_CHANGE]POCKET_Z> + #<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z>]
-			#<pocket_safe_z> = #<_ini[JOINT_2]HOME> (max clearance over tool pockets, TJF)
 
 			M66 P3 L0	(Check air pressure sensor, TJF)
 			o2110 if [#5399 EQ 0]

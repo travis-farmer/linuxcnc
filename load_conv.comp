@@ -24,7 +24,6 @@ author "Travis Farmer";
 FUNCTION(_) {
   convamps = (amps/100.0);
   load = round(convamps/(maxamps/100.0));
-  float convvolts = (volts/100.0);
-  powerKW = ((convvolts * convamps) / 1000.0);
+  powerKW = ((volts * convamps) / 1000.0);
   hp = (powerKW * 1.34102);
 }
