@@ -119,6 +119,10 @@ net cpl-u-air-psi => MacSafety.0.ATCair
 setp MacSafety.0.ATCairTrigger 90.00
 setp MacSafety.0.SpindTemp 1.0 #set to relavent pin when good spindle temp reading
 setp MacSafety.0.SpindTempTrigger 5.0 #set to a safe temp limit
+setp MacSafety.0.SpindTempEstop 10.0 #set to estop temp trigger limit
+net spindle-load-hp => MacSafety.0.SpindHP
+setp MacSafety.0.SpindHPtrigger 5.5
+setp MacSafety.0.SpindHpEstop 6.0
 
 ##################
 # --- MB2HAL --- #
