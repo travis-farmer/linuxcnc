@@ -10,7 +10,10 @@ component load_conv "calculates percentage of load based on motor Amps";
 pin in float amps "Amps * 100, in";
 pin out float load "Percent load out, out";
 pin in float maxamps "Max amps, in";
+pin in float volts "volts * 100, in";
 pin out float convamps "Converted amps value. out";
+pin out float hp "HP from power, out";
+pin out float powerKW "Power in KW, out";
 function _;
 license "GPL";
 author "Travis Farmer";
@@ -19,6 +22,9 @@ author "Travis Farmer";
 #include <rtapi_math.h>
 
 FUNCTION(_) {
-  convamps = (amps/100);
+  convamps = (amps/100.0);
   load = round(convamps/(maxamps/100.0));
+  float convvolts = (volts/100.0);
+  powerKW = ((convvolts * convamps) / 1000.0);
+  hp = (powerKW * 1.34102);
 }
