@@ -17,7 +17,11 @@ pin in bit EstopIn "input from ESTOP";
 pin in bit LaserMode "input from laser mode switch";
 pin in bit ManualChangeWaiting "Waiting for manual tool change";
 pin in bit LaserActive "Laser is ACTIVE LED";
-pin in bit ATCairGood "ATC Air is Good";
+pin in float ATCair "ATC Air input";
+pin in float ATCairTrigger "ATC less than air trigger";
+pin in float SpindTemp "Spindle temperature";
+pin in float SpindTempTrigger "Spindle Temp Trigger";
+
 function _;
 license "GPL";
 author "Travis Farmer";
@@ -87,7 +91,7 @@ FUNCTION(_) {
         if (BuzzerFired == false) {
             BuzzerState = true;
         }
-    } else if (ProgPausedIn == true || ATCairGood == false) {
+    } else if (ProgPausedIn == true || ATCair <= ATCairTrigger || SpindTemp <= SpindTempTrigger) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;

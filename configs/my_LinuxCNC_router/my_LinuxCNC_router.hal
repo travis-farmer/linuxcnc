@@ -114,7 +114,10 @@ net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output
 net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.output-18
 
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
-net spindle-air-pressure => MacSafety.0.ATCairGood
+net cpl-u-air-psi => MacSafety.0.ATCair
+setp MacSafety.0.ATCairTrigger 90.00
+setp MacSafety.0.SpindTemp 1.0 #set to relavent pin when good spindle temp reading
+setp MacSafety.0.SpindTempTrigger 5.0 #set to a safe temp limit
 
 ##################
 # --- MB2HAL --- #
