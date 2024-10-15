@@ -114,7 +114,7 @@ FUNCTION(_) {
             BuzzerState = true;
         }
         if (EstopIn == false && EstopFired == false) {
-            EstopOut = true;
+            EstopOut = false;
             EstopFired = true;
         }
     } else if (ProgPausedIn == true || TriggerWarning() == true) {
@@ -147,7 +147,7 @@ FUNCTION(_) {
         SignalTowerBlue = false;
     }
     if (EstopFired == true && TriggerEstop == false) {
-        EstopOut = false;
+        EstopOut = true;
         EstopFired = false;
     }
 }
