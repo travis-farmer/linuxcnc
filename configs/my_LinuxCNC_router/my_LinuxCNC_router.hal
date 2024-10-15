@@ -66,7 +66,7 @@ addf time.1 servo-thread
 #addf ads1115.0.read servo-thread
 loadrt max31855 personality=1
 addf max31855.0.bitbang-spi servo-thread
-loadrt rpmlimiter personality=10
+loadrt rpmlimiter personality=16
 addf rpmlimiter.0 servo-thread
 loadrt mult2 count=2
 addf mult2.0 servo-thread
@@ -134,14 +134,20 @@ loadusr -W mb2hal config=mb2hal.ini
 net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 setp rpmlimiter.0.tool.0.max 24000
 setp rpmlimiter.0.tool.1.max 24000
-setp rpmlimiter.0.tool.2.max 24000
-setp rpmlimiter.0.tool.3.max 24000
-setp rpmlimiter.0.tool.4.max 24000
-setp rpmlimiter.0.tool.5.max 24000
-setp rpmlimiter.0.tool.6.max 24000
-setp rpmlimiter.0.tool.7.max 24000
-setp rpmlimiter.0.tool.8.max 24000
-setp rpmlimiter.0.tool.9.max 24000
+setp rpmlimiter.0.tool.2.max 18000
+setp rpmlimiter.0.tool.3.max 18000
+setp rpmlimiter.0.tool.4.max 18000
+setp rpmlimiter.0.tool.5.max 18000
+setp rpmlimiter.0.tool.6.max 18000
+setp rpmlimiter.0.tool.7.max 18000
+setp rpmlimiter.0.tool.8.max 18000
+setp rpmlimiter.0.tool.9.max 18000
+setp rpmlimiter.0.tool.10.max 24000
+setp rpmlimiter.0.tool.11.max 24000
+setp rpmlimiter.0.tool.12.max 24000
+setp rpmlimiter.0.tool.13.max 24000
+setp rpmlimiter.0.tool.14.max 24000
+setp rpmlimiter.0.tool.15.max 24000
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited hal2mbvfd.0.RpmIn <= rpmlimiter.0.rpmout
