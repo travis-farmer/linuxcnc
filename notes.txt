@@ -1,7 +1,5 @@
 xset -dpms s off s noblank s 0 0 s noexpose
 
-10.150.86.129
-
 get a list of pins and parameters like this
 8:25AM
 in one terminal do
@@ -19,3 +17,7 @@ look for something like encoder.N.counter-mode bit rw
 
 ------------------------------------------------------
  Open /etc/lightdm/lightdm.conf for editing. Search for autologin-user=; uncomment line (remove #) and add username; also uncomment next line (autologin-user-timeout=0). Save file, close text editor, and reboot to test. As discussed below, it's not clear the second modification is needed, or even does anything, but it's the official Debian recommendation.
+
+halcompile -i ./MacSafety.comp
+
+watch iocontrol.0.emc-enable-in, hm2_7i80.0.7i70.0.1.input-15, MacSafety.0.EstopOut, with the MacSafety line enabled. make sure it performs correctly.

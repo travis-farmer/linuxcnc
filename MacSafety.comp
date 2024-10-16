@@ -1,7 +1,5 @@
 component MacSafety "manage safety interlocks, and display signal tower";
 
-pin out bit InterlockOut "true when machine is safe";
-pin out bit DoorUnlockOut "True when machine is safe to open, and door button pressed";
 pin out bit SignalTowerRed "Signal Tower RED output";
 pin out bit SignalTowerAmber "Signal Tower Amber output";
 pin out bit SignalTowerGreen "Signal Tower Green output";
@@ -12,8 +10,6 @@ pin out bit EstopOut "trigger Estop output";
 pin in bit ProgPausedIn "halui.program.is-paused connection";
 pin in bit ProgRunningIn "halui.program.is-running connection";
 pin in bit ProgIdleIn "halui.program.is-idle connection";
-pin in bit DoorInterlockIn "input from door interlock, true when safe";
-pin in bit DoorUnlockButtonIn "input from door unlock button";
 pin in bit EstopIn "input from ESTOP";
 pin in bit LaserMode "input from laser mode switch";
 pin in bit ManualChangeWaiting "Waiting for manual tool change";
@@ -78,17 +74,6 @@ FUNCTION(_) {
         }
     }
 
-    // InterlockOut and DoorUnlockOut proc
-    if (ProgRunningIn == true && DoorInterlockIn == true && ProgPausedIn == false && LaserMode == true) {
-        InterlockOut = true;
-    } else if (ProgPausedIn == true || ProgIdleIn == true) {
-        InterlockOut = false;
-        if (DoorUnlockButtonIn == true) {DoorUnlockOut = true;}
-        else {DoorUnlockOut = false;}
-    } else if (ProgRunningIn == true && DoorInterlockIn == false && ProgPausedIn == false && LaserMode == true) {
-        InterlockOut = false;
-    }
-
     // status LED Tower - red, amber, green, blue, white, buzzer
     if (EstopIn == true || (SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop)) {
         SignalTowerGreen = false;
@@ -98,7 +83,8 @@ FUNCTION(_) {
             BuzzerState = true;
         }
         if (EstopIn == false && EstopFired == false) {
-            EstopOut = true;
+            EstopOut = false;
+
             EstopFired = true;
         }
     } else if (ProgPausedIn == true || (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger)) {
@@ -131,7 +117,7 @@ FUNCTION(_) {
         SignalTowerBlue = false;
     }
     if (EstopFired == true && (SpindTemp < SpindTempEstop || SpindHP < SpindHpEstop)) {
-        EstopOut = false;
+        EstopOut = true;
         EstopFired = false;
     }
 }

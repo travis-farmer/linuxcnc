@@ -5,14 +5,10 @@ placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+hm2_7i80.0.7i70.0.1.input-19
-    pin+hm2_7i80.0.7i70.0.1.input-19-not
-    pin+hm2_7i80.0.7i70.0.1.input-20
-    pin+hm2_7i80.0.7i70.0.1.input-20-not
-    pin+hm2_7i80.0.7i70.0.1.input-18
-    pin+hm2_7i80.0.7i70.0.1.input-21
-    pin+hm2_7i80.0.7i70.0.1.input-21-not
-    pin+load-conv.0.volts
+    pin+iocontrol.0.emc-enable-in
+    pin+hm2_7i80.0.7i70.0.1.input-15
+    pin+hm2_7i80.0.7i70.0.1.input-15-not
+    pin+MacSafety.0.EstopOut
 }
 set ::workmode watchhal
 set ::watchInterval 100
