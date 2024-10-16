@@ -21,3 +21,4 @@ look for something like encoder.N.counter-mode bit rw
 halcompile -i ./MacSafety.comp
 
 watch iocontrol.0.emc-enable-in, hm2_7i80.0.7i70.0.1.input-15, MacSafety.0.EstopOut, with the MacSafety line enabled. make sure it performs correctly.
+run the latency histogram for a while, and try changing the servo period to suit... see if any change.
