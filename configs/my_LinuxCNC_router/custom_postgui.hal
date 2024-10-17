@@ -10,3 +10,7 @@ net vac-arm-trig vacuum-control.0.vac-arm-in <= flexhal.vacuumenable
 net tool-change-mode <= flexhal.atcenable
 net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= flexhal.lasermode
 net tool-change-probe <= flexhal.atcprobe
+net cycle-hours => flexhal.cycle-hrs
+net cycle-minutes => flexhal.cycle-min
+net cycle-seconds => flexhal.cycle-sec
+net vfd-conv-rpm => flexhal.spindle-actual
