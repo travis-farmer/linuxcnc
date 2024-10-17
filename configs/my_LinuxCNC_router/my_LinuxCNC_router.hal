@@ -3,8 +3,8 @@
 # If you make changes to this file, they will be
 # overwritten when you run PNCconf again
 
-loadrt [KINS](KINEMATICS)
-loadrt [EMCMOT](EMCMOT) servo_period_nsec=[EMCMOT](SERVO_PERIOD) num_joints=[KINS](JOINTS) num_spindles=[TRAJ](SPINDLES) num_dio=32 num_aio=10
+loadrt [KINS]KINEMATICS
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES num_dio=32 num_aio=10
 loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=0 num_stepgens=4 sserial_port_0=01100000"
 
@@ -99,8 +99,8 @@ net lcnc-hours <= time.1.hours
 #####################
 # --- MacSafety --- #
 #####################
-net MS-estop-trigger and2.1.in1 <= MacSafety.0.EstopOut
-#setp and2.1.in1 1
+#net MS-estop-trigger and2.1.in1 <= MacSafety.0.EstopOut
+setp and2.1.in1 1
 
 net enable-manual-change-button motion.digital-out-03 => hm2_7i80.0.7i72.0.2.output-12 # enable LED for spindle change.
 
@@ -304,7 +304,7 @@ net LaserAirOut vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-06
 #                                                                           M65 P2 - turn off digital output immediately.
 net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 #        laser E-Stop handled by MacSafety componant
 
-net MS-InterlockOut MacSafety.0.InterlockOut => LaserAnalog.0.DoorInterlockIn
+setp LaserAnalog.0.DoorInterlockIn 1
 net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
 net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 

@@ -7,7 +7,7 @@ T5   P5   ; 90deg V
 T6   P6   D+0.250000 ; 1/4in DC flat end mill
 T7   P7   D+0.250000 ; 1/4in spiral plastic cutting
 T8   P8   D+1.500000 ; 1.5in spoilboard flattening
-T9   P9   D+0.250000 ; 1/4in UC flat end mill
+T9   P9   D+0.250000 Z-1.327814 ; 1/4in UC flat end mill
 T10  P10  ;
 T11  P11  ;
 T12  P12  ;
