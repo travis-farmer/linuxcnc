@@ -12,8 +12,9 @@ pin in bit ProgRunningIn "halui.program.is-running connection";
 pin in bit ProgIdleIn "halui.program.is-idle connection";
 pin in bit EstopIn "input from ESTOP";
 pin in bit LaserMode "input from laser mode switch";
+pin in bit NGCwarning "input from NGC warning";
 pin in bit ManualChangeWaiting "Waiting for manual tool change";
-pin in bit LaserActive "Laser is ACTIVE LED";
+pin in bit ATCActive "ATC is ACTIVE LED";
 pin in float ATCair "ATC Air input";
 pin in float ATCairTrigger "ATC less than air trigger";
 pin in float SpindTemp "Spindle temperature";
@@ -87,7 +88,7 @@ FUNCTION(_) {
 
             EstopFired = true;
         }
-    } else if (ProgPausedIn == true || (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger)) {
+    } else if (ProgPausedIn == true || (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger || NGCwarning == true)) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
@@ -106,7 +107,7 @@ FUNCTION(_) {
         BuzzerState = false;
         BuzzerFired = false;
     }
-    if (LaserActive == true) {
+    if (ATCActive == true) {
         SignalTowerWhite = true;
     } else {
         SignalTowerWhite = false;

@@ -111,6 +111,8 @@ net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite => hm2_7i80.0.7i72.0.2.outp
 net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output-17
 net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.output-18
 
+net MS-NGCwarning MacSafety.0.NGCwarning <= motion.digital-out-06
+net MS-ATCActive MacSafety.0.ATCActive <= motion.digital-out-05
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
 net cpl-u-air-psi => MacSafety.0.ATCair
 setp MacSafety.0.ATCairTrigger 90.00
@@ -304,7 +306,7 @@ net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 #        lase
 
 net MS-InterlockOut MacSafety.0.InterlockOut => LaserAnalog.0.DoorInterlockIn
 net LaserOn timedelay.0.in hm2_7i80.0.7i72.0.2.output-05 hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
-net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07 MacSafety.0.LaserActive
+net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 
 ############################
 # --- external signals --- #
