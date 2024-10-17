@@ -156,7 +156,7 @@ net spindle-cw => hal2mbvfd.0.VfdFwd
 net spindle-ccw => hal2mbvfd.0.VfdRev
 net vfd-read-freq mb2hal.vfdparam.01.float => hal2mbvfd.0.VfdRunFreqIn # VFD reports wrong rpm, so we calculate from frequency.
 net vfd-conv-rps hal2mbvfd.0.VfdRunRpsOut => spindle.0.speed-in
-net vfd-conv-rpm hal2mbvfd.0.VfdRunRpmOut => motion.analog-in-04
+net vfd-conv-rpm <= hal2mbvfd.0.VfdRunRpmOut
 net spindle-out-amps <= mb2hal.vfdparam.02.float
 net spindle-out-volts <= mb2hal.vfdparam.03.float
 #                               fan relay                  VFD enable
