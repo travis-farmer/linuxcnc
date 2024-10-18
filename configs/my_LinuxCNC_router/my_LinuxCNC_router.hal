@@ -77,6 +77,8 @@ loadrt toggle count=1
 addf toggle.0 servo-thread
 loadrt load_conv
 addf load-conv.0 servo-thread
+loadrt oneshot
+addf oneshot.0 servo-thread
 
 ################
 # --- MQTT --- #
@@ -107,7 +109,11 @@ net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber => hm2_7i80.0.7i72.0.2.outp
 net MS-SignalTowerRed MacSafety.0.SignalTowerRed => hm2_7i80.0.7i72.0.2.output-15
 net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite => hm2_7i80.0.7i72.0.2.output-16
 net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output-17
-net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.output-18
+net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => oneshot.0.in
+net MS-SignalTowerBuzzernot MacSafety.0.SignalTowerBuzzernot => oneshot.0.reset
+net MS-SignalTowerBuzzerOut oneshot.0.out => hm2_7i80.0.7i72.0.2.output-18
+setp oneshot.0.width 1.0
+setp oneshot.0.retriggerable 0
 
 net MS-NGCwarning MacSafety.0.NGCwarning <= motion.digital-out-06
 net MS-ATCActive MacSafety.0.ATCActive <= motion.digital-out-05

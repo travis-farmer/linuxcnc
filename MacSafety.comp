@@ -6,6 +6,7 @@ pin out bit SignalTowerGreen "Signal Tower Green output";
 pin out bit SignalTowerWhite "Signal Tower WHite output";
 pin out bit SignalTowerBlue "Signal Tower Blue output";
 pin out bit SignalTowerBuzzer "Signal Tower Buzzer output";
+pin out bit SignalTowerBuzzernot "NOT Signal tower buzzer output";
 pin out bit EstopOut "trigger Estop output";
 pin in bit ProgPausedIn "halui.program.is-paused connection";
 pin in bit ProgRunningIn "halui.program.is-running connection";
@@ -42,9 +43,6 @@ author "Travis Farmer";
 #include <time.h>
 
 unsigned long lastTimer = 0UL;
-bool BuzzerState = false;
-bool BuzzerFired = false;
-bool EstopFired = false;
 
 unsigned long time_with_ms (void)
 {
@@ -63,28 +61,16 @@ unsigned long time_with_ms (void)
 }
 
 FUNCTION(_) {
-    // if state active, buzzer for 2500ms
-    if (BuzzerState == true) {
-        unsigned long curTime = time_with_ms();
-        if (curTime - lastTimer >= 2500) {
-            lastTimer = 0UL;
-            BuzzerState = false;
-            SignalTowerBuzzer = false;
-        } else {
-            SignalTowerBuzzer = true;
-            BuzzerFired = true;
-        }
-    }
-
+	bool EstopFired = false;
+	
     // status LED Tower - red, amber, green, blue, white, buzzer
     if (EstopIn == true || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop)) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;
-        if (BuzzerFired == false) {
-            BuzzerState = true;
-        }
-        if (EstopIn == false && EstopFired == false) {
+        SignalTowerBuzzer = true;
+        SignalTowerBuzzernot = false;
+        if (EstopOut == false && EstopFired == false) {
             EstopOut = false;
 
             EstopFired = true;
@@ -93,20 +79,20 @@ FUNCTION(_) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
-        BuzzerState = false;
-        BuzzerFired = false;
+        SignalTowerBuzzer = true;
+        SignalTowerBuzzernot = true;
     } else if (ProgRunningIn == true) {
         SignalTowerGreen = true;
         SignalTowerAmber = false;
         SignalTowerRed = false;
-        BuzzerState = false;
-        BuzzerFired = false;
+        SignalTowerBuzzer = false;
+        SignalTowerBuzzernot = true;
     } else {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = false;
-        BuzzerState = false;
-        BuzzerFired = false;
+        SignalTowerBuzzer = false;
+        SignalTowerBuzzernot = true;
     }
     if (ATCActive == true) {
         SignalTowerWhite = true;
@@ -122,4 +108,5 @@ FUNCTION(_) {
         EstopOut = true;
         EstopFired = false;
     }
+
 }
