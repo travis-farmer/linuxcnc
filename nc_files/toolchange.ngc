@@ -71,10 +71,8 @@ o<toolchange> sub
 				G53 Z#<pocket_safe_z>	(Change Z Position)
 
 				G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
-				M64 P3 (turn on MTC available LED)
 				M64 P4 (turn on MTC waiting LED)
 				M6 T#<_selected_tool>
-				M65 P3 (turn off MTC available LED)
 				M65 P4 (turn off MTC waiting LED)
 			o2120 endif
 
@@ -121,10 +119,8 @@ o<toolchange> sub
 				G53 Z#<pocket_safe_z>	(Change Z Position)
 
 				G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>   	 	(Move XY to manual change position)
-				M64 P3 (turn on MTC available LED)
 				M64 P4 (turn on MTC waiting LED)
 				M6 T#<_selected_tool>
-				M65 P3 (turn off MTC available LED)
 				M65 P4 (turn off MTC waiting LED)
 			o2130 else
 				(-=NO TOOL TO LOAD, EXIT=-)
@@ -138,10 +134,8 @@ o<toolchange> sub
 			G53 Z#<pocket_safe_z>									(Change Z Position)
 
 			G53 X#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_X> Y#<_ini[TOOL_CHANGE]MANUAL_CHANGE_LOC_Y>	(Move XY to manual change position)
-			M64 P3 (turn on MTC available LED)
 			M64 P4 (turn on MTC waiting LED)
 			M6 T#<_selected_tool>
-			M65 P3 (turn off MTC available LED)
 			M65 P4 (turn off MTC waiting LED)
 		o2100 endif
 

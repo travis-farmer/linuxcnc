@@ -4601,9 +4601,21 @@
          </widget>
         </item>
         <item row="9" column="1">
-         <widget class="QLabel" name="ain_3_lb">
+         <widget class="QLabel" name="label_87">
           <property name="text">
            <string>TextLabel</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>spindle-amps</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
           </property>
          </widget>
         </item>
@@ -4652,9 +4664,21 @@
          </widget>
         </item>
         <item row="9" column="3">
-         <widget class="QLabel" name="ain_2_lb">
+         <widget class="QLabel" name="label_88">
           <property name="text">
            <string>TextLabel</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>spindle-loading</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
           </property>
          </widget>
         </item>
@@ -4703,9 +4727,21 @@
          </widget>
         </item>
         <item row="10" column="1">
-         <widget class="QLabel" name="ain_0_lb">
+         <widget class="QLabel" name="label_89">
           <property name="text">
            <string>TextLabel</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>psi-comp</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
           </property>
          </widget>
         </item>
@@ -4760,9 +4796,21 @@
          </widget>
         </item>
         <item row="10" column="3">
-         <widget class="QLabel" name="ain_1_lb">
+         <widget class="QLabel" name="label_90">
           <property name="text">
            <string>TextLabel</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>psi-tool</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
           </property>
          </widget>
         </item>
@@ -4832,7 +4880,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLabel" name="ain_5_lb">
+         <widget class="QLabel" name="label_91">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -4840,6 +4888,18 @@
           </property>
           <property name="text">
            <string>TextLabel</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>spindle-hp</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
           </property>
          </widget>
         </item>
