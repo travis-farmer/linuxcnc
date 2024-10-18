@@ -4613,6 +4613,9 @@
           <property name="hal_dir" stdset="0">
            <string>HAL_IN</string>
           </property>
+          <property name="precision" stdset="0">
+           <string>5</string>
+          </property>
          </widget>
         </item>
         <item row="9" column="4" colspan="2">
@@ -4737,6 +4740,9 @@
           </property>
           <property name="hal_dir" stdset="0">
            <string>HAL_IN</string>
+          </property>
+          <property name="precision" stdset="0">
+           <string>5</string>
           </property>
          </widget>
         </item>
@@ -4894,6 +4900,9 @@
           <property name="hal_dir" stdset="0">
            <string>HAL_IN</string>
           </property>
+          <property name="precision" stdset="0">
+           <string>5</string>
+          </property>
          </widget>
         </item>
         <item row="3" column="1">
@@ -4925,17 +4934,7 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="0">
-         <widget class="QLabel" name="label_66">
-          <property name="toolTip">
-           <string>Tool Regulated PSI</string>
-          </property>
-          <property name="text">
-           <string>Tool PSI</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="2" colspan="7">
+        <item row="10" column="2" colspan="2">
          <widget class="QLabel" name="label_89">
           <property name="text">
            <string>TextLabel</string>
@@ -4958,9 +4957,22 @@
           <property name="hal_dir" stdset="0">
            <string>HAL_IN</string>
           </property>
+          <property name="precision" stdset="0">
+           <string>2</string>
+          </property>
          </widget>
         </item>
-        <item row="11" column="2" colspan="7">
+        <item row="10" column="4" colspan="3">
+         <widget class="QLabel" name="label_66">
+          <property name="toolTip">
+           <string>Tool Regulated PSI</string>
+          </property>
+          <property name="text">
+           <string>Tool PSI</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="7" colspan="2">
          <widget class="QLabel" name="label_90">
           <property name="text">
            <string>TextLabel</string>
@@ -4979,6 +4991,9 @@
           </property>
           <property name="hal_dir" stdset="0">
            <string>HAL_IN</string>
+          </property>
+          <property name="precision" stdset="0">
+           <string>2</string>
           </property>
          </widget>
         </item>
@@ -5021,7 +5036,7 @@
      <x>0</x>
      <y>0</y>
      <width>1127</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
