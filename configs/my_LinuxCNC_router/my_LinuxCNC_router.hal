@@ -99,8 +99,8 @@ net lcnc-hours <= time.1.hours
 #####################
 # --- MacSafety --- #
 #####################
-#net MS-estop-trigger and2.1.in1 <= MacSafety.0.EstopOut
-setp and2.1.in1 1
+net MS-estop-trigger and2.1.in1 <= MacSafety.0.EstopOut
+#setp and2.1.in1 1 # failsafe setting if i botch MacSafety Estop triggering
 
 net MS-SignalTowerGreen MacSafety.0.SignalTowerGreen => hm2_7i80.0.7i72.0.2.output-13
 net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber => hm2_7i80.0.7i72.0.2.output-14
@@ -112,8 +112,9 @@ net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.ou
 net MS-NGCwarning MacSafety.0.NGCwarning <= motion.digital-out-06
 net MS-ATCActive MacSafety.0.ATCActive <= motion.digital-out-05
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
-net cpl-u-air-psi => MacSafety.0.ATCair
-setp MacSafety.0.ATCairTrigger 90.00
+net cpl-c-air-psi => MacSafety.0.ATCair
+setp MacSafety.0.ATCairTrigger 100.00
+setp MacSafety.0.ATCairEstop 90.00
 setp MacSafety.0.SpindTemp 1.0 #set to relavent pin when good spindle temp reading
 setp MacSafety.0.SpindTempTrigger 5.0 #set to a safe temp limit
 setp MacSafety.0.SpindTempEstop 10.0 #set to unsafe temp limit
