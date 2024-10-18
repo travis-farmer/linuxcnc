@@ -104,14 +104,16 @@ net lcnc-hours <= time.1.hours
 net MS-estop-trigger and2.1.in1 <= MacSafety.0.EstopOut
 #setp and2.1.in1 1 # failsafe setting if i botch MacSafety Estop triggering
 
+net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => oneshot.0.in
+net MS-SignalTowerBuzzernot MacSafety.0.SignalTowerBuzzernot => oneshot.0.reset
+
 net MS-SignalTowerGreen MacSafety.0.SignalTowerGreen => hm2_7i80.0.7i72.0.2.output-13
 net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber => hm2_7i80.0.7i72.0.2.output-14
 net MS-SignalTowerRed MacSafety.0.SignalTowerRed => hm2_7i80.0.7i72.0.2.output-15
 net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite => hm2_7i80.0.7i72.0.2.output-16
 net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output-17
-net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => oneshot.0.in
-net MS-SignalTowerBuzzernot MacSafety.0.SignalTowerBuzzernot => oneshot.0.reset
 net MS-SignalTowerBuzzerOut oneshot.0.out => hm2_7i80.0.7i72.0.2.output-18
+
 setp oneshot.0.width 1.0
 setp oneshot.0.retriggerable 0
 
