@@ -4584,115 +4584,21 @@
         <string>Main</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="8" column="2">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="toolTip">
-           <string>shut off laser, in case E-stop fails to</string>
-          </property>
-          <property name="text">
-           <string>Kill Laser</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>mdi</string>
-          </property>
-          <property name="command" stdset="0">
-           <string>o&lt;kill-laser&gt; call</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="1">
-         <widget class="QLabel" name="label_87">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>spindle-amps</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_FLOAT</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="2">
-         <widget class="QPushButton" name="probing_enable_pb">
-          <property name="toolTip">
-           <string>enable probing, disable most everything else</string>
-          </property>
-          <property name="text">
-           <string>Probe Enable</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QPushButton" name="flood_pb">
-          <property name="text">
-           <string>Flood</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
+        <item row="4" column="4" colspan="2">
          <widget class="QLabel" name="label_38">
           <property name="text">
            <string>Motion Line</string>
           </property>
          </widget>
         </item>
-        <item row="9" column="0">
-         <widget class="QLabel" name="label_81">
+        <item row="4" column="0" colspan="2">
+         <widget class="QLabel" name="label_37">
           <property name="text">
-           <string>Spindle Amps</string>
+           <string>Current Line</string>
           </property>
          </widget>
         </item>
-        <item row="9" column="2">
-         <widget class="QLabel" name="label_82">
-          <property name="toolTip">
-           <string>Spindle Load %</string>
-          </property>
-          <property name="text">
-           <string>Spindle Load</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="3">
-         <widget class="QLabel" name="label_88">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>spindle-loading</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_FLOAT</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QPushButton" name="optional_stop_pb">
-          <property name="toolTip">
-           <string>Optional Stop at M1</string>
-          </property>
-          <property name="text">
-           <string>M1 Option</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
+        <item row="4" column="2" colspan="2">
          <widget class="QLabel" name="current_line_lb">
           <property name="text">
            <string>0</string>
@@ -4702,31 +4608,24 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="3">
-         <widget class="QLabel" name="motion_line_lb">
-          <property name="text">
-           <string>0</string>
+        <item row="10" column="0" colspan="2">
+         <widget class="QLabel" name="label_64">
+          <property name="toolTip">
+           <string>Compressed Air Inlet PSI</string>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          <property name="text">
+           <string>Comp PSI</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="3">
-         <widget class="QPushButton" name="unhome_all_pb">
+        <item row="9" column="0" colspan="2">
+         <widget class="QLabel" name="label_81">
           <property name="text">
-           <string>UnHome All</string>
+           <string>Spindle Amps</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="3">
-         <widget class="QPushButton" name="home_all_pb">
-          <property name="text">
-           <string>Home All</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="1">
+        <item row="10" column="2" colspan="2">
          <widget class="QLabel" name="label_89">
           <property name="text">
            <string>TextLabel</string>
@@ -4745,7 +4644,71 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="9" column="4" colspan="2">
+         <widget class="QLabel" name="label_82">
+          <property name="toolTip">
+           <string>Spindle Load %</string>
+          </property>
+          <property name="text">
+           <string>Spindle Load</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="4" colspan="2">
+         <widget class="QLabel" name="label_66">
+          <property name="toolTip">
+           <string>Tool Regulated PSI</string>
+          </property>
+          <property name="text">
+           <string>Tool PSI</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2" colspan="2">
+         <widget class="QLabel" name="label_87">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>spindle-amps</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_69">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>HP:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="QPushButton" name="flood_pb">
+          <property name="text">
+           <string>Flood</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2" colspan="2">
          <widget class="QPushButton" name="mist_pb">
           <property name="text">
            <string>Mist</string>
@@ -4755,24 +4718,134 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_37">
+        <item row="3" column="1">
+         <widget class="QLabel" name="label_71">
           <property name="text">
-           <string>Current Line</string>
+           <string>00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>cycle-hrs</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_U32</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
           </property>
          </widget>
         </item>
-        <item row="10" column="0">
-         <widget class="QLabel" name="label_64">
+        <item row="3" column="2">
+         <widget class="QLabel" name="label_72">
+          <property name="text">
+           <string>00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>cycle-min</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_U32</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_70">
+          <property name="text">
+           <string>Cycle Timer</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QLabel" name="label_73">
+          <property name="text">
+           <string>00</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>cycle-sec</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_U32</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="4">
+         <widget class="QLabel" name="file_lb">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" colspan="3">
+         <widget class="QLabel" name="label_91">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>spindle-hp</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="4" colspan="3">
+         <widget class="QPushButton" name="pushButton_4">
           <property name="toolTip">
-           <string>Compressed Air Inlet PSI</string>
+           <string>shut off laser, in case E-stop fails to</string>
           </property>
           <property name="text">
-           <string>Comp PSI</string>
+           <string>Kill Laser</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>mdi</string>
+          </property>
+          <property name="command" stdset="0">
+           <string>o&lt;kill-laser&gt; call</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="0">
+        <item row="8" column="7" colspan="2">
+         <widget class="QPushButton" name="probing_enable_pb">
+          <property name="toolTip">
+           <string>enable probing, disable most everything else</string>
+          </property>
+          <property name="text">
+           <string>Probe Enable</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
          <widget class="QPushButton" name="pushButton">
           <property name="toolTip">
            <string>Z up, then rapid to machine home</string>
@@ -4788,33 +4861,31 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="file_lb">
+        <item row="7" column="2" colspan="2">
+         <widget class="QPushButton" name="optional_stop_pb">
+          <property name="toolTip">
+           <string>Optional Stop at M1</string>
+          </property>
           <property name="text">
-           <string>TextLabel</string>
+           <string>M1 Option</string>
           </property>
          </widget>
         </item>
-        <item row="10" column="3">
-         <widget class="QLabel" name="label_90">
+        <item row="7" column="4" colspan="3">
+         <widget class="QPushButton" name="unhome_all_pb">
           <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>psi-tool</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_FLOAT</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
+           <string>UnHome All</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="2" colspan="2">
+        <item row="7" column="7" colspan="2">
+         <widget class="QPushButton" name="home_all_pb">
+          <property name="text">
+           <string>Home All</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4" colspan="5">
          <widget class="QLCDNumber" name="spindle_speed_0_lcd">
           <property name="toolTip">
            <string>Spindle RPM</string>
@@ -4827,7 +4898,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="2" colspan="2">
+        <item row="2" column="4" colspan="5">
          <widget class="QLabel" name="label_86">
           <property name="font">
            <font>
@@ -4854,38 +4925,18 @@
           </property>
          </widget>
         </item>
-        <item row="10" column="2">
-         <widget class="QLabel" name="label_66">
-          <property name="toolTip">
-           <string>Tool Regulated PSI</string>
-          </property>
+        <item row="4" column="6" colspan="3">
+         <widget class="QLabel" name="motion_line_lb">
           <property name="text">
-           <string>Tool PSI</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_69">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>HP:</string>
+           <string>0</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_91">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
+        <item row="9" column="7" colspan="2">
+         <widget class="QLabel" name="label_88">
           <property name="text">
            <string>TextLabel</string>
           </property>
@@ -4893,7 +4944,7 @@
            <string>hal_pin</string>
           </property>
           <property name="pin_name" stdset="0">
-           <string>spindle-hp</string>
+           <string>spindle-loading</string>
           </property>
           <property name="hal_type" stdset="0">
            <string>HAL_FLOAT</string>
@@ -4903,8 +4954,8 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QLabel" name="label_71">
+        <item row="10" column="7" colspan="2">
+         <widget class="QLabel" name="label_90">
           <property name="text">
            <string>TextLabel</string>
           </property>
@@ -4912,55 +4963,10 @@
            <string>hal_pin</string>
           </property>
           <property name="pin_name" stdset="0">
-           <string>cycle-hrs</string>
+           <string>psi-tool</string>
           </property>
           <property name="hal_type" stdset="0">
-           <string>HAL_U32</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QLabel" name="label_72">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>cycle-min</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_U32</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_70">
-          <property name="text">
-           <string>Cycle Timer</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="3">
-         <widget class="QLabel" name="label_73">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>cycle-sec</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_U32</string>
+           <string>HAL_FLOAT</string>
           </property>
           <property name="hal_dir" stdset="0">
            <string>HAL_IN</string>
