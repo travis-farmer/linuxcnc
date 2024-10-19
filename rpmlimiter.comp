@@ -1,7 +1,6 @@
 component rpmlimiter "limit spindle RPM by tool number";
 
-pin in s32 toolnumber "tool number, in";
-pin in float tool.#.max [100 : (personality)] "rpm max for tool, in.n.max";
+pin in float toolmax "rpm max K for tool, in";
 pin in float rpmin "RPM input, in";
 pin out float rpmout "RPM output, out";
 function _;
@@ -12,8 +11,8 @@ author "Travis Farmer";
 FUNCTION(_) {
     if (toolnumber == 99 || toolnumber == 98) {rpmout = 0;}
     else {
-        if (rpmin > tool_max(toolnumber) && toolnumber != 99 && toolnumber != 98) {
-            rpmout = tool_max(toolnumber);
+        if (rpmin > (toolmax * 1000) && toolnumber != 99 && toolnumber != 98) {
+            rpmout = (toolmax * 1000);
         }else if (rpmin < 12000.0 && toolnumber != 99 && toolnumber != 98) {
             rpmout = 12000.0;
         } else {

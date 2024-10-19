@@ -136,23 +136,8 @@ setp MacSafety.0.SpindHpEstop 6.0 #set to unsafe HP limit
 loadusr -W mb2hal config=mb2hal.ini
 
 # --- rpmlimiter ---
-net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
-setp rpmlimiter.0.tool.0.max 24000
-setp rpmlimiter.0.tool.1.max 24000
-setp rpmlimiter.0.tool.2.max 18000
-setp rpmlimiter.0.tool.3.max 18000
-setp rpmlimiter.0.tool.4.max 18000
-setp rpmlimiter.0.tool.5.max 18000
-setp rpmlimiter.0.tool.6.max 18000
-setp rpmlimiter.0.tool.7.max 18000
-setp rpmlimiter.0.tool.8.max 18000
-setp rpmlimiter.0.tool.9.max 18000
-setp rpmlimiter.0.tool.10.max 24000
-setp rpmlimiter.0.tool.11.max 24000
-setp rpmlimiter.0.tool.12.max 24000
-setp rpmlimiter.0.tool.13.max 24000
-setp rpmlimiter.0.tool.14.max 24000
-setp rpmlimiter.0.tool.15.max 24000
+loadusr -W toolrpm
+net current-tool-max toolrpm.max-rpm => rpmlimiter.0.toolmax
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited hal2mbvfd.0.RpmIn <= rpmlimiter.0.rpmout

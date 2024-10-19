@@ -14,3 +14,5 @@ look for something like encoder.N.counter-mode bit rw
 
 halcompile -i ./MacSafety.comp
 halcompile -i ./volts2psi.comp
+halcompile -i ./rpmlimiter.comp
+halcompile -i ./toolrpm.py
