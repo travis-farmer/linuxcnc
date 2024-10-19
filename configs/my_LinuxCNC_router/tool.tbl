@@ -1,13 +1,13 @@
 T0   P0   ;
 T1   P1   D+0.125000 Z-1.333613 ; 1/8in flat end mill
-T2   P2   Z-1.324860 ; 30deg V r=18
-T3   P3   D+0.062500 Z-1.325451 ; 0.0625in tapered ball nose r=18
-T4   P4   D+0.250000 Z-1.353174 ; 1/4in ball end mill r=18
-T5   P5   ; 90deg V r=18
-T6   P6   D+0.250000 ; 1/4in DC flat end mill r=18
-T7   P7   D+0.250000 ; 1/4in spiral plastic cutting r=18
-T8   P8   D+1.500000 ; 1.5in spoilboard flattening r=18
-T9   P9   D+0.250000 Z-1.327814 ; 1/4in UC flat end mill r=18
+T2   P2   Z-1.324860 W18 ; 30deg V
+T3   P3   D+0.062500 Z-1.325451 W18 ; 0.0625in tapered ball nose
+T4   P4   D+0.250000 Z-1.353174 W18 ; 1/4in ball end mill
+T5   P5   W18 ; 90deg V
+T6   P6   D+0.250000 W18 ; 1/4in DC flat end mill
+T7   P7   D+0.250000 W18 ; 1/4in spiral plastic cutting
+T8   P8   D+1.500000 W18 ; 1.5in spoilboard flattening
+T9   P9   D+0.250000 Z-1.327814 W18 ; 1/4in UC flat end mill
 T10  P10  ;
 T11  P11  ;
 T12  P12  ;

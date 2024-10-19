@@ -18,14 +18,13 @@ try:
         s.poll() # get values from the status channel
         current_tool = s.tool_in_spindle # get curent tool-number
         if s.tool_in_spindle != 0: # a tool is loaded
-            tool_comment = s.toolinfo(current_tool)['comment'] # get the comment string of the loaded tool
-            m = re.search(r'(?<=r=)\d+', tool_comment) # search the comment string for a one- or two-digit number after 'r='
-            if m is not None: # comment string contains the information
-                n = float(m.group(0))
+            tool_w = s.tool_table[current_tool].woffset
+            if tool_w is not None:
+                n = float(tool_w)
             else: # comment string does not contain the information
-                n = 24
+                n = 24.0
         else:
-            n = 24
+            n = 24.0
         # set hal pin
         h['max-rpm'] = n
 
