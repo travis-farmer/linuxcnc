@@ -68,7 +68,7 @@ addf time.1 servo-thread
 #addf ads1115.0.read servo-thread
 loadrt max31855 personality=1
 addf max31855.0.bitbang-spi servo-thread
-loadrt rpmlimiter personality=16
+loadrt rpmlimiter
 addf rpmlimiter.0 servo-thread
 loadrt mult2 count=2
 addf mult2.0 servo-thread
@@ -79,8 +79,6 @@ loadrt toggle count=1
 addf toggle.0 servo-thread
 loadrt load_conv
 addf load-conv.0 servo-thread
-loadrt oneshot
-addf oneshot.0 servo-thread
 loadrt estop_latch
 addf estop-latch.0 servo-thread
 
@@ -106,26 +104,22 @@ net lcnc-hours <= time.1.hours
 # --- MacSafety --- #
 #####################
 
-net estop-fault-trigger estop-latch.0.fault-in <= or2.7.out
-net estop-b-in or2.7.in0 <= MacSafety.0.EstopFault
-net estop-a-in or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
+net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
+setp or2.7.in0 0 # save for future inputs
+net estop-a-in or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15
+net estop-ext-trigger MacSafety.0.EstopTrigger <= or2.7.out
 net MS-estop-reset-in estop-latch.0.reset <= iocontrol.0.user-request-enable
 
 net MS-estop-trigger iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 #setp and2.1.in1 1 # failsafe setting if i botch MacSafety Estop triggering
-
-net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => oneshot.0.in
-net MS-SignalTowerBuzzernot MacSafety.0.SignalTowerBuzzernot => oneshot.0.reset
 
 net MS-SignalTowerGreen MacSafety.0.SignalTowerGreen => hm2_7i80.0.7i72.0.2.output-13
 net MS-SignalTowerAmber MacSafety.0.SignalTowerAmber => hm2_7i80.0.7i72.0.2.output-14
 net MS-SignalTowerRed MacSafety.0.SignalTowerRed => hm2_7i80.0.7i72.0.2.output-15
 net MS-SignalTowerWhite MacSafety.0.SignalTowerWhite => hm2_7i80.0.7i72.0.2.output-16
 net MS-SignalTowerBlue MacSafety.0.SignalTowerBlue => hm2_7i80.0.7i72.0.2.output-17
-net MS-SignalTowerBuzzerOut oneshot.0.out => hm2_7i80.0.7i72.0.2.output-18
+net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => hm2_7i80.0.7i72.0.2.output-18
 
-setp oneshot.0.width 1.0
-setp oneshot.0.retriggerable 0
 
 net MS-NGCwarning MacSafety.0.NGCwarning <= motion.digital-out-06
 net MS-ATCActive MacSafety.0.ATCActive <= motion.digital-out-05
@@ -148,6 +142,7 @@ loadusr -W mb2hal config=mb2hal.ini
 # --- rpmlimiter ---
 loadusr -W toolrpm
 net current-tool-max toolrpm.max-rpm => rpmlimiter.0.toolmax
+net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited hal2mbvfd.0.RpmIn <= rpmlimiter.0.rpmout

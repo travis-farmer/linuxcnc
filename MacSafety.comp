@@ -14,6 +14,7 @@ pin out bit ATCairSafe "ATC Air in safe range";
 pin in bit ProgPausedIn "halui.program.is-paused connection";
 pin in bit ProgRunningIn "halui.program.is-running connection";
 pin in bit ProgIdleIn "halui.program.is-idle connection";
+pin in bit EstopTrigger "Trigger from external";
 pin in bit EstopIn "input from ESTOP";
 pin in bit LaserMode "input from laser mode switch";
 pin in bit NGCwarning "input from NGC warning";
@@ -48,7 +49,7 @@ author "Travis Farmer";
 FUNCTION(_) {
 	
     // status LED Tower - red, amber, green, blue, white, buzzer
-    if (EstopIn == true || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop)) {
+    if (EstopIn == false || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop || EstopTrigger == false)) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;
@@ -87,7 +88,7 @@ FUNCTION(_) {
     } else {
         SignalTowerBlue = false;
     }
-    if (EstopFault == true && (ATCair > ATCairEstop || SpindTemp < SpindTempEstop || SpindHP < SpindHpEstop)) {
+    if (EstopIn == true && (ATCair > ATCairEstop && SpindTemp < SpindTempEstop && SpindHP < SpindHpEstop || EstopTrigger == true)) {
         EstopFault = false;
         EstopReset = true;
     }
