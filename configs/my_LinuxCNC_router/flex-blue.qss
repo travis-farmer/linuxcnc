@@ -49,6 +49,17 @@ QPushButton:checked
 /*	background-color: rgba(0, 192, 0, 90%); border none;*/
 	border-style: inset;
 }
+
+QPushButton#probing_enable_pb:enabled:checked {
+        color: white;
+        background-color: red;
+}
+
+QPushButton#probing_enable_pb:enabled {
+        color: green;
+        background-color: yellow;
+}
+
 QDoubleSpinBox, QSpinbox, QSlider, QLabel#spindle_actual_speed_lb {
     border: 1px solid gray;
     border-radius: 3px;
