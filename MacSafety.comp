@@ -7,7 +7,9 @@ pin out bit SignalTowerWhite "Signal Tower WHite output";
 pin out bit SignalTowerBlue "Signal Tower Blue output";
 pin out bit SignalTowerBuzzer "Signal Tower Buzzer output";
 pin out bit SignalTowerBuzzernot "NOT Signal tower buzzer output";
-pin out bit EstopOut "trigger Estop output";
+pin out bit EstopFault "trigger Estop output";
+pin out bit EstopOK "trigger Estop OK";
+pin out bit EstopReset "trigger estop reset";
 pin out bit ATCairSafe "ATC Air in safe range";
 pin in bit ProgPausedIn "halui.program.is-paused connection";
 pin in bit ProgRunningIn "halui.program.is-running connection";
@@ -44,7 +46,6 @@ author "Travis Farmer";
 #include <time.h>
 
 FUNCTION(_) {
-	bool EstopFired = false;
 	
     // status LED Tower - red, amber, green, blue, white, buzzer
     if (EstopIn == true || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop)) {
@@ -53,10 +54,9 @@ FUNCTION(_) {
         SignalTowerRed = true;
         SignalTowerBuzzer = true;
         SignalTowerBuzzernot = false;
-        if (EstopOut == false && EstopFired == false) {
-            EstopOut = false;
-
-            EstopFired = true;
+        if (EstopFault == false) {
+            EstopFault = true;
+            EstopReset = false;
         }
     } else if (ProgPausedIn == true || (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger || NGCwarning == true)) {
         SignalTowerGreen = false;
@@ -87,13 +87,18 @@ FUNCTION(_) {
     } else {
         SignalTowerBlue = false;
     }
-    if (EstopFired == true && (ATCair > ATCairEstop || SpindTemp < SpindTempEstop || SpindHP < SpindHpEstop)) {
-        EstopOut = true;
-        EstopFired = false;
+    if (EstopFault == true && (ATCair > ATCairEstop || SpindTemp < SpindTempEstop || SpindHP < SpindHpEstop)) {
+        EstopFault = false;
+        EstopReset = true;
     }
     if (ATCair > ATCairTrigger) {
         ATCairSafe = true;
     } else {
         ATCairSafe = false;
+    }
+    if (EstopFault == true) {
+        EstopOK = false;
+    } else {
+        EstopOK = true;
     }
 }

@@ -26,8 +26,9 @@ addf hm2_7i80.0.write         servo-thread
 loadrt and2 count=3
 addf and2.0 servo-thread
 addf and2.1 servo-thread
+addf and2.2 servo-thread
 
-loadrt or2 count=7
+loadrt or2 count=8
 addf or2.0 servo-thread
 addf or2.1 servo-thread
 addf or2.2 servo-thread
@@ -35,6 +36,7 @@ addf or2.3 servo-thread
 addf or2.4 servo-thread
 addf or2.5 servo-thread
 addf or2.6 servo-thread
+addf or2.7 servo-thread
 
 loadrt volts2psi count=2 #tjf
 addf volts2psi.0 servo-thread
@@ -79,6 +81,8 @@ loadrt load_conv
 addf load-conv.0 servo-thread
 loadrt oneshot
 addf oneshot.0 servo-thread
+loadrt estop_latch
+addf estop-latch.0 servo-thread
 
 ################
 # --- MQTT --- #
@@ -101,7 +105,13 @@ net lcnc-hours <= time.1.hours
 #####################
 # --- MacSafety --- #
 #####################
-net MS-estop-trigger and2.1.in1 <= MacSafety.0.EstopOut
+
+net estop-fault-trigger estop-latch.0.fault-in <= or2.7.out
+net estop-b-in or2.7.in0 <= MacSafety.0.EstopFault
+net estop-a-in or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
+net MS-estop-reset-in estop-latch.0.reset <= iocontrol.0.user-request-enable
+
+net MS-estop-trigger iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 #setp and2.1.in1 1 # failsafe setting if i botch MacSafety Estop triggering
 
 net MS-SignalTowerBuzzer MacSafety.0.SignalTowerBuzzer => oneshot.0.in
@@ -302,11 +312,6 @@ net fume-extraction-ssr timedelay.0.out => hm2_7i80.0.7i72.0.2.output-07
 setp hm2_7i80.0.gpio.000.invert_output true # stepper enable
 setp hm2_7i80.0.gpio.000.is_output true
 net machine-is-enabled =>     hm2_7i80.0.gpio.047.out # stepper enable
-
-# --- ESTOP-EXT ---
-net estop-a-in and2.1.in0 <= hm2_7i80.0.7i70.0.1.input-15
-
-net estop-ext     <=  and2.1.out
 
 # --- PROBE-IN ---
 setp debounce.0.delay 4
@@ -558,7 +563,7 @@ net machine-is-enabled hm2_7i80.0.7i72.0.2.output-04 hm2_7i80.0.7i72.0.2.output-
 #  ---estop signals---
 
 net estop-out time.1.pause  MacSafety.0.EstopIn    <=  iocontrol.0.user-enable-out
-net estop-ext     =>  iocontrol.0.emc-enable-in
+
 
 #  ---manual tool change signals---
 loadusr -W hal_manualtoolchange
