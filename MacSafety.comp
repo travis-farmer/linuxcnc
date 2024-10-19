@@ -8,6 +8,7 @@ pin out bit SignalTowerBlue "Signal Tower Blue output";
 pin out bit SignalTowerBuzzer "Signal Tower Buzzer output";
 pin out bit SignalTowerBuzzernot "NOT Signal tower buzzer output";
 pin out bit EstopOut "trigger Estop output";
+pin out bit ATCairSafe "ATC Air in safe range";
 pin in bit ProgPausedIn "halui.program.is-paused connection";
 pin in bit ProgRunningIn "halui.program.is-running connection";
 pin in bit ProgIdleIn "halui.program.is-idle connection";
@@ -41,24 +42,6 @@ author "Travis Farmer";
 #include <inttypes.h>
 #include <math.h>
 #include <time.h>
-
-unsigned long lastTimer = 0UL;
-
-unsigned long time_with_ms (void)
-{
-    unsigned long            ms; // Milliseconds
-    time_t          s;  // Seconds
-    struct timespec spec;
-
-    clock_gettime(CLOCK_REALTIME, &spec);
-
-    s  = spec.tv_sec;
-    ms = (spec.tv_nsec / 1.0e6); // Convert nanoseconds to milliseconds
-    if (ms > 4294967295) {
-        ms = 0;
-    }
-    return(ms);
-}
 
 FUNCTION(_) {
 	bool EstopFired = false;
@@ -108,5 +91,9 @@ FUNCTION(_) {
         EstopOut = true;
         EstopFired = false;
     }
-
+    if (ATCair > ATCairTrigger) {
+        ATCairSafe = true;
+    } else {
+        ATCairSafe = false;
+    }
 }
