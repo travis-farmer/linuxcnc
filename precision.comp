@@ -1,0 +1,21 @@
+component precision "set float value precision";
+
+pin in float Value "Value to set precision on";
+pin in u32 Places=2 "number of decimal places to set";
+pin out float Out "Output of function";
+
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+#include <rtapi_math.h>
+
+float precision( float f, int places )
+{
+    float n = pow(10.0f, places ) ;
+    return round(f * n) / n ;
+}
+
+FUNCTION(_) {
+    Out = precision(Value,Places);
+}

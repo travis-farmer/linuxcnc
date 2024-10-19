@@ -81,6 +81,12 @@ loadrt load_conv
 addf load-conv.0 servo-thread
 loadrt estop_latch
 addf estop-latch.0 servo-thread
+loadrt precision count=5
+addf precision.0 servo-thread
+addf precision.1 servo-thread
+addf precision.2 servo-thread
+addf precision.3 servo-thread
+addf precision.4 servo-thread
 
 ################
 # --- MQTT --- #
