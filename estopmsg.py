@@ -4,7 +4,7 @@ import re
 import hal
 import linuxcnc
 
-h = hal.component("msgestop")
+h = hal.component("estopmsg")
 
 h.newpin("toolsensor", hal.HAL_BIT, hal.HAL_IN)
 h.newpin("hardware", hal.HAL_BIT, hal.HAL_IN)
@@ -18,16 +18,16 @@ hrdwrfired = False
 
 try:
     while 1:
-        if h['toolsensor'] == True and tsfired == False:
+        if h['toolsensor'] == False and tsfired == False:
             tsfired = True
             c.text_msg("ESTOP: Tool Sensor!")
-        elif h['toolsensor'] == False and tsfired == True:
+        elif h['toolsensor'] == True and tsfired == True:
             tsfired = False
         
-        if h['hardware'] == True and hrdwrfired == False:
+        if h['hardware'] == False and hrdwrfired == False:
             hrdwrfired = True
             c.text_msg("ESTOP: Hardware loop!")
-        elif h['hardware'] == False and hrdwrfired == True:
+        elif h['hardware'] == True and hrdwrfired == True:
             hrdwrfired = False
 
 except KeyboardInterrupt:
