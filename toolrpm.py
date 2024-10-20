@@ -42,7 +42,7 @@ c = linuxcnc.command()
 
 n = 0
 
-timer = PeriodicTimer(0.001, get_val())  # 2 seconds interval
+timer = PeriodicTimer(0.01, get_val())  # 2 seconds interval
 timer.start()
 
 try:
