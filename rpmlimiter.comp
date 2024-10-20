@@ -13,8 +13,8 @@ author "Travis Farmer";
 FUNCTION(_) {
     if (toolnumber == 99 || toolnumber == 98) {rpmout = 0;}
     else {
-        if (rpmin > (toolmax * 1000) && toolnumber != 99 && toolnumber != 98) {
-            rpmout = (toolmax * 1000);
+        if (rpmin > toolmax && toolnumber != 99 && toolnumber != 98) {
+            rpmout = toolmax;
         }else if (rpmin < 12000.0 && toolnumber != 99 && toolnumber != 98) {
             rpmout = 12000.0;
         } else {
