@@ -19,15 +19,13 @@ try:
     while 1:
         s.poll() # get values from the status channel
         current_tool = s.tool_in_spindle # get curent tool-number
+        inifile = linuxcnc.ini(s.ini_filename)
+
         if s.tool_in_spindle != 0: # a tool is loaded
-            tool_w = s.tool_table[current_tool].woffset
-            # c.text_msg(tool_w)
-            if tool_w != 0:
-                n = float(tool_w)
-            else: # comment string does not contain the information
-                n = 24.0
+            tool_max = inifile.find("TOOL_MAX", current_tool) or "24000.0"
+            n = float(tool_max)
         else:
-            n = 24.0
+            n = 24000.0
         # set hal pin
         h['max-rpm'] = n
 
