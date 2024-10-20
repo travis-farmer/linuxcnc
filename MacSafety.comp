@@ -49,7 +49,7 @@ author "Travis Farmer";
 FUNCTION(_) {
 	
     // status LED Tower - red, amber, green, blue, white, buzzer
-    if (EstopIn == false || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop || EstopTrigger == false)) {
+    if (EstopIn == false || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop || EstopTrigger == true)) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;
@@ -88,7 +88,7 @@ FUNCTION(_) {
     } else {
         SignalTowerBlue = false;
     }
-    if (EstopIn == true && (ATCair > ATCairEstop && SpindTemp < SpindTempEstop && SpindHP < SpindHpEstop || EstopTrigger == true)) {
+    if (EstopIn == true && (ATCair > ATCairEstop && SpindTemp < SpindTempEstop && SpindHP < SpindHpEstop || EstopTrigger == false)) {
         EstopFault = false;
         EstopReset = true;
     }

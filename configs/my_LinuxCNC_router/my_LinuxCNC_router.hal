@@ -28,7 +28,7 @@ addf and2.0 servo-thread
 addf and2.1 servo-thread
 addf and2.2 servo-thread
 
-loadrt or2 count=8
+loadrt or2 count=9
 addf or2.0 servo-thread
 addf or2.1 servo-thread
 addf or2.2 servo-thread
@@ -37,14 +37,15 @@ addf or2.4 servo-thread
 addf or2.5 servo-thread
 addf or2.6 servo-thread
 addf or2.7 servo-thread
+addf or2.8 servo-thread
 
 loadrt volts2psi count=2 #tjf
 addf volts2psi.0 servo-thread
 addf volts2psi.1 servo-thread
 loadrt vacuum_control #tjf
 addf vacuum-control.0 servo-thread
-loadrt matrix_kb config=8x8
-addf matrix_kb.0 servo-thread
+# loadrt matrix_kb config=8x8
+# addf matrix_kb.0 servo-thread
 loadrt hal2mbvfd #tjf
 addf hal2mbvfd.0 servo-thread
 loadrt lcd_pager #tjf
@@ -75,8 +76,6 @@ addf mult2.0 servo-thread
 addf mult2.1 servo-thread
 loadrt debounce cfg=2
 addf debounce.0 servo-thread
-loadrt toggle count=1
-addf toggle.0 servo-thread
 loadrt load_conv
 addf load-conv.0 servo-thread
 loadrt estop_latch
@@ -111,10 +110,11 @@ setp toolsensor.edge 1 #this pin should be active low
 setp hardware.edge 1 #this pin should be active low
 
 net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
-net estop-b-in hardware.trigger or2.7.in0 hm2_7i80.0.7i70.0.1.input-16-not
-net estop-a-in toolsensor.trigger or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15
+net estop-b-in => hardware.trigger or2.7.in0
+net estop-a-in toolsensor.trigger or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
 net estop-ext-trigger MacSafety.0.EstopTrigger <= or2.7.out
-net MS-estop-reset-in estop-latch.0.reset <= iocontrol.0.user-request-enable
+#net MS-estop-reset-in estop-latch.0.reset <= iocontrol.0.user-request-enable
+net MS-estop-reset-in or2.8.out => estop-latch.0.reset
 
 net MS-estop-trigger iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 #setp and2.1.in1 1 # failsafe setting if i botch MacSafety Estop triggering
@@ -179,7 +179,7 @@ setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
 # --- CONTROL PANEL --- #
 #########################
 # --- CPL LCD ---
-loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b\FF  TC %bAM\nATC U %b\FF  ATC T %b\FF |Laser Mode: %b\FF \nLaser Power: %3.3f\nLaser Air: %b\FF \nLaser Fume: %b\FF |Machine: %b\FF \nInterlock: %b\FF \nProbe S: %b\FF \nProbe T: %b\FF "
+loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b\FF  TC %bAM\nATC U %b\FF  ATC T %b\FF |Laser Mode: %b\FF \nLaser Power: %3.3f\nLaser Air: %b\FF \nLaser Fume: %b\FF |Machine: %b\FF \nProbe S: %b\FF \nProbe T: %b\FF "
 addf lcd servo-thread
 setp lcd-pager.0.number-pages 2
 net lcd-page-out lcd-pager.0.page-out => lcd.00.page_num
@@ -201,20 +201,19 @@ net LaserAirOut => lcd.00.page.01.arg.02
 net fume-extraction-ssr => lcd.00.page.01.arg.03
 # --- Page 02 ---
 net machine-is-enabled => lcd.00.page.02.arg.00
-net MS-DoorInterlock => lcd.00.page.02.arg.01
-net probe-sensor => lcd.00.page.02.arg.02
-net probe-tool => lcd.00.page.02.arg.03
+net probe-sensor => lcd.00.page.02.arg.01
+net probe-tool => lcd.00.page.02.arg.02
 
 # --- CPL Inputs ---
+net estop-b-in <= hm2_7i80.0.7i73.0.0.input-00-not
+net MS-estop-reset-in-b or2.8.in1 <= hm2_7i80.0.7i73.0.0.input-01
 
-#net vac-arm-trig vacuum-control.0.vac-arm-in <= hm2_7i80.0.7i73.0.0.input-00
-#net tool-change-mode <= hm2_7i80.0.7i73.0.0.input-01-not
-#net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= hm2_7i80.0.7i73.0.0.input-02
 
 # --- CPL Outputs ---
-net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02
-net coolant-mist-vac-control => hm2_7i80.0.7i73.0.0.output-03
-net coolant-flood-vac-control => hm2_7i80.0.7i73.0.0.output-04
+net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02 # Vacuum
+net fume-extraction-ssr => hm2_7i80.0.7i73.0.0.output-03 # Laser Active
+net MS-ManualChangeWaiting => hm2_7i80.0.7i73.0.0.output-04 # MTC Waiting
+net MS-ATCActive => hm2_7i80.0.7i73.0.0.output-05 # ATC Active
 
 # --- CPL Encoder ---
 net cpl-lcd-page lcd-pager.0.enc-count <= hm2_7i80.0.7i73.0.0.enc0.count
@@ -225,13 +224,12 @@ setp halui.feed-override.count-enable 1
 
 
 # --- CPL Key Matrix ---
-net cpl-scan-code hm2_7i80.0.7i73.0.0.keycode => matrix_kb.0.keycode
+# net cpl-scan-code hm2_7i80.0.7i73.0.0.keycode => matrix_kb.0.keycode
 # matrix_kb.0.key.rRcC
-net cpl-kbd-0-0 matrix_kb.0.key.r0c0 => or2.5.in0 # Machine Home
-net cpl-kbd-0-1 matrix_kb.0.key.r0c1 => or2.6.in0 # Work Home
-net cpl-kbd-0-2 matrix_kb.0.key.r0c2 => or2.3.in0 # pause
-net cpl-kbd-0-3 matrix_kb.0.key.r0c3 => or2.4.in0 # resume
-net cpl-kbd-0-4 matrix_kb.0.key.r0c4 => toggle.0.in # laser mode
+setp or2.5.in0 0 # Machine Home
+setp or2.6.in0 0 # Work Home
+setp or2.3.in0 0 # pause
+setp or2.4.in0 0 # resume
 
 net control-pause halui.program.pause <= or2.3.out
 net control-resume halui.program.resume <= or2.4.out

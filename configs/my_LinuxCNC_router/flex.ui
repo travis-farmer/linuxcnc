@@ -3889,16 +3889,6 @@
       </widget>
      </widget>
     </item>
-    <item row="0" column="1" colspan="2">
-     <widget class="QPushButton" name="estop_pb">
-      <property name="text">
-       <string>E-Stop</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="1" rowspan="2">
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="sizePolicy">
@@ -5028,6 +5018,35 @@
       </widget>
      </widget>
     </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="estop_pb">
+      <property name="text">
+       <string>E-Stop</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>E-Stop Reset</string>
+      </property>
+      <property name="function" stdset="0">
+       <string>hal_pin</string>
+      </property>
+      <property name="pin_name" stdset="0">
+       <string>estop-reset</string>
+      </property>
+      <property name="hal_type" stdset="0">
+       <string>HAL_BIT</string>
+      </property>
+      <property name="hal_dir" stdset="0">
+       <string>HAL_OUT</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -5036,7 +5055,7 @@
      <x>0</x>
      <y>0</y>
      <width>1127</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

@@ -6,22 +6,17 @@ set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
     pin+iocontrol.0.emc-enable-in
-    pin+hm2_7i80.0.7i70.0.1.input-15
-    pin+hm2_7i80.0.7i70.0.1.input-15-not
     pin+MacSafety.0.EstopFault
-    pin+hm2_7i80.0.packet-error
-    pin+MacSafety.0.ATCair
-    pin+MacSafety.0.ATCairTrigger
-    pin+MacSafety.0.ATCairEstop
-    pin+MacSafety.0.SignalTowerRed
-    pin+MacSafety.0.SignalTowerGreen
-    pin+MacSafety.0.SignalTowerAmber
-    pin+MacSafety.0.SignalTowerBlue
-    pin+MacSafety.0.SignalTowerWhite
     pin+MacSafety.0.EstopIn
-    pin+and2.1.out
-    pin+MacSafety.0.SignalTowerBuzzer
-    pin+MacSafety.0.SignalTowerBuzzernot
+    pin+MacSafety.0.EstopTrigger
+    pin+estop-latch.0.fault-in
+    pin+estop-latch.0.reset
+    pin+hm2_7i80.0.7i70.0.1.input-15-not
+    pin+hm2_7i80.0.7i70.0.1.input-15
+    pin+hm2_7i80.0.7i73.0.0.input-00
+    pin+hm2_7i80.0.7i73.0.0.input-00-not
+    pin+hm2_7i80.0.7i73.0.0.input-01
+    pin+hm2_7i80.0.7i73.0.0.input-01-not
 }
 set ::workmode watchhal
 set ::watchInterval 100

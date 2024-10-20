@@ -8,10 +8,12 @@ loadrt hm2_eth board_ip=10.10.10.10
 in a second terminal do
 halcmd show all hm2 > 7i80-pins.txt
 look for something like encoder.N.counter-mode bit rw
-
+------------------------------------------------------
+latency-histogram --nobase
 ------------------------------------------------------
  Open /etc/lightdm/lightdm.conf for editing. Search for autologin-user=; uncomment line (remove #) and add username; also uncomment next line (autologin-user-timeout=0). Save file, close text editor, and reboot to test. As discussed below, it's not clear the second modification is needed, or even does anything, but it's the official Debian recommendation.
 
 halcompile --install --userspace ./toolrpm.py
+halcompile -i ./MacSafety.comp
 
-latency-histogram --nobase
+on 7i73, W5 W6 (DOWN DOWN) # no more keypad needed...
