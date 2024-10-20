@@ -85,24 +85,23 @@ addf estop-latch.0 servo-thread
 ################
 # --- MQTT --- #
 ################
+# mqtt-publisher: very slow to respond, and closes in a last published state, no clean shutdown.
+#loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=machine-is-on,MS-prog-is-running,MS-prog-is-paused,MS-prog-is-idle,estop-out,cpl-u-air-psi,cpl-c-air-psi,cycle-hours,cycle-minutes,cycle-seconds,lcnc-hours,lcnc-minutes,lcnc-seconds
+#setp mqtt-publisher.period 1
+
+#####################
+# --- MacSafety --- #
+#####################
 net machine-is-on => time.1.start
-net mqtt-prog-is-running time.0.start  MacSafety.0.ProgRunningIn <= halui.program.is-running
-net mqtt-prog-is-paused time.0.pause   MacSafety.0.ProgPausedIn <= halui.program.is-paused
-net mqtt-prog-is-idle MacSafety.0.ProgIdleIn <= halui.program.is-idle
+net MS-prog-is-running time.0.start  MacSafety.0.ProgRunningIn <= halui.program.is-running
+net MS-prog-is-paused time.0.pause   MacSafety.0.ProgPausedIn <= halui.program.is-paused
+net MS-prog-is-idle MacSafety.0.ProgIdleIn <= halui.program.is-idle
 net cycle-seconds <= time.0.seconds
 net cycle-minutes <= time.0.minutes
 net cycle-hours <= time.0.hours
 net lcnc-seconds <= time.1.seconds
 net lcnc-minutes <= time.1.minutes
 net lcnc-hours <= time.1.hours
-
-# mqtt-publisher: very slow to respond, and closes in a last published state, no clean shutdown.
-#loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER keys=mqtt-machine-is-on,mqtt-prog-is-running,mqtt-prog-is-paused,mqtt-prog-is-idle,estop-out,LaserOn,cpl-u-air-psi,cpl-c-air-psi,cycle-hours,cycle-minutes,cycle-seconds,lcnc-hours,lcnc-minutes,lcnc-seconds
-#setp mqtt-publisher.period 1
-
-#####################
-# --- MacSafety --- #
-#####################
 
 net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
 setp or2.7.in0 0 # save for future inputs

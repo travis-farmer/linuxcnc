@@ -17,9 +17,9 @@ net pdnt.machine.on                       whb.halui.machine.on                  
 net pdnt.machine.off                      whb.halui.machine.off                 halui.machine.off
 
 # program related signals
-net mqtt-prog-is-idle                     whb.halui.program.is-idle
-net mqtt-prog-is-paused                   whb.halui.program.is-paused
-net mqtt-prog-is-running                  whb.halui.program.is-running
+net MS-prog-is-idle                     whb.halui.program.is-idle
+net MS-prog-is-paused                   whb.halui.program.is-paused
+net MS-prog-is-running                  whb.halui.program.is-running
 net pdnt.program.resume                   whb.halui.program.resume              or2.4.in1
 net pdnt.program.pause                    whb.halui.program.pause               or2.3.in1
 net pdnt.program.run                      whb.halui.program.run                 halui.program.run
