@@ -11,6 +11,8 @@ h.ready()
 
 # create a connection to the status channel
 s = linuxcnc.stat()
+c = linuxcnc.command()
+
 n = 0
 
 try:
@@ -19,7 +21,8 @@ try:
         current_tool = s.tool_in_spindle # get curent tool-number
         if s.tool_in_spindle != 0: # a tool is loaded
             tool_w = s.tool_table[current_tool].woffset
-            if tool_w is not None:
+            # c.text_msg(tool_w)
+            if tool_w != 0:
                 n = float(tool_w)
             else: # comment string does not contain the information
                 n = 24.0

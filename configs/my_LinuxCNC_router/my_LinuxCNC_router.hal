@@ -107,8 +107,8 @@ loadrt message names=toolsensor,hardware messages="ESTOP: Tool Sensor!,ESTOP: Ha
 addf toolsensor servo-thread
 addf hardware servo-thread
 
-setp toolsensor.edge 0 #this pin should be active low
-setp hardware.edge 0 #this pin should be active low
+setp toolsensor.edge 1 #this pin should be active low
+setp hardware.edge 1 #this pin should be active low
 
 net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
 net estop-b-in hardware.trigger or2.7.in0 hm2_7i80.0.7i70.0.1.input-16-not
