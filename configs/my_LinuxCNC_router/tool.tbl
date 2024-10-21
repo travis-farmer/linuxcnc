@@ -1,18 +1,18 @@
-T0  P0
-T1  P1  Z-1.346013  D0.125  ;1/8in flat end mill
-T2  P2  Z-1.34488  ;30deg V
-T3  P3  Z-1.325451  D0.0625  ;0.0625in tapered ball nose
-T4  P4  Z-1.353174  D0.25  ;1/4in ball end mill
-T5  P5  ;90deg V
-T6  P6  D0.25  ;1/4in DC flat end mill
-T7  P7  D0.25  ;1/4in spiral plastic cutting
-T8  P8  D1.5  ;1.5in spoilboard flattening
-T9  P9  Z-1.327814  D0.25  ;1/4in UC flat end mill
-T10  P10
-T11  P11
-T12  P12
-T13  P13
-T14  P14
-T15  P15
-T98  P98  X4.457  Y-1.841  Z-2.32  ;laser, set x y and z
+T0   P0   ;
+T1   P1   D+0.125000 Z-1.346880 ;1/8in flat end mill
+T2   P2   Z-1.346446 ;30deg V
+T3   P3   D+0.062500 Z-1.325451 ;0.0625in tapered ball nose
+T4   P4   D+0.250000 Z-1.353174 ;1/4in ball end mill
+T5   P5   ;90deg V
+T6   P6   D+0.250000 ;1/4in DC flat end mill
+T7   P7   D+0.250000 ;1/4in spiral plastic cutting
+T8   P8   D+1.500000 ;1.5in spoilboard flattening
+T9   P9   D+0.250000 Z-1.327814 ;1/4in UC flat end mill
+T10  P10  ;
+T11  P11  ;
+T12  P12  ;
+T13  P13  ;
+T14  P14  ;
+T15  P15  ;
+T98  P98  X+4.457000 Y-1.841000 Z-2.320000 ;laser, set x y and z
 T99  P99  ;probe stay zero
