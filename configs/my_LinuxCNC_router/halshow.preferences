@@ -17,6 +17,7 @@ set ::watchlist {
     pin+hm2_7i80.0.7i73.0.0.input-00-not
     pin+hm2_7i80.0.7i73.0.0.input-01
     pin+hm2_7i80.0.7i73.0.0.input-01-not
+    pin+iocontrol.0.user-request-enable
 }
 set ::workmode watchhal
 set ::watchInterval 100
