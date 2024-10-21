@@ -20,8 +20,8 @@ net pdnt.machine.off                      whb.halui.machine.off                 
 net MS-prog-is-idle                     whb.halui.program.is-idle
 net MS-prog-is-paused                   whb.halui.program.is-paused
 net MS-prog-is-running                  whb.halui.program.is-running
-net pdnt.program.resume                   whb.halui.program.resume              or2.4.in1
-net pdnt.program.pause                    whb.halui.program.pause               or2.3.in1
+net control-resume                   whb.halui.program.resume
+net control-pause                    whb.halui.program.pause
 net pdnt.program.run                      whb.halui.program.run                 halui.program.run
 net pdnt.program.stop                     whb.halui.program.stop                halui.program.stop
 
@@ -104,9 +104,9 @@ net  pdnt.mist.on                         whb.halui.mist.on                     
 
 
 # default function button signals
-net pdnt.button.m-home                    whb.button.m-home                     or2.5.in1                   # Homing use built-in halui home all
-net pdnt.button.safe-z                    whb.button.safe-z                                  # Safe-z  use MDI command from main.ini
-net pdnt.button.w-home                    whb.button.w-home                     or2.6.in1             # Unpark  use MDI command from main.ini
+net control-m-home                    whb.button.m-home                   # Homing use built-in halui home all
+net pdnt.button.safe-z                    whb.button.safe-z                     halui.mdi-command-12             # Safe-z  use MDI command from main.ini
+net control-w-home                    whb.button.w-home             # Unpark  use MDI command from main.ini
 net pdnt.button.probe-z                   whb.button.probe-z                    halui.mdi-command-11              # Probe-Z use MDI command from main.ini
 
 

@@ -222,19 +222,10 @@ net cpl-feed-override halui.feed-override.counts <= hm2_7i80.0.7i73.0.0.enc1.cou
 setp halui.feed-override.scale 0.25
 setp halui.feed-override.count-enable 1
 
-
-# --- CPL Key Matrix ---
-# net cpl-scan-code hm2_7i80.0.7i73.0.0.keycode => matrix_kb.0.keycode
-# matrix_kb.0.key.rRcC
-setp or2.5.in0 0 # Machine Home
-setp or2.6.in0 0 # Work Home
-setp or2.3.in0 0 # pause
-setp or2.4.in0 0 # resume
-
-net control-pause halui.program.pause <= or2.3.out
-net control-resume halui.program.resume <= or2.4.out
-net control-m-home or2.5.out => halui.mdi-command-01
-net control-w-home or2.6.out => halui.mdi-command-00
+net control-pause => halui.program.pause
+net control-resume => halui.program.resume
+net control-m-home => halui.mdi-command-01
+net control-w-home => halui.mdi-command-00
 #net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= toggle.0.out # laser mode toggle
 
 ###################
