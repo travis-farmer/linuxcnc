@@ -113,7 +113,7 @@ net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
 net estop-b-in => hardware.trigger or2.7.in0
 net estop-a-in toolsensor.trigger or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
 net estop-ext-trigger MacSafety.0.EstopTrigger <= or2.7.out
-#net MS-estop-reset-in estop-latch.0.reset <= iocontrol.0.user-request-enable
+net MS-estop-reset-in or2.8.in0 <= iocontrol.0.user-request-enable
 net MS-estop-reset-in or2.8.out => estop-latch.0.reset
 
 net MS-estop-trigger iocontrol.0.emc-enable-in <= estop-latch.0.ok-out

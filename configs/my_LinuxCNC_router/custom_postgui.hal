@@ -21,4 +21,3 @@ net cpl-c-air-psi => flexhal.psi-comp
 net spindle-converted-amps => flexhal.spindle-amps
 net spindle-load => flexhal.spindle-loading
 net spindle-load-hp => flexhal.spindle-hp
-setp or2.8.in0 0
