@@ -102,19 +102,16 @@ net lcnc-seconds <= time.1.seconds
 net lcnc-minutes <= time.1.minutes
 net lcnc-hours <= time.1.hours
 
-loadrt message names=toolsensor,hardware messages="ESTOP: Tool Sensor!,ESTOP: Hardware Loop!"
-addf toolsensor servo-thread
-addf hardware servo-thread
 
 setp toolsensor.edge 1 #this pin should be active low
 setp hardware.edge 1 #this pin should be active low
 
 net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
-net estop-b-in => hardware.trigger or2.7.in0
-net estop-a-in toolsensor.trigger or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
+net estop-b-in => or2.7.in0
+net estop-a-in or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
 net estop-ext-trigger MacSafety.0.EstopTrigger <= or2.7.out
 net MS-estop-reset-in or2.8.in0 <= iocontrol.0.user-request-enable
-net MS-estop-reset-in or2.8.out => estop-latch.0.reset
+net MS-estop-reset-out or2.8.out => estop-latch.0.reset
 
 net MS-estop-trigger iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 #setp and2.1.in1 1 # failsafe setting if i botch MacSafety Estop triggering
