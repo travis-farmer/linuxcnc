@@ -210,10 +210,10 @@ net MS-estop-reset-in-b or2.8.in1 <= hm2_7i80.0.7i73.0.0.input-01
 
 
 # --- CPL Outputs ---
-net spind-vac-control => hm2_7i80.0.7i73.0.0.output-02 # Vacuum
-net fume-extraction-ssr => hm2_7i80.0.7i73.0.0.output-03 # Laser Active
-net MS-ManualChangeWaiting => hm2_7i80.0.7i73.0.0.output-04 # MTC Waiting
-net MS-ATCActive => hm2_7i80.0.7i73.0.0.output-05 # ATC Active
+net spind-vac-control => hm2_7i80.0.7i73.0.0.output-00 # Vacuum
+net fume-extraction-ssr => hm2_7i80.0.7i73.0.0.output-01 # Laser Active
+net MS-ManualChangeWaiting => hm2_7i80.0.7i73.0.0.output-02 # MTC Waiting
+net MS-ATCActive => hm2_7i80.0.7i73.0.0.output-03 # ATC Active
 
 # --- CPL Encoder ---
 net cpl-lcd-page lcd-pager.0.enc-count <= hm2_7i80.0.7i73.0.0.enc0.count
