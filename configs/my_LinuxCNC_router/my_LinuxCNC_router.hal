@@ -102,10 +102,6 @@ net lcnc-seconds <= time.1.seconds
 net lcnc-minutes <= time.1.minutes
 net lcnc-hours <= time.1.hours
 
-
-setp toolsensor.edge 1 #this pin should be active low
-setp hardware.edge 1 #this pin should be active low
-
 net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
 net estop-b-in => or2.7.in0
 net estop-a-in or2.7.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
