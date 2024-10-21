@@ -4,7 +4,8 @@
 # **** Setup of spindle speed display using pyvcp -START ****
 # **** Use COMMANDED spindle velocity from LinuxCNC because no spindle encoder was specified
 
-
+loadrt conv_float_u32
+addf conv-float-u32.0 servo-thread
 
 net vac-arm-trig vacuum-control.0.vac-arm-in <= flexhal.vacuumenable
 net tool-change-mode <= flexhal.atcenable
@@ -14,9 +15,10 @@ net cycle-hours => flexhal.cycle-hrs
 net cycle-minutes => flexhal.cycle-min
 net cycle-seconds => flexhal.cycle-sec
 net vfd-conv-rpm => flexhal.spindle-actual
+net vfd-conv-rpm => flexhal.spindle-actual-lcd
 net cpl-u-air-psi => flexhal.psi-tool
 net cpl-c-air-psi => flexhal.psi-comp
 net spindle-converted-amps => flexhal.spindle-amps
 net spindle-load => flexhal.spindle-loading
 net spindle-load-hp => flexhal.spindle-hp
-net MS-estop-reset-in-a or2.8.in0 <= flexhal.estop-reset
+setp or2.8.in0 0
