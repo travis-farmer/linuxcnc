@@ -324,7 +324,7 @@ QLCDNumber{
   border-radius: 10px;
   color: rgb(255, 255, 255);
 }
-QLCDNumber#spindle_speed_0_lcd{
+QLCDNumber#spindle_speed_0_lcd, QLCDNumber#Spindle_Actual_lcd{
   background-color: rgb(0, 0, 0);
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
@@ -338,56 +338,21 @@ QLCDNumber#Spindle_Temp_lcd{
   border-radius: 10px;
   color: rgb(255, 255, 0);
 }
-QLCDNumber#Spindle_Actual_lcd{
-  background-color: rgb(0, 0, 0);
-  border: 2px solid rgb(113, 113, 113);
-  border-width: 2px;
-  border-radius: 10px;
-  color: rgb(255, 0, 0);
-}
-QLCDNumber#Spindle_HP_lcd{
+QLCDNumber#Spindle_HP_lcd, QLCDNumber#Spindle_Load_lcd{
   background-color: rgb(0, 0, 0);
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
   border-radius: 10px;
   color: rgb(0, 255, 0);
 }
-QLCDNumber#Spindle_Load_lcd{
-  background-color: rgb(0, 0, 0);
-  border: 2px solid rgb(113, 113, 113);
-  border-width: 2px;
-  border-radius: 10px;
-  color: rgb(0, 255, 0);
-}
-QLCDNumber#Cycle_Hrs_lcd{
+QLCDNumber#Cycle_Hrs_lcd, QLCDNumber#Cycle_Min_lcd, QLCDNumber#Cycle_Sec_lcd{
   background-color: rgb(0, 0, 0);
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
   border-radius: 10px;
   color: rgb(255, 255, 0);
 }
-QLCDNumber#Cycle_Min_lcd{
-  background-color: rgb(0, 0, 0);
-  border: 2px solid rgb(113, 113, 113);
-  border-width: 2px;
-  border-radius: 10px;
-  color: rgb(255, 255, 0);
-}
-QLCDNumber#Cycle_Sec_lcd{
-  background-color: rgb(0, 0, 0);
-  border: 2px solid rgb(113, 113, 113);
-  border-width: 2px;
-  border-radius: 10px;
-  color: rgb(255, 255, 0);
-}
-QLCDNumber#Tool_PSI_lcd{
-  background-color: rgb(0, 0, 0);
-  border: 2px solid rgb(113, 113, 113);
-  border-width: 2px;
-  border-radius: 10px;
-  color: rgb(255, 255, 0);
-}
-QLCDNumber#Comp_PSI_lcd{
+QLCDNumber#Tool_PSI_lcd, QLCDNumber#Comp_PSI_lcd{
   background-color: rgb(0, 0, 0);
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
