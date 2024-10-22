@@ -2,9 +2,6 @@
 
 import hal
 import linuxcnc
-import signal
-import time
-
 
 
 h = hal.component("toolrpm")
