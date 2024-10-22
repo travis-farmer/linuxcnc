@@ -336,7 +336,7 @@ QLCDNumber#Spindle_Temp_lcd{
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
   border-radius: 10px;
-  color: rgb(0, 0, 255);
+  color: rgb(255, 255, 0);
 }
 QLCDNumber#Spindle_Actual_lcd{
   background-color: rgb(0, 0, 0);
@@ -385,14 +385,14 @@ QLCDNumber#Tool_PSI_lcd{
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
   border-radius: 10px;
-  color: rgb(0, 0, 255);
+  color: rgb(255, 255, 0);
 }
 QLCDNumber#Comp_PSI_lcd{
   background-color: rgb(0, 0, 0);
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
   border-radius: 10px;
-  color: rgb(0, 0, 255);
+  color: rgb(255, 255, 0);
 }
 
 
