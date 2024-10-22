@@ -2,8 +2,8 @@ component adcconv "convert ADC analog values to real values";
 
 pin in float ArdADCin "raw ADC value from Arduino, in";
 pin out float VoltsOut "converted volts, out";
-pin in float VDhigh "voltage divider, upper resistor";
-pin in float VDlow "voltage divider, lower resistor";
+pin in float VDhigh=0.00 "voltage divider, upper resistor";
+pin in float VDlow=0.00 "voltage divider, lower resistor";
 pin in float MaxValue "the max ADC value";
 pin in float MaxVolts "the Full Scale volts of the ADC";
 
