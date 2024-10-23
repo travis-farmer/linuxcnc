@@ -22,6 +22,9 @@ addf abs.spindle              servo-thread
 addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
 
+loadrt and2 count=1
+addf and2.0 servo-thread
+
 loadrt or2 count=5
 addf or2.0 servo-thread
 addf or2.1 servo-thread
@@ -85,9 +88,8 @@ net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
 net estop-b-in => or2.3.in0
 net estop-a-in or2.3.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
 net estop-ext-trigger MacSafety.0.EstopTrigger <= or2.3.out
-#net MS-estop-reset-in or2.4.in0 <= iocontrol.0.user-request-enable
-setp or2.4.in0 0 # force manual latch reset
-net MS-estop-reset-out or2.4.out => estop-latch.0.reset
+net MS-estop-reset-in and2.0.in0 <= iocontrol.0.user-request-enable
+net MS-estop-reset-out and2.0.out => estop-latch.0.reset
 
 net MS-estop-trigger iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 
@@ -151,7 +153,7 @@ net probe-tool => lcd.00.page.02.arg.02
 
 # --- CPL Inputs ---
 net estop-b-in <= hm2_7i80.0.7i73.0.0.input-00-not
-net MS-estop-reset-in-b or2.4.in1 <= hm2_7i80.0.7i73.0.0.input-01
+net MS-estop-reset-in-b and2.0.in1 <= hm2_7i80.0.7i73.0.0.input-01
 
 
 # --- CPL Outputs ---
