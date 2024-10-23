@@ -4621,34 +4621,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="4" colspan="5">
-         <widget class="QLCDNumber" name="Spindle_Actual_lcd">
-          <property name="smallDecimalPoint">
-           <bool>false</bool>
-          </property>
-          <property name="digitCount">
-           <number>7</number>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::Flat</enum>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>spindle-actual-lcd</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_FLOAT</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-          <property name="precision" stdset="0">
-           <string>1</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="4" colspan="5">
          <widget class="QLCDNumber" name="spindle_speed_0_lcd">
           <property name="toolTip">
@@ -4996,6 +4968,28 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="4" colspan="5">
+         <widget class="QLCDNumber" name="lcdNumber">
+          <property name="digitCount">
+           <number>7</number>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>spindle-actual</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+          <property name="precision" stdset="0">
+           <string>1</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_24">
@@ -5115,7 +5109,7 @@
      <x>0</x>
      <y>0</y>
      <width>1127</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

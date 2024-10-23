@@ -17,3 +17,14 @@ halcompile --install --userspace ./toolrpm.py
 halcompile -i ./MacSafety.comp
 
 on 7i73, W5 W6 (DOWN DOWN) # no more keypad needed...
+
+Back to analog control
+----------------------
+halcompile -i load_conv.comp
+halcompile -i rpm2volts.comp
+
+F0.01 = 1
+F0.03 = 1
+F2.01 = 1
+F2.02 = 2
+f2.22 = 5

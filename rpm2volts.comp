@@ -1,0 +1,23 @@
+component rpm2volts "exchange HAL pins for mb2hal values, Fuling DZB300 series VFD";
+
+pin in float RpmIn "RPM set value, in";
+pin out float voltsOut "RPM volts value, out";
+pin out float RpsOut "RPS Out";
+pin out bit SpindFan "turn on the spindle cooling fan";
+pin in float SpinTempC "spindle temp in C";
+pin out float SpinTempF "spindle temp out F";
+
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+
+float map(float x, float in_min, float in_max, float out_min, float out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+FUNCTION(_) {
+    RpsOut = (RpmIn * 60);
+    voltsOut = (int)map(RpmIn,0.00,24000.00,0.00,10.00);
+    SpinTempF = (SpinTempC / 100);
+}
