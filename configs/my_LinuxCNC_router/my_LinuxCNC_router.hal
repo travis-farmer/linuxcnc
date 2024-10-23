@@ -185,7 +185,7 @@ net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited rpm2volts.0.RpmIn <= rpmlimiter.0.rpmout
-net spindle-rps-out rpm2volts.0.RpsOut => spindle.0.speed-in
+net spindle-rps-out rpm2volts.0.RpsOut => spindle.0.actual-speed
 net vfd-rpm-volts rpm2volts.0.voltsOut => hm2_7i80.0.7i83.0.3.analogout1
 net spindle-cw => hm2_7i80.0.7i72.0.2.output-04 or2.2.in0
 net spindle-ccw => hm2_7i80.0.7i72.0.2.output-05 or2.2.in1
