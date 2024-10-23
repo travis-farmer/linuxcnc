@@ -22,10 +22,8 @@ pin in bit ManualChangeWaiting "Waiting for manual tool change";
 pin in bit ATCActive "ATC is ACTIVE LED";
 pin in float ATCair "ATC Air input";
 pin in float ATCairTrigger "ATC less than air trigger";
-pin in float ATCairEstop "ATC Air is less than Estop trigger level";
 pin in float SpindTemp "Spindle temperature";
 pin in float SpindTempTrigger "Spindle greater than Temp Trigger";
-pin in float SpindTempEstop "Spindle temp greater than Estop trigger level";
 pin in float SpindHP "Spindle HP input";
 pin in float SpindHPtrigger "Spindle greater than HP trigger";
 
@@ -38,7 +36,7 @@ author "Travis Farmer";
 FUNCTION(_) {
 	
     // status LED Tower - red, amber, green, blue, white, buzzer
-    if (EstopIn == false || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || EstopTrigger == false)) {
+    if (EstopIn == false || EstopTrigger == false) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;
@@ -77,7 +75,7 @@ FUNCTION(_) {
     } else {
         SignalTowerBlue = false;
     }
-    if (EstopIn == true && (ATCair > ATCairEstop && SpindTemp < SpindTempEstop && EstopTrigger == true)) {
+    if (EstopIn == true && EstopTrigger == true) {
         EstopFault = false;
         EstopReset = true;
     }

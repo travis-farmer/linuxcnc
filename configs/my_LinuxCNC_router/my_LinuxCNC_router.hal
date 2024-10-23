@@ -103,10 +103,8 @@ net MS-ATCActive MacSafety.0.ATCActive <= motion.digital-out-05
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
 net cpl-c-air-psi => MacSafety.0.ATCair
 setp MacSafety.0.ATCairTrigger 100.00
-setp MacSafety.0.ATCairEstop 90.00
 setp MacSafety.0.SpindTemp 1.0 #set to relavent pin when good spindle temp reading
 setp MacSafety.0.SpindTempTrigger 5.0 #set to a safe temp limit
-setp MacSafety.0.SpindTempEstop 10.0 #set to unsafe temp limit
 net spindle-load-hp => MacSafety.0.SpindHP
 setp MacSafety.0.SpindHPtrigger 6.0 #set to safe HP limit
 
