@@ -18,6 +18,8 @@ set ::watchlist {
     pin+hm2_7i80.0.7i73.0.0.input-01
     pin+hm2_7i80.0.7i73.0.0.input-01-not
     pin+iocontrol.0.user-request-enable
+    pin+load-conv.0.powerKW
+    pin+load-conv.0.DblCurVolts
 }
 set ::workmode watchhal
 set ::watchInterval 100

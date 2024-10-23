@@ -28,7 +28,6 @@ pin in float SpindTempTrigger "Spindle greater than Temp Trigger";
 pin in float SpindTempEstop "Spindle temp greater than Estop trigger level";
 pin in float SpindHP "Spindle HP input";
 pin in float SpindHPtrigger "Spindle greater than HP trigger";
-pin in float SpindHpEstop "Spindle HP greater than Estop trigger level";
 
 function _;
 license "GPL";
@@ -39,7 +38,7 @@ author "Travis Farmer";
 FUNCTION(_) {
 	
     // status LED Tower - red, amber, green, blue, white, buzzer
-    if (EstopIn == false || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || SpindHP >= SpindHpEstop || EstopTrigger == true)) {
+    if (EstopIn == false || (ATCair <= ATCairEstop || SpindTemp >= SpindTempEstop || EstopTrigger == false)) {
         SignalTowerGreen = false;
         SignalTowerAmber = false;
         SignalTowerRed = true;
@@ -53,7 +52,7 @@ FUNCTION(_) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
-        SignalTowerBuzzer = true;
+        SignalTowerBuzzer = false;
         SignalTowerBuzzernot = true;
     } else if (ProgRunningIn == true) {
         SignalTowerGreen = true;
@@ -78,7 +77,7 @@ FUNCTION(_) {
     } else {
         SignalTowerBlue = false;
     }
-    if (EstopIn == true && (ATCair > ATCairEstop && SpindTemp < SpindTempEstop && SpindHP < SpindHpEstop || EstopTrigger == false)) {
+    if (EstopIn == true && (ATCair > ATCairEstop && SpindTemp < SpindTempEstop && EstopTrigger == true)) {
         EstopFault = false;
         EstopReset = true;
     }

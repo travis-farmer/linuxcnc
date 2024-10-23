@@ -65,7 +65,7 @@ loadrt estop_latch
 addf estop-latch.0 servo-thread
 
 loadrt rpm2volts
-addf rpm2volts.0 servo-period
+addf rpm2volts.0 servo-thread
 
 #####################
 # --- MacSafety --- #
@@ -108,8 +108,8 @@ setp MacSafety.0.SpindTemp 1.0 #set to relavent pin when good spindle temp readi
 setp MacSafety.0.SpindTempTrigger 5.0 #set to a safe temp limit
 setp MacSafety.0.SpindTempEstop 10.0 #set to unsafe temp limit
 net spindle-load-hp => MacSafety.0.SpindHP
-setp MacSafety.0.SpindHPtrigger 5.5 #set to safe HP limit
-setp MacSafety.0.SpindHpEstop 6.0 #set to unsafe HP limit
+setp MacSafety.0.SpindHPtrigger 6.0 #set to safe HP limit
+
 
 #########################
 # --- 7i83 settings --- #
@@ -185,10 +185,10 @@ net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited rpm2volts.0.RpmIn <= rpmlimiter.0.rpmout
-net spindle-rps-out rpm2volts.0.RpsOut => spindle.0.actual-speed
-net vfd-rpm-volts rpm2volts.0.voltsOut => hm2_7i80.0.7i83.0.3.analogout1
+net spindle-rps-out rpm2volts.0.RpsOut => spindle.0.speed-in
+net vfd-rpm-volts rpm2volts.0.voltsOut => hm2_7i80.0.7i83.0.3.analogout0
 net spindle-cw => hm2_7i80.0.7i72.0.2.output-04 or2.2.in0
-net spindle-ccw => hm2_7i80.0.7i72.0.2.output-05 or2.2.in1
+net spindle-ccw => hm2_7i80.0.7i72.0.2.output-03 or2.2.in1
 net ena-analog-out or2.2.out => hm2_7i80.0.7i83.0.3.analogena0 hm2_7i80.0.7i72.0.2.output-00
 
 # --- Spindle speed control/readout ---
@@ -227,13 +227,11 @@ net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool
 # --- VFD hardware signals ---
 net hrdwr-spindle-running motion.digital-in-00 <= hm2_7i80.0.7i70.0.1.input-20
 
-setp load-conv.0.maxamps 10.7
-net spindle-out-amps => load-conv.0.amps
-net spindle-out-volts => load-conv.0.volts
+setp load-conv.0.maxpower 4.50
+
 net spindle-load <= load-conv.0.load
 net spindle-load-hp <= load-conv.0.hp
-net spindle-converted-amps <= load-conv.0.convamps
-
+net vfd-double-power-volts load-conv.0.DblCurVolts <= hm2_7i80.0.7i70.0.1.analog2
 ########################
 # --- Laser Analog --- #
 ########################

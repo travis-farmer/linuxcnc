@@ -14,17 +14,7 @@ latency-histogram --nobase
  Open /etc/lightdm/lightdm.conf for editing. Search for autologin-user=; uncomment line (remove #) and add username; also uncomment next line (autologin-user-timeout=0). Save file, close text editor, and reboot to test. As discussed below, it's not clear the second modification is needed, or even does anything, but it's the official Debian recommendation.
 
 halcompile --install --userspace ./toolrpm.py
-halcompile -i ./MacSafety.comp
-
-on 7i73, W5 W6 (DOWN DOWN) # no more keypad needed...
 
 Back to analog control
 ----------------------
-halcompile -i load_conv.comp
-halcompile -i rpm2volts.comp
 
-F0.01 = 1
-F0.03 = 1
-F2.01 = 1
-F2.02 = 2
-f2.22 = 5

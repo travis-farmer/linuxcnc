@@ -17,7 +17,7 @@ try:
 		s = linuxcnc.stat()
 		s.poll()
 		current_tool = s.tool_in_spindle # get curent tool-number
-		inifile = linuxcnc.ini(s.ini_filename)
+		inifile = linuxcnc.ini("/home/travis/linuxcnc/configs/my_LinuxCNC_router/my_LinuxCNC_router.ini")
 		if s.tool_in_spindle != 0: # a tool is loaded
 			tool_max = inifile.find("TOOL_MAX", str(current_tool)) or "24000.0"
 			n = float(tool_max)

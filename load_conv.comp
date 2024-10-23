@@ -7,10 +7,9 @@ setp load-conv.0.maxamps 10.7
 */
 component load_conv "calculates percentage of load based on motor Amps";
 
-pin in float DblPwrVolts "Double rated VFD power, 0-10v, in";
+pin in float DblCurVolts "Double rated VFD power, 0-10v, in";
 pin out float load "Percent load out, out";
 pin in float maxpower "Max Motor Power, in";
-pin in float vfdmaxpower "VFD Max Power rating
 pin out float hp "HP from power, out";
 pin out float powerKW "Power in KW, out";
 function _;
@@ -25,7 +24,7 @@ float map(float x, float in_min, float in_max, float out_min, float out_max) {
 }
 
 FUNCTION(_) {
-  PowerKW = map(DblPwrVolts,0.00,10.00,0.00,vfdmaxpower);
-  load = round(PowerKW/(maxpower/100.0));
+  powerKW = ((map(DblCurVolts,0.00,10.00,0.00,46.0) * 220)/1000);
+  load = round(powerKW/(maxpower/100.0));
   hp = (powerKW * 1.34102);
 }
