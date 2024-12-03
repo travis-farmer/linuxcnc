@@ -1090,9 +1090,13 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_18">
            <item row="0" column="0">
-            <widget class="QComboBox" name="tool_change_cb"/>
+            <widget class="QComboBox" name="tool_change_cb">
+             <property name="option" stdset="0">
+              <string>description</string>
+             </property>
+            </widget>
            </item>
-           <item row="0" column="1">
+           <item row="1" column="0">
             <widget class="QPushButton" name="tool_change_pb">
              <property name="text">
               <string>Change Tool</string>
