@@ -498,7 +498,7 @@ net in-position               <=  motion.in-position
 net machine-is-enabled <=  motion.motion-enabled
 
 #  ---estop signals---
-net estop-out time.1.pause  MacSafety.0.EstopIn    <=  iocontrol.0.user-enable-out
+net estop-out time.1.pause  MacSafety.0.EstopIn  estop-latch.0.ok-in  <=  iocontrol.0.user-enable-out
 
 #  ---manual tool change signals---
 loadusr -W hal_manualtoolchange
