@@ -19,5 +19,4 @@ https://benchmark.unigine.com/heaven
 *halcompile --install --userspace ./toolrpm.py
 ------------------------------------------------------
 halcompile -i MacSafety.comp
-echo 'deb [arch=amd64] https://gnipsel.com/flexgui/apt-repo stable main' | sudo tee /etc/apt/sources.list.d/flexgui.list
-sudo curl --silent --show-error https://gnipsel.com/flexgui/apt-repo/pgp-key.public -o /etc/apt/trusted.gpg.d/flexgui.asc
+
