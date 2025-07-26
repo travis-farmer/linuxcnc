@@ -4920,6 +4920,31 @@
         <string>Misc</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_42">
+        <item row="2" column="1">
+         <widget class="QLCDNumber" name="Comp_PSI_lcd">
+          <property name="digitCount">
+           <number>6</number>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::Flat</enum>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>psi-comp</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_FLOAT</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+          <property name="precision" stdset="0">
+           <string>2</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_64">
           <property name="font">
@@ -4963,7 +4988,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="label_66">
           <property name="font">
            <font>
@@ -4979,27 +5004,52 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLCDNumber" name="Comp_PSI_lcd">
-          <property name="digitCount">
-           <number>6</number>
+         <widget class="QProgressBar" name="progressBar">
+          <property name="maximum">
+           <number>150</number>
           </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::Flat</enum>
+          <property name="value">
+           <number>24</number>
+          </property>
+          <property name="format">
+           <string>psi</string>
           </property>
           <property name="function" stdset="0">
            <string>hal_pin</string>
           </property>
           <property name="pin_name" stdset="0">
-           <string>psi-comp</string>
+           <string>pb-tool-psi</string>
           </property>
           <property name="hal_type" stdset="0">
-           <string>HAL_FLOAT</string>
+           <string>HAL_S32</string>
           </property>
           <property name="hal_dir" stdset="0">
            <string>HAL_IN</string>
           </property>
-          <property name="precision" stdset="0">
-           <string>2</string>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QProgressBar" name="progressBar_2">
+          <property name="maximum">
+           <number>150</number>
+          </property>
+          <property name="value">
+           <number>24</number>
+          </property>
+          <property name="format">
+           <string>psi</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>pb-comp-psi</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_S32</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
           </property>
          </widget>
         </item>
