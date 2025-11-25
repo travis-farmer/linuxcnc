@@ -22,12 +22,6 @@ addf abs.spindle              servo-thread
 addf lowpass.spindle          servo-thread
 addf hm2_7i80.0.write         servo-thread
 
-loadrt not count=1
-addf not.0 servo-thread
-
-loadrt and2 count=1
-addf and2.0 servo-thread
-
 loadrt or2 count=6
 addf or2.0 servo-thread
 addf or2.1 servo-thread
@@ -91,11 +85,10 @@ net lcnc-hours <= time.1.hours
 net estop-fault-trigger estop-latch.0.fault-in <= MacSafety.0.EstopFault
 net estop-b-in => or2.3.in0
 net estop-a-in or2.3.in1 <= hm2_7i80.0.7i70.0.1.input-15-not
-net estop-ext-trigger MacSafety.0.EstopTrigger not.0.in <= or2.3.out
+net estop-ext-trigger MacSafety.0.EstopTrigger <= or2.3.out
 net MS-estop-reset-in or2.5.in0 <= iocontrol.0.user-request-enable
-net MS-estop-reset-out or2.5.out => and2.0.in0
-net estop-ext-trigger-not and2.0.in1 <= not.0.out
-net estop-latch-reset and2.0.out => estop-latch.0.reset
+net MS-estop-reset-out or2.5.out => estop-latch.0.reset
+
 
 net MS-estop-trigger iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 
