@@ -1,5 +1,5 @@
 T0   P0   ;
-T1   P1   D+0.125000 Z-1.346880 ;1/8in flat end mill
+T1   P1   D+0.125000 Z-0.035710 ;1/8in flat end mill
 T2   P2   Z-1.346446 ;30deg V
 T3   P3   D+0.062500 Z-1.325451 ;0.0625in tapered ball nose
 T4   P4   D+0.250000 Z-1.353174 ;1/4in ball end mill
