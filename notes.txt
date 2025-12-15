@@ -20,3 +20,9 @@ https://benchmark.unigine.com/heaven
 ------------------------------------------------------
 halcompile -i MacSafety.comp
 
+------------------------------------------------------
+TODO
+------------------------------------------------------
+halcompile -i LaserAnalog.comp
+halcompile -i vacuum_control.comp
+halcompile -i MacSafety.comp

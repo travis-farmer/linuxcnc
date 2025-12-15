@@ -16,7 +16,6 @@ pin in bit ProgRunningIn "halui.program.is-running connection";
 pin in bit ProgIdleIn "halui.program.is-idle connection";
 pin in bit EstopTrigger "Trigger from external";
 pin in bit EstopIn "input from ESTOP";
-pin in bit LaserMode "input from laser mode switch";
 pin in bit NGCwarning "input from NGC warning";
 pin in bit ManualChangeWaiting "Waiting for manual tool change";
 pin in bit ATCActive "ATC is ACTIVE LED";

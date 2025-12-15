@@ -68,9 +68,6 @@ addf estop-latch.0 servo-thread
 loadrt rpm2volts
 addf rpm2volts.0 servo-thread
 
-loadrt scale count=1
-addf scale.0 servo-thread
-
 #####################
 # --- MacSafety --- #
 #####################
@@ -242,10 +239,16 @@ net vfd-double-power-volts load-conv.0.DblCurVolts <= hm2_7i80.0.7i70.0.1.analog
 setp timedelay.0.on-delay 0.00
 setp timedelay.0.off-delay 5.00
 # S0-5000 $1
-setp scale.0.gain 0.002
-net spindleb-speed-scale spindle.2.speed-out => scale.0.in
-net spindleb-speed-DAC scale.0.out => hm2_7i80.0.7i83.0.3.analogout1
-net spindleb-enable spindle.1.on => hm2_7i80.0.7i83.0.3.analogena1
+net spindleb-speed-scale spindle.1.spindle-rpm-abs => LaserAnalog.0.SpindleIn
+net spindleb-speed-DAC LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
+net spindleb-enable spindle.1.forward => LaserAnalog.0.SpindleEnable
+net spindleb-enable-out LaserAnalog.0.LaserEnableOut -> hm2_7i80.0.7i83.0.3.analogena1
+# M68 E0 Q0
+# M67 E0 Q0
+net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
+# M64 P2 - turn on digital output immediately.
+# M65 P2 - turn off digital output immediately.
+net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 # laser E-Stop handled by on-abort.ngc
 
 # connect the output to the spindle-at-speed input
 setp spindle.1.at-speed true
