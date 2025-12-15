@@ -23,4 +23,4 @@ halcompile -i MacSafety.comp
 ------------------------------------------------------
 TODO
 ------------------------------------------------------
-halcompile -i load_conv.comp
+halcompile -i ./LaserAnalog.comp

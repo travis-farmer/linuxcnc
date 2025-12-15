@@ -2,7 +2,7 @@ component LaserAnalog "convert analog values for Laser 0-10v out";
 
 pin in float SpindleIn "Spindle set value 0.00-1000.00, in";
 pin out float FloatOut "Laser 0-10v value, out";
-pin out float PercentOut "Laser 0-100% value, out";
+pin out u32 PercentOut "Laser 0-100% value, out";
 pin out bit LaserEnableOut "Laser Enable Relay, out";
 pin in bit ProgIsPausedIn "halui.program.is-paused connection";
 pin in bit SpindleEnable "Spindle enable pin, in";
@@ -26,7 +26,7 @@ FUNCTION(_) {
     } else {
       FloatOut = map(SpindleIn,0.000,1000.000,0.000,10.000);
     }
-    PercentOut = map(FloatOut,0.00,10.00,0.00,100.00);
+    PercentOut = (unsigned long) map(FloatOut,0.00,10.00,0.00,100.00);
 
     if (DoorInterlockIn == true && ProgIsPausedIn == false && LaserOnSigIn == true) {LaserEnableOut = true;}
     else {LaserEnableOut = false;}

@@ -20,4 +20,4 @@ net spindle-load-hp => flexhal.spindle-hp
 net spindle-limited => flexhal.spindle-actual
 #net spindleb-enable-out => flexhal.laser-active-led
 #net hrdwr-spindle-running => flexhal.spindle-active-led
-#net laser-percent-out conv-float-u32.0.out => flexhal.laser-power-u32
+#net laser-percent-out LaserAnalog.0.PercentOut => flexhal.laser-power-u32
