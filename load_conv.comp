@@ -25,7 +25,7 @@ float map(float x, float in_min, float in_max, float out_min, float out_max) {
 }
 
 FUNCTION(_) {
-  if (SpindleActive == true) {
+  if (SpindleActive != true) {
     powerKW = ((map(DblCurVolts,0.00,10.00,0.00,46.00) * 220)/1000);
     load = round(powerKW/(maxpower/100.0));
     hp = (powerKW * 1.34102);
