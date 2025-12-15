@@ -26,3 +26,4 @@ TODO
 halcompile -i LaserAnalog.comp
 halcompile -i vacuum_control.comp
 halcompile -i MacSafety.comp
+halcompile -i load_conv.comp

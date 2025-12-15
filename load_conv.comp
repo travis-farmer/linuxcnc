@@ -7,6 +7,7 @@ setp load-conv.0.maxamps 10.7
 */
 component load_conv "calculates percentage of load based on motor Amps";
 
+pin in bit SpindleActive "True when spindle is running, in";
 pin in float DblCurVolts "Double rated VFD power, 0-10v, in";
 pin out float load "Percent load out, out";
 pin in float maxpower "Max Motor Power, in";
@@ -24,7 +25,14 @@ float map(float x, float in_min, float in_max, float out_min, float out_max) {
 }
 
 FUNCTION(_) {
-  powerKW = ((map(DblCurVolts,0.00,10.00,0.00,46.0) * 220)/1000);
-  load = round(powerKW/(maxpower/100.0));
-  hp = (powerKW * 1.34102);
+  if (SpindleActive == true) {
+    powerKW = ((map(DblCurVolts,0.00,10.00,0.00,46.00) * 220)/1000);
+    load = round(powerKW/(maxpower/100.0));
+    hp = (powerKW * 1.34102);
+  } else {
+    powerKW = 0.00;
+    load = 0.00;
+    hp = 0.00;
+  }
+  
 }
