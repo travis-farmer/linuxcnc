@@ -28,6 +28,6 @@ FUNCTION(_) {
     }
     PercentOut = (unsigned long) map(FloatOut,0.00,10.00,0.00,100.00);
 
-    if (DoorInterlockIn == true && ProgIsPausedIn == false && LaserOnSigIn == true) {LaserEnableOut = true;}
+    if (DoorInterlockIn == true && ProgIsPausedIn == false && (LaserOnSigIn == true || SpindleEnable == true)) {LaserEnableOut = true;}
     else {LaserEnableOut = false;}
 }

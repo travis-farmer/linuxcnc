@@ -8,3 +8,28 @@ o<mac-home> call
 o<zero-work> call
 o<mac-home> call
 S24000
+m3 $1 S1000
+m4 $1 S1000
+m5 $1 S1000
+m3 $0 S1000
+m5 $0 S1000
+m3 $1 S1000
+m5 $1 S1000
+g0 x0 y0 z0
+m3 $1 S1000
+m4 $1 S1000
+m5 $1 S1000
+m3 $1 S1000
+m3 $1 S5000
+m5 $1 S1000
+m3 $1 S1000
+m5 $1 S1000
+m3 $1 S1000
+m5 $1 S1000
+m3 $1 S1000
+o<mac-home> call
+m3 $1 S1000
+o<mac-home> call
+m3 $1 S1000
+m5 $1 S1000
+o<mac-home> call

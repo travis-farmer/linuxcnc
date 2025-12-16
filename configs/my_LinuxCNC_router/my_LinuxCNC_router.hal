@@ -141,7 +141,7 @@ net tool-change-mode => lcd.00.page.00.arg.05
 net spindle-is-unlocked => lcd.00.page.00.arg.06
 net spindle-is-hung => lcd.00.page.00.arg.07
 # --- Page 01 ---
-net laser-mode => lcd.00.page.01.arg.00
+net spindleb-enable-out => lcd.00.page.01.arg.00
 net LaserAnalogIn => lcd.00.page.01.arg.01
 net LaserAirOut => lcd.00.page.01.arg.02
 net fume-extraction-ssr => lcd.00.page.01.arg.03
@@ -242,7 +242,7 @@ setp timedelay.0.off-delay 5.00
 net spindleb-speed-scale spindle.1.speed-out-abs => LaserAnalog.0.SpindleIn
 net spindleb-speed-DAC LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
 net spindleb-enable spindle.1.forward => LaserAnalog.0.SpindleEnable
-net spindleb-enable-out hm2_7i80.0.7i83.0.3.analogena1 <= LaserAnalog.0.LaserEnableOut
+net spindleb-enable-out hm2_7i80.0.7i83.0.3.analogena1 hm2_7i80.0.7i72.0.2.output-05 <= LaserAnalog.0.LaserEnableOut
 # M68 E0 Q0
 # M67 E0 Q0
 net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
@@ -252,6 +252,7 @@ net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 # laser E-Sto
 
 # connect the output to the spindle-at-speed input
 setp spindle.1.at-speed true
+setp LaserAnalog.0.DoorInterlockIn true
 
 ############################
 # --- external signals --- #

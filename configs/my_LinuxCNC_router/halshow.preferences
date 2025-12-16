@@ -5,21 +5,18 @@ placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+iocontrol.0.emc-enable-in
-    pin+MacSafety.0.EstopFault
-    pin+MacSafety.0.EstopIn
-    pin+MacSafety.0.EstopTrigger
-    pin+estop-latch.0.fault-in
-    pin+estop-latch.0.reset
-    pin+hm2_7i80.0.7i70.0.1.input-15-not
-    pin+hm2_7i80.0.7i70.0.1.input-15
-    pin+hm2_7i80.0.7i73.0.0.input-00
-    pin+hm2_7i80.0.7i73.0.0.input-00-not
-    pin+hm2_7i80.0.7i73.0.0.input-01
-    pin+hm2_7i80.0.7i73.0.0.input-01-not
-    pin+iocontrol.0.user-request-enable
-    pin+load-conv.0.powerKW
-    pin+load-conv.0.DblCurVolts
+    pin+LaserAnalog.0.DoorInterlockIn
+    pin+LaserAnalog.0.PercentOut
+    pin+LaserAnalog.0.time
+    pin+LaserAnalog.0.SpindleIn
+    pin+LaserAnalog.0.SpindleEnable
+    pin+LaserAnalog.0.ProgIsPausedIn
+    pin+LaserAnalog.0.LaserOnSigIn
+    pin+LaserAnalog.0.LaserIn
+    pin+LaserAnalog.0.LaserEnableOut
+    pin+LaserAnalog.0.FloatOut
+    pin+hm2_7i80.0.7i83.0.3.analogena1
+    pin+hm2_7i80.0.7i72.0.2.output-05
 }
 set ::workmode watchhal
 set ::watchInterval 100
