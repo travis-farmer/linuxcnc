@@ -1,0 +1,67 @@
+component SpindleDirector "direct spindle signals based on loaded tool number.";
+
+pin in s32 tool-number "Current loaded tool number, in";
+pin out bit spindle-at-speed "Outputs TRUE when the spindle is at speed, out";
+pin in bit spindle-brake "Inputs when to apply the brake, in";
+pin in bit spindle-forward "Inputs when to run the spindle forward, in";
+pin in bit spindle-on "Inputs when the spindle is on, in";
+pin in bit spindle-reverse "Inputs when to run the spindle reverse, in";
+pin out float spindle-speed-in "Outputs spindle speed feedback signal in RPS, out";
+pin in float spindle-speed-out "Inputs desired speed in rotations per minute, in";
+pin in float spindle-speed-out-abs "Inputs desired speed in rotations per minute, unsigned, in";
+pin in float spindle-speed-out-rps "Inputs desired speed in rotations per second, in";
+pin in float spindle-speed-out-rps-abs "Inputs desired speed in rotations per second, unsigned, in";
+pin in bit driven-at-speed "Inputs TRUE when the driven is at speed, in";
+pin out bit driven-brake "Outputs when to apply the brake, out";
+pin out bit driven-forward "Outputs when to run the spindle forward, out";
+pin out bit driven-on "Outputs when the spindle is on, out";
+pin out bit driven-reverse "Outputs when to run the spindle in reverse, out";
+pin in float driven-speed-in "Inputs spindle speed feedback signal in RPS, in";
+pin out float driven-speed-out "Outputs desired spindle speed in rotations per minute, out";
+pin out float driven-speed-out-abs "Inputs TRUE when the driven is at speed, in";
+pin out float driven-speed-out-rps "Inputs TRUE when the driven is at speed, in";
+pin out float driven-speed-out-rps-abs "Inputs TRUE when the driven is at speed, in";
+pin in bit laser-at-speed "Inputs TRUE when the driven is at speed, in";
+pin out bit laser-brake "Outputs when to apply the brake, out";
+pin out bit laser-forward "Outputs when to run the spindle forward, out";
+pin out bit laser-on "Outputs when the spindle is on, out";
+pin out bit laser-reverse "Outputs when to run the spindle in reverse, out";
+pin in float laser-speed-in "Inputs spindle speed feedback signal in RPS, in";
+pin out float laser-speed-out "Outputs desired spindle speed in rotations per minute, out";
+pin out float laser-speed-out-abs "Inputs TRUE when the driven is at speed, in";
+pin out float laser-speed-out-rps "Inputs TRUE when the driven is at speed, in";
+pin out float laser-speed-out-rps-abs "Inputs TRUE when the driven is at speed, in";
+
+
+function _;
+license "GPL";
+author "Travis Farmer";
+;;
+
+FUNCTION(_) {
+    if (tool-number == 98) {
+      // Direct to laser
+      spindle-at-speed = laser-at-speed;
+      laser-brake = spindle-brake;
+      laser-forward = spindle-forward;
+      laser-on = spindle-on;
+      laser-reverse = spindle-reverse;
+      spindle-speed-in = laser-speed-in;
+      laser-speed-out = spindle-speed-out;
+      laser-speed-out-abs = spindle-speed-out-abs;
+      laser-speed-out-rps = spindle-speed-out-rps;
+      laser-speed-out-rps-abs = spindle-speed-out-rps-abs;
+    } else {
+      // Direct to spindle
+      spindle-at-speed = driven-at-speed;
+      driven-brake = spindle-brake;
+      criven-forward = spindle-forward;
+      criven-on = spindle-on;
+      driven-reverse = spindle-reverse;
+      spindle-speed-in = driven-speed-in;
+      driven-speed-out = spindle-speed-out;
+      driven-speed-out-abs = spindle-speed-out-abs;
+      driven-speed-out-rps = spindle-speed-out-rps;
+      driven-speed-out-rps-abs = spindle-speed-out-rps-abs;
+    }
+}
