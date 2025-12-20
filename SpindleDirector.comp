@@ -1,6 +1,6 @@
 component SpindleDirector "direct spindle signals based on loaded tool number.";
 
-pin in s32 tool-number "Current loaded tool number, in";
+pin in u32 tool-number "Current loaded tool number, in";
 pin out bit spindle-at-speed "Outputs TRUE when the spindle is at speed, out";
 pin in bit spindle-brake "Inputs when to apply the brake, in";
 pin in bit spindle-forward "Inputs when to run the spindle forward, in";
@@ -39,29 +39,29 @@ author "Travis Farmer";
 ;;
 
 FUNCTION(_) {
-    if (tool-number == 98) {
+    if (tool_number == 98) {
       // Direct to laser
-      spindle-at-speed = laser-at-speed;
-      laser-brake = spindle-brake;
-      laser-forward = spindle-forward;
-      laser-on = spindle-on;
-      laser-reverse = spindle-reverse;
-      spindle-speed-in = laser-speed-in;
-      laser-speed-out = spindle-speed-out;
-      laser-speed-out-abs = spindle-speed-out-abs;
-      laser-speed-out-rps = spindle-speed-out-rps;
-      laser-speed-out-rps-abs = spindle-speed-out-rps-abs;
+      spindle_at_speed = laser_at_speed;
+      laser_brake = spindle_brake;
+      laser_forward = spindle_forward;
+      laser_on = spindle_on;
+      laser_reverse = spindle_reverse;
+      spindle_speed_in = laser_speed_in;
+      laser_speed_out = spindle_speed_out;
+      laser_speed_out_abs = spindle_speed_out_abs;
+      laser_speed_out_rps = spindle_speed_out_rps;
+      laser_speed_out_rps_abs = spindle_speed_out_rps_abs;
     } else {
       // Direct to spindle
-      spindle-at-speed = driven-at-speed;
-      driven-brake = spindle-brake;
-      criven-forward = spindle-forward;
-      criven-on = spindle-on;
-      driven-reverse = spindle-reverse;
-      spindle-speed-in = driven-speed-in;
-      driven-speed-out = spindle-speed-out;
-      driven-speed-out-abs = spindle-speed-out-abs;
-      driven-speed-out-rps = spindle-speed-out-rps;
-      driven-speed-out-rps-abs = spindle-speed-out-rps-abs;
+      spindle_at_speed = driven_at_speed;
+      driven_brake = spindle_brake;
+      driven_forward = spindle_forward;
+      driven_on = spindle_on;
+      driven_reverse = spindle_reverse;
+      spindle_speed_in = driven_speed_in;
+      driven_speed_out = spindle_speed_out;
+      driven_speed_out_abs = spindle_speed_out_abs;
+      driven_speed_out_rps = spindle_speed_out_rps;
+      driven_speed_out_rps_abs = spindle_speed_out_rps_abs;
     }
 }
