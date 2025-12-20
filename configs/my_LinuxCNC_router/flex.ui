@@ -1272,28 +1272,6 @@
               <string>o&lt;zero-work&gt; call</string>
              </property>
             </widget>
-            <widget class="QPushButton" name="probe_LsrFoc">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>50</y>
-               <width>101</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="toolTip">
-              <string>Probe for material Z height for laser focus</string>
-             </property>
-             <property name="text">
-              <string>Prb Laser Focus</string>
-             </property>
-             <property name="function" stdset="0">
-              <string>mdi</string>
-             </property>
-             <property name="command" stdset="0">
-              <string>o&lt;laser-focus&gt; call</string>
-             </property>
-            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="Edge">
@@ -5081,7 +5059,7 @@
      <x>0</x>
      <y>0</y>
      <width>1127</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
