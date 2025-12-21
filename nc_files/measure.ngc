@@ -62,6 +62,6 @@ o<measure> sub
 
   M72 (Restore saved modal state)
   ;G43.1 Z#<_new_tlo> (Set Dynamic TLO)
-  G10 L10 P#<_current_tool> Z#<_new_tlo>
+  G10 L1 P#<_current_tool> Z#<_new_tlo>
 o<measure> endsub
 M2
