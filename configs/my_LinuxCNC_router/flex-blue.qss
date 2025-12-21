@@ -324,7 +324,7 @@ QLCDNumber{
   border-radius: 10px;
   color: rgb(255, 255, 255);
 }
-QLCDNumber#spindle_speed_0_lcd, QLCDNumber#Spindle_Actual_lcd{
+QLCDNumber#spindle_speed_0_lcd, QLCDNumber#Spindle_Actual_lcd, QLCDNumber#Laser_Actual_lcd{
   background-color: rgb(0, 0, 0);
   border: 2px solid rgb(113, 113, 113);
   border-width: 2px;
