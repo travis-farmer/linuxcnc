@@ -16,7 +16,7 @@ https://benchmark.unigine.com/heaven
 ------------------------------------------------------
 Probe to Laser difference
 ------------------------------------------------------
-x3.44 y-1.59 z-2.3012
+X4.5300  Y-1.8200  Z-2.3309
 
 ------------------------------------------------------
  Open /etc/lightdm/lightdm.conf for editing. Search for autologin-user=; uncomment line (remove #) and add username; also uncomment next line (autologin-user-timeout=0). Save file, close text editor, and reboot to test. As discussed below, it's not clear the second modification is needed, or even does anything, but it's the official Debian recommendation.
