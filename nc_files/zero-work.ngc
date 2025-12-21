@@ -17,7 +17,7 @@ o<zero-work> sub
     (abort,Probe not in spindle!)
  o313 endif
  G59.3																		(Switch temporarily to G59.3 WCS for probing)
- G10 L20 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
+ G10 L2 P9 X0 Y0 Z0															(Zero out work coordinate offsets in G59.3)
  G38.2 Z-4.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>	(Probe move to work)
  G38.5 Z-0.5 F#<_ini[TOOLSENSOR]SEARCH_VEL>  (backoff)
  G38.2 Z-4.5 F#<_ini[TOOLSENSOR]PROBE_VEL>	(Measure Fine)
@@ -58,7 +58,7 @@ o<zero-work> sub
  o107 endif
 
 M72                                                                			(Restore saved modal state)
-G10 L20 P0 Z#<work_height>
+G10 L2 P0 Z#<work_height>
 
 o<zero-work> endsub
 M2
