@@ -44,9 +44,8 @@ o<toolchange> sub
 				
 				(-=PLAIN AUTO CHANGE, PLACE LAST IN RACK=-)
 				M64 P5 (turn on ATC active LED)
-				G53 G0 X#<pocket_current_x> Y#<pocket_approach_y>	(Rapid YX to approach position for current tool's pocket)
-				G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z>	(Rapid Z to pocket height)
-				G53 G1 Y#<_ini[TOOL_CHANGE]POCKET_Y> F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Y>	(Slot tool into pocket)
+				G53 G0 X#<pocket_current_x> Y#<_ini[TOOL_CHANGE]POCKET_Y>	(Rapid YX to pocket position for current tool's pocket)
+				G53 G1 Z#<_ini[TOOL_CHANGE]POCKET_Z> F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Z>	(drop tool into pocket)
 				G4 P0.1
 				
 				M64 P0	(Release ATC)
@@ -106,9 +105,9 @@ o<toolchange> sub
 				M63 P0	(Engage ATC, synchronized with the following move)
 				G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z>
 				M66 P2 L4 Q10	(Wait for ATC engagement, TJF)
-				G53 G1 Y#<pocket_approach_y> F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Y>			(Slot tool out of pocket)
+				G53 G1 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z> F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Z>			(Lift tool out of pocket)
 				
-				G53 G0 Z#<pocket_safe_z>	(Rapid retract Z)
+				G53 G0 Y#<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>	(Rapid safe Y)
 				M61 Q#<_selected_tool>	(Set current tool)
 				M65 P5 (turn off ATC active LED)
 			o2130 elseif [#<_selected_tool> GT #<_ini[TOOL_CHANGE]NUM_POCKETS>]
