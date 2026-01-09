@@ -728,6 +728,270 @@
         <string>Main</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
+        <item row="3" column="6">
+         <widget class="QPushButton" name="touchoff_pb_x">
+          <property name="toolTip">
+           <string>set X work offset zero</string>
+          </property>
+          <property name="text">
+           <string>Set X</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="7">
+         <widget class="QPushButton" name="touchoff_pb_y">
+          <property name="toolTip">
+           <string>set Y work offset sero</string>
+          </property>
+          <property name="text">
+           <string>Set Y</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="8">
+         <widget class="QPushButton" name="touchoff_pb_z">
+          <property name="toolTip">
+           <string>set Z work offset zero</string>
+          </property>
+          <property name="text">
+           <string>Set Z</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="5">
+         <widget class="QLabel" name="label_68">
+          <property name="text">
+           <string>Wrk Offset</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2" colspan="2">
+         <widget class="QPushButton" name="mist_pb">
+          <property name="text">
+           <string>Mist</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="QPushButton" name="flood_pb">
+          <property name="text">
+           <string>Flood</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="QPushButton" name="pushButton">
+          <property name="toolTip">
+           <string>Z up, then rapid to machine home</string>
+          </property>
+          <property name="text">
+           <string>Machine Home</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>mdi</string>
+          </property>
+          <property name="command" stdset="0">
+           <string>o&lt;mac-home&gt; call</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="2">
+         <widget class="QLabel" name="label_37">
+          <property name="text">
+           <string>Current Line:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2" colspan="2">
+         <widget class="QLabel" name="current_line_lb">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4" colspan="2">
+         <widget class="QLabel" name="label_38">
+          <property name="text">
+           <string>Motion Line:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="2" colspan="2">
+         <widget class="QPushButton" name="optional_stop_pb">
+          <property name="toolTip">
+           <string>Optional Stop at M1</string>
+          </property>
+          <property name="text">
+           <string>M1 Option</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="7" colspan="2">
+         <widget class="QPushButton" name="probing_enable_pb">
+          <property name="toolTip">
+           <string>enable probing, disable most everything else</string>
+          </property>
+          <property name="text">
+           <string>Probe Enable</string>
+          </property>
+          <property name="on_text" stdset="0">
+           <string>Probe Disable</string>
+          </property>
+          <property name="off_text" stdset="0">
+           <string>Probe Enable</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="7" colspan="2">
+         <widget class="QPushButton" name="home_all_pb">
+          <property name="text">
+           <string>Home All</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="6" colspan="3">
+         <widget class="QLabel" name="motion_line_lb">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="4" colspan="3">
+         <widget class="QPushButton" name="unhome_all_pb">
+          <property name="text">
+           <string>UnHome All</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="4" colspan="3">
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="toolTip">
+           <string>shut off laser, in case E-stop fails to</string>
+          </property>
+          <property name="text">
+           <string>Kill Laser</string>
+          </property>
+          <property name="function" stdset="0">
+           <string>mdi</string>
+          </property>
+          <property name="command" stdset="0">
+           <string>o&lt;kill-laser&gt; call</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_70">
+          <property name="text">
+           <string>Cycle Timer</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QLCDNumber" name="Cycle_Min_lcd">
+          <property name="digitCount">
+           <number>2</number>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::Flat</enum>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>cycle-min</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_U32</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLCDNumber" name="Cycle_Hrs_lcd">
+          <property name="digitCount">
+           <number>2</number>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::Flat</enum>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>cycle-hrs</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_U32</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QLCDNumber" name="Cycle_Sec_lcd">
+          <property name="digitCount">
+           <number>2</number>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::Flat</enum>
+          </property>
+          <property name="function" stdset="0">
+           <string>hal_pin</string>
+          </property>
+          <property name="pin_name" stdset="0">
+           <string>cycle-sec</string>
+          </property>
+          <property name="hal_type" stdset="0">
+           <string>HAL_U32</string>
+          </property>
+          <property name="hal_dir" stdset="0">
+           <string>HAL_IN</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3" colspan="6">
+         <widget class="QLabel" name="file_lb">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="3">
+         <widget class="QLabel" name="label_72">
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Program:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0" colspan="9">
          <widget class="QTabWidget" name="tabWidget_6">
           <property name="tabPosition">
@@ -745,7 +1009,7 @@
              <rect>
               <x>290</x>
               <y>130</y>
-              <width>144</width>
+              <width>141</width>
               <height>40</height>
              </rect>
             </property>
@@ -775,9 +1039,9 @@
             <property name="geometry">
              <rect>
               <x>230</x>
-              <y>0</y>
-              <width>211</width>
-              <height>71</height>
+              <y>10</y>
+              <width>201</width>
+              <height>61</height>
              </rect>
             </property>
             <property name="digitCount">
@@ -841,10 +1105,10 @@
            <widget class="QLCDNumber" name="spindle_speed_0_lcd">
             <property name="geometry">
              <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>211</width>
-              <height>71</height>
+              <x>10</x>
+              <y>10</y>
+              <width>201</width>
+              <height>61</height>
              </rect>
             </property>
             <property name="toolTip">
@@ -972,8 +1236,8 @@
            <widget class="QLCDNumber" name="Laser_Actual_lcd">
             <property name="geometry">
              <rect>
-              <x>320</x>
-              <y>0</y>
+              <x>310</x>
+              <y>10</y>
               <width>121</width>
               <height>71</height>
              </rect>
@@ -1020,270 +1284,6 @@
             </property>
            </widget>
           </widget>
-         </widget>
-        </item>
-        <item row="8" column="2" colspan="2">
-         <widget class="QPushButton" name="mist_pb">
-          <property name="text">
-           <string>Mist</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0" colspan="2">
-         <widget class="QPushButton" name="flood_pb">
-          <property name="text">
-           <string>Flood</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2" colspan="2">
-         <widget class="QLabel" name="current_line_lb">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="4" colspan="2">
-         <widget class="QLabel" name="label_38">
-          <property name="text">
-           <string>Motion Line:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0" colspan="2">
-         <widget class="QLabel" name="label_37">
-          <property name="text">
-           <string>Current Line:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButton">
-          <property name="toolTip">
-           <string>Z up, then rapid to machine home</string>
-          </property>
-          <property name="text">
-           <string>Machine Home</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>mdi</string>
-          </property>
-          <property name="command" stdset="0">
-           <string>o&lt;mac-home&gt; call</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="6" colspan="3">
-         <widget class="QLabel" name="motion_line_lb">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="7" colspan="2">
-         <widget class="QPushButton" name="home_all_pb">
-          <property name="text">
-           <string>Home All</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="4" colspan="3">
-         <widget class="QPushButton" name="unhome_all_pb">
-          <property name="text">
-           <string>UnHome All</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="2" colspan="2">
-         <widget class="QPushButton" name="optional_stop_pb">
-          <property name="toolTip">
-           <string>Optional Stop at M1</string>
-          </property>
-          <property name="text">
-           <string>M1 Option</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="7" colspan="2">
-         <widget class="QPushButton" name="probing_enable_pb">
-          <property name="toolTip">
-           <string>enable probing, disable most everything else</string>
-          </property>
-          <property name="text">
-           <string>Probe Enable</string>
-          </property>
-          <property name="on_text" stdset="0">
-           <string>Probe Disable</string>
-          </property>
-          <property name="off_text" stdset="0">
-           <string>Probe Enable</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="4" colspan="3">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="toolTip">
-           <string>shut off laser, in case E-stop fails to</string>
-          </property>
-          <property name="text">
-           <string>Kill Laser</string>
-          </property>
-          <property name="function" stdset="0">
-           <string>mdi</string>
-          </property>
-          <property name="command" stdset="0">
-           <string>o&lt;kill-laser&gt; call</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_70">
-          <property name="text">
-           <string>Cycle Timer</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QLCDNumber" name="Cycle_Min_lcd">
-          <property name="digitCount">
-           <number>2</number>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::Flat</enum>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>cycle-min</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_U32</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLCDNumber" name="Cycle_Hrs_lcd">
-          <property name="digitCount">
-           <number>2</number>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::Flat</enum>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>cycle-hrs</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_U32</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="3">
-         <widget class="QLCDNumber" name="Cycle_Sec_lcd">
-          <property name="digitCount">
-           <number>2</number>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::Flat</enum>
-          </property>
-          <property name="function" stdset="0">
-           <string>hal_pin</string>
-          </property>
-          <property name="pin_name" stdset="0">
-           <string>cycle-sec</string>
-          </property>
-          <property name="hal_type" stdset="0">
-           <string>HAL_U32</string>
-          </property>
-          <property name="hal_dir" stdset="0">
-           <string>HAL_IN</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3" colspan="6">
-         <widget class="QLabel" name="file_lb">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" colspan="3">
-         <widget class="QLabel" name="label_72">
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Program:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="8">
-         <widget class="QPushButton" name="touchoff_pb_z">
-          <property name="toolTip">
-           <string>set Z work offset zero</string>
-          </property>
-          <property name="text">
-           <string>Touch Z</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="7">
-         <widget class="QPushButton" name="touchoff_pb_y">
-          <property name="toolTip">
-           <string>set Y work offset sero</string>
-          </property>
-          <property name="text">
-           <string>Touch Y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="6">
-         <widget class="QPushButton" name="touchoff_pb_x">
-          <property name="toolTip">
-           <string>set X work offset zero</string>
-          </property>
-          <property name="text">
-           <string>Touch X</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="5">
-         <widget class="QLabel" name="label_68">
-          <property name="text">
-           <string>Wrk Offset</string>
-          </property>
          </widget>
         </item>
        </layout>
