@@ -497,18 +497,11 @@ setp vacuum-control.0.trig-rpm-in 500 # RPM, above that the vacuum is turned on
 net coolant-mist vacuum-control.0.cool-mist-in     <=  iocontrol.0.coolant-mist
 net coolant-flood vacuum-control.0.cool-flood-in    <=  iocontrol.0.coolant-flood
 net spindle-vel-cmd-rpm-abs => vacuum-control.0.spind-rpm-in
-
-#setp hm2_7i80.0.gpio.004.invert_output false
-#setp hm2_7i80.0.gpio.004.is_output true
 net spind-vac-control vacuum-control.0.vac-out => hm2_7i80.0.7i72.0.2.output-09
-
-#setp hm2_7i80.0.gpio.008.invert_output false
-#setp hm2_7i80.0.gpio.008.is_output true
 net coolant-mist-vac-control vacuum-control.0.cool-mist-out => hm2_7i80.0.7i72.0.2.output-10
-
-#setp hm2_7i80.0.gpio.007.invert_output false
-#setp hm2_7i80.0.gpio.007.is_output true
 net coolant-flood-vac-control vacuum-control.0.cool-flood-out => hm2_7i80.0.7i72.0.2.output-11
+net coolant-flood-laser-air vacuum-control.0.laser-air-out => hm2_7i80.0.7i72.0.2.output-12
+
 net cpl-tool-number => vacuum-control.0.ToolNumber
 #########################
 # --- Other Signals --- #
