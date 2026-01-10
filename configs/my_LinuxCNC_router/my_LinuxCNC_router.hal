@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES num_dio=32 num_aio=10
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=0 num_stepgens=4 sserial_port_0=01100000"
+loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=1 num_stepgens=4 sserial_port_0=01100000"
 
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
@@ -197,6 +197,9 @@ net sd-speed-out-rps-abs spindle.0.speed-out-rps-abs => SpindleDirector.0.spindl
 ###################
 # --- spindle --- #
 ###################
+setp hm2_7i80.0.encoder.00.counter-mode true
+setp hm2_7i80.0.encoder.00.vel-timeout 1.5
+
 
 # --- rpmlimiter ---
 loadusr -W toolrpm
