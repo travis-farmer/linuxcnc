@@ -29,3 +29,4 @@ halcompile -i MacSafety.comp
 TODO
 ------------------------------------------------------
 halcompile -i ./LaserAnalog.comp
+halcompile -i ./pocket_used.comp

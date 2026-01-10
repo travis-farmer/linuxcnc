@@ -1,0 +1,31 @@
+
+/********************************************************************************
+pocket_used.comp
+
+*********************************************************************************/
+
+component pocket_used                 "This component indicates tool pockets used";
+
+pin in u32 tool_number              "current loaded tool";
+pin in u32 tool_prep_number         "next tool number";
+pin in bit tool_change              "tool change requested";
+pin in bit tool_changed             "tool is changed";
+pin out bit in_use.# [20 : (personality)] "Pins to attach to pocket indicators";
+function _;
+author "Travis Farmer";
+license "GPL";
+;;
+
+FUNCTION(_) {
+    for (int i = 0; i <= personality; i++) {
+        if (i == tool_prep_number && i != (tool_number-1) && tool_change == true) {
+            // TODO: blink in_use(i)
+        } else {
+            if (i == (tool_number-1) && tool_changed == true) {
+                in_use(i) = 1;
+            } else {
+                in_use(i) = 0;
+            }
+        }
+    }
+}

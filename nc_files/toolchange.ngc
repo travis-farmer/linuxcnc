@@ -105,7 +105,7 @@ o<toolchange> sub
 				M63 P0	(Engage ATC, synchronized with the following move)
 				G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z>
 				M66 P2 L4 Q10	(Wait for ATC engagement, TJF)
-				G53 G1 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z> F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Z>			(Lift tool out of pocket)
+				G53 G1 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z> F#<_ini[TOOL_CHANGE]RETRACT_VELOCITY_Z>			(Lift tool out of pocket)
 				
 				G53 G0 Y#<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>	(Rapid safe Y)
 				M61 Q#<_selected_tool>	(Set current tool)

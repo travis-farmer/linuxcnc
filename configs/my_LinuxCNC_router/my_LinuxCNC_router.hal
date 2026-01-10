@@ -71,6 +71,39 @@ addf rpm2volts.0 servo-thread
 loadrt SpindleDirector
 addf SpindleDirector.0 servo-thread
 
+loadrt pocket_used personality=12
+addf pocket-used.0 servo-thread
+
+#############################
+# --- Pocket Indicators --- #
+#############################
+net cpl-tool-number => pocket-used.0.tool-number
+net pi-pocket1-full hm2_7i80.0.7i70.0.1.input-36 => hm2_7i80.0.7i72.0.2.output-24
+net pi-pocket2-full hm2_7i80.0.7i70.0.1.input-37 => hm2_7i80.0.7i72.0.2.output-26
+net pi-pocket3-full hm2_7i80.0.7i70.0.1.input-38 => hm2_7i80.0.7i72.0.2.output-28
+net pi-pocket4-full hm2_7i80.0.7i70.0.1.input-39 => hm2_7i80.0.7i72.0.2.output-30
+net pi-pocket5-full hm2_7i80.0.7i70.0.1.input-40 => hm2_7i80.0.7i72.0.2.output-32
+net pi-pocket6-full hm2_7i80.0.7i70.0.1.input-41 => hm2_7i80.0.7i72.0.2.output-34
+net pi-pocket7-full hm2_7i80.0.7i70.0.1.input-42 => hm2_7i80.0.7i72.0.2.output-36
+net pi-pocket8-full hm2_7i80.0.7i70.0.1.input-43 => hm2_7i80.0.7i72.0.2.output-38
+net pi-pocket9-full hm2_7i80.0.7i70.0.1.input-44 => hm2_7i80.0.7i72.0.2.output-40
+net pi-pocket10-full hm2_7i80.0.7i70.0.1.input-45 => hm2_7i80.0.7i72.0.2.output-42
+net pi-pocket11-full hm2_7i80.0.7i70.0.1.input-46 => hm2_7i80.0.7i72.0.2.output-44
+net pi-pocket12-full hm2_7i80.0.7i70.0.1.input-47 => hm2_7i80.0.7i72.0.2.output-46
+net pi-pocket1-used pocket-used.0.in-use.0 => hm2_7i80.0.7i72.0.2.output-25
+net pi-pocket2-used pocket-used.0.in-use.1 => hm2_7i80.0.7i72.0.2.output-27
+net pi-pocket3-used pocket-used.0.in-use.2 => hm2_7i80.0.7i72.0.2.output-29
+net pi-pocket4-used pocket-used.0.in-use.3 => hm2_7i80.0.7i72.0.2.output-31
+net pi-pocket5-used pocket-used.0.in-use.4 => hm2_7i80.0.7i72.0.2.output-33
+net pi-pocket6-used pocket-used.0.in-use.5 => hm2_7i80.0.7i72.0.2.output-35
+net pi-pocket7-used pocket-used.0.in-use.6 => hm2_7i80.0.7i72.0.2.output-37
+net pi-pocket8-used pocket-used.0.in-use.7 => hm2_7i80.0.7i72.0.2.output-39
+net pi-pocket9-used pocket-used.0.in-use.8 => hm2_7i80.0.7i72.0.2.output-41
+net pi-pocket10-used pocket-used.0.in-use.9 => hm2_7i80.0.7i72.0.2.output-43
+net pi-pocket11-used pocket-used.0.in-use.10 => hm2_7i80.0.7i72.0.2.output-45
+net pi-pocket12-used pocket-used.0.in-use.11 => hm2_7i80.0.7i72.0.2.output-47
+
+
 #####################
 # --- MacSafety --- #
 #####################
@@ -519,8 +552,8 @@ net estop-out time.1.pause  MacSafety.0.EstopIn  estop-latch.0.ok-in  <=  iocont
 
 #  ---manual tool change signals---
 loadusr -W hal_manualtoolchange
-net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
-net tool-change-confirmed   iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
-net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
+net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change pocket-used.0.tool-change
+net tool-change-confirmed   iocontrol.0.tool-changed pocket-used.0.tool-changed      <=  hal_manualtoolchange.changed
+net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number pocket-used.0.tool-prep-number
 net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
 
