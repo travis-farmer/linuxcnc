@@ -140,7 +140,7 @@ net MS-NGCwarning MacSafety.0.NGCwarning <= motion.digital-out-06
 net MS-ATCActive MacSafety.0.ATCActive <= motion.digital-out-05
 net MS-ManualChangeWaiting MacSafety.0.ManualChangeWaiting <= motion.digital-out-04
 net cpl-c-air-psi => MacSafety.0.ATCair
-setp MacSafety.0.ATCairTrigger 100.00
+setp MacSafety.0.ATCairTrigger 95.00
 setp MacSafety.0.SpindTemp 1.0 #set to relavent pin when good spindle temp reading
 setp MacSafety.0.SpindTempTrigger 5.0 #set to a safe temp limit
 net spindle-load-hp => MacSafety.0.SpindHP
@@ -277,6 +277,7 @@ net spindle-manual-button or2.1.in1 <= hm2_7i80.0.7i70.0.1.input-12
 #M64 P0 - turn on digital output immediately.
 #M65 P0 - turn off digital output immediately.
 net spindle-unlock motion.digital-out-00 => or2.1.in0
+net tool-rack-open motion.digital-out-07 => hm2_7i80.0.7i72.0.2.output-08
 
 net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool lock/unlock (signal 0 = locked)
 
