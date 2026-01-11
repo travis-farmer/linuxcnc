@@ -39,7 +39,7 @@ o<toolchange> sub
 			G40
 
 			G90 G0	(Absolute distance mode Rapid move)
-			G53 Z#<_ini[TOOLSENSOR]Z_SAFE>	   	 (Change Z Position)
+			G53 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z>	   	 (Change Z Position)
 			o2120 if [#<_current_tool> NE 0 AND #<_current_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
 				
 				(-=PLAIN AUTO CHANGE, PLACE LAST IN RACK=-)
@@ -85,7 +85,7 @@ o<toolchange> sub
 				o2131 endif
 				G53 G0 Z#<pocket_safe_z>
 				M66 P1 L0
-				o3132 if [#5399 EQ 0]
+				o3132 if [#5399 EQ 1]
 					(msg,Last tool still in spindle! PAUSED!)
 					M64 P6 (turn on NGC warning LED)
 					M0

@@ -40,3 +40,4 @@ g0 g54 x0 y0
 g1 f30 g54 z0
 o<mac-home> call
 S24000
+o<mac-home> call

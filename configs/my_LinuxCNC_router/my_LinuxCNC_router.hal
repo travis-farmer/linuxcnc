@@ -552,8 +552,8 @@ net estop-out time.1.pause  MacSafety.0.EstopIn  estop-latch.0.ok-in  <=  iocont
 
 #  ---manual tool change signals---
 loadusr -W hal_manualtoolchange
-net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change pocket-used.0.tool-change
-net tool-change-confirmed   iocontrol.0.tool-changed pocket-used.0.tool-changed      <=  hal_manualtoolchange.changed
-net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number pocket-used.0.tool-prep-number
+net tool-change-request     iocontrol.0.tool-change       =>  hal_manualtoolchange.change
+net tool-change-confirmed   iocontrol.0.tool-changed     <=  hal_manualtoolchange.changed
+net tool-number             iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
 net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
 
