@@ -39,7 +39,7 @@ o<toolchange> sub
 			G40
 
 			G90 G0	(Absolute distance mode Rapid move)
-			G53 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z>	   	 (Change Z Position)
+			G53 Z#<pocket_safe_z>	   	 (Change Z Position)
 			o2120 if [#<_current_tool> NE 0 AND #<_current_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
 				
 				(-=PLAIN AUTO CHANGE, PLACE LAST IN RACK=-)
@@ -85,7 +85,7 @@ o<toolchange> sub
 				o2131 endif
 				G53 G0 Z#<pocket_safe_z>
 				M66 P1 L0
-				o3132 if [#5399 EQ 1]
+				o3132 if [#5399 EQ 0]
 					(msg,Last tool still in spindle! PAUSED!)
 					M64 P6 (turn on NGC warning LED)
 					M0
@@ -105,7 +105,7 @@ o<toolchange> sub
 				M63 P0	(Engage ATC, synchronized with the following move)
 				G53 G0 Z#<_ini[TOOL_CHANGE]POCKET_Z>
 				M66 P2 L4 Q10	(Wait for ATC engagement, TJF)
-				G53 G1 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z> F#<_ini[TOOL_CHANGE]RETRACT_VELOCITY_Z>			(Lift tool out of pocket)
+				G53 G1 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z> F#<_ini[TOOL_CHANGE]APPROACH_VELOCITY_Z>			(Lift tool out of pocket)
 				
 				G53 G0 Y#<_ini[TOOL_CHANGE]POCKET_SAFE_MOVE_Y>	(Rapid safe Y)
 				M61 Q#<_selected_tool>	(Set current tool)
