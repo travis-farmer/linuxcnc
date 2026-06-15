@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES num_dio=32 num_aio=10
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=1 num_stepgens=4 sserial_port_0=01100000"
+loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=1 num_stepgens=4 sserial_port_0=00000000"
 
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
@@ -67,9 +67,6 @@ addf estop-latch.0 servo-thread
 
 loadrt rpm2volts
 addf rpm2volts.0 servo-thread
-
-loadrt SpindleDirector
-addf SpindleDirector.0 servo-thread
 
 loadrt pocket_used personality=12
 addf pocket-used.0 servo-thread
@@ -149,20 +146,10 @@ setp MacSafety.0.SpindHPtrigger 6.0 #set to safe HP limit
 
 
 #########################
-# --- 7i83 settings --- #
-#########################
-setp hm2_7i80.0.7i83.0.3.analogout0-maxlim 10
-setp hm2_7i80.0.7i83.0.3.analogout0-minlim 0
-setp hm2_7i80.0.7i83.0.3.analogout0-scalemax 10
-setp hm2_7i80.0.7i83.0.3.analogout1-maxlim 10
-setp hm2_7i80.0.7i83.0.3.analogout1-minlim 0
-setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
-
-#########################
 # --- CONTROL PANEL --- #
 #########################
 # --- CPL LCD ---
-loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b\FF  TC %bAM\nATC U %b\FF  ATC T %b\FF |Laser Mode: %b\FF \nLaser Power: %3.3f\nLaser Air: %b\FF \nLaser Fume: %b\FF |Machine: %b\FF \nProbe S: %b\FF \nProbe T: %b\FF "
+loadrt lcd fmt_strings="U %f\nC %f\nTool %u Vac %bYN%b\FF  TC %bAM\nATC U %b\FF  ATC T %b\FF |Machine: %b\FF \nProbe S: %b\FF \nProbe T: %b\FF "
 addf lcd servo-thread
 setp lcd-pager.0.number-pages 2
 net lcd-page-out lcd-pager.0.page-out => lcd.00.page_num
@@ -178,14 +165,9 @@ net tool-change-mode => lcd.00.page.00.arg.05
 net spindle-is-unlocked => lcd.00.page.00.arg.06
 net spindle-is-hung => lcd.00.page.00.arg.07
 # --- Page 01 ---
-net spindleb-enable-out => lcd.00.page.01.arg.00
-net LaserAnalogIn => lcd.00.page.01.arg.01
-net LaserAirOut => lcd.00.page.01.arg.02
-net fume-extraction-ssr => lcd.00.page.01.arg.03
-# --- Page 02 ---
-net machine-is-enabled => lcd.00.page.02.arg.00
-net probe-sensor => lcd.00.page.02.arg.01
-net probe-tool => lcd.00.page.02.arg.02
+net machine-is-enabled => lcd.00.page.01.arg.00
+net probe-sensor => lcd.00.page.01.arg.01
+net probe-tool => lcd.00.page.01.arg.02
 
 # --- CPL Inputs ---
 net estop-b-in <= hm2_7i80.0.7i73.0.0.input-00-not
@@ -194,7 +176,6 @@ net MS-estop-reset-in-b or2.5.in1 <= hm2_7i80.0.7i73.0.0.input-01
 
 # --- CPL Outputs ---
 net spind-vac-control => hm2_7i80.0.7i73.0.0.output-00 # Vacuum
-net fume-extraction-ssr => hm2_7i80.0.7i73.0.0.output-01 # Laser Active
 net MS-ManualChangeWaiting => hm2_7i80.0.7i73.0.0.output-02 # MTC Waiting
 net MS-ATCActive => hm2_7i80.0.7i73.0.0.output-03 # ATC Active
 
@@ -209,23 +190,6 @@ net control-pause => halui.program.pause
 net control-resume => halui.program.resume
 net control-m-home => halui.mdi-command-01
 net control-w-home => halui.mdi-command-00
-#net laser-mode MacSafety.0.LaserMode vacuum-control.0.laser-mode-in <= toggle.0.out # laser mode toggle
-
-############################
-# --- Spindle Director --- #
-############################
-
-net cpl-tool-number => SpindleDirector.0.tool-number
-net sd-at-speed spindle.0.at-speed <= SpindleDirector.0.spindle-at-speed
-net sd-brake spindle.0.brake => SpindleDirector.0.spindle-brake
-net sd-forward spindle.0.forward => SpindleDirector.0.spindle-forward
-net sd-on spindle.0.on => SpindleDirector.0.spindle-on
-net sd-reverse spindle.0.reverse => SpindleDirector.0.spindle-reverse
-net sd-speed-in spindle.0.speed-in <= SpindleDirector.0.spindle-speed-in
-net sd-speed-out spindle.0.speed-out => SpindleDirector.0.spindle-speed-out
-net sd-speed-out-abs spindle.0.speed-out-abs => SpindleDirector.0.spindle-speed-out-abs
-net sd-speed-out-rps spindle.0.speed-out-rps => SpindleDirector.0.spindle-speed-out-rps
-net sd-speed-out-rps-abs spindle.0.speed-out-rps-abs => SpindleDirector.0.spindle-speed-out-rps-abs
 
 
 ###################
@@ -242,22 +206,22 @@ net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited rpm2volts.0.RpmIn <= rpmlimiter.0.rpmout
-net spindle-rps-out rpm2volts.0.RpsOut => SpindleDirector.0.driven-speed-in
+net spindle-rps-out rpm2volts.0.RpsOut => spindle.0.speed-in
 net vfd-rpm-volts rpm2volts.0.voltsOut => hm2_7i80.0.7i83.0.3.analogout0
 net spindle-cw => hm2_7i80.0.7i72.0.2.output-04 or2.2.in0
 net spindle-ccw => hm2_7i80.0.7i72.0.2.output-03 or2.2.in1
 net ena-analog-out or2.2.out => hm2_7i80.0.7i83.0.3.analogena0 hm2_7i80.0.7i72.0.2.output-00
 
 # --- Spindle speed control/readout ---
-net spindle-vel-cmd-rpm        <=  SpindleDirector.0.driven-speed-out
-net spindle-vel-cmd-rpm-abs    <=  SpindleDirector.0.driven-speed-out-abs
+net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
+net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
 # --- Spindle signals ---
-net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19-not =>  SpindleDirector.0.driven-at-speed
-net spindle-on             <=  SpindleDirector.0.driven-on
-net spindle-cw   <=  SpindleDirector.0.driven-forward
-net spindle-ccw   <=  SpindleDirector.0.driven-reverse
-net spindle-brake              <=  SpindleDirector.0.driven-brake
+net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19-not =>  spindle.0.at-speed
+net spindle-on             <=  spindle.0.on
+net spindle-cw   <=  spindle.0.forward
+net spindle-ccw   <=  spindle.0.reverse
+net spindle-brake              <=  spindle.0.brake
 
 # --- Spindle ATC input signals ---
 
@@ -290,35 +254,14 @@ setp load-conv.0.maxpower 4.50
 net spindle-load <= load-conv.0.load
 net spindle-load-hp <= load-conv.0.hp
 net vfd-double-power-volts load-conv.0.DblCurVolts <= hm2_7i80.0.7i70.0.1.analog2
-########################
-# --- Laser Analog --- #
-########################
-
-setp timedelay.0.on-delay 0.00
-setp timedelay.0.off-delay 5.00
-# S0-5000 $1
-net spindleb-speed-scale SpindleDirector.0.laser-speed-out-abs => LaserAnalog.0.SpindleIn
-net spindleb-speed-DAC LaserAnalog.0.FloatOut => hm2_7i80.0.7i83.0.3.analogout1
-net spindleb-enable SpindleDirector.0.laser-forward => LaserAnalog.0.SpindleEnable
-net spindleb-enable-out hm2_7i80.0.7i83.0.3.analogena1 hm2_7i80.0.7i72.0.2.output-05 <= LaserAnalog.0.LaserEnableOut
-# M68 E0 Q0
-# M67 E0 Q0
-net LaserAnalogIn motion.analog-out-00 => LaserAnalog.0.LaserIn
-# M64 P2 - turn on digital output immediately.
-# M65 P2 - turn off digital output immediately.
-net LaserOnSig LaserAnalog.0.LaserOnSigIn <= motion.digital-out-02 # laser E-Stop handled by on-abort.ngc
-
-# connect the output to the spindle-at-speed input
-setp SpindleDirector.0.laser-at-speed true
-setp LaserAnalog.0.DoorInterlockIn true
 
 ############################
 # --- external signals --- #
 ############################
 
 # --- MACHINE-IS-ENABLED ---
-setp hm2_7i80.0.gpio.000.invert_output true # stepper enable
-setp hm2_7i80.0.gpio.000.is_output true
+setp hm2_7i80.0.gpio.047.invert_output true # stepper enable
+setp hm2_7i80.0.gpio.047.is_output true
 net machine-is-enabled =>     hm2_7i80.0.gpio.047.out # stepper enable
 
 # --- PROBE-IN ---
