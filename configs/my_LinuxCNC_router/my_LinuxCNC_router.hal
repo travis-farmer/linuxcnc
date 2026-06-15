@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS num_spindles=[TRAJ]SPINDLES num_dio=32 num_aio=10
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=1 num_stepgens=4 sserial_port_0=00000000"
+loadrt hm2_eth board_ip="10.10.10.10" config="num_dplls=0 num_pwmgens=0 num_encoders=1 num_stepgens=4 sserial_port_0=01000000"
 
 loadrt pid names=pid.x,pid.y,pid.z
 loadrt abs names=abs.spindle
@@ -207,10 +207,10 @@ net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
 net spindle-limited rpm2volts.0.RpmIn <= rpmlimiter.0.rpmout
 net spindle-rps-out rpm2volts.0.RpsOut => spindle.0.speed-in
-net vfd-rpm-volts rpm2volts.0.voltsOut => hm2_7i80.0.7i83.0.3.analogout0
+#net vfd-rpm-volts rpm2volts.0.voltsOut => hm2_7i80.0.7i83.0.3.analogout0
 net spindle-cw => hm2_7i80.0.7i72.0.2.output-04 or2.2.in0
 net spindle-ccw => hm2_7i80.0.7i72.0.2.output-03 or2.2.in1
-net ena-analog-out or2.2.out => hm2_7i80.0.7i83.0.3.analogena0 hm2_7i80.0.7i72.0.2.output-00
+#net ena-analog-out or2.2.out => hm2_7i80.0.7i83.0.3.analogena0 hm2_7i80.0.7i72.0.2.output-00
 
 # --- Spindle speed control/readout ---
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
@@ -260,7 +260,7 @@ net vfd-double-power-volts load-conv.0.DblCurVolts <= hm2_7i80.0.7i70.0.1.analog
 ############################
 
 # --- MACHINE-IS-ENABLED ---
-setp hm2_7i80.0.gpio.047.invert_output true # stepper enable
+setp hm2_7i80.0.gpio.047.invert_output false # stepper enable
 setp hm2_7i80.0.gpio.047.is_output true
 net machine-is-enabled =>     hm2_7i80.0.gpio.047.out # stepper enable
 
@@ -274,7 +274,7 @@ net probe-sensor	or2.0.in1     <=  debounce.0.1.out
 net probe-in     <=  or2.0.out
 
 # --- HOME-X ---
-net home-x     <=  hm2_7i80.0.7i70.0.1.input-06-not
+net home-x     <=  hm2_7i80.0.7i70.0.1.input-06
 
 # --- HOME-Y ---
 net home-y     <=  hm2_7i80.0.7i70.0.1.input-07-not

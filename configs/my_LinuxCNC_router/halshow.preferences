@@ -15,8 +15,8 @@ set ::watchlist {
     pin+LaserAnalog.0.LaserIn
     pin+LaserAnalog.0.LaserEnableOut
     pin+LaserAnalog.0.FloatOut
-    pin+hm2_7i80.0.7i83.0.3.analogena1
     pin+hm2_7i80.0.7i72.0.2.output-05
+    pin+hm2_7i80.0.gpio.047.in_not
 }
 set ::workmode watchhal
 set ::watchInterval 100
