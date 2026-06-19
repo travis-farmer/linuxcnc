@@ -26,7 +26,7 @@ o<toolchange> sub
 	o2000 if[#<_current_tool> NE #<_selected_tool>]	(Same tool as before so no need to do anything.)
 		(This is a different tool.)
 
-		o2100 if [#<_hal[tool-change-mode]>]
+		o2100 if [#<_ini[TOOL_CHANGE]MODE> EQ 1]
 			( -=AUTOMATIC TOOL CHANGE=- )
 
 			M66 P3 L0	(Check air pressure sensor, TJF)
@@ -37,7 +37,8 @@ o<toolchange> sub
 
 			(Basic sanity checks done - start the tool change process)
 			G40
-
+			
+			G53 G0 Y#<pocket_approach_y>
 			G90 G0	(Absolute distance mode Rapid move)
 			G53 Z#<_ini[TOOL_CHANGE]POCKET_SAFE_RETRACT_Z>	   	 (Change Z Position)
 			o2120 if [#<_current_tool> NE 0 AND #<_current_tool> LE #<_ini[TOOL_CHANGE]NUM_POCKETS>]
@@ -83,7 +84,9 @@ o<toolchange> sub
 						(msg,No air pressure PAUSED)
 						M0 (pause)
 				o2131 endif
+				
 				G53 G0 Z#<pocket_safe_z>
+				G53 G0 Y#<pocket_approach_y>
 				M66 P1 L0
 				o3132 if [#5399 EQ 1]
 					(msg,Last tool still in spindle! PAUSED!)
@@ -92,7 +95,8 @@ o<toolchange> sub
 					M65 P6 (turn off NGC warning LED)
 				o3132 endif
 				(Wait for ATC release, TJF)
-				G53 G0 X#<pocket_selected_x> Y#<_ini[TOOL_CHANGE]POCKET_Y>	(Rapid XY over selected tool)
+				G53 G0 X#<pocket_selected_x>
+				G53 G0 Y#<_ini[TOOL_CHANGE]POCKET_Y>	(Rapid XY over selected tool)
 				M64 P0	(Release ATC)
 				M66 P2 L3 Q10
 				o3133 if [#5399 EQ -1]
@@ -139,10 +143,10 @@ o<toolchange> sub
 		o2100 endif
 
 		o2200 if [#<_selected_tool> NE 0 AND #<_selected_tool> NE 99 AND #<_selected_tool> NE 98]            (not tool zero or 99, as zero is no tool, and 99 is 3D probe)
-			o2210 if [#<_hal[tool-change-probe]>] (probe all tools when used)
+			o2210 if [#<_ini[TOOLSENSOR]MODE> EQ 1] (probe all tools when used)
 				M201	(Probe tool, but not the 3d probe 99, or laser 98)
 			o2210 else
-				o2211 if [#5403 EQ 0]
+				o2211 if [#5403 EQ 0 AND #<_ini[TOOLSENSOR]MODE> EQ 1]
 					M201 (Probes tools that are set to zero, only)
 				o2211 endif
 			o2210 endif

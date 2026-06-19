@@ -5,18 +5,22 @@ placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+LaserAnalog.0.DoorInterlockIn
-    pin+LaserAnalog.0.PercentOut
-    pin+LaserAnalog.0.time
-    pin+LaserAnalog.0.SpindleIn
-    pin+LaserAnalog.0.SpindleEnable
-    pin+LaserAnalog.0.ProgIsPausedIn
-    pin+LaserAnalog.0.LaserOnSigIn
-    pin+LaserAnalog.0.LaserIn
-    pin+LaserAnalog.0.LaserEnableOut
-    pin+LaserAnalog.0.FloatOut
-    pin+hm2_7i80.0.7i72.0.2.output-05
-    pin+hm2_7i80.0.gpio.047.in_not
+    sig+spindle-unlock
+    sig+spindle-is-loaded
+    sig+atc-control
+    sig+spindle-is-unlocked
+    pin+volts2psi.0.PSIout
+    pin+volts2psi.0.volts
+    pin+volts2psi.1.volts
+    pin+volts2psi.1.PSIout
+    pin+hm2_7i80.0.7i70.0.1.analog0
+    pin+hm2_7i80.0.7i70.0.1.analog1
+    sig+probe-tool
+    sig+probe-sensor
+    sig+estop-fault-trigger
+    sig+estop-ext-trigger
+    sig+estop-b-in
+    sig+estop-a-in
 }
 set ::workmode watchhal
 set ::watchInterval 100

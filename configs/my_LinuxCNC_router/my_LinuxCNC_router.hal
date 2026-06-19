@@ -165,7 +165,7 @@ net vac-arm-trig => lcd.00.page.00.arg.03
 net spind-vac-control => lcd.00.page.00.arg.04
 net tool-change-mode => lcd.00.page.00.arg.05
 net spindle-is-unlocked => lcd.00.page.00.arg.06
-net spindle-is-hung => lcd.00.page.00.arg.07
+net spindle-is-loaded => lcd.00.page.00.arg.07
 # --- Page 01 ---
 net machine-is-enabled => lcd.00.page.01.arg.00
 net probe-sensor => lcd.00.page.01.arg.01
