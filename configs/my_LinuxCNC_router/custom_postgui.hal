@@ -16,5 +16,5 @@ net cpl-c-air-psi => flexhal.psi-comp
 net spindle-load => flexhal.spindle-loading
 net spindle-load-hp => flexhal.spindle-hp
 net spindle-actual hm2_7i80.0.encoder.00.velocity-rpm => flexhal.spindle-actual # trying a encoder (optical) RPM readout
-net laser-percent LaserAnalog.0.PercentOut => flexhal.laser-actual
+#net laser-percent LaserAnalog.0.PercentOut => flexhal.laser-actual
 
