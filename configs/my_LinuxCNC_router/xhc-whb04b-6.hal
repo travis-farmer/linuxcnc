@@ -20,8 +20,8 @@ net pdnt.machine.off                      whb.halui.machine.off                 
 net MS-prog-is-idle                     whb.halui.program.is-idle
 net MS-prog-is-paused                   whb.halui.program.is-paused
 net MS-prog-is-running                  whb.halui.program.is-running
-net control-resume                   whb.halui.program.resume
-net control-pause                    whb.halui.program.pause
+net control-resume                   whb.halui.program.resume           halui.program.resume
+net control-pause                    whb.halui.program.pause     halui.program.pause
 net pdnt.program.run                      whb.halui.program.run                 halui.program.run
 net pdnt.program.stop                     whb.halui.program.stop                halui.program.stop
 

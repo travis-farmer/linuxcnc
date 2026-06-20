@@ -1,5 +1,7 @@
 o<mac-home> sub
     G53 G0 Z0
-    G53 G0 X0 Y0
+    G53 G0 Y3
+    G53 G0 X0
+    G53 G0 Y0
 o<mac-home> endsub
 M2
