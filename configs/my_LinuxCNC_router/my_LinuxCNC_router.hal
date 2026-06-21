@@ -71,10 +71,10 @@ addf rpm2volts.0 servo-thread
 loadrt pocket_used personality=12
 addf pocket-used.0 servo-thread
 
-#loadusr -W mb2hal config=mb2hal.ini
+loadusr -W mb2hal config=mb2hal.ini
 
-#loadrt vfd2mb
-#addf vfd2mb.0 servo-thread
+loadrt vfd2mb
+addf vfd2mb.0 servo-thread
 
 #############################
 # --- Pocket Indicators --- #
@@ -201,8 +201,8 @@ setp hm2_7i80.0.encoder.00.counter-mode true
 setp hm2_7i80.0.encoder.00.vel-timeout 1.5
 
 # --- VFD control ---
-#net vfd-percent-speed mb2hal.0.vfdset <= vfd2mb.0.PercOut
-#net vfd-command mb2hal.0.vfdcntrl <= vfd2mb.0.CmdOut
+net vfd-percent-speed mb2hal.vfdset.00.float <= vfd2mb.0.percOut
+net vfd-command mb2hal.vfdcntrl.00.float <= vfd2mb.0.cmdOut
 
 
 
@@ -212,9 +212,9 @@ net current-tool-max toolrpm.max-rpm => rpmlimiter.0.toolmax
 net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
-#net vfd-rpm-volts rpmlimiter.0.rpmout => vfd2mb.0.RpmIn
-#net spindle-cw => vfd2mb.0.SpindFwd or2.2.in0
-#net spindle-ccw => vfd2mb.0.SpindRev or2.2.in1
+net vfd-rpm-volts rpmlimiter.0.rpmout => vfd2mb.0.RpmIn
+net spindle-cw => vfd2mb.0.SpindFwd or2.2.in0
+net spindle-ccw => vfd2mb.0.SpindRev or2.2.in1
 net ena-analog-out or2.2.out => hm2_7i80.0.7i72.0.2.output-00
 
 # --- Spindle speed control/readout ---

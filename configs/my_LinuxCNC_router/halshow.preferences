@@ -5,22 +5,11 @@ placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    sig+spindle-unlock
-    sig+spindle-is-loaded
-    sig+atc-control
-    sig+spindle-is-unlocked
-    pin+volts2psi.0.PSIout
-    pin+volts2psi.0.volts
-    pin+volts2psi.1.volts
-    pin+volts2psi.1.PSIout
-    pin+hm2_7i80.0.7i70.0.1.analog0
-    pin+hm2_7i80.0.7i70.0.1.analog1
-    sig+probe-tool
-    sig+probe-sensor
-    sig+estop-fault-trigger
-    sig+estop-ext-trigger
-    sig+estop-b-in
-    sig+estop-a-in
+    pin+mb2hal.vfdcntrl.00.int
+    pin+mb2hal.vfdstate.00.int
+    pin+mb2hal.vfdset.00.int
+    pin+mb2hal.vfdset.00.float
+    pin+mb2hal.vfdcntrl.00.float
 }
 set ::workmode watchhal
 set ::watchInterval 100

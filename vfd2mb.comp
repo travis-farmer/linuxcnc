@@ -5,10 +5,10 @@ pin out float percOut "percent out, X 100";
 pin in bit SpindFwd "send spindle into a forward tizzy";
 pin in bit SpindRev "send spindle into a reverse tizzy";
 pin out float cmdOut "VFD command instruction out";
-pin in float vfdRunningFreq "VFD Running Frequency";
+/*pin in float vfdRunningFreq "VFD Running Frequency";
 pin in float vfdRunningCurr "VFD Running Current";
 pin in float vfdRunningVolt "VFD Running Volts";
-pin in float vfdRunningTor "VFD Running Torque";
+pin in float vfdRunningTor "VFD Running Torque";*/
 
 
 function _;
@@ -22,9 +22,9 @@ float map(float x, float in_min, float in_max, float out_min, float out_max) {
 
 FUNCTION(_) {
     percOut = (int)map(RpmIn,0.00,24000.00,0,10000);
-    if (SpindFwd == true && SpindRev == false && SpindFault == false) { cmdOut = 1;}
-    else if (SpindFwd == false && SpindRev == true) && SpindFault == false { cmdOut = 2;}
-    else if (SpindFwd == false && SpindRev == false && SpindFault == false) { cmdOut = 5;}
+    if (SpindFwd == true && SpindRev == false) { cmdOut = 1;}
+    else if (SpindFwd == false && SpindRev == true) { cmdOut = 2;}
+    else if (SpindFwd == false && SpindRev == false) { cmdOut = 5;}
     
     
 }

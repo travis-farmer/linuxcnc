@@ -49,3 +49,6 @@ o<mac-home> call
 g0 X8.93
 g0 g53 x8.93
 o<mac-home> call
+S12000
+S24000
+S12000
