@@ -5,11 +5,8 @@ placeFrames 0.4171511627906977
 set ::ratio 0.4171511627906977
 set ::old_w_leftf 206
 set ::watchlist {
-    pin+mb2hal.vfdcntrl.00.int
-    pin+mb2hal.vfdstate.00.int
-    pin+mb2hal.vfdset.00.int
-    pin+mb2hal.vfdset.00.float
-    pin+mb2hal.vfdcntrl.00.float
+    pin+hm2_7i80.0.7i83.0.3.analogout0
+    pin+hm2_7i80.0.7i83.0.3.analogena0
 }
 set ::workmode watchhal
 set ::watchInterval 100

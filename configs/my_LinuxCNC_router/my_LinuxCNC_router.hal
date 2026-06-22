@@ -71,10 +71,10 @@ addf rpm2volts.0 servo-thread
 loadrt pocket_used personality=12
 addf pocket-used.0 servo-thread
 
-loadusr -W mb2hal config=mb2hal.ini
+#loadusr -W mb2hal config=mb2hal.ini
 
-loadrt vfd2mb
-addf vfd2mb.0 servo-thread
+#loadrt vfd2mb
+#addf vfd2mb.0 servo-thread
 
 #############################
 # --- Pocket Indicators --- #
@@ -194,6 +194,17 @@ net control-m-home => halui.mdi-command-01
 net control-w-home => halui.mdi-command-00
 
 
+#########################
+# --- 7i83 settings --- #
+#########################
+setp hm2_7i80.0.7i83.0.3.analogout0-maxlim 10
+setp hm2_7i80.0.7i83.0.3.analogout0-minlim 0
+setp hm2_7i80.0.7i83.0.3.analogout0-scalemax 10
+setp hm2_7i80.0.7i83.0.3.analogout1-maxlim 10
+setp hm2_7i80.0.7i83.0.3.analogout1-minlim 0
+setp hm2_7i80.0.7i83.0.3.analogout1-scalemax 10
+
+
 ###################
 # --- spindle --- #
 ###################
@@ -201,8 +212,8 @@ setp hm2_7i80.0.encoder.00.counter-mode true
 setp hm2_7i80.0.encoder.00.vel-timeout 1.5
 
 # --- VFD control ---
-net vfd-percent-speed mb2hal.vfdset.00.float <= vfd2mb.0.percOut
-net vfd-command mb2hal.vfdcntrl.00.float <= vfd2mb.0.cmdOut
+#net vfd-percent-speed mb2hal.vfdset.00.float <= vfd2mb.0.percOut
+#net vfd-command mb2hal.vfdcntrl.00.float <= vfd2mb.0.cmdOut
 
 
 
@@ -211,11 +222,13 @@ loadusr -W toolrpm
 net current-tool-max toolrpm.max-rpm => rpmlimiter.0.toolmax
 net current-tool-used iocontrol.0.tool-number => rpmlimiter.0.toolnumber
 
+net spindle-limited rpm2volts.0.RpmIn <= rpmlimiter.0.rpmout
 net spindle-vel-cmd-rpm-abs => rpmlimiter.0.rpmin
-net vfd-rpm-volts rpmlimiter.0.rpmout => vfd2mb.0.RpmIn
-net spindle-cw => vfd2mb.0.SpindFwd or2.2.in0
-net spindle-ccw => vfd2mb.0.SpindRev or2.2.in1
-net ena-analog-out or2.2.out => hm2_7i80.0.7i72.0.2.output-00
+#net vfd-rpm-volts rpmlimiter.0.rpmout => vfd2mb.0.RpmIn
+net vfd-rpm-volts rpm2volts.0.voltsOut => hm2_7i80.0.7i83.0.3.analogout0
+net spindle-cw => hm2_7i80.0.7i72.0.2.output-03 or2.2.in0
+net spindle-ccw => hm2_7i80.0.7i72.0.2.output-04 or2.2.in1
+net ena-analog-out or2.2.out => hm2_7i80.0.7i83.0.3.analogena0 hm2_7i80.0.7i72.0.2.output-00
 
 # --- Spindle speed control/readout ---
 net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
