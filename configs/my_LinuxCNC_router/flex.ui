@@ -2092,7 +2092,7 @@
             </widget>
            </item>
            <item row="0" column="0">
-            <widget class="QPushButton" name="tool_change_pb_16">
+            <widget class="QPushButton" name="tool_change_pb_9">
              <property name="text">
               <string>[9] 1.5in Spoil</string>
              </property>
@@ -2157,7 +2157,7 @@
             </widget>
            </item>
            <item row="3" column="3">
-            <widget class="QPushButton" name="tool_change_pb_9">
+            <widget class="QPushButton" name="tool_change_pb_8">
              <property name="text">
               <string>[8] 1/4in UC FEM</string>
              </property>
@@ -4997,7 +4997,7 @@
      <x>0</x>
      <y>0</y>
      <width>1127</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
