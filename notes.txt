@@ -28,20 +28,8 @@ halcompile -i MacSafety.comp
 ------------------------------------------------------
 TODO
 ------------------------------------------------------
-VFD settings
-f0.01 = 2
-f0.03 = 6
-f6.01 = 5
+sudo halcompile -i ./MacSafety.comp
 
-sudo halcompile -i ./vfd2mb.comp
-
-Addr            function
-1               running frequency
-2               output current
-3               output voltage
-5               output power
-6               output torque
-
-f2.01 - f2.06: find values 7 (failure reset) and 8 (external fault) and connect the signals via relay to machine on signal.
-
-if i have 2 NPN -> PNP converters left, i can use them on MO1 and MO2, using EV for +24v, and MCM + DCM for gnd.
+Fix spindle button
+connect wire from input 39 to dust shoe sensor
+fix spindle air sensor

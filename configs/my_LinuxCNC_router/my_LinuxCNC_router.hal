@@ -68,7 +68,7 @@ addf estop-latch.0 servo-thread
 loadrt rpm2volts
 addf rpm2volts.0 servo-thread
 
-loadrt pocket_used personality=12
+loadrt pocket_used personality=8
 addf pocket-used.0 servo-thread
 
 #loadusr -W mb2hal config=mb2hal.ini
@@ -80,30 +80,24 @@ addf pocket-used.0 servo-thread
 # --- Pocket Indicators --- #
 #############################
 net cpl-tool-number => pocket-used.0.tool-number
-net pi-pocket1-full hm2_7i80.0.7i70.0.1.input-36 => hm2_7i80.0.7i72.0.2.output-24
-net pi-pocket2-full hm2_7i80.0.7i70.0.1.input-37 => hm2_7i80.0.7i72.0.2.output-26
-net pi-pocket3-full hm2_7i80.0.7i70.0.1.input-38 => hm2_7i80.0.7i72.0.2.output-28
-net pi-pocket4-full hm2_7i80.0.7i70.0.1.input-39 => hm2_7i80.0.7i72.0.2.output-30
-net pi-pocket5-full hm2_7i80.0.7i70.0.1.input-40 => hm2_7i80.0.7i72.0.2.output-32
-net pi-pocket6-full hm2_7i80.0.7i70.0.1.input-41 => hm2_7i80.0.7i72.0.2.output-34
-net pi-pocket7-full hm2_7i80.0.7i70.0.1.input-42 => hm2_7i80.0.7i72.0.2.output-36
-net pi-pocket8-full hm2_7i80.0.7i70.0.1.input-43 => hm2_7i80.0.7i72.0.2.output-38
-net pi-pocket9-full hm2_7i80.0.7i70.0.1.input-44 => hm2_7i80.0.7i72.0.2.output-40
-net pi-pocket10-full hm2_7i80.0.7i70.0.1.input-45 => hm2_7i80.0.7i72.0.2.output-42
-net pi-pocket11-full hm2_7i80.0.7i70.0.1.input-46 => hm2_7i80.0.7i72.0.2.output-44
-net pi-pocket12-full hm2_7i80.0.7i70.0.1.input-47 => hm2_7i80.0.7i72.0.2.output-46
-net pi-pocket1-used pocket-used.0.in-use.0 => hm2_7i80.0.7i72.0.2.output-25
-net pi-pocket2-used pocket-used.0.in-use.1 => hm2_7i80.0.7i72.0.2.output-27
-net pi-pocket3-used pocket-used.0.in-use.2 => hm2_7i80.0.7i72.0.2.output-29
-net pi-pocket4-used pocket-used.0.in-use.3 => hm2_7i80.0.7i72.0.2.output-31
-net pi-pocket5-used pocket-used.0.in-use.4 => hm2_7i80.0.7i72.0.2.output-33
-net pi-pocket6-used pocket-used.0.in-use.5 => hm2_7i80.0.7i72.0.2.output-35
-net pi-pocket7-used pocket-used.0.in-use.6 => hm2_7i80.0.7i72.0.2.output-37
-net pi-pocket8-used pocket-used.0.in-use.7 => hm2_7i80.0.7i72.0.2.output-39
-net pi-pocket9-used pocket-used.0.in-use.8 => hm2_7i80.0.7i72.0.2.output-41
-net pi-pocket10-used pocket-used.0.in-use.9 => hm2_7i80.0.7i72.0.2.output-43
-net pi-pocket11-used pocket-used.0.in-use.10 => hm2_7i80.0.7i72.0.2.output-45
-net pi-pocket12-used pocket-used.0.in-use.11 => hm2_7i80.0.7i72.0.2.output-47
+net pi-pocket1-full hm2_7i80.0.7i70.0.1.input-40 => hm2_7i80.0.7i72.0.2.output-33
+net pi-pocket2-full hm2_7i80.0.7i70.0.1.input-41 => hm2_7i80.0.7i72.0.2.output-35
+net pi-pocket3-full hm2_7i80.0.7i70.0.1.input-42 => hm2_7i80.0.7i72.0.2.output-37
+net pi-pocket4-full hm2_7i80.0.7i70.0.1.input-43 => hm2_7i80.0.7i72.0.2.output-39
+net pi-pocket5-full hm2_7i80.0.7i70.0.1.input-44 => hm2_7i80.0.7i72.0.2.output-41
+net pi-pocket6-full hm2_7i80.0.7i70.0.1.input-45 => hm2_7i80.0.7i72.0.2.output-43
+net pi-pocket7-full hm2_7i80.0.7i70.0.1.input-46 => hm2_7i80.0.7i72.0.2.output-45
+net pi-pocket8-full hm2_7i80.0.7i70.0.1.input-47 => hm2_7i80.0.7i72.0.2.output-47
+
+net pi-pocket1-used pocket-used.0.in-use.0 => hm2_7i80.0.7i72.0.2.output-32
+net pi-pocket2-used pocket-used.0.in-use.1 => hm2_7i80.0.7i72.0.2.output-34
+net pi-pocket3-used pocket-used.0.in-use.2 => hm2_7i80.0.7i72.0.2.output-36
+net pi-pocket4-used pocket-used.0.in-use.3 => hm2_7i80.0.7i72.0.2.output-38
+net pi-pocket5-used pocket-used.0.in-use.4 => hm2_7i80.0.7i72.0.2.output-40
+net pi-pocket6-used pocket-used.0.in-use.5 => hm2_7i80.0.7i72.0.2.output-42
+net pi-pocket7-used pocket-used.0.in-use.6 => hm2_7i80.0.7i72.0.2.output-44
+net pi-pocket8-used pocket-used.0.in-use.7 => hm2_7i80.0.7i72.0.2.output-46
+
 
 
 #####################
@@ -235,7 +229,7 @@ net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
 # --- Spindle signals ---
-net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19-not =>  spindle.0.at-speed # TODO: Connect this wire
+net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19-not =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
@@ -252,6 +246,8 @@ net spindle-is-loaded motion.digital-in-01 <= hm2_7i80.0.7i70.0.1.input-11
 # M66 P2 L3 Q5 - wait for lock/unlocked
 net spindle-is-unlocked motion.digital-in-02 <= hm2_7i80.0.7i70.0.1.input-10
 
+# --- Dust-Shoe installed sensor ---
+net dust-shoe-installed motion.digital-in-04 <= hm2_7i80.0.7i70.0.1.input-39 #TODO: Connect this wire
 
 # --- Spindle ATC Manual Button ---
 net spindle-manual-button or2.1.in1 <= hm2_7i80.0.7i70.0.1.input-12
@@ -265,14 +261,13 @@ net tool-rack-open motion.digital-out-07 => hm2_7i80.0.7i72.0.2.output-08
 net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool lock/unlock (signal 0 = locked)
 
 # --- VFD hardware signals ---
-net hrdwr-spindle-running motion.digital-in-00 load-conv.0.SpindleActive <= hm2_7i80.0.7i70.0.1.input-20 # TODO: Connect this wire
+net hrdwr-spindle-running motion.digital-in-00 load-conv.0.SpindleActive <= hm2_7i80.0.7i70.0.1.input-20
 
 setp load-conv.0.maxpower 4.50
 
 net spindle-load <= load-conv.0.load
 net spindle-load-hp <= load-conv.0.hp
-net vfd-double-power-volts load-conv.0.DblCurVolts <= hm2_7i80.0.7i70.0.1.analog2 # FIXME: this should point to a Modbus value, not an analog input
-
+net vfd-double-power-volts load-conv.0.DblCurVolts <= hm2_7i80.0.7i70.0.1.analog2
 ############################
 # --- external signals --- #
 ############################

@@ -45,7 +45,7 @@ FUNCTION(_) {
             EstopFault = true;
             EstopReset = false;
         }
-    } else if (ProgPausedIn == true || (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger || NGCwarning == true)) {
+    } else if (ProgPausedIn == true || (ATCair <= ATCairTrigger || SpindTemp >= SpindTempTrigger || SpindHP >= SpindHPtrigger)) {
         SignalTowerGreen = false;
         SignalTowerAmber = true;
         SignalTowerRed = false;
@@ -73,6 +73,11 @@ FUNCTION(_) {
         SignalTowerBlue = true;
     } else {
         SignalTowerBlue = false;
+    }
+    if (NGCwarning == true) {
+        SignalTowerBuzzer = true;
+    } else {
+        SignalTowerBuzzer = false;
     }
     if (EstopIn == true && EstopTrigger == true) {
         EstopFault = false;
