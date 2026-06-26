@@ -33,3 +33,16 @@ sudo halcompile -i ./MacSafety.comp
 Fix spindle button
 connect wire from input 39 to dust shoe sensor
 fix spindle air sensor
+
+sudo nano /boot/firmware/cmdline.txt
+or
+sudo nano /boot/cmdline.txt
+
+----
+isolcpus=3
+----
+
+maybe
+----
+skew_tick=1 rcu_nocbs=3 nohz_full=3 isolcpus=3
+----
