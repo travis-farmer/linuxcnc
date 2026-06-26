@@ -40,7 +40,7 @@ o<toolchange> sub
 			o2110 if [#5399 EQ 0]
 				(msg,No air pressure PAUSED)
 				M64 P6 (turn on NGC warning BUZZER)
-				;M0
+				M0
 				M65 P6 (turn off NGC warning BUZZER)
 			o2110 endif
 
@@ -95,7 +95,7 @@ o<toolchange> sub
 				o2131 if [#5399 EQ 0]
 						(msg,No air pressure PAUSED)
 						M64 P6 (turn on NGC warning BUZZER)
-						;M0
+						M0
 						M65 P6 (turn off NGC warning BUZZER)
 				o2131 endif
 				

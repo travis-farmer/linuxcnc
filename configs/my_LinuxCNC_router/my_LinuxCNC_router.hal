@@ -229,7 +229,7 @@ net spindle-vel-cmd-rpm        <=  spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs    <=  spindle.0.speed-out-abs
 
 # --- Spindle signals ---
-net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19-not =>  spindle.0.at-speed
+net spindle-at-speed hm2_7i80.0.7i70.0.1.input-19 =>  spindle.0.at-speed
 net spindle-on             <=  spindle.0.on
 net spindle-cw   <=  spindle.0.forward
 net spindle-ccw   <=  spindle.0.reverse
@@ -240,14 +240,14 @@ net spindle-brake              <=  spindle.0.brake
 net psi-reg-volts volts2psi.1.volts <= hm2_7i80.0.7i70.0.1.analog1
 net psi-volts volts2psi.0.volts <= hm2_7i80.0.7i70.0.1.analog0
 # M66 P3 L0 - return (#5399) air pressure status
-net spindle-air-pressure motion.digital-in-03 <= MacSafety.0.ATCairSafe # TODO: can i make the digital sensor work here?
+net spindle-air-pressure motion.digital-in-03 <= hm2_7i80.0.7i70.0.1.input-39-not # TODO: can i make the digital sensor work here?
 # M66 P1 L3 Q5 - wait for tool/no tool
 net spindle-is-loaded motion.digital-in-01 <= hm2_7i80.0.7i70.0.1.input-11
 # M66 P2 L3 Q5 - wait for lock/unlocked
 net spindle-is-unlocked motion.digital-in-02 <= hm2_7i80.0.7i70.0.1.input-10
 
 # --- Dust-Shoe installed sensor ---
-net dust-shoe-installed motion.digital-in-04 <= hm2_7i80.0.7i70.0.1.input-39 #TODO: Connect this wire
+net dust-shoe-installed motion.digital-in-04 <= hm2_7i80.0.7i70.0.1.input-38 #TODO: Connect this wire
 
 # --- Spindle ATC Manual Button ---
 net spindle-manual-button or2.1.in1 <= hm2_7i80.0.7i70.0.1.input-12
@@ -261,7 +261,7 @@ net tool-rack-open motion.digital-out-07 => hm2_7i80.0.7i72.0.2.output-08
 net atc-control or2.1.out => hm2_7i80.0.7i72.0.2.output-02 # output the ATC tool lock/unlock (signal 0 = locked)
 
 # --- VFD hardware signals ---
-net hrdwr-spindle-running motion.digital-in-00 load-conv.0.SpindleActive <= hm2_7i80.0.7i70.0.1.input-20
+net hrdwr-spindle-running motion.digital-in-00 load-conv.0.SpindleActive <= hm2_7i80.0.7i70.0.1.input-20-not
 
 setp load-conv.0.maxpower 4.50
 
