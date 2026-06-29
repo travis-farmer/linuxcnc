@@ -29,7 +29,6 @@ o<measure> sub
   G53 G0 X#<_ini[TOOLSENSOR]X_LOC> Y#<pocket_approach_y>  (Move to tool setter slot)
   G53 G0 Z#<pocket_safe_z> (Z up)
   G53 G0 Y#<_ini[TOOLSENSOR]Y_LOC>  (Move to tool setter postion)
-  G53 G0 Z#<pocket_safe_z>  (Move Z  to safe height above tool setter to start probe)
 
   (Measure tool to get offset)
   G38.3 Z-5.75 F#<_ini[TOOLSENSOR]SEARCH_VEL> (Probe move to work)
