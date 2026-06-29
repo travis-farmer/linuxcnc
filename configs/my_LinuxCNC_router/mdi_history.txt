@@ -57,3 +57,5 @@ o<mac-home> call
 S24000
 S12000
 o<mac-home> call
+S12000
+S24000
